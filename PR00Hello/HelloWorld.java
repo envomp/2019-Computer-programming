@@ -1,8 +1,7 @@
-package ee.taltech.iti0202.hello;
+package PR00Hello;
 
 public class HelloWorld {
     public static void main(String[] args) {
-        String HelloWorld = ("Hello, world!");
-        System.out.println(HelloWorld);
+        System.out.println("Hello, world!");
     }
 }
