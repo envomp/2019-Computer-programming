@@ -46,10 +46,10 @@ public class Introduction {
      * @return true if sneakyNumber's value equals its number of occurrences
      */
     public static String howIsOutcome(int valueOne, int valueTwo) {
-        if (valueOne / valueTwo == 2 || valueTwo / valueOne == 2) {
-            return "good";
-        } else if (valueOne < 5 || valueTwo < 5) {
+        if (valueOne < 5 || valueTwo < 5) {
             return "bad";
+        } else if (valueOne * 2 == valueTwo || valueTwo * 2 == valueOne) {
+            return "good";
         } else {
         return "ok";
         }
@@ -58,13 +58,6 @@ public class Introduction {
     public static void main(String[] args) {
         // static method we can call directly from static method (main)
         System.out.println(countJava("javaJavaJAVA"));  // 3
-        System.out.println(countJava("JAVAabcJava"));  // 2
-        System.out.println(countJava("HelloWorldIsLongerInJava"));  // 1
-        System.out.println(countJava("Nothing here"));  // 0
-        System.out.println();
-        System.out.println(doubleNumber(new int[]{1, 4, 8, 2, 2, 3}, 2));
-        System.out.println(doubleNumber(new int[]{3, 5, 4, 3, 2}, 3));
-        System.out.println(doubleNumber(new int[]{0, 1, 1, 2, 1, 3, 4, 1}, 1));
         // try some other examples here
     }
 }
