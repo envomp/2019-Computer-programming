@@ -3,7 +3,7 @@ package ee.taltech.iti0202.intro;
 public class Introduction {
 
     /**
-     * Method gets a string containing word Java in different cases.
+     * Method gets a string containing word Java in different cases. tere
      * Method must be case-insensitive to recognize all the Java words.
      *
      * @param stringWithJava the string to find words Java from.
