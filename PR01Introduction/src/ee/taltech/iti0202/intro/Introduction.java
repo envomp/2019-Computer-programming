@@ -50,8 +50,9 @@ public class Introduction {
             return "bad";
         } else if (valueOne / valueTwo == 2 || valueTwo / valueOne == 2){
             return "good";
-        }
+        } else {
         return "ok";
+        }
     }
 
     public static void main(String[] args) {
@@ -65,9 +66,9 @@ public class Introduction {
         System.out.println(doubleNumber(new int[]{3, 5, 4, 3, 2}, 3));
         System.out.println(doubleNumber(new int[]{0, 1, 1, 2, 1, 3, 4, 1}, 1));
         System.out.println();
-        System.out.println(howIsOutcome(1, 10)); // bad
-        System.out.println(howIsOutcome(6, 12)); // good
-        System.out.println(howIsOutcome(8, 9)); // ok
+        System.out.println(howIsOutcome(1 , 10 )); // bad
+        System.out.println(howIsOutcome(6 , 12 )); // good
+        System.out.println(howIsOutcome(8 , 9 )); // ok
         // try some other examples here
     }
 }
