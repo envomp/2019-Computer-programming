@@ -38,7 +38,7 @@ public class IDCode {
             } else {
                 return day > 0 && day < 29;
             }
-        } else if (month.matches("^[4|6|9|11]$")) {
+        } else if (month.matches("^[04|06|09|11]$")) {
             return day > 0 && day < 31;
         } else {
             return day > 0 && day < 32;
