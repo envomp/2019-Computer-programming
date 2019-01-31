@@ -23,6 +23,7 @@ public class IDCode {
                 && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
                 && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
                 && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
+
     }
 
     private static boolean isGenderNumberCorrect(String idCode) {
@@ -97,7 +98,7 @@ public class IDCode {
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
-    private static Gender getGender(String idCode) {
+    public static Gender getGender(String idCode) {
         String genderNumber = idCode.substring(0, 1);
         if (genderNumber.matches("^[1|3|5]$")) {
             return Gender.MALE;
@@ -105,7 +106,7 @@ public class IDCode {
         return Gender.FEMALE;
     }
 
-    private static int getFullYear(String idCode) {
+    public static int getFullYear(String idCode) {
         return Integer.parseInt(idCode.substring(1, 3)) + EPOCH_YEAR
                 + ((Integer.parseInt(idCode.substring(0, 1)) + 1) / 2) * 100;
     }
