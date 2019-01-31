@@ -24,7 +24,7 @@ public class IDCode {
         return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
                 && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
                 && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
-                && isQueueNumberCorrect(idCode) ;
+                && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
 
     }
 
@@ -75,7 +75,7 @@ public class IDCode {
         if (controlNumber == 10) {
             controlNumber = 0;
             for (int i = 0; i < 10; i++) {
-                controlNumber += MULTIPLIERS2[i] * idCode.charAt(i);
+                controlNumber += MULTIPLIERS2[i] *  Character.getNumericValue(idCode.charAt(i));
             }
             controlNumber %= ID_CODE_LENGTH;
             if (controlNumber == 10) {
