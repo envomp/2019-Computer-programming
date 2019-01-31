@@ -30,15 +30,15 @@ public class IDCode {
     private static boolean isDayNumberCorrect(String idCode) {
         int year = getFullYear(idCode);
         boolean leap = isLeapYear(year);
-        int month = Integer.parseInt(idCode.substring(3, 5));
+        String month = idCode.substring(3, 5);
         int day = Integer.parseInt(idCode.substring(5, 7));
-        if (month == 2) {
+        if (Integer.parseInt(month) == 2) {
             if (leap) {
                 return day > 0 && day < 30;
             } else {
                 return day > 0 && day < 29;
             }
-        } else if (month % 2 == 0) {
+        } else if (month.matches("^[4|6|9|11]$")) {
             return day > 0 && day < 31;
         } else {
             return day > 0 && day < 32;
@@ -99,6 +99,6 @@ public class IDCode {
     }
 
     public static void main(String[] args) {
-        System.out.println(getInformationFromIDCode("39907210831"));
+        System.out.println(isDayNumberCorrect("39906310831"));
     }
 }
