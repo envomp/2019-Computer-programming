@@ -14,6 +14,7 @@ public class IDCode {
     private static final int[] MULTIPLIERS1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
     private static final int[] MULTIPLIERS2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
     private static final int LEAP_MAX = 400;
+    private static final int QUEUE_MAX = 999;
     private static final int EPOCH_YEAR = 1700;
 
     private enum Gender {
@@ -22,10 +23,6 @@ public class IDCode {
 
     public static boolean isIDCodeCorrect(String idCode) {
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put(idCode, idCode);
-        String tere = map.get(idCode);
-        System.out.println(tere);
         return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
                 && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
                 && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
@@ -66,7 +63,8 @@ public class IDCode {
     }
 
     private static boolean isQueueNumberCorrect(String idCode) {
-        return Integer.parseInt(idCode.substring(SEVEN, 10)) != 0;
+        int queue = Integer.parseInt(idCode.substring(SEVEN, 10));
+        return queue > 0 && queue <= QUEUE_MAX;
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
@@ -101,7 +99,7 @@ public class IDCode {
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
         }
-        return "This is a " + getGender(idCode).name().toUpperCase() + " born on " + idCode.substring(5, SEVEN)
+        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, SEVEN)
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
@@ -120,6 +118,7 @@ public class IDCode {
 
     public static void main(String[] args) {
         System.out.println(isIDCodeCorrect("39907210831"));
+        System.out.println(getInformationFromIDCode("39907210831"));
         System.out.println(getInformationFromIDCode("60109200187"));
 
     }
