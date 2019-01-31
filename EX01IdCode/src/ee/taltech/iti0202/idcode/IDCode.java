@@ -102,7 +102,7 @@ public class IDCode {
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
         }
-        return "This is a " + getGender(idCode).toString() + " born on " + idCode.substring(5, SEVEN)
+        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, SEVEN)
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
@@ -121,7 +121,7 @@ public class IDCode {
 
     public static void main(String[] args) {
         System.out.println(isIDCodeCorrect("39907210831"));
-        System.out.println(getInformationFromIDCode("39907210831"));
+        System.out.println(getInformationFromIDCode("60109200187"));
 
     }
 }
