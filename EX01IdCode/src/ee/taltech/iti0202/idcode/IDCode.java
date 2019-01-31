@@ -2,6 +2,7 @@ package ee.taltech.iti0202.idcode;
 
 public class IDCode {
 
+    private static final int SEVEN = 7;
     private static final int ID_CODE_LENGTH = 11;
     private static final int MONTHS_IN_A_YEAR = 12;
     private static final int LEAP_FEB = 29;
@@ -22,7 +23,7 @@ public class IDCode {
             boolean[] correctness = {isGenderNumberCorrect(idCode), isYearNumberCorrect(idCode),
                     isMonthNumberCorrect(idCode), isDayNumberCorrect(idCode),
                     isQueueNumberCorrect(idCode), isControlNumberCorrect(idCode)};
-            for (boolean b : correctness){
+            for (boolean b : correctness) {
                 if (!b) {
                     return false;
                 }
@@ -49,7 +50,7 @@ public class IDCode {
         int year = getFullYear(idCode);
         boolean leap = isLeapYear(year);
         String month = idCode.substring(3, 5);
-        int day = Integer.parseInt(idCode.substring(5, 7));
+        int day = Integer.parseInt(idCode.substring(5, SEVEN));
         if (Integer.parseInt(month) == 2) {
             if (leap) {
                 return day > 0 && day <= LEAP_FEB;
@@ -65,7 +66,7 @@ public class IDCode {
     }
 
     private static boolean isQueueNumberCorrect(String idCode) {
-        return true;
+        return Integer.parseInt(idCode.substring(7, 10)) != 0;
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
@@ -73,13 +74,13 @@ public class IDCode {
         for (int i = 0; i < 10; i++) {
             controlNumber += MULTIPLIERS1[i] * Character.getNumericValue(idCode.charAt(i));
         }
-        controlNumber %= 11;
+        controlNumber %= ID_CODE_LENGTH;
         if (controlNumber == 10) {
             controlNumber = 0;
             for (int i = 0; i < 10; i++) {
                 controlNumber += MULTIPLIERS2[i] * idCode.charAt(i);
             }
-            controlNumber %= 11;
+            controlNumber %= ID_CODE_LENGTH;
         }
         if (controlNumber == 10) {
             controlNumber = 0;
@@ -100,8 +101,8 @@ public class IDCode {
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
         }
-        return "This is a " + getGender(idCode) + " born on " + idCode.substring(5, 7) +
-                "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
+        return "This is a " + getGender(idCode) + " born on " + idCode.substring(5, SEVEN)
+                + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
     public static Gender getGender(String idCode) {
@@ -113,8 +114,8 @@ public class IDCode {
     }
 
     public static int getFullYear(String idCode) {
-        return Integer.parseInt(idCode.substring(1, 3)) + EPOCH_YEAR +
-                ((Integer.parseInt(idCode.substring(0, 1)) + 1) / 2) * 100;
+        return Integer.parseInt(idCode.substring(1, 3)) + EPOCH_YEAR
+                + ((Integer.parseInt(idCode.substring(0, 1)) + 1) / 2) * 100;
     }
 
     public static void main(String[] args) {
