@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.idcode;
-
 public class IDCode {
 
     private static final int SEVEN = 7;
@@ -21,16 +20,11 @@ public class IDCode {
     }
 
     public static boolean isIDCodeCorrect(String idCode) {
-        try {
 
-            return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
-                    && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
-                    && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
-                    && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
-        } catch (Exception e){
-            throw e;
-
-        }
+        return idCode.matches("[0-9]+")
+                && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
+                && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
+                && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
 
     }
 
