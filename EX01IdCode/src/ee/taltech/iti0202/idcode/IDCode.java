@@ -2,7 +2,7 @@ package ee.taltech.iti0202.idcode;
 public class IDCode {
 
     private static final int YEAR_LOCATION = 3;
-    private static final int MONTH_LOCATION = 3;
+    private static final int MONTH_LOCATION = 5;
     private static final int DAY_LOCATION = 7;
     private static final int ID_CODE_LENGTH = 11;
     private static final int MONTHS_IN_A_YEAR = 12;
@@ -101,8 +101,8 @@ public class IDCode {
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
         }
-        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, DAY_LOCATION)
-                + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
+        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on "
+                + idCode.substring(5, DAY_LOCATION) + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
     public static Gender getGender(String idCode) {
