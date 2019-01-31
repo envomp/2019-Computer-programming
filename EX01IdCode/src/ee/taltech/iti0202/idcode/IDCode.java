@@ -68,7 +68,7 @@ public class IDCode {
     }
 
     private static boolean isQueueNumberCorrect(String idCode) {
-        return true;
+        return Integer.parseInt(idCode.substring(SEVEN, 10)) != 0;
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
@@ -103,7 +103,7 @@ public class IDCode {
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
         }
-        return "This is a " + getGender(idCode) + " born on " + idCode.substring(5, SEVEN)
+        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, SEVEN)
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
