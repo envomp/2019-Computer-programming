@@ -19,12 +19,10 @@ public class IDCode {
     }
 
     public static boolean isIDCodeCorrect(String idCode) {
-        if (idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")) {
-            return isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
-                    && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
-                    && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
-        }
-        return false;
+        return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
+                && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
+                && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
+                && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
     }
 
     private static boolean isGenderNumberCorrect(String idCode) {
@@ -99,7 +97,7 @@ public class IDCode {
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
-    public static Gender getGender(String idCode) {
+    private static Gender getGender(String idCode) {
         String genderNumber = idCode.substring(0, 1);
         if (genderNumber.matches("^[1|3|5]$")) {
             return Gender.MALE;
@@ -107,7 +105,7 @@ public class IDCode {
         return Gender.FEMALE;
     }
 
-    public static int getFullYear(String idCode) {
+    private static int getFullYear(String idCode) {
         return Integer.parseInt(idCode.substring(1, 3)) + EPOCH_YEAR
                 + ((Integer.parseInt(idCode.substring(0, 1)) + 1) / 2) * 100;
     }
