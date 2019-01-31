@@ -24,13 +24,15 @@ public class IDCode {
                     isMonthNumberCorrect(idCode), isDayNumberCorrect(idCode),
                     isQueueNumberCorrect(idCode), isControlNumberCorrect(idCode)};
             for (boolean b : correctness) {
+                System.out.println(b);
                 if (!b) {
-                    return false;
+                    return true;
                 }
             }
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     private static boolean isGenderNumberCorrect(String idCode) {
