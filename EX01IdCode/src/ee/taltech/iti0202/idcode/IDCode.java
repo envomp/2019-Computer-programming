@@ -20,18 +20,13 @@ public class IDCode {
 
     public static boolean isIDCodeCorrect(String idCode) {
         if (idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")) {
-            boolean[] correctness = {isGenderNumberCorrect(idCode), isYearNumberCorrect(idCode),
-                    isMonthNumberCorrect(idCode), isDayNumberCorrect(idCode),
-                    isQueueNumberCorrect(idCode), isControlNumberCorrect(idCode)};
-            for (boolean b : correctness) {
-                if (!b) {
-                    return false;
-                }
+            if (isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode) &&
+                    isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode) &&
+                    isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode)) {
+                return true;
             }
-            return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     private static boolean isGenderNumberCorrect(String idCode) {
