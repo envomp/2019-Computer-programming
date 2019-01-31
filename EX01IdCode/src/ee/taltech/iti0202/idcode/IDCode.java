@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.idcode;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class IDCode {
 
@@ -20,7 +21,11 @@ public class IDCode {
     }
 
     public static boolean isIDCodeCorrect(String idCode) {
-        throw new Exception(idCode, D);
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put(idCode, idCode);
+        String tere = map.get(idCode);
+        System.out.println(tere);
         return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
                 && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
                 && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
@@ -96,7 +101,7 @@ public class IDCode {
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
         }
-        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, SEVEN)
+        return "This is a " + getGender(idCode).name().toUpperCase() + " born on " + idCode.substring(5, SEVEN)
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
