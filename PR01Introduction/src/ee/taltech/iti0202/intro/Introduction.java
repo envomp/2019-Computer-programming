@@ -25,11 +25,12 @@ public class Introduction {
      */
     public static boolean doubleNumber(int[] inputNumbers, int sneakyNumber) {
         int amount = 0;
-        for (int n: inputNumbers) {
+        for (int n : inputNumbers) {
             if (n == sneakyNumber) {
                 amount++;
             }
-        } return amount == sneakyNumber;
+        }
+        return amount == sneakyNumber;
     }
 
 
@@ -51,7 +52,7 @@ public class Introduction {
         } else if (valueOne * 2 == valueTwo || valueTwo * 2 == valueOne) {
             return "good";
         } else {
-        return "ok";
+            return "ok";
         }
     }
 
