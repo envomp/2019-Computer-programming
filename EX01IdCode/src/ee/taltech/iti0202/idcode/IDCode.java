@@ -1,7 +1,9 @@
 package ee.taltech.iti0202.idcode;
 public class IDCode {
 
-    private static final int SEVEN = 7;
+    private static final int YEAR_LOCATION = 3;
+    private static final int MONTH_LOCATION = 3;
+    private static final int DAY_LOCATION = 7;
     private static final int ID_CODE_LENGTH = 11;
     private static final int MONTHS_IN_A_YEAR = 12;
     private static final int LEAP_FEB = 29;
@@ -33,20 +35,20 @@ public class IDCode {
     }
 
     private static boolean isYearNumberCorrect(String idCode) {
-        int year = Integer.parseInt(idCode.substring(1, 3));
+        int year = Integer.parseInt(idCode.substring(YEAR_LOCATION - 2, YEAR_LOCATION));
         return year >= 0 && year <= YEAR_MAX;
     }
 
     private static boolean isMonthNumberCorrect(String idCode) {
-        int month = Integer.parseInt(idCode.substring(3, 5));
+        int month = Integer.parseInt(idCode.substring(YEAR_LOCATION, MONTH_LOCATION));
         return month > 0 && month <= MONTHS_IN_A_YEAR;
     }
 
     private static boolean isDayNumberCorrect(String idCode) {
         int year = getFullYear(idCode);
         boolean leap = isLeapYear(year);
-        String month = idCode.substring(3, 5);
-        int day = Integer.parseInt(idCode.substring(5, SEVEN));
+        String month = idCode.substring(YEAR_LOCATION, MONTH_LOCATION);
+        int day = Integer.parseInt(idCode.substring(MONTH_LOCATION, DAY_LOCATION));
         if (Integer.parseInt(month) == 2) {
             if (leap) {
                 return day > 0 && day <= LEAP_FEB;
@@ -62,7 +64,7 @@ public class IDCode {
     }
 
     private static boolean isQueueNumberCorrect(String idCode) {
-        int queue = Integer.parseInt(idCode.substring(SEVEN, 10));
+        int queue = Integer.parseInt(idCode.substring(DAY_LOCATION, 10));
         return queue > 0 && queue <= QUEUE_MAX;
     }
 
@@ -99,7 +101,7 @@ public class IDCode {
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
         }
-        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, SEVEN)
+        return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, DAY_LOCATION)
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
 
