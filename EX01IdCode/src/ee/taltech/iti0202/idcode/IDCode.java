@@ -1,6 +1,4 @@
 package ee.taltech.iti0202.idcode;
-import java.util.HashMap;
-import java.util.Map;
 
 public class IDCode {
 
@@ -14,6 +12,7 @@ public class IDCode {
     private static final int[] MULTIPLIERS1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
     private static final int[] MULTIPLIERS2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
     private static final int LEAP_MAX = 400;
+    private static final int YEAR_MAX = 99;
     private static final int QUEUE_MAX = 999;
     private static final int EPOCH_YEAR = 1700;
 
@@ -35,12 +34,13 @@ public class IDCode {
     }
 
     private static boolean isYearNumberCorrect(String idCode) {
-        return true;
+        int year = Integer.parseInt(idCode.substring(1, 3));
+        return year >= 0 && year <= MONTHS_IN_A_YEAR;
     }
 
     private static boolean isMonthNumberCorrect(String idCode) {
         int month = Integer.parseInt(idCode.substring(3, 5));
-        return month > 0 && month <= MONTHS_IN_A_YEAR;
+        return month > 0 && month <= YEAR_MAX;
     }
 
     private static boolean isDayNumberCorrect(String idCode) {
