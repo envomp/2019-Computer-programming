@@ -24,7 +24,7 @@ public class IDCode {
         return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
                 && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
                 && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
-                &&  isControlNumberCorrect(idCode);
+                && isQueueNumberCorrect(idCode) ;
 
     }
 
