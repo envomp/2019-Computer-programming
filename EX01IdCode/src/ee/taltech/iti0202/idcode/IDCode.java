@@ -26,7 +26,7 @@ public class IDCode {
             for (boolean b : correctness) {
                 System.out.println(b);
                 if (!b) {
-                    return true;
+                    return false;
                 }
             }
             return true;
@@ -68,7 +68,7 @@ public class IDCode {
     }
 
     private static boolean isQueueNumberCorrect(String idCode) {
-        return Integer.parseInt(idCode.substring(SEVEN, 10)) != 0;
+        return true;
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
