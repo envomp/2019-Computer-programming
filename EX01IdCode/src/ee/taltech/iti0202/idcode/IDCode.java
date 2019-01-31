@@ -22,7 +22,7 @@ public class IDCode {
 
     public static boolean isIDCodeCorrect(String idCode) {
 
-        return idCode.length() == ID_CODE_LENGTH
+        return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
                 && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
                 && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
                 && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
@@ -79,10 +79,11 @@ public class IDCode {
                 controlNumber += MULTIPLIERS2[i] * idCode.charAt(i);
             }
             controlNumber %= ID_CODE_LENGTH;
+            if (controlNumber == 10) {
+                controlNumber = 0;
+            }
         }
-        if (controlNumber == 10) {
-            controlNumber = 0;
-        }
+
         return controlNumber == Integer.parseInt(idCode.substring(10));
     }
 
@@ -117,9 +118,6 @@ public class IDCode {
     }
 
     public static void main(String[] args) {
-        System.out.println(isIDCodeCorrect("39907210831"));
-        System.out.println(getInformationFromIDCode("39907210831"));
-        System.out.println(getInformationFromIDCode("60109200187"));
 
     }
 }
