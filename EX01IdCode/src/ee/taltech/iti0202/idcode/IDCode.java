@@ -66,7 +66,7 @@ public class IDCode {
     }
 
     private static boolean isQueueNumberCorrect(String idCode) {
-        return Integer.parseInt(idCode.substring(7, 10)) != 0;
+        return Integer.parseInt(idCode.substring(SEVEN, 10)) != 0;
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
