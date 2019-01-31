@@ -19,14 +19,13 @@ public class IDCode {
         MALE, FEMALE
     }
 
-    public static boolean isIDCodeCorrect(String idCode) throws Exception {
-        throw new Exception(idCode);
-        /*
+    public static boolean isIDCodeCorrect(String idCode) {
+        throw new Exception(idCode, D);
         return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
                 && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
                 && isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
                 && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
-    */
+
     }
 
     private static boolean isGenderNumberCorrect(String idCode) {
@@ -94,10 +93,9 @@ public class IDCode {
     }
 
     public static String getInformationFromIDCode(String idCode) {
-        /*
         if (!isIDCodeCorrect(idCode)) {
             return "Given invalid ID code!";
-        }*/
+        }
         return "This is a " + getGender(idCode).toString().toLowerCase() + " born on " + idCode.substring(5, SEVEN)
                 + "." + idCode.substring(3, 5) + "." + getFullYear(idCode);
     }
@@ -116,6 +114,7 @@ public class IDCode {
     }
 
     public static void main(String[] args) {
+        System.out.println(isIDCodeCorrect("39907210831"));
         System.out.println(getInformationFromIDCode("60109200187"));
 
     }
