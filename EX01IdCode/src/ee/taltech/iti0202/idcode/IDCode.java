@@ -4,12 +4,14 @@ public class IDCode {
 
     private static final int ID_CODE_LENGTH = 11;
     private static final int MONTHS_IN_A_YEAR = 12;
-    private static final int DAYS_IN_LONG = 31;
-    private static final int DAYS_IN_SHORT = 30;
+    private static final int LEAP_FEB = 29;
+    private static final int NO_LEAP_FEB = 28;
+    private static final int DAYS_IN_JAN = 31;
+    private static final int DAYS_IN_APRIL = 30;
+    private static final int[] MULTIPLIERS1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+    private static final int[] MULTIPLIERS2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
     private static final int LEAP_MAX = 400;
     private static final int EPOCH_YEAR = 1700;
-
-
 
     private enum Gender {
         MALE, FEMALE
@@ -20,10 +22,11 @@ public class IDCode {
             boolean[] correctness = {isGenderNumberCorrect(idCode), isYearNumberCorrect(idCode),
                     isMonthNumberCorrect(idCode), isDayNumberCorrect(idCode),
                     isQueueNumberCorrect(idCode), isControlNumberCorrect(idCode)};
-            for (boolean b : correctness)
+            for (boolean b : correctness){
                 if (!b) {
                     return false;
                 }
+            }
             return true;
         }
         return false;
@@ -49,14 +52,14 @@ public class IDCode {
         int day = Integer.parseInt(idCode.substring(5, 7));
         if (Integer.parseInt(month) == 2) {
             if (leap) {
-                return day > 0 && day <= DAYS_IN_LONG;
+                return day > 0 && day <= LEAP_FEB;
             } else {
-                return day > 0 && day <= DAYS_IN_SHORT;
+                return day > 0 && day <= NO_LEAP_FEB;
             }
         } else if (month.equals("04") || month.equals("06") || month.equals("09") || month.equals("11")) {
-            return day > 0 && day <= DAYS_IN_SHORT;
+            return day > 0 && day <= DAYS_IN_APRIL;
         } else {
-            return day > 0 && day <= DAYS_IN_LONG;
+            return day > 0 && day <= DAYS_IN_JAN;
         }
 
     }
@@ -66,17 +69,15 @@ public class IDCode {
     }
 
     private static boolean isControlNumberCorrect(String idCode) {
-        int[] multipliers1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
-        int[] multipliers2 = {3, 4, 5, 6, 7, 8, 9, 1, 2, 3};
         int controlNumber = 0;
         for (int i = 0; i < 10; i++) {
-            controlNumber += multipliers1[i] * Character.getNumericValue(idCode.charAt(i));
+            controlNumber += MULTIPLIERS1[i] * Character.getNumericValue(idCode.charAt(i));
         }
         controlNumber %= 11;
         if (controlNumber == 10) {
             controlNumber = 0;
             for (int i = 0; i < 10; i++) {
-                controlNumber += multipliers2[i] * idCode.charAt(i);
+                controlNumber += MULTIPLIERS2[i] * idCode.charAt(i);
             }
             controlNumber %= 11;
         }
