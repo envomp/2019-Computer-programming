@@ -35,12 +35,12 @@ public class IDCode {
 
     private static boolean isYearNumberCorrect(String idCode) {
         int year = Integer.parseInt(idCode.substring(1, 3));
-        return year >= 0 && year <= MONTHS_IN_A_YEAR;
+        return year >= 0 && year <= YEAR_MAX;
     }
 
     private static boolean isMonthNumberCorrect(String idCode) {
         int month = Integer.parseInt(idCode.substring(3, 5));
-        return month > 0 && month <= YEAR_MAX;
+        return month > 0 && month <= MONTHS_IN_A_YEAR;
     }
 
     private static boolean isDayNumberCorrect(String idCode) {
