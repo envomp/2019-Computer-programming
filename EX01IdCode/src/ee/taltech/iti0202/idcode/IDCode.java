@@ -22,7 +22,8 @@ public class IDCode {
     public static boolean isIDCodeCorrect(String idCode) {
 
         return idCode.length() == ID_CODE_LENGTH && idCode.matches("[0-9]+")
-                && isGenderNumberCorrect(idCode) &&  isMonthNumberCorrect(idCode) && isDayNumberCorrect(idCode)
+                && isGenderNumberCorrect(idCode) && isYearNumberCorrect(idCode)
+                &&  isDayNumberCorrect(idCode)
                 && isQueueNumberCorrect(idCode) && isControlNumberCorrect(idCode);
 
     }
