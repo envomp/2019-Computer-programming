@@ -1,8 +1,6 @@
 package ee.taltech.iti0202.strings;
 
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     /**
@@ -58,7 +56,7 @@ public class Main {
      * @param words input list to filter
      * @return list of strings matching criteria
      */
-    public static List<String> onlyEvenWords(List<String> words) {
+    public static ArrayList<String> onlyEvenWords(ArrayList<String> words) {
         HashMap<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
         ArrayList<String> ar = new ArrayList<>();
         for (String element : hashmap.keySet()) {
@@ -82,7 +80,7 @@ public class Main {
      * @return string
      */
     public static String onlyEvenCharacters(String input) {
-        List<String> apply = new ArrayList<>();
+        ArrayList<String> apply = new ArrayList<>();
         StringBuilder answer = new StringBuilder();
         for (String elem : input.split("")) {
             if (apply.contains(elem)) {
@@ -97,6 +95,18 @@ public class Main {
 
 
     public static void main(String[] args) {
-        System.out.println("Tere");
+        System.out.println(wordCount(new String[]{})); // empty
+        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
+
+        System.out.println();
+        System.out.println(mostFrequentWord(new String[]{})); // null
+        System.out.println(mostFrequentWord(new String[]{"SPAM", "SPAM", "eggs", "bacon", "and", "SPAM"})); // SPAM
+
+
+        System.out.println();
+        System.out.println(onlyEvenCharacters("aaa")); // a
+        System.out.println(onlyEvenCharacters("aabbcaca")); // abca
+        System.out.println(onlyEvenCharacters("bob")); // b
+        System.out.println("\"" + onlyEvenCharacters("abc") + "\"");// ""
     }
 }
