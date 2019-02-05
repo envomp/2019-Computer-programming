@@ -51,7 +51,7 @@ public class Main {
     /**
      * Loop over the given list of strings to build a resulting list of string like this:
      * when a string appears the 2nd, 4th, 6th, etc. time in the list, append the string to the result.
-     * Return the empty list if no string appears a 2nd time
+     * Return the empty list if no string appears a 2nd tim
      * Use map to count times that string has appeared.
      *
      * @param words input list to filter
