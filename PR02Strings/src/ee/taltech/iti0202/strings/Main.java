@@ -20,6 +20,7 @@ public class Main {
                 dictionary.put(item, 1);
             }
         }
+
         return dictionary;
     }
 
@@ -56,15 +57,18 @@ public class Main {
      * @param words input list to filter
      * @return list of strings matching criteria
      */
-    public static ArrayList<String> onlyEvenWords(ArrayList<String> words) {
-        HashMap<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
-        ArrayList<String> ar = new ArrayList<>();
-        for (String element : hashmap.keySet()) {
-            if (hashmap.get(element) % 2 == 0) {
-                ar.add(element);
+    public static List<String> onlyEvenWords(List<String> words) {
+        List<String> apply = new ArrayList<>();
+        ArrayList<String> answer = new ArrayList<>();
+        for (String elem : words) {
+            if (apply.contains(elem)) {
+                apply.remove(elem);
+                answer.add(elem);
+            } else {
+                apply.add(elem);
             }
         }
-        return ar;
+        return answer;
     }
 
     /**
@@ -80,7 +84,7 @@ public class Main {
      * @return string
      */
     public static String onlyEvenCharacters(String input) {
-        ArrayList<String> apply = new ArrayList<>();
+        List<String> apply = new ArrayList<>();
         StringBuilder answer = new StringBuilder();
         for (String elem : input.split("")) {
             if (apply.contains(elem)) {
@@ -102,6 +106,7 @@ public class Main {
         System.out.println(mostFrequentWord(new String[]{})); // null
         System.out.println(mostFrequentWord(new String[]{"SPAM", "SPAM", "eggs", "bacon", "and", "SPAM"})); // SPAM
 
+        System.out.println();
 
         System.out.println();
         System.out.println(onlyEvenCharacters("aaa")); // a
