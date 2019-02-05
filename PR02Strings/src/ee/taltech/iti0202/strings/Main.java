@@ -1,6 +1,8 @@
 package ee.taltech.iti0202.strings;
 
-import java.util.*;
+import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Main {
     /**
@@ -49,9 +51,7 @@ public class Main {
     /**
      * Loop over the given list of strings to build a resulting list of string like this:
      * when a string appears the 2nd, 4th, 6th, etc. time in the list, append the string to the result.
-     * <p>
-     * Return the empty list if no string appears a 2nd time.
-     * <p>
+     * Return the empty list if no string appears a 2nd time
      * Use map to count times that string has appeared.
      *
      * @param words input list to filter
@@ -100,7 +100,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println(wordCount(new String[]{})); // empty
-        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
+        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"}));
 
         System.out.println();
         System.out.println(mostFrequentWord(new String[]{})); // null
@@ -112,6 +112,6 @@ public class Main {
         System.out.println(onlyEvenCharacters("aaa")); // a
         System.out.println(onlyEvenCharacters("aabbcaca")); // abca
         System.out.println(onlyEvenCharacters("bob")); // b
-        System.out.println("\"" + onlyEvenCharacters("abc") + "\"");// ""
+        System.out.println("\"" + onlyEvenCharacters("abc") + "\""); // ""
     }
 }
