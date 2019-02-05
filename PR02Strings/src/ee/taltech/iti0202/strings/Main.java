@@ -36,8 +36,8 @@ public class Main {
         Map<String, Integer> map = wordCount(sentence);
         String mostFrequent = null;
         int highestOccurence = 0;
-        for (String element : map.keySet()){
-            if (map.get(element) > highestOccurence){
+        for (String element : map.keySet()) {
+            if (map.get(element) > highestOccurence) {
                 highestOccurence = map.get(element);
                 mostFrequent = element;
             }
@@ -59,8 +59,8 @@ public class Main {
     public static List<String> onlyEvenWords(List<String> words) {
         Map<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
         ArrayList<String> ar = new ArrayList<String>();
-        for (String element : hashmap.keySet()){
-            if (hashmap.get(element) % 2 == 0){
+        for (String element : hashmap.keySet()) {
+            if (hashmap.get(element) % 2 == 0) {
                 ar.add(element);
             }
         }
@@ -83,8 +83,8 @@ public class Main {
         String[] ary = input.split("");
         Map<String, Integer> hashmap = wordCount(ary);
         ArrayList<String> foo = new ArrayList<String>();
-        for (String element : hashmap.keySet()){
-            if (hashmap.get(element) % 2 == 0){
+        for (String element : hashmap.keySet()) {
+            if (hashmap.get(element) % 2 == 0) {
                 foo.add(element);
             }
         }
