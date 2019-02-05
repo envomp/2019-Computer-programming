@@ -60,7 +60,7 @@ public class Main {
      */
     public static List<String> onlyEvenWords(List<String> words) {
         HashMap<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
-        ArrayList<String> ar = new ArrayList<String>();
+        ArrayList<String> ar = new ArrayList<>();
         for (String element : hashmap.keySet()) {
             if (hashmap.get(element) % 2 == 0) {
                 ar.add(element);
@@ -97,17 +97,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-        System.out.println(wordCount(new String[]{})); // empty
-        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
-
-        System.out.println();
-        System.out.println(mostFrequentWord(new String[]{})); // null
-        System.out.println(mostFrequentWord(new String[]{"SPAM", "SPAM", "eggs", "bacon", "and", "SPAM"})); // SPAM
-
-        System.out.println();
-        System.out.println(onlyEvenCharacters("aaa")); // a
-        System.out.println(onlyEvenCharacters("aabbcaca")); // abca
-        System.out.println(onlyEvenCharacters("bob")); // b
-        System.out.println("\"" + onlyEvenCharacters("abc") + "\"");// ""
+        System.out.println("Tere");
     }
 }
