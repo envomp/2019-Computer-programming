@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.strings;
-
 import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.List;
 
 public class Main {
@@ -13,38 +12,21 @@ public class Main {
      * @param sentence array of strings, can't be null.
      * @return map containing all word to count mappings.
      */
-    public static HashMap<String, Integer> wordCount(String[] sentence) {
-        HashMap<String, Integer> dictionary = new HashMap<>();
-        for (String item : sentence) {
-            if (dictionary.containsKey(item)) {
-                dictionary.put(item, dictionary.get(item) + 1);
-            } else {
-                dictionary.put(item, 1);
-            }
-        }
-        return dictionary;
+    public static Map<String, Integer> wordCount(String[] sentence) {
+        return new HashMap<>();
     }
 
 
     /**
      * Find the most frequent word in given array of strings.
-     * <p>
+     *
      * If there are multiple most frequent words to choose from pick any of them.
      *
      * @param sentence array of strings, can't be null.
      * @return most frequent word in the sentence
      */
     public static String mostFrequentWord(String[] sentence) {
-        HashMap<String, Integer> map = wordCount(sentence);
-        String mostFrequent = null;
-        int highestOccurence = 0;
-        for (String element : map.keySet()) {
-            if (map.get(element) > highestOccurence) {
-                highestOccurence = map.get(element);
-                mostFrequent = element;
-            }
-        }
-        return mostFrequent;
+        return "TODO";
     }
 
     /**
@@ -59,14 +41,7 @@ public class Main {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        HashMap<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
-        ArrayList<String> ar = new ArrayList<String>();
-        for (String element : hashmap.keySet()) {
-            if (hashmap.get(element) % 2 == 0) {
-                ar.add(element);
-            }
-        }
-        return ar;
+        return List.of();
     }
 
     /**
@@ -82,15 +57,7 @@ public class Main {
      * @return string
      */
     public static String onlyEvenCharacters(String input) {
-        String[] ary = input.split("");
-        HashMap<String, Integer> hashmap = wordCount(ary);
-        ArrayList<String> foo = new ArrayList<String>();
-        for (String element : hashmap.keySet()) {
-            if (hashmap.get(element) % 2 == 0) {
-                foo.add(element);
-            }
-        }
-        return String.join("", foo);
+        return "FooBar";
     }
 
 
