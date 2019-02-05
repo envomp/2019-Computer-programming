@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.strings;
 
-import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,8 @@ public class Main {
      * @param sentence array of strings, can't be null.
      * @return map containing all word to count mappings.
      */
-    public static Map<String, Integer> wordCount(String[] sentence) {
-        Map<String, Integer> dictionary = new HashMap<>();
+    public static HashMap<String, Integer> wordCount(String[] sentence) {
+        HashMap<String, Integer> dictionary = new HashMap<>();
         for (String item : sentence) {
             if (dictionary.containsKey(item)) {
                 dictionary.put(item, dictionary.get(item) + 1);
@@ -36,7 +35,7 @@ public class Main {
      * @return most frequent word in the sentence
      */
     public static String mostFrequentWord(String[] sentence) {
-        Map<String, Integer> map = wordCount(sentence);
+        HashMap<String, Integer> map = wordCount(sentence);
         String mostFrequent = null;
         int highestOccurence = 0;
         for (String element : map.keySet()) {
@@ -60,7 +59,7 @@ public class Main {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        Map<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
+        HashMap<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
         ArrayList<String> ar = new ArrayList<String>();
         for (String element : hashmap.keySet()) {
             if (hashmap.get(element) % 2 == 0) {
@@ -84,7 +83,7 @@ public class Main {
      */
     public static String onlyEvenCharacters(String input) {
         String[] ary = input.split("");
-        Map<String, Integer> hashmap = wordCount(ary);
+        HashMap<String, Integer> hashmap = wordCount(ary);
         ArrayList<String> foo = new ArrayList<String>();
         for (String element : hashmap.keySet()) {
             if (hashmap.get(element) % 2 == 0) {
