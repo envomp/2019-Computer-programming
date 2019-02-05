@@ -1,6 +1,9 @@
 package ee.taltech.iti0202.strings;
 
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     /**
