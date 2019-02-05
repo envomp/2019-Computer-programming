@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.strings;
+
 import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -12,21 +13,38 @@ public class Main {
      * @param sentence array of strings, can't be null.
      * @return map containing all word to count mappings.
      */
-    public static Map<String, Integer> wordCount(String[] sentence) {
-        return new HashMap<>();
+    public static HashMap<String, Integer> wordCount(String[] sentence) {
+        HashMap<String, Integer> dictionary = new HashMap<>();
+        for (String item : sentence) {
+            if (dictionary.containsKey(item)) {
+                dictionary.put(item, dictionary.get(item) + 1);
+            } else {
+                dictionary.put(item, 1);
+            }
+        }
+        return dictionary;
     }
 
 
     /**
      * Find the most frequent word in given array of strings.
-     *
+     * <p>
      * If there are multiple most frequent words to choose from pick any of them.
      *
      * @param sentence array of strings, can't be null.
      * @return most frequent word in the sentence
      */
     public static String mostFrequentWord(String[] sentence) {
-        return "TODO";
+        HashMap<String, Integer> map = wordCount(sentence);
+        String mostFrequent = null;
+        int highestOccurence = 0;
+        for (String element : map.keySet()) {
+            if (map.get(element) > highestOccurence) {
+                highestOccurence = map.get(element);
+                mostFrequent = element;
+            }
+        }
+        return mostFrequent;
     }
 
     /**
@@ -41,7 +59,14 @@ public class Main {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        return List.of();
+        HashMap<String, Integer> hashmap = wordCount(words.toArray(new String[0]));
+        ArrayList<String> ar = new ArrayList<String>();
+        for (String element : hashmap.keySet()) {
+            if (hashmap.get(element) % 2 == 0) {
+                ar.add(element);
+            }
+        }
+        return ar;
     }
 
     /**
@@ -57,7 +82,17 @@ public class Main {
      * @return string
      */
     public static String onlyEvenCharacters(String input) {
-        return "FooBar";
+        List<String> apply = new ArrayList<>();
+        StringBuilder answer = new StringBuilder();
+        for (String elem : input.split("")) {
+            if (apply.contains(elem)) {
+                apply.remove(elem);
+                answer.append(elem);
+            } else {
+                apply.add(elem);
+            }
+        }
+        return answer.toString();
     }
 
 
@@ -68,13 +103,6 @@ public class Main {
         System.out.println();
         System.out.println(mostFrequentWord(new String[]{})); // null
         System.out.println(mostFrequentWord(new String[]{"SPAM", "SPAM", "eggs", "bacon", "and", "SPAM"})); // SPAM
-
-        System.out.println();
-        System.out.println(onlyEvenWords(List.of("tere", "tere", "vanakere"))); // [tere]
-        System.out.println(onlyEvenWords(List.of("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
-        System.out.println(onlyEvenWords(List.of("a", "b", "b", "a"))); // [b, a]
-        System.out.println(onlyEvenWords(List.of("a", "b", "a", "b"))); // [a, b]
-        System.out.println(onlyEvenWords(List.of("eggs", "bacon", "SPAM", "ham", "SPAM", "SPAM"))); // [SPAM]
 
         System.out.println();
         System.out.println(onlyEvenCharacters("aaa")); // a
