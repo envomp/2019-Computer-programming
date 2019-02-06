@@ -24,7 +24,8 @@ public class Cpu {
             if (!values.containsKey(rules.get(FIRSTOPERAND))) {
                 values.put(rules.get(FIRSTOPERAND), 0);
             }
-            if (equation(values.get(rules.get(FIRSTOPERAND)), rules.get(ACTION), Integer.parseInt(rules.get(SECONDOPERAND)))) {
+            if (equation(values.get(rules.get(FIRSTOPERAND)), rules.get(ACTION),
+                    Integer.parseInt(rules.get(SECONDOPERAND)))) {
                 switch (rules.get(INCREASEORDECREASE)) {
                     case "inc":
                         values.put(rules.get(0), values.get(rules.get(0)) + Integer.parseInt(rules.get(BYHOWMUCH)));
@@ -40,7 +41,6 @@ public class Cpu {
         }
         return values;
     }
-
 
     private static boolean equation(int a, String operator, int b) {
         switch (operator) {
@@ -62,25 +62,6 @@ public class Cpu {
         }
     }
 
-
     public static void main(String[] args) {
-        var res = compute(
-                "b inc 5 if a > 1\n" +
-                        "a inc 1 if b < 5\n" +
-                        "c dec -10 if a >= 1\n" +
-                        "c inc -20 if c == 10"
-        );
-        System.out.println(res); // {a=1, b=0, c=-10}
-
-        res = compute(
-                "b inc 7 if a > 4\n" +
-                        "a inc 1 if c < 13\n" +
-                        "c dec -10 if a >= 1\n" +
-                        "c inc -20 if c == 10\n" +
-                        "abc inc 100 if a != -23\n" +
-                        "a inc 2 if a <= 0"
-        );
-        System.out.println(res); // {a=1, b=0, c=-10, abc=100}
     }
-
 }
