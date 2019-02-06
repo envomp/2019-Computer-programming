@@ -18,12 +18,9 @@ public class Cpu {
         HashMap<String, Integer> values = new HashMap<>();
         for (String elem : instructions.split("[\\r\\n]+")) {
             ArrayList<String> rules = new ArrayList<>(Arrays.asList(elem.split(" ")));
-            if (!values.containsKey(rules.get(FIRSTOPERAND))) {
-                values.put(rules.get(FIRSTOPERAND), 0);
-            }
-            if (!values.containsKey(rules.get(VARIABLE))) {
-                values.put(rules.get(VARIABLE), 0);
-            }
+            values.putIfAbsent(rules.get(FIRSTOPERAND), 0);
+            values.putIfAbsent(rules.get(VARIABLE), 0);
+
             if (equation(values.get(rules.get(FIRSTOPERAND)), rules.get(ACTION).toLowerCase(),
                     Integer.parseInt(rules.get(SECONDOPERAND)))) {
                 switch (rules.get(INCREASEORDECREASE)) {
