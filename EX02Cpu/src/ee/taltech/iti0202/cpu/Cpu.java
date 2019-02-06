@@ -16,7 +16,7 @@ public class Cpu {
 
     public static Map<String, Integer> compute(String instructions) {
         HashMap<String, Integer> values = new HashMap<>();
-        for (String elem : instructions.split("[\\r\\n]+")) {
+        for (String elem : instructions.split("[\n]+")) {
             ArrayList<String> rules = new ArrayList<>(Arrays.asList(elem.split(" ")));
             values.putIfAbsent(rules.get(FIRSTOPERAND), 0);
             values.putIfAbsent(rules.get(VARIABLE), 0);
