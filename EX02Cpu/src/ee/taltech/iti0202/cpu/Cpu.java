@@ -24,7 +24,7 @@ public class Cpu {
             if (!values.containsKey(rules.get(FIRSTOPERAND))) {
                 values.put(rules.get(FIRSTOPERAND), 0);
             }
-            if (equation(values.get(rules.get(FIRSTOPERAND)), rules.get(ACTION),
+            if (equation(values.get(rules.get(FIRSTOPERAND)), rules.get(ACTION).toLowerCase(),
                     Integer.parseInt(rules.get(SECONDOPERAND)))) {
                 switch (rules.get(INCREASEORDECREASE)) {
                     case "inc":
