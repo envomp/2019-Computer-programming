@@ -1,7 +1,6 @@
 
 package ee.taltech.iti0202.sentence;
 
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
@@ -10,6 +9,7 @@ import java.util.regex.Pattern;
 public class Sentence {
     // TODO: add some private variable(s) here
     private String sentence;
+    private boolean hasCloser;
 
     /**
      * Given string is treated as possible sentence.
@@ -43,10 +43,21 @@ public class Sentence {
         }
         sentence = noDupes.toString();
         sentence = sentence.substring(0, 1).toUpperCase() + sentence.substring(1);
+        while (sentence.endsWith(" ")){
+            sentence = sentence.substring(0, sentence.length()-1);
+        }
     }
-
     public Sentence(String text) {
+        for(int i = 0; i < text.length() - 1; i++){
+            if ((text.charAt(i) == '!' || text.charAt(i) == '?' || text.charAt(i) == '.') && text.charAt(i + 1) == ' ') {
+                text = text.substring(0, i + 1);
+                break;
+            }
+        }
         Helper(text);
+        if (sentence.endsWith("!") || sentence.endsWith("?") || sentence.endsWith(".")){
+            hasCloser = true;
+        }
     }
 
     public Sentence() {
@@ -67,11 +78,11 @@ public class Sentence {
             if (!(sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?"))) {
                 sentence = sentence.toLowerCase().replaceFirst(Pattern.quote(word), "");
                 Helper(sentence);
+                return true;
             }
         } catch (Exception e) {
-            return false;
-        }
-        return true;
+            System.out.println("Error");
+        } return false;
     }
 
     /**
@@ -106,9 +117,10 @@ public class Sentence {
      * @return Whether punctuation was added (false if sentence already had punctuation).
      */
     public boolean addPunctuation(String punctuation) {
-        if (sentence.equals("") || sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?")) {
+        if (hasCloser) {
             return false;
         }
+        hasCloser = true;
         sentence += punctuation;
         return true;
     }
@@ -127,6 +139,7 @@ public class Sentence {
             while (sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?")) {
                 sentence = sentence.substring(0, sentence.length() - 1);
             }
+            hasCloser = false;
             return true;
         }
         return false;
@@ -134,12 +147,15 @@ public class Sentence {
 
     @Override
     public String toString() {
-        return sentence;
+        if(hasCloser || sentence.isEmpty()){
+            return sentence;
+        }
+        return sentence + "...";
     }
 
     @Override
     public boolean equals(Object obj) {
-        return sentence.equals(obj);
+        return obj.equals(sentence);
     }
 
 
@@ -155,10 +171,6 @@ public class Sentence {
         System.out.println(s1.equals(s3)); // false
         System.out.println();
         System.out.println();
-        Sentence s4 = new Sentence("Hi! Ignore those.");
-        System.out.println(s4); // Hi!
-        Sentence s5 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
-        System.out.println(s5); // So.me po.in.ts he,re but only end counts.
 
         Sentence s6 = new Sentence();
         s6.addWord("hello");
@@ -176,7 +188,6 @@ public class Sentence {
         s6.addWord("??");
         s6.addPunctuation("hello");
         System.out.println(s6);  // ??hello
-
     }
 }
 
