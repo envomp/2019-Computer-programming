@@ -156,6 +156,9 @@ public class Sentence {
         return sentence + "...";
     }
 
+    public boolean hashCode(Object obj) {
+        return true;
+    }
 
     @Override
     public boolean equals(Object obj) {
