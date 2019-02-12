@@ -1,6 +1,7 @@
 
 package ee.taltech.iti0202.sentence;
 
+import java.sql.SQLOutput;
 import java.util.regex.Pattern;
 
 /**
@@ -119,7 +120,7 @@ public class Sentence {
      * @return Whether punctuation was added (false if sentence already had punctuation).
      */
     public boolean addPunctuation(String punctuation) {
-        if (hasCloser || !sentence.isEmpty()) {
+        if (hasCloser || sentence.length() == 0) {
             return false;
         }
         hasCloser = true;
@@ -157,35 +158,20 @@ public class Sentence {
     }
 
 
+    @Override
+    public boolean equals(Object obj) {
+        System.out.println(obj);
+        System.out.println(sentence.toString());
+        return sentence.toString() == obj.toString();
+    }
+
     public static void main(String[] args) {
         Sentence s1 = new Sentence("hello world");
-        System.out.println(s1);  // Hello world...
         Sentence s2 = new Sentence("Hello world");
-        System.out.println(s2); // Hello world...
         System.out.println(s1.equals(s2)); // true
-
         Sentence s3 = new Sentence("Hello world!");
-        System.out.println(s3); // Hello world!
         System.out.println(s1.equals(s3)); // false
-        System.out.println();
-        System.out.println();
 
-        Sentence s6 = new Sentence();
-        s6.addWord("hello");
-        System.out.println(s6);  // Hello...
-        s6.addWord("world");
-        System.out.println(s6);  // Hello world...
-        s6.addPunctuation("??");
-        System.out.println(s6);  // Hello world??
-        s6.removePunctuation();
-        s6.removeWord("hello");
-        System.out.println(s6); // World...
-        s6.removeWord("world");
-        System.out.println(s6);
-        System.out.println(s6.addPunctuation("wat?"));  // false
-        s6.addWord("??");
-        s6.addPunctuation("hello");
-        System.out.println(s6);  // ??hello
     }
 }
 
