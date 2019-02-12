@@ -41,21 +41,22 @@ public class Sentence {
             }
         }
         sentence = noDupes.toString();
-        sentence = sentence.substring(0, 1).toUpperCase() + sentence.substring(1);
+        if (!sentence.isEmpty()){
+            sentence = sentence.substring(0, 1).toUpperCase() + sentence.substring(1);
+        }
         while (sentence.endsWith(" ")) {
             sentence = sentence.substring(0, sentence.length() - 1);
         }
     }
 
-    public Sentence(String text) {
-        for (int i = 0; i < text.length() - 1; i++) {
-            if ((text.charAt(i) == '!' || text.charAt(i) == '?' || text.charAt(i) == '.') && text.charAt(i + 1) == ' ')
-            {
-                text = text.substring(0, i + 1);
+    public Sentence(String tet) {
+        for (int i = 0; i < tet.length() - 1; i++) {
+            if ((tet.charAt(i) == '!' || tet.charAt(i) == '?' || tet.charAt(i) == '.') && tet.charAt(i + 1) == ' ') {
+                tet = tet.substring(0, i + 1);
                 break;
             }
         }
-        helper(text);
+        helper(tet);
         if (sentence.endsWith("!") || sentence.endsWith("?") || sentence.endsWith(".")) {
             hasCloser = true;
         }
