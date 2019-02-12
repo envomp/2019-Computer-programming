@@ -158,12 +158,21 @@ public class Sentence {
     }
 
 
-    public boolean equals(Object obj) {
-        helper(sentence);
-        if (!(hasCloser || sentence.isEmpty())) {
-            sentence = sentence + "...";
+    @Override
+    public boolean equals(Object o) {
+
+        // null check
+        if (o == null) {
+            return false;
         }
-        return sentence.equals(obj.toString());
+
+        // this instance check
+        return this.toString().equals(o.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 
 
