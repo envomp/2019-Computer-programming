@@ -159,9 +159,11 @@ public class Sentence {
 
     @Override
     public boolean equals(Object obj) {
-        System.out.println(obj);
-        System.out.println(sentence.toString());
-        return sentence.toString() == obj.toString();
+        helper(sentence);
+        if (!(hasCloser || sentence.isEmpty())) {
+            sentence = sentence + "...";
+        }
+        return sentence.equals(obj.toString());
     }
 
 
