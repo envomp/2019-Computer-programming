@@ -119,7 +119,7 @@ public class Sentence {
      * @return Whether punctuation was added (false if sentence already had punctuation).
      */
     public boolean addPunctuation(String punctuation) {
-        if (hasCloser) {
+        if (hasCloser || !sentence.isEmpty()) {
             return false;
         }
         hasCloser = true;
