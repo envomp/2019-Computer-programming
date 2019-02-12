@@ -49,8 +49,8 @@ public class Sentence {
 
     public Sentence(String text) {
         for (int i = 0; i < text.length() - 1; i++) {
-            if ((text.charAt(i) == '!' || text.charAt(i) == '?' || text.charAt(i) == '.')
-                    && text.charAt(i + 1) == ' ') {
+            if ((text.charAt(i) == '!' || text.charAt(i) == '?' || text.charAt(i) == '.') && text.charAt(i + 1) == ' ')
+            {
                 text = text.substring(0, i + 1);
                 break;
             }
@@ -78,7 +78,6 @@ public class Sentence {
         try {
             if (!(sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?"))) {
                 sentence = sentence.toLowerCase().replaceFirst(Pattern.quote(word), "");
-                helper(sentence);
                 return true;
             }
         } catch (Exception e) {
@@ -149,6 +148,7 @@ public class Sentence {
 
     @Override
     public String toString() {
+        helper(sentence);
         if (hasCloser || sentence.isEmpty()) {
             return sentence;
         }
