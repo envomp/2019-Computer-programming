@@ -1,7 +1,6 @@
 
 package ee.taltech.iti0202.sentence;
 
-import java.sql.SQLOutput;
 import java.util.regex.Pattern;
 
 /**
@@ -78,7 +77,7 @@ public class Sentence {
      */
     public boolean removeWord(String word) {
         try {
-            if (!(sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?"))) {
+            if (!hasCloser) {
                 sentence = sentence.toLowerCase().replaceFirst(Pattern.quote(word), "");
                 return true;
             }
@@ -164,6 +163,7 @@ public class Sentence {
         System.out.println(sentence.toString());
         return sentence.toString() == obj.toString();
     }
+
 
     public static void main(String[] args) {
         Sentence s1 = new Sentence("hello world");
