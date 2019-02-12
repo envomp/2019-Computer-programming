@@ -78,7 +78,8 @@ public class Sentence {
     public boolean removeWord(String word) {
         try {
             if (!hasCloser) {
-                sentence = sentence.toLowerCase().replaceFirst(Pattern.quote(word), "");
+                sentence = Character.toLowerCase(sentence.charAt(0))
+                        + sentence.substring(1).replaceFirst(Pattern.quote(word), "");
                 return true;
             }
         } catch (Exception e) {
@@ -97,7 +98,7 @@ public class Sentence {
      * @return Whether word was added to sentence (false if sentence has punctuation).
      */
     public boolean addWord(String word) {
-        if (sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?")) {
+        if (hasCloser) {
             return false;
         } else if (sentence.isEmpty()) {
             sentence += word;
@@ -156,11 +157,7 @@ public class Sentence {
         return sentence + "...";
     }
 
-    public boolean hashCode(Object obj) {
-        return true;
-    }
 
-    @Override
     public boolean equals(Object obj) {
         helper(sentence);
         if (!(hasCloser || sentence.isEmpty())) {
@@ -172,10 +169,43 @@ public class Sentence {
 
     public static void main(String[] args) {
         Sentence s1 = new Sentence("hello world");
+        System.out.println(s1);  // Hello world...
         Sentence s2 = new Sentence("Hello world");
+        System.out.println(s2); // Hello world...
         System.out.println(s1.equals(s2)); // true
+
         Sentence s3 = new Sentence("Hello world!");
+        System.out.println(s3); // Hello world!
         System.out.println(s1.equals(s3)); // false
+
+
+        Sentence s4 = new Sentence("Hi! Ignore those.");
+        System.out.println(s4); // Hi!
+        Sentence s5 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
+        System.out.println(s5); // So.me po.in.ts he,re but only end counts.
+
+        Sentence s6 = new Sentence();
+        s6.addWord("hello");
+        System.out.println(s6);  // Hello...
+        s6.addWord("world");
+        System.out.println(s6);  // Hello world...
+        s6.addPunctuation("??");
+        System.out.println(s6);  // Hello world??
+        System.out.println(s6.addWord("NO"));  // false
+        System.out.println(s6.addPunctuation("."));  // false
+        s6.removePunctuation();
+        s6.removeWord("hello");
+        System.out.println(s6); // World...
+        s6.removeWord("world");
+        System.out.println(s6);
+        System.out.println(s6.addPunctuation("wat?"));  // false
+        s6.addWord("??");
+        s6.addPunctuation("hello");
+        System.out.println(s6);  // ??hello
+
+        Sentence s7 = new Sentence(" hello     world    yes?");
+        System.out.println(s7);  // Hello world yes?
+        System.out.println(s7.addWord("CANNOT"));  // false
 
     }
 }
