@@ -78,8 +78,8 @@ public class Sentence {
     public boolean removeWord(String word) {
         try {
             if (!hasCloser) {
-                sentence = Character.toLowerCase(sentence.charAt(0))
-                        + sentence.substring(1).replaceFirst(Pattern.quote(word), "");
+                sentence = (Character.toLowerCase(sentence.charAt(0))
+                        + sentence.substring(1)).replaceFirst(Pattern.quote(word), "");
                 return true;
             }
         } catch (Exception e) {
