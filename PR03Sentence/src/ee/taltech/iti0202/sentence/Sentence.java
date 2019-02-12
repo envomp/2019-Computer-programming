@@ -41,7 +41,7 @@ public class Sentence {
             }
         }
         sentence = noDupes.toString();
-        if (!sentence.isEmpty()){
+        if (!sentence.isEmpty()) {
             sentence = sentence.substring(0, 1).toUpperCase() + sentence.substring(1);
         }
         while (sentence.endsWith(" ")) {
