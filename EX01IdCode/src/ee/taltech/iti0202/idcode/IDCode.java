@@ -16,6 +16,7 @@ public class IDCode {
     private static final int YEAR_MAX = 99;
     private static final int QUEUE_MAX = 999;
     private static final int EPOCH_YEAR = 1700;
+    public static final int ZERO = 0;
 
     private enum Gender {
         MALE, FEMALE
@@ -53,7 +54,7 @@ public class IDCode {
             if (leap) {
                 return day > 0 && day <= LEAP_FEB;
             } else {
-                return day > 0 && day <= NO_LEAP_FEB;
+                return day > ZERO && day <= NO_LEAP_FEB;
             }
         } else if (month.equals("04") || month.equals("06") || month.equals("09") || month.equals("11")) {
             return day > 0 && day <= DAYS_IN_APRIL;
