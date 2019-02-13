@@ -4,12 +4,13 @@ package ee.taltech.iti0202.socialnetwork.feed;
 import ee.taltech.iti0202.socialnetwork.user.User;
 import ee.taltech.iti0202.socialnetwork.message.Message;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Feed {
 
     private User feedUser;
-    private Set<Message> feedMessages;
+    private Set<Message> feedMessages = new HashSet<>();
 
     public Feed(User user, Set<Message> messages) {
         feedUser = user;
