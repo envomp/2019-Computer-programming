@@ -4,13 +4,15 @@ import ee.taltech.iti0202.socialnetwork.group.Group;
 import ee.taltech.iti0202.socialnetwork.user.User;
 import ee.taltech.iti0202.socialnetwork.message.Message;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class SocialNetwork {
 
-    private Set<Group> networkGroups;
+    private Set<Group> networkGroups = new HashSet<>();
 
     public void registerGroup(Group group) {
+        System.out.println(group);
         networkGroups.add(group);
     }
 
@@ -18,8 +20,8 @@ public class SocialNetwork {
         return networkGroups;
     }
 
-    public Feed getFeedForUser(User user) {
-        return new Feed(user, user.geetMessages());
+    public void getFeedForUser(User user) {
+
     }
 
 
@@ -38,12 +40,7 @@ public class SocialNetwork {
         Message message2 = new Message("title2", "content2", user3);
         group2.publishMessage(message2);
 
-        SocialNetwork socialNetwork = new SocialNetwork();
-        socialNetwork.registerGroup(group1);
-        socialNetwork.registerGroup(group2);
-        System.out.println(socialNetwork.getGroups()); // group1 group2
-
-        System.out.println(socialNetwork.getFeedForUser(user2)); // message1
+        //System.out.println(socialNetwork.getFeedForUser(user2)); // message1
 
     }
 }
