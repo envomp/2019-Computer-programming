@@ -45,9 +45,6 @@ public class Group {
     public void publishMessage(Message message) {
         if (groupUsers.contains(groupOwner)) {
             groupMessages.add(message);
-            for (User users: groupUsers){
-                users.addMessage(message);
-            }
         }
     }
 

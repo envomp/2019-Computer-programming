@@ -34,7 +34,7 @@ public class SocialNetwork {
         System.out.println(user1.getName()); // user2
         System.out.println(user1.getAge()); // 10
 
-        User user3 = new User("user2", 20);
+        User user3 = new User("user2", 10);
 
         Group group1 = new Group("group1", user1);
         System.out.println(group1.getName()); // group1

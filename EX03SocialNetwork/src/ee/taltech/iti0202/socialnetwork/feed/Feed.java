@@ -23,4 +23,8 @@ public class Feed {
     public Set<Message> getMessages() {
         return feedMessages;
     }
+
+    public void addMessages(Message message) {
+        feedMessages.add(message);
+    }
 }
