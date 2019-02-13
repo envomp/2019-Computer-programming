@@ -26,10 +26,10 @@ public class SocialNetwork {
     public Feed getFeedForUser(User user) {
         Set<Message> feedMessages = new HashSet<>();
         List<Message> groupMessages = new ArrayList<>();
-        for (Group group : networkGroups){
-            if (group.getParticipants().contains(user)){
+        for (Group group : networkGroups) {
+            if (group.getParticipants().contains(user)) {
                 groupMessages = group.getMessages();
-                for (Message message : groupMessages){
+                for (Message message : groupMessages) {
                     feedMessages.add(message);
                 }
             }
