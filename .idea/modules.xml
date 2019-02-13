@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EX01IdCode/EX01IdCode.iml" filepath="$PROJECT_DIR$/EX01IdCode/EX01IdCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/EX02Cpu/EX02Cpu.iml" filepath="$PROJECT_DIR$/EX02Cpu/EX02Cpu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EX03SocialNetwork/EX03SocialNetwork.iml" filepath="$PROJECT_DIR$/EX03SocialNetwork/EX03SocialNetwork.iml" />
       <module fileurl="file://$PROJECT_DIR$/PR00Hello/PR00Hello.iml" filepath="$PROJECT_DIR$/PR00Hello/PR00Hello.iml" />
       <module fileurl="file://$PROJECT_DIR$/PR01Introduction/PR01Introduction.iml" filepath="$PROJECT_DIR$/PR01Introduction/PR01Introduction.iml" />
       <module fileurl="file://$PROJECT_DIR$/PR02Strings/PR02Strings.iml" filepath="$PROJECT_DIR$/PR02Strings/PR02Strings.iml" />

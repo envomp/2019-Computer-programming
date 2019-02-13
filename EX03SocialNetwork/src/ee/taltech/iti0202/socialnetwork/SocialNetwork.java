@@ -28,18 +28,10 @@ public class SocialNetwork {
         User user2 = new User("user2", 10);
         User user3 = new User("user2", 20);
         Group group1 = new Group("group1", user1);
-
-        System.out.println(group1.getOwner()); // user1
-
         group1.setName("newName");
         Group group2 = new Group("group1", user3);
-
         group1.addUser(user2);
-        System.out.println(group1.getParticipants()); // user1, user2
-
         Message message1 = new Message("title1", "content1", user2);
-        System.out.println(message1.getAuthor()); // user2
-
         group1.publishMessage(message1);
         System.out.println(group1.getMessages()); // message1
 

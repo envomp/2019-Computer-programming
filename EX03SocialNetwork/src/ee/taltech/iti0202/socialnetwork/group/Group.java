@@ -43,7 +43,12 @@ public class Group {
     }
 
     public void publishMessage(Message message) {
-        groupMessages.add(message);
+        if (groupUsers.contains(groupOwner)) {
+            groupMessages.add(message);
+            for (User users: groupUsers){
+                users.addMessage(message);
+            }
+        }
     }
 
     public List<Message> getMessages() {
