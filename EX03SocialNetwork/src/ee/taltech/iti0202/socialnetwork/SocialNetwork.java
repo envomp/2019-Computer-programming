@@ -1,10 +1,13 @@
 package ee.taltech.iti0202.socialnetwork;
+
 import ee.taltech.iti0202.socialnetwork.feed.Feed;
 import ee.taltech.iti0202.socialnetwork.group.Group;
 import ee.taltech.iti0202.socialnetwork.user.User;
 import ee.taltech.iti0202.socialnetwork.message.Message;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SocialNetwork {
@@ -21,7 +24,18 @@ public class SocialNetwork {
     }
 
     public Feed getFeedForUser(User user) {
-        return new Feed(user, null);
+        Set<Message> feedMessages = new HashSet<>();
+        List<Message> groupMessages = new ArrayList<>();
+        for (Group group : networkGroups){
+            if (group.getParticipants().contains(user)){
+                groupMessages = group.getMessages();
+                for (Message message : groupMessages){
+                    feedMessages.add(message);
+                }
+            }
+        }
+
+        return new Feed(user, feedMessages);
     }
 
 
