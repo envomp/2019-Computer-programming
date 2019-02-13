@@ -43,7 +43,7 @@ public class Group {
     }
 
     public void publishMessage(Message message) {
-        if (groupUsers.contains(groupOwner)) {
+        if (groupUsers.contains(groupOwner) && groupUsers.contains(message.getAuthor())) {
             groupMessages.add(message);
         }
     }
