@@ -5,6 +5,7 @@ import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +61,7 @@ public class Stock {
     }
 
     public List<Product> getProducts() {
+        productlist.sort(Comparator.comparingInt(p -> p.actual_count));
         return productlist;
     }
 
