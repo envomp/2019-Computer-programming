@@ -3,8 +3,8 @@ package ee.taltech.iti0202.stock.product;
 import ee.taltech.iti0202.stock.exceptions.StockException;
 
 public class Product {
-    private int count = 0;
-    private int productNextId = 0;
+    static int count = 0;
+    static int productNextId = 0;
     private String productName;
     private int productPrice;
 
@@ -15,7 +15,7 @@ public class Product {
         productPrice = price;
     }
 
-    public int getNextId() {
+    public static int getNextId() {
         productNextId += 1;
         return productNextId;
     }

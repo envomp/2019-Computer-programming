@@ -1,10 +1,12 @@
-
+//Help
 package ee.taltech.iti0202.stock.stock;
 
 import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 public class Stock {
@@ -56,7 +58,6 @@ public class Stock {
     }
 
     public List<Product> getProducts() {
-        Collections.sort(LIST_OF_PRODUCTS, Comparator.comparing(Product::getNextId));
         return LIST_OF_PRODUCTS;
     }
 
