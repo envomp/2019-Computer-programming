@@ -22,12 +22,12 @@ public class Stock {
     private final List<Product> productlist = new ArrayList<>();
 
     public void addProduct(Product product) throws StockException {
-        if (product.getPrice() < 0) {
-            throw new StockException(StockException.Reason.NEGATIVE_PRICE);
+        if (productlist.contains(product)) {
+            throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
         } else if (isFull()) {
             throw new StockException(StockException.Reason.STOCK_IS_FULL);
-        } else if (productlist.contains(product)) {
-            throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
+        } else if (product.getPrice() < 0) {
+            throw new StockException(StockException.Reason.NEGATIVE_PRICE);
         } else {
             productlist.add(product);
         }
@@ -61,7 +61,7 @@ public class Stock {
     }
 
     public List<Product> getProducts() {
-        productlist.sort(Comparator.comparingInt(p -> p.actual_count));
+        productlist.sort(Comparator.comparingInt(p -> p.actualcount));
         return productlist;
     }
 
