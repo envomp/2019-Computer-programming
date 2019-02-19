@@ -1,3 +1,4 @@
+//newline!
 package ee.taltech.iti0202.stock.exceptions;
 
 /**
