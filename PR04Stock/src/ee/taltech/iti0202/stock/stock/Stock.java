@@ -15,6 +15,7 @@ public class Stock {
     private int stockCapacity;
 
     public Stock(String name, int capacity) {
+
         stockName = name;
         stockCapacity = capacity;
     }

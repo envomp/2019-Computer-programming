@@ -10,6 +10,9 @@ public class Product {
     private int productPrice;
 
     public Product(String name, int price) throws StockException {
+        if (price < 0) {
+            throw new StockException(StockException.Reason.NEGATIVE_PRICE);
+        }
         count += 1;
         actualcount += 1;
         productName = name;
