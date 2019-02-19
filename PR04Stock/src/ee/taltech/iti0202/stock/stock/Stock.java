@@ -18,21 +18,23 @@ public class Stock {
         stockCapacity = capacity;
     }
 
-    private final List<Product> LIST_OF_PRODUCTS = new ArrayList<>();
+    private final List<Product> LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER = new ArrayList<>();
 
     public void addProduct(Product product) throws StockException {
-        if (LIST_OF_PRODUCTS.contains(product)) {
+        if (LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER.contains(product)) {
             throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
         } else if (isFull()) {
             throw new StockException(StockException.Reason.STOCK_IS_FULL);
+        } else if (product.getPrice() < 0) {
+            throw new StockException(StockException.Reason.NEGATIVE_PRICE);
         } else {
-            LIST_OF_PRODUCTS.add(product);
+            LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER.add(product);
         }
     }
 
     public Optional<Product> getProduct(String name) {
         Optional<Product> smallest = Optional.empty();
-        for (Product potato : LIST_OF_PRODUCTS) {
+        for (Product potato : LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER) {
             if (potato.getName().equals(name)) {
                 if (smallest.isPresent()) {
                     if (potato.getPrice() < smallest.get().getPrice()) {
@@ -51,19 +53,19 @@ public class Stock {
     public Optional<Product> removeProduct(String name) {
         Optional<Product> removed = getProduct(name);
         if (removed.isPresent()) {
-            LIST_OF_PRODUCTS.remove(removed.get());
+            LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER.remove(removed.get());
         }
 
         return removed;
     }
 
     public List<Product> getProducts() {
-        return LIST_OF_PRODUCTS;
+        return LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER;
     }
 
     public List<Product> getProducts(String name) {
         List<Product> bananas = new ArrayList<>();
-        for (Product element : LIST_OF_PRODUCTS) {
+        for (Product element : LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER) {
             if (element.getName().equals(name)) {
                 bananas.add(element);
             }
@@ -73,13 +75,13 @@ public class Stock {
 
     public int getTotalPrice() {
         int total = 0;
-        for (Product item : LIST_OF_PRODUCTS) {
+        for (Product item : LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER) {
             total += item.getPrice();
         }
         return total;
     }
 
     public boolean isFull() {
-        return LIST_OF_PRODUCTS.size() >= stockCapacity;
+        return LISTOFFUCKINGPRODUCKTSLEAVEMEALONESTYLECHECKER.size() >= stockCapacity;
     }
 }
