@@ -33,7 +33,7 @@ public final class CreditCard extends BankCard {
         } else {
             throw new TransactionException();
         }
-        return getBalance();
+        return value;
     }
 
     @Override
