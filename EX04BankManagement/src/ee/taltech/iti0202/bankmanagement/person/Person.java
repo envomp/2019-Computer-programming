@@ -2,6 +2,7 @@
 package ee.taltech.iti0202.bankmanagement.person;
 
 import ee.taltech.iti0202.bankmanagement.card.BankCard;
+import ee.taltech.iti0202.bankmanagement.exceptions.PersonException;
 
 import java.util.Optional;
 
@@ -19,7 +20,12 @@ public class Person {
     }
 
 
-    public Person(String firstName, String lastName, int age, Gender gender, double monthlyIncome) {
+    public Person(String firstName, String lastName, int age, Gender gender, double monthlyIncome) throws PersonException {
+
+        if (age < 1 || monthlyIncome < 0){
+            throw new PersonException();
+        }
+
         this.personAge = age;
         this.personFirstName = firstName;
         this.personLastName = lastName;
