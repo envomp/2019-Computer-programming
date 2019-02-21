@@ -35,9 +35,9 @@ public class Bank {
     public Boolean removeCustomer(Person person) {
         if (customers.contains(person)) {
             customers.remove(person);
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     public double getAverageCustomerMonthlyIncome() {
