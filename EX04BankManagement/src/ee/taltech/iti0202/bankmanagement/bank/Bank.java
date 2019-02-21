@@ -143,7 +143,7 @@ public class Bank {
                         rich = person;
                     }
                 }
-            } catch (Exception e) {
+            } catch (Exception NoSuchElementException) {
                 System.out.println("Oi");
             }
         }
