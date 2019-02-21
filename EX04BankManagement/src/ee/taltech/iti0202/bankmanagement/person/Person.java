@@ -20,9 +20,10 @@ public class Person {
     }
 
 
-    public Person(String firstName, String lastName, int age, Gender gender, double monthlyIncome) throws PersonException {
+    public Person(String firstName, String lastName, int age, Gender gender, double monthlyIncome)
+            throws PersonException {
 
-        if (age < 1 || monthlyIncome < 0){
+        if (age < 1 || monthlyIncome < 0) {
             throw new PersonException();
         }
 
