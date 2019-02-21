@@ -34,6 +34,7 @@ public class Bank {
 
     public Boolean removeCustomer(Person person) {
         if (customers.contains(person)) {
+            person.setBankCard(null);
             customers.remove(person);
             return true;
         }
@@ -136,7 +137,7 @@ public class Bank {
         for (Person person : customers) {
             try {
                 if (person.getGender() == gender) {
-                    if (rich == null || !rich.getBankCard().isPresent()){
+                    if (rich == null || !rich.getBankCard().isPresent()) {
                         rich = person;
                     }
                     if (person.getBankCard().get().getBalance().compareTo(rich.getBankCard().get().getBalance()) > 0) {
