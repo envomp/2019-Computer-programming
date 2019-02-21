@@ -30,7 +30,7 @@ public final class DebitCard extends BankCard {
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
         if (value.compareTo(BigDecimal.ZERO) > 0 && balance.subtract(value).compareTo(BigDecimal.valueOf(0)) > 0) {
-            balance = balance.add(value);
+            balance = balance.subtract(value);
         } else {
             throw new TransactionException();
         }
