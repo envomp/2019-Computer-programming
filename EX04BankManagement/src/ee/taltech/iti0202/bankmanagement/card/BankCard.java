@@ -27,12 +27,18 @@ public abstract class BankCard {
         if (person.getBankCard().isPresent()) {
             person.getBankCard().get().getBank().removeCustomer(person);
         }
-        
+
+        if (cardType == CardType.DEBIT) {
+            BankCard card = new DebitCard(bank, person);
+            bank.addCustomer(person);
+            person.setBankCard(card);
+            return card;
+        } else {
             BankCard card = new CreditCard(bank, person);
             bank.addCustomer(person);
             person.setBankCard(card);
             return card;
-
+        }
     }
 
     public abstract void setOwner(Person owner);
