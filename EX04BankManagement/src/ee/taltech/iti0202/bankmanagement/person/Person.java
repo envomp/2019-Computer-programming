@@ -54,7 +54,10 @@ public class Person {
      * @return Optional of BankCard
      */
     public Optional<BankCard> getBankCard() {
-        return card;
+        if (card.isPresent()){
+            return card;
+        }
+        return Optional.empty();
     }
 
     public void setBankCard(BankCard bankCard) {

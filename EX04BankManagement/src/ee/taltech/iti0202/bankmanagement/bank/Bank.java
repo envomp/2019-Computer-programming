@@ -106,7 +106,7 @@ public class Bank {
         Set<Person> cards = new HashSet<>();
         for (Person person : customers) {
             if (person.getBankCard().isPresent()) {
-                if (person.getBankCard().get().getCardType() == BankCard.CardType.CREDIT){
+                if (person.getBankCard().get().getCardType() == BankCard.CardType.CREDIT) {
                     cards.add(person);
                 }
 
@@ -120,7 +120,7 @@ public class Bank {
         Set<Person> cards = new HashSet<>();
         for (Person person : customers) {
             if (person.getBankCard().isPresent()) {
-                if (person.getBankCard().get().getCardType() == BankCard.CardType.DEBIT){
+                if (person.getBankCard().get().getCardType() == BankCard.CardType.DEBIT) {
                     cards.add(person);
                 }
 
