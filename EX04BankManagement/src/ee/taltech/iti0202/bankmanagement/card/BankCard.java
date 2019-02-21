@@ -24,22 +24,12 @@ public abstract class BankCard {
      * @return
      */
     public static BankCard createCard(CardType cardType, Bank bank, Person person) {
-        if (person.getBankCard().isPresent()) {
-            System.out.println(person.getBankCard().get().getBank());
-            //person.getBankCard().get().getBank().removeCustomer(person);
-        }
 
-        if (cardType == CardType.DEBIT) {
-            BankCard card = new DebitCard(bank, person);
-            bank.addCustomer(person);
-            person.setBankCard(card);
-            return card;
-        } else {
             BankCard card = new CreditCard(bank, person);
             bank.addCustomer(person);
             person.setBankCard(card);
             return card;
-        }
+
     }
 
     public abstract void setOwner(Person owner);
