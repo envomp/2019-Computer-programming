@@ -5,17 +5,16 @@ import ee.taltech.iti0202.bankmanagement.exceptions.TransactionException;
 import java.math.BigDecimal;
 
 public final class CreditCard extends BankCard {
-
-    private static BigDecimal BALANCE;
-
+    private static BigDecimal balance;
+    private final int tenK = 10000;
     CreditCard() {
-        BALANCE = BigDecimal.valueOf(10000);
+        balance = BigDecimal.valueOf(tenK);
     }
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        if (value.compareTo(BigDecimal.ZERO) > 0 && BALANCE.subtract(value).compareTo(BigDecimal.valueOf(-5000)) > 0) {
-            BALANCE = BALANCE.subtract(value);
+        if (value.compareTo(BigDecimal.ZERO) > 0 && balance.subtract(value).compareTo(BigDecimal.valueOf(-tenK / 2)) > 0) {
+            balance = balance.subtract(value);
         } else {
             throw new TransactionException();
         }
@@ -24,19 +23,19 @@ public final class CreditCard extends BankCard {
 
     @Override
     public BigDecimal getBalance() {
-        return BALANCE.max(BigDecimal.ZERO);
+        return balance.max(BigDecimal.ZERO);
     }
 
     @Override
     public void deposit(BigDecimal value) throws TransactionException {
         if (value.compareTo(BigDecimal.ZERO) > 0) {
-            BALANCE = BALANCE.add(value);
+            balance = balance.add(value);
         } else {
             throw new TransactionException();
         }
     }
 
     public BigDecimal getDebt() {
-        return BALANCE.min(BigDecimal.ZERO);
+        return balance.min(BigDecimal.ZERO);
     }
 }
