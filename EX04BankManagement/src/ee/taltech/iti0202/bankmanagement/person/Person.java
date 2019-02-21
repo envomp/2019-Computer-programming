@@ -68,7 +68,12 @@ public class Person {
     }
 
     public void setBankCard(BankCard bankCard) {
-        card = Optional.of(bankCard);
+        if (bankCard == null){
+            card = Optional.empty();
+        } else {
+            card = Optional.of(bankCard);
+        }
+
     }
 
     @Override

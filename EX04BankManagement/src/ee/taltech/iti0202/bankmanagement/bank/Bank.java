@@ -134,13 +134,17 @@ public class Bank {
     public Optional<Person> getRichestCustomerByGender(Person.Gender gender) {
         Person rich = null;
         for (Person person : customers) {
-            if (person.getGender() == gender) {
-                if (rich == null && person.getBankCard().isPresent()) {
-                    rich = person;
-                } else if
-                (person.getBankCard().get().getBalance().compareTo(rich.getBankCard().get().getBalance()) > 0) {
-                    rich = person;
+            try {
+                if (person.getGender() == gender) {
+                    if (rich == null && person.getBankCard().isPresent()) {
+                        rich = person;
+                    } else if
+                    (person.getBankCard().get().getBalance().compareTo(rich.getBankCard().get().getBalance()) > 0) {
+                        rich = person;
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println("Oi");
             }
         }
         if (rich == null) {
