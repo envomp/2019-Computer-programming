@@ -36,6 +36,16 @@ public final class CreditCard extends BankCard {
         }
     }
 
+    @Override
+    public void setCardType() {
+        this.cardType = CardType.CREDIT;
+    }
+
+    @Override
+    public CardType getCardType() {
+        return CardType.CREDIT;
+    }
+
     public BigDecimal getDebt() {
         return balance.min(BigDecimal.ZERO);
     }

@@ -32,6 +32,16 @@ public final class DebitCard extends BankCard {
     }
 
     @Override
+    public void setCardType() {
+        this.cardType = CardType.DEBIT;
+    }
+
+    @Override
+    public CardType getCardType() {
+        return CardType.DEBIT;
+    }
+
+    @Override
     public BigDecimal getBalance() {
         return balance;
     }

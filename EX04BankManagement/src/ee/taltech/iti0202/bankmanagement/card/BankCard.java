@@ -7,9 +7,9 @@ import ee.taltech.iti0202.bankmanagement.person.Person;
 import java.math.BigDecimal;
 
 public abstract class BankCard {
-    private BigDecimal BALANCE;
     public Person owner;
     public Bank banker;
+    public CardType cardType;
 
     public enum CardType {
         CREDIT, DEBIT
@@ -56,6 +56,10 @@ public abstract class BankCard {
     public abstract BigDecimal withdraw(BigDecimal value) throws TransactionException;
 
     public abstract void deposit(BigDecimal value) throws TransactionException;
+
+    public abstract void setCardType();
+
+    public abstract CardType getCardType();
 
     public Bank getBank() {
         return this.banker;

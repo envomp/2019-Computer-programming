@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.bankmanagement.bank;
 
+import ee.taltech.iti0202.bankmanagement.card.BankCard;
 import ee.taltech.iti0202.bankmanagement.person.Person;
 
 import java.util.HashSet;
@@ -105,7 +106,9 @@ public class Bank {
         Set<Person> cards = new HashSet<>();
         for (Person person : customers) {
             if (person.getBankCard().isPresent()) {
-
+                if (person.getBankCard().get().getCardType() == BankCard.CardType.CREDIT){
+                    cards.add(person);
+                }
 
             }
         }
@@ -114,8 +117,19 @@ public class Bank {
     }
 
     public Set<Person> getAllCustomersWithDebitCards() {
-        return null;
+        Set<Person> cards = new HashSet<>();
+        for (Person person : customers) {
+            if (person.getBankCard().isPresent()) {
+                if (person.getBankCard().get().getCardType() == BankCard.CardType.DEBIT){
+                    cards.add(person);
+                }
+
+            }
+        }
+
+        return cards;
     }
+
 
     public Optional<Person> getRichestCustomerByGender(Person.Gender gender) {
         Person rich = null;

@@ -14,7 +14,9 @@ public class Person {
     private Gender genderbender;
     private Optional<BankCard> card = Optional.empty();
 
-    public enum Gender {MALE, FEMALE}
+    public enum Gender {
+        MALE, FEMALE
+    }
 
 
     public Person(String firstName, String lastName, int age, Gender gender, double monthlyIncome) {
