@@ -26,7 +26,7 @@ public abstract class BankCard {
     public static BankCard createCard(CardType cardType, Bank bank, Person person) {
         if (person.getBankCard().isPresent()) {
             System.out.println(person.getBankCard().get().getBank());
-            person.getBankCard().get().getBank().removeCustomer(person);
+            //person.getBankCard().get().getBank().removeCustomer(person);
         }
 
         if (cardType == CardType.DEBIT) {
