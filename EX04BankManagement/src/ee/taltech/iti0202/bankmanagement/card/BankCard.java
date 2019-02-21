@@ -11,7 +11,9 @@ public abstract class BankCard {
     public Person owner;
     public Bank banker;
 
-    public enum CardType {CREDIT, DEBIT}
+    public enum CardType {
+        CREDIT, DEBIT
+    }
 
     /**
      * Constructor factory. Return a CreditCard or DebitCard object according to parameter cardType.
