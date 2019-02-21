@@ -24,26 +24,27 @@ public abstract class BankCard {
      * @return
      */
     public static BankCard createCard(CardType cardType, Bank bank, Person person) {
+        if (person.getBankCard().isPresent()){
+            System.out.println(person.getBankCard().get().getBank());
+            person.getBankCard().get().getBank().removeCustomer(person);
+        }
+
         if (cardType == CardType.DEBIT) {
-            BankCard card = new DebitCard();
+            BankCard card = new DebitCard(bank, person);
             bank.addCustomer(person);
             person.setBankCard(card);
             return card;
         } else {
-            BankCard card = new CreditCard();
+            BankCard card = new CreditCard(bank, person);
             bank.addCustomer(person);
             person.setBankCard(card);
             return card;
         }
     }
 
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
+    public abstract void setOwner(Person owner);
 
-    public void setBanker(Bank banker) {
-        this.banker = banker;
-    }
+    public abstract void setBanker(Bank banker);
 
     /**
      * Withdraw the given amount from the card. Abstract function - implemented in subclasses CreditCard and DebitCard.

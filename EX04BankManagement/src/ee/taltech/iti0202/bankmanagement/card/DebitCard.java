@@ -1,15 +1,30 @@
 
 package ee.taltech.iti0202.bankmanagement.card;
 
+import ee.taltech.iti0202.bankmanagement.bank.Bank;
 import ee.taltech.iti0202.bankmanagement.exceptions.TransactionException;
+import ee.taltech.iti0202.bankmanagement.person.Person;
 
 import java.math.BigDecimal;
 
 public final class DebitCard extends BankCard {
     private static BigDecimal balance;
 
-    DebitCard() {
+    DebitCard(Bank bank, Person person) {
         balance = BigDecimal.valueOf(0);
+        setBanker(bank);
+        setOwner(person);
+        setCardType();
+    }
+
+    @Override
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
+
+    @Override
+    public void setBanker(Bank banker) {
+        this.banker = banker;
     }
 
     @Override
