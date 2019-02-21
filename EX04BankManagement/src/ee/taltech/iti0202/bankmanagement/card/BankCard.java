@@ -24,7 +24,10 @@ public abstract class BankCard {
      * @return
      */
     public static BankCard createCard(CardType cardType, Bank bank, Person person) {
-
+        if (person.getBankCard().isPresent()) {
+            person.getBankCard().get().getBank().removeCustomer(person);
+        }
+        
             BankCard card = new CreditCard(bank, person);
             bank.addCustomer(person);
             person.setBankCard(card);
