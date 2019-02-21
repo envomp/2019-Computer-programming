@@ -35,7 +35,6 @@ public class Bank {
     public Boolean removeCustomer(Person person) {
         if (customers.contains(person)) {
             customers.remove(person);
-            person.setBankCard(null);
             return true;
         }
         return false;
