@@ -2,8 +2,8 @@ package ee.taltech.iti0202.socialnetwork;
 
 import ee.taltech.iti0202.socialnetwork.feed.Feed;
 import ee.taltech.iti0202.socialnetwork.group.Group;
-import ee.taltech.iti0202.socialnetwork.user.User;
 import ee.taltech.iti0202.socialnetwork.message.Message;
+import ee.taltech.iti0202.socialnetwork.user.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
