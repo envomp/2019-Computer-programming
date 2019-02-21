@@ -36,6 +36,9 @@ public class Bank {
         if (customers.contains(person)) {
             customers.remove(person);
             person.getBankCard().get().setBanker(null);
+            person.getBankCard().get().setOwner(null);
+
+            person.setBankCard(null);
             return true;
         }
         return false;
