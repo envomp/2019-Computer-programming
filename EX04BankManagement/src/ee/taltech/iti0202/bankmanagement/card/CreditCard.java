@@ -9,7 +9,7 @@ public final class CreditCard extends BankCard {
     private static BigDecimal balance;
     private final int tenK = 10000;
     CreditCard(Bank bank, Person person) {
-        this.balance = BigDecimal.valueOf(tenK);
+        balance = BigDecimal.valueOf(tenK);
         setBanker(bank);
         setOwner(person);
         setCardType();
@@ -27,10 +27,12 @@ public final class CreditCard extends BankCard {
 
     @Override
     public BigDecimal withdraw(BigDecimal value) throws TransactionException {
-        if (balance.intValue() - value.intValue() < -5000) {
+        if (value.compareTo(BigDecimal.ZERO) > 0
+                && balance.subtract(value).compareTo(BigDecimal.valueOf(-tenK / 2)) >= 0) {
+            balance = balance.subtract(value);
+        } else {
             throw new TransactionException();
         }
-        this.balance = balance.subtract(value);
         return value;
     }
 
