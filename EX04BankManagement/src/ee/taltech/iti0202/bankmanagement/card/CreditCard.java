@@ -9,7 +9,7 @@ public final class CreditCard extends BankCard {
     private static BigDecimal balance;
     private final int tenK = 10000;
     CreditCard(Bank bank, Person person) {
-        balance = BigDecimal.valueOf(0);
+        balance = BigDecimal.valueOf(tenK);
         setBanker(bank);
         setOwner(person);
         setCardType();
