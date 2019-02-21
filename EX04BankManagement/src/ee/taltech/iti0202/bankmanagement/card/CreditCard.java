@@ -33,6 +33,7 @@ public final class CreditCard extends BankCard {
         } else {
             throw new TransactionException();
         }
+        throw new TransactionException();
         return value;
     }
 
