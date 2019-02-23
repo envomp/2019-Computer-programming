@@ -61,6 +61,6 @@ public final class CreditCard extends BankCard {
     }
 
     public BigDecimal getDebt() {
-        return balance.min(BigDecimal.ZERO);
+        return balance.min(BigDecimal.ZERO).abs();
     }
 }
