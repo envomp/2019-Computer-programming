@@ -145,9 +145,7 @@ public class Bank {
                         rich = person;
                     }
                 }
-                
             }
-
         }
         if (rich == null) return Optional.empty();
 
