@@ -131,7 +131,7 @@ public class Bank {
         return cards;
     }
 
-
+    //////  This is odd ///////
     public Optional<Person> getRichestCustomerByGender(Person.Gender gender) {
         Person rich = null;
         for (Person person : customers) {
