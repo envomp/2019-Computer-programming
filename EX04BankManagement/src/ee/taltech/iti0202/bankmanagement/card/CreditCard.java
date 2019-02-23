@@ -60,6 +60,7 @@ public final class CreditCard extends BankCard {
         return CardType.CREDIT;
     }
 
+    // must be positive?
     public BigDecimal getDebt() {
         return balance.min(BigDecimal.ZERO).abs();
     }
