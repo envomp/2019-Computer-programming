@@ -137,12 +137,15 @@ public class Bank {
         for (Person person : customers) {
 
             if (person.getGender() == gender) {
-                if (rich == null && person.getBankCard().isPresent()) {
-                    rich = person;
+                if (person.getBankCard().isPresent()) {
+                    if (rich == null) {
+                        rich = person;
+                    }
+                    if (person.getBankCard().get().getBalance().compareTo(rich.getBankCard().get().getBalance()) >= 0) {
+                        rich = person;
+                    }
                 }
-                if (person.getBankCard().get().getBalance().compareTo(rich.getBankCard().get().getBalance()) >= 0) {
-                    rich = person;
-                }
+                
             }
 
         }
