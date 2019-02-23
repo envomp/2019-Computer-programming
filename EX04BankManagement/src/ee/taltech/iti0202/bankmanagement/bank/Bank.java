@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.bankmanagement.bank;
+
 import ee.taltech.iti0202.bankmanagement.card.BankCard;
 import ee.taltech.iti0202.bankmanagement.person.Person;
 
@@ -134,22 +135,19 @@ public class Bank {
     public Optional<Person> getRichestCustomerByGender(Person.Gender gender) {
         Person rich = null;
         for (Person person : customers) {
-            try {
-                if (person.getGender() == gender) {
-                    if (rich == null || rich.getBankCard().isEmpty()) {
-                        rich = person;
-                    }
-                    if (person.getBankCard().get().getBalance().compareTo(rich.getBankCard().get().getBalance()) >= 0) {
-                        rich = person;
-                    }
+
+            if (person.getGender() == gender) {
+                if (rich == null || rich.getBankCard().isEmpty()) {
+                    rich = person;
                 }
-            } catch (Exception NoSuchElementException) {
-                System.out.println("Oi");
+                if (person.getBankCard().get().getBalance().compareTo(rich.getBankCard().get().getBalance()) >= 0) {
+                    rich = person;
+                }
             }
+
         }
-        if (rich == null) {
-            return Optional.empty();
-        }
+        if (rich == null) return Optional.empty();
+
         return Optional.of(rich);
     }
 
