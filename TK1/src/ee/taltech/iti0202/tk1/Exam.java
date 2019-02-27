@@ -42,11 +42,25 @@ public class Exam {
     }
 
     public static String getSandwich(String str) {
-        str = "X" + str + "Y";
+        String temp = str;
         String[] answer = str.split("bread");
-        //System.out.println(answer[3]);
-        if (answer.length > 2) {
-            return answer[1];
+        int s = 9999999;
+        int e = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.substring(i).startsWith("bread")) {
+                s = i;
+                temp = str.substring(i, str.length());
+                break;
+            }
+        }
+        for (int i = 0; i < temp.length(); i++) {
+            if (temp.substring(0, temp.length() - i).endsWith("bread")) {
+                str = temp.substring(s + 5, temp.length() - i - 5);
+                break;
+            }
+        }
+        if (s != 9999999) {
+            return str;
         }
         return "";
     }
