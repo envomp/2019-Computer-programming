@@ -7,12 +7,13 @@ import java.util.List;
 public class Person {
 
     private List<Cat> cats;
-    public Person(){
+
+    public Person() {
         cats = new ArrayList<>();
     }
 
-    public boolean addCat(Cat cat){
-        if (! cats.contains(cat)){
+    public boolean addCat(Cat cat) {
+        if (!cats.contains(cat)) {
             cats.add(cat);
             return false;
         }
@@ -23,7 +24,7 @@ public class Person {
         return cats;
     }
 
-    public boolean sellCat(Person sellTo, Cat cat){
+    public boolean sellCat(Person sellTo, Cat cat) {
         if (cats.contains(cat)) {
             cats.remove(cat);
             return sellTo.addCat(cat);

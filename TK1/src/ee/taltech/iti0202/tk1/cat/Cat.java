@@ -5,27 +5,27 @@ public class Cat {
     private static Integer cage;
     private static String ccolor;
 
-    public Cat(String name,int age,String color){
+    public Cat(String name, int age, String color) {
         cname = name;
         cage = age;
         ccolor = color;
     }
 
-    public Cat(String name){
+    public Cat(String name) {
         cname = name;
         cage = null;
         ccolor = null;
     }
 
-    public String getName(){
+    public String getName() {
         return cname;
     }
 
-    public Integer getAge(){
+    public Integer getAge() {
         return cage;
     }
 
-    public String getColor(){
+    public String getColor() {
         return ccolor;
     }
 

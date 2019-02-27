@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.tk1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +50,7 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello");
+        // System.out.println(evenOdd());
         // evenOdd([1, 0, 1, 0, 0, 1, 1]) // → [0, 0, 0, 1, 1, 1, 1]
         // evenOdd([3, 3, 2]) // → [2, 3, 3]
         // evenOdd([2, 2, 2]) // → [2, 2, 2]
