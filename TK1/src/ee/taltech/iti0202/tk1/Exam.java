@@ -55,7 +55,7 @@ public class Exam {
         }
         for (int i = 0; i < temp.length(); i++) {
             if (temp.substring(0, temp.length() - i).endsWith("bread")) {
-                str = temp.substring(s + 5, temp.length() - i - 5);
+                str = temp.substring(5, temp.length() - i - 5);
                 break;
             }
         }
@@ -87,7 +87,7 @@ public class Exam {
         // loneSum(1, 2, 3) // → 6
         // loneSum(3, 2, 3) // → 2
         // loneSum(3, 3, 3) // → 0
-        System.out.println(getSandwich("breadjambread")); // → "jam"
+        System.out.println(getSandwich("xxbreadjambreadx")); // → "jam"
         // getSandwich("xxbreadjambreadyy") // → "jam"
         // getSandwich("xxbreadyy") // → ""
         // topping({"ice cream": "peanuts"}) // → {"bread": "butter", "ice cream": "cherry"}
