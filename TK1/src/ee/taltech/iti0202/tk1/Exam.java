@@ -8,12 +8,12 @@ public class Exam {
     public static List<Integer> evenOdd(List<Integer> input) {
         List<Integer> answer = new ArrayList<>();
         for (Integer even : input) {
-            if (even % 2 == 0) {
+            if (even != null && even % 2 == 0) {
                 answer.add(even);
             }
         }
         for (Integer odd : input) {
-            if (odd % 2 == 1) {
+            if (odd != null && odd % 2 == 1) {
                 answer.add(odd);
             }
         }
