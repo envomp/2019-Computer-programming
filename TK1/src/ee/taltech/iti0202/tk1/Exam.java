@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TK1 {
+public class Exam {
     public static List<Integer> evenOdd(List<Integer> input) {
         List<Integer> answer = new ArrayList<>();
-        for (Integer even : input){
-            if (even % 2 == 1){
+        for (Integer even : input) {
+            if (even % 2 == 1) {
                 answer.add(even);
             }
         }
-        for (Integer odd : input){
-            if (odd % 2 == 0){
+        for (Integer odd : input) {
+            if (odd % 2 == 0) {
                 answer.add(odd);
             }
         }
@@ -23,7 +23,7 @@ public class TK1 {
     }
 
     public static int loneSum(int a, int b, int c) {
-        if(a == b || a == c || b == c){
+        if (a == b || a == c || b == c) {
             return 0;
         }
         return a + b + c;
@@ -31,26 +31,27 @@ public class TK1 {
 
     public static String getSandwich(String str) {
         String[] answer = str.split("bread");
-        if (answer.length == 3){
+        if (answer.length == 3) {
             return answer[1];
         }
         return "";
     }
 
     public static Map<String, String> topping(Map<String, String> map) {
-        if (map.containsKey("ice cream")){
+        if (map.containsKey("ice cream")) {
             map.put("ice cream", "cherry");
         }
-        if (map.containsKey("bread")){
+        if (map.containsKey("bread")) {
             map.put("bread", "butter");
         } else {
             map.putIfAbsent("bread", "butter");
         }
 
-        return  map;
+        return map;
     }
 
     public static void main(String[] args) {
+        System.out.println("Hello");
         // evenOdd([1, 0, 1, 0, 0, 1, 1]) // → [0, 0, 0, 1, 1, 1, 1]
         // evenOdd([3, 3, 2]) // → [2, 3, 3]
         // evenOdd([2, 2, 2]) // → [2, 2, 2]
