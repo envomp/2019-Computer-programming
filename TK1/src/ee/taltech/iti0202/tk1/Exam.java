@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Exam {
+
+    private static int AAA = 9999999;
     public static List<Integer> evenOdd(List<Integer> input) {
         List<Integer> answer = new ArrayList<>();
         for (Integer even : input) {
@@ -45,7 +47,7 @@ public class Exam {
         try {
             String temp = str;
             String[] answer = str.split("bread");
-            int s = 9999999;
+            int s = AAA;
             int e = 0;
             for (int i = 0; i < str.length(); i++) {
                 if (str.substring(i).startsWith("bread")) {
@@ -60,7 +62,7 @@ public class Exam {
                     break;
                 }
             }
-            if (s != 9999999) {
+            if (s != AAA) {
                 return str;
             }
             return "";
