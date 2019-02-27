@@ -8,12 +8,12 @@ public class Exam {
     public static List<Integer> evenOdd(List<Integer> input) {
         List<Integer> answer = new ArrayList<>();
         for (Integer even : input) {
-            if (even % 2 == 1) {
+            if (even % 2 == 0) {
                 answer.add(even);
             }
         }
         for (Integer odd : input) {
-            if (odd % 2 == 0) {
+            if (odd % 2 == 1) {
                 answer.add(odd);
             }
         }
@@ -22,9 +22,22 @@ public class Exam {
     }
 
     public static int loneSum(int a, int b, int c) {
-        if (a == b || a == c || b == c) {
+        if (a == b && b == c) {
             return 0;
         }
+
+        if (a == b) {
+            return c;
+        }
+
+        if (a == c) {
+            return b;
+        }
+
+        if (b == c) {
+            return a;
+        }
+
         return a + b + c;
     }
 
@@ -50,6 +63,7 @@ public class Exam {
     }
 
     public static void main(String[] args) {
+        //List<Integer> vars = new ArrayList(){}
         // System.out.println(evenOdd());
         // evenOdd([1, 0, 1, 0, 0, 1, 1]) // → [0, 0, 0, 1, 1, 1, 1]
         // evenOdd([3, 3, 2]) // → [2, 3, 3]
