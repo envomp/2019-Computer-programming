@@ -42,27 +42,32 @@ public class Exam {
     }
 
     public static String getSandwich(String str) {
-        String temp = str;
-        String[] answer = str.split("bread");
-        int s = 9999999;
-        int e = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.substring(i).startsWith("bread")) {
-                s = i;
-                temp = str.substring(i, str.length());
-                break;
+        try {
+            String temp = str;
+            String[] answer = str.split("bread");
+            int s = 9999999;
+            int e = 0;
+            for (int i = 0; i < str.length(); i++) {
+                if (str.substring(i).startsWith("bread")) {
+                    s = i;
+                    temp = str.substring(i, str.length());
+                    break;
+                }
             }
-        }
-        for (int i = 0; i < temp.length(); i++) {
-            if (temp.substring(0, temp.length() - i).endsWith("bread")) {
-                str = temp.substring(5, temp.length() - i - 5);
-                break;
+            for (int i = 0; i < temp.length(); i++) {
+                if (temp.substring(0, temp.length() - i).endsWith("bread")) {
+                    str = temp.substring(5, temp.length() - i - 5);
+                    break;
+                }
             }
+            if (s != 9999999) {
+                return str;
+            }
+            return "";
+        } catch (Exception e) {
+            return "";
         }
-        if (s != 9999999) {
-            return str;
-        }
-        return "";
+
     }
 
     public static Map<String, String> topping(Map<String, String> map) {
