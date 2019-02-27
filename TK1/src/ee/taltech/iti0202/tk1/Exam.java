@@ -42,8 +42,10 @@ public class Exam {
     }
 
     public static String getSandwich(String str) {
+        str = "X" + str + "Y";
         String[] answer = str.split("bread");
-        if (answer.length == 3) {
+        //System.out.println(answer[3]);
+        if (answer.length > 2) {
             return answer[1];
         }
         return "";
@@ -71,7 +73,7 @@ public class Exam {
         // loneSum(1, 2, 3) // → 6
         // loneSum(3, 2, 3) // → 2
         // loneSum(3, 3, 3) // → 0
-        // getSandwich("breadjambread") // → "jam"
+        System.out.println(getSandwich("breadjambread")); // → "jam"
         // getSandwich("xxbreadjambreadyy") // → "jam"
         // getSandwich("xxbreadyy") // → ""
         // topping({"ice cream": "peanuts"}) // → {"bread": "butter", "ice cream": "cherry"}
