@@ -23,7 +23,11 @@ public class City {
     public City(String name) {
         this.name = name;
         parkingLots = new HashMap<>();
-        carsInLot = new HashMap<>();
+        carsInLot = new HashMap<>(){{
+            put(Car.PriorityStatus.HIGHEST.toString(), 0);
+            put(Car.PriorityStatus.PRIORITY.toString(), 0);
+            put(Car.PriorityStatus.COMMON.toString(), 0);
+        }};
     }
 
     /**
@@ -70,7 +74,7 @@ public class City {
                     .sorted((l, i) -> l.getQueueCars().size()).collect(Collectors.toList()).get(0));
             boolean success = lotOptional.get().addToQueue(car);
             lotOptional.get().processQueue();
-            carsInLot.put(car.getPriorityStatus().toString(), 1);
+            carsInLot.put(car.getPriorityStatus().toString(), carsInLot.get(car.getPriorityStatus().toString()) + 1);
             if (success) return lotOptional;
         }
         return Optional.empty();
@@ -83,6 +87,10 @@ public class City {
      */
     public static List<ParkingLot> getParkingLots() {
         return new ArrayList<>(parkingLots.keySet());
+    }
+
+    public static void decreasePark(Car car) {
+        carsInLot.put(car.getPriorityStatus().toString(), carsInLot.get(car.getPriorityStatus().toString()) - 1);
     }
 
     /**
