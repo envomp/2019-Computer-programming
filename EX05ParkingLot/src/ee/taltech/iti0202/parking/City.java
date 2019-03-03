@@ -131,6 +131,7 @@ public class City {
      * @return Count of parked cars.
      */
     public static int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
+        getParkingLots().forEach(ParkingLot::processQueue);
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
             amount += lot.getParkedCars().stream()
@@ -155,6 +156,11 @@ public class City {
         System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
         System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
         System.out.println(getParkedCarCountBySizeAndPriority());
+        System.out.println(ch1.unpark());
+        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(getParkedCarCountBySizeAndPriority());
+
 
     }
 
