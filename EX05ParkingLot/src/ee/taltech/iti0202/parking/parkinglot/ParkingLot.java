@@ -55,6 +55,10 @@ abstract public class ParkingLot {
         return height * width;
     }
 
+    public int getQueueLen() {
+        return this.getQueueCars().size();
+    }
+
     public int getWidth() {
         return width;
     }

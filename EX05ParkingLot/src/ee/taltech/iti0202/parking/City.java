@@ -6,11 +6,7 @@ import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -96,19 +92,16 @@ public class City {
         Car ch1 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
 
-        SmallCarParkingLot europark = new SmallCarParkingLot(4, 2);
+        SmallCarParkingLot europark = new SmallCarParkingLot(1, 1);
+        PriorityParkingLot park = new PriorityParkingLot(4, 4);
         tallinn.addParkingLot(europark);
+        tallinn.addParkingLot(park);
 
-
-        System.out.println(europark.addToQueue(ch2));
-        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
-        System.out.println(getParkedCarCountBySizeAndPriority());
-        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(ch1.unpark());
-        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(getParkedCarCountBySizeAndPriority());
+        tallinn.parkCar(ch1);
+        tallinn.parkCar(ch2);
+        System.out.println(europark.getParkedCars());
+        System.out.println(europark.getQueueCars());
+        System.out.println(park.getParkedCars());
 
 
     }
@@ -153,9 +146,9 @@ public class City {
             if (temp.isEmpty())
                 return Optional.empty();
             Optional<ParkingLot> lotOptional = Optional.of(temp.stream()
-                    .sorted((l, i) -> l.getQueueCars().size()).collect(Collectors.toList()).get(0));
+                    .sorted(Comparator.comparing(ParkingLot::getQueueLen)).collect(Collectors.toList()).get(0));
             boolean success = lotOptional.get().addToQueue(car);
-            lotOptional.get().processQueue();
+            System.out.println(lotOptional.get());
             carsInLot.put(car.getPriorityStatus().toString(), carsInLot.get(car.getPriorityStatus().toString()) + 1);
             if (success) return lotOptional;
         }

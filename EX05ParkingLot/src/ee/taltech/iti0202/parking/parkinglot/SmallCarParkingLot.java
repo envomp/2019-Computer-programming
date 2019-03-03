@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-import ee.taltech.iti0202.parking.car.Car;
 
 /**
  * This parking lot only accepts small cars (size 1).
