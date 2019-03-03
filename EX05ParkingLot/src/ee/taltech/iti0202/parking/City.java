@@ -17,12 +17,13 @@ import java.util.stream.Collectors;
 public class City {
 
     String name;
-    Map<String, Integer> carsInLot;
+    static Map<String, Integer> carsInLot;
     static Map<ParkingLot, List> parkingLots;
 
     public City(String name) {
         this.name = name;
         parkingLots = new HashMap<>();
+        carsInLot = new HashMap<>();
     }
 
     /**
@@ -69,6 +70,7 @@ public class City {
                     .sorted((l, i) -> l.getQueueCars().size()).collect(Collectors.toList()).get(0));
             boolean success = lotOptional.get().addToQueue(car);
             lotOptional.get().processQueue();
+            carsInLot.put(car.getPriorityStatus().toString(), 1);
             if (success) return lotOptional;
         }
         return Optional.empty();
@@ -92,7 +94,7 @@ public class City {
      * @return map with priority-size counts
      */
 
-    public Map<String, Integer> getParkedCarCountBySizeAndPriority() {
+    public static Map<String, Integer> getParkedCarCountBySizeAndPriority() {
         return carsInLot;
     }
 
@@ -141,8 +143,10 @@ public class City {
 
 
         System.out.println(europark.addToQueue(ch1));
-        //System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
         System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
+        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(getParkedCarCountBySizeAndPriority());
 
     }
 
