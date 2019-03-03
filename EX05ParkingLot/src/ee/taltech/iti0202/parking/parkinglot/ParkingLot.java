@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
+
 import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
@@ -101,17 +102,21 @@ abstract public class ParkingLot {
         List<Car> temp = new ArrayList<>(getParkedCars());
         for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1, 1);
         temp = new ArrayList<>(getQueueCars());
-        for (Car car1 : temp) if (!car1.isWantsToBe()) {
-            this.carQueue.remove(car1);
-            City.decreasePark(car1);
-        }
+        for (Car car1 : temp)
+            if (!car1.isWantsToBe()) {
+                this.carQueue.remove(car1);
+                City.decreasePark(car1);
+            }
     }
 
     public boolean addToQueue(Car car) {
-        if (carQueue.contains(car))
+        if (!City.getParkingLots().isEmpty() || !car.isParked() || City.getParkingLots().stream()
+                .filter(x -> x.getQueueCars().contains(car)).noneMatch(x -> x.getParkedCars().contains(car))) {
+            carQueue.add(car);
+            return true;
+        } else {
             return false;
-        carQueue.add(car);
-        return true;
+        }
     }
 
     /**
@@ -183,10 +188,8 @@ abstract public class ParkingLot {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (String[] s : canvas)
-        {
-            for (String c : s)
-            {
+        for (String[] s : canvas) {
+            for (String c : s) {
                 sb.append(c);
 
             }
