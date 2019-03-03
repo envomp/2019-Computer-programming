@@ -2,7 +2,10 @@ package ee.taltech.iti0202.parking.parkinglot;
 
 import ee.taltech.iti0202.parking.car.Car;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+
 
 /**
  * Parking lot is a rectangular area with fixed with and height.
@@ -29,6 +32,10 @@ abstract public class ParkingLot {
     private final int height;
 
     private List<Car> carList;
+    private PriorityQueue<Car> carQueue;
+
+    private Car carBuffer;
+    private Integer spaceAvailable;
 
     /**
      * Initialize the parking slot with the given width and height.
@@ -39,15 +46,67 @@ abstract public class ParkingLot {
     public ParkingLot(int height, int width) {
         this.width = width;
         this.height = height;
+        this.spaceAvailable = height * width * 2;
+        this.carList = new ArrayList<>();
+        this.carQueue = new PriorityQueue<>();
     }
 
-    /**
-     * Adds a car to priority queue.
-     * Car can be in a queue only once.
-     *
-     * @param car Car to be added
-     */
+    public int getSize() {
+        return height * width;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setSpaceAvailable(Integer integer) {
+        this.spaceAvailable = integer;
+    }
+
+
+    public Integer getSpaceAvailable() {
+        return this.spaceAvailable;
+    }
+
+
+    public void bufferQueue(Car car) {
+        this.carBuffer = car;
+    }
+
+    public void queueToLot(Car car, int important) {
+        this.spaceAvailable -= car.getSize() * important;
+        car.setParked(true);
+        this.carQueue.remove(car);
+        this.carList.add(car);
+    }
+
+    public void lotToQueue(Car car, int important) {
+        this.spaceAvailable += car.getSize() * important;
+        car.setParked(false);
+        this.carQueue.add(car);
+        this.carList.remove(car);
+    }
+
+    public Car getCarBuffer() {
+        return carBuffer;
+    }
+
+
+    public void depark() {
+        List<Car> temp = new ArrayList<>(getParkedCars());
+        for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1, 1);
+        temp = new ArrayList<>(getQueueCars());
+        for (Car car1 : temp) if (!car1.isWantsToBe()) this.carQueue.remove(car1);
+    }
+
     public boolean addToQueue(Car car) {
+        if (carQueue.contains(car))
+            return false;
+        carQueue.add(car);
         return true;
     }
 
@@ -71,6 +130,10 @@ abstract public class ParkingLot {
      */
     public List<Car> getParkedCars() {
         return carList;
+    }
+
+    public List<Car> getQueueCars() {
+        return new ArrayList<>(carQueue);
     }
 
     /**
@@ -111,5 +174,15 @@ abstract public class ParkingLot {
         return "";
     }
 
+
+    public boolean accepts() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+
+        return String.valueOf(this.height * this.width);
+    }
 
 }

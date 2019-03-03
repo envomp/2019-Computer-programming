@@ -1,4 +1,6 @@
 package ee.taltech.iti0202.parking.parkinglot;
+
+
 /**
  * This parking lot only accepts small cars (size 1).
  * Each parking slot only accepts one car.
@@ -17,5 +19,15 @@ public class SmallCarParkingLot extends ParkingLot {
     @Override
     public void processQueue() {
 
+        if (getParkedCars().isEmpty() && !getQueueCars().isEmpty()) queueToLot(getQueueCars().get(0), 1);
+        depark();
+    }
+
+    @Override
+    public boolean accepts() {
+        if (getCarBuffer() == null)
+            return false;
+        return Integer.parseInt(getCarBuffer().toString().substring(1)) == 1 &&
+                getParkedCars().size() + getQueueCars().size() < getSize();
     }
 }

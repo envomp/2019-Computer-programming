@@ -1,19 +1,28 @@
 package ee.taltech.iti0202.parking;
 
 import ee.taltech.iti0202.parking.car.Car;
+import ee.taltech.iti0202.parking.parkinglot.MultiLevelParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 public class City {
 
-    List<ParkingLot> parkingLots;
     String name;
+    Map<String, Integer> carsInLot;
+    Map<ParkingLot, List> parkingLots;
 
     public City(String name) {
         this.name = name;
+        parkingLots = new HashMap<>();
     }
 
     /**
@@ -25,10 +34,10 @@ public class City {
      */
 
     public boolean addParkingLot(ParkingLot parkingLot) {
-        if (parkingLots.contains(parkingLot)) {
-            return  false;
+        if (parkingLots.containsKey(parkingLot)) {
+            return false;
         }
-        parkingLots.add(parkingLot);
+        parkingLots.computeIfAbsent(parkingLot, ignored -> new ArrayList<>());
         return true;
 
     }
@@ -50,6 +59,18 @@ public class City {
      * empty() in case no parking lot is suitable.
      */
     public Optional<ParkingLot> parkCar(Car car) {
+        if (!getParkingLots().isEmpty() && getParkingLots().stream()
+                .filter(x -> x.getQueueCars().contains(car)).noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
+            getParkingLots().get(0).bufferQueue(car);
+            List<ParkingLot> temp = getParkingLots().stream().filter(ParkingLot::accepts).collect(Collectors.toList());
+            if (temp.isEmpty())
+                return Optional.empty();
+            Optional<ParkingLot> lotOptional = Optional.of(temp.stream()
+                    .sorted((l, i) -> l.getQueueCars().size()).collect(Collectors.toList()).get(0));
+            boolean success = lotOptional.get().addToQueue(car);
+            lotOptional.get().processQueue();
+            if (success) return lotOptional;
+        }
         return Optional.empty();
     }
 
@@ -59,7 +80,7 @@ public class City {
      * @return List of parking lots.
      */
     public List<ParkingLot> getParkingLots() {
-        return parkingLots;
+        return new ArrayList<>(parkingLots.keySet());
     }
 
     /**
@@ -70,8 +91,9 @@ public class City {
      *
      * @return map with priority-size counts
      */
+
     public Map<String, Integer> getParkedCarCountBySizeAndPriority() {
-        return null;
+        return carsInLot;
     }
 
     /**
@@ -82,7 +104,12 @@ public class City {
      * @return Count of cars in queue.
      */
     public int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
-        return -1;
+        int amount = 0;
+        for (ParkingLot lot : getParkingLots()) {
+            amount += lot.getQueueCars().stream()
+                    .filter(c -> c.getSize() == size).filter(c -> c.getPriorityStatus() == priorityStatus).count();
+        }
+        return amount;
     }
 
     /**
@@ -93,8 +120,14 @@ public class City {
      * @return Count of parked cars.
      */
     public int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
-        return -1;
+        int amount = 0;
+        for (ParkingLot lot : getParkingLots()) {
+            amount += lot.getParkedCars().stream()
+                    .filter(c -> c.getSize() == size).filter(c -> c.getPriorityStatus() == priorityStatus).count();
+        }
+        return amount;
     }
+
 
     public static void main(String[] args) {
         City tallinn = new City("Tallinn");
@@ -108,65 +141,58 @@ public class City {
         Car cp2 = new Car(Car.PriorityStatus.PRIORITY, 2);
 
 
-        PriorityQueue<Car> priorityQueue = new PriorityQueue<>();
-        priorityQueue.add(cp1);
-        priorityQueue.add(ch2);
-        priorityQueue.add(cp2);
-        priorityQueue.add(ch1);
-        priorityQueue.add(ch4);
-        while (!priorityQueue.isEmpty()) {
-            System.out.println(priorityQueue.poll());
-        }
+        MultiLevelParkingLot multi = new MultiLevelParkingLot(1, 3, 2);
 
-        //
-        //H1
-        //H2
-        //H4
-        //P1
-        //P2
-        //
+        tallinn.addParkingLot(multi);
 
-        System.out.println(tartu.parkCar(ch1));  // Optional.empty
-        System.out.println(tallinn.parkCar(ch2));  // Optional.empty
-        System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
-        System.out.println(tallinn.parkCar(ch1));  // Optional.empty
-        System.out.println(europark.getParkedCars()); //[H1]
+        multi.addToQueue(ch1);
+        multi.addToQueue(ch2);
+        System.out.println(multi.getSpaceAvailable());
+        multi.processQueue();
+        System.out.println(multi.getSpaceAvailable());
 
-        PriorityParkingLot priorityParkingLot = new PriorityParkingLot(1, 3);
 
-        tallinn.addParkingLot(priorityParkingLot);
+//      System.out.println(priorityParkingLot.getTable());
+//      /*
+//      H4H4..
+//      H4H4..
+//
+//      */
+//
+//      // let's send one car home
+//      System.out.println(ch4.unpark()); // true
+//
+//      priorityParkingLot.processQueue();
+//      priorityParkingLot.processQueue();
+//
+//      // now another H4 parks
+//      System.out.println(priorityParkingLot.getTable());
+//      /*
+//      H4H4..
+//      H4H4..
+//
+//      */
+//
+//      System.out.println(ch4.unpark());  // false, there's no such car parked
+//
+//      System.out.println(ch42.unpark());  // true
+//
+//      priorityParkingLot.processQueue();
+//      priorityParkingLot.processQueue();
+//
+//
+//      System.out.println(priorityParkingLot.getTable());
+//      /*
+//      P4P4..
+//      P4P4..
+//
+//      */
+    }
 
-        System.out.println(tallinn.parkCar(ch4)); // Optional[priorityParkingLot]
-        Car cc4 = new Car(Car.PriorityStatus.COMMON, 4);
-        Car cp4 = new Car(Car.PriorityStatus.PRIORITY, 4);
-        System.out.println(tallinn.parkCar(cc4)); // Optional[priorityParkingLot]
-        System.out.println(tallinn.parkCar(cp4)); // Optional[priorityParkingLot]
-        Car ch42 = new Car(Car.PriorityStatus.HIGHEST, 4);
-        System.out.println(tallinn.parkCar(ch42)); // Optional[priorityParkingLot]
-
-        System.out.println(priorityParkingLot.getTable());
-        //
-        //H4H4..
-        //H4H4..
-        //
-        //
-        // let's send one car home
-        System.out.println(ch4.unpark()); // true
-
-        // now another H4 parks
-        System.out.println(priorityParkingLot.getTable());
-        /*
-        H4H4..
-        H4H4..
-        */
-
-        System.out.println(ch4.unpark());  // false, there's no such car parked
-        System.out.println(ch42.unpark());  // true
-
-        System.out.println(priorityParkingLot.getTable());
-        /*
-        P4P4..
-        P4P4..
-        */
+    private static void test(PriorityParkingLot priorityParkingLot) {
+        System.out.println("---");
+        System.out.println(priorityParkingLot.getQueueCars());
+        System.out.println(priorityParkingLot.getParkedCars());
+        System.out.println("---");
     }
 }

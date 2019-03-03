@@ -1,5 +1,9 @@
-
 package ee.taltech.iti0202.parking.parkinglot;
+
+import ee.taltech.iti0202.parking.car.Car;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Modern parking lot located under ground.
@@ -21,14 +25,30 @@ public class MultiLevelParkingLot extends ParkingLot {
      * @param width  Length of horizontal side.
      * @param levels Number of levels.
      */
+    private Integer levels;
+
     public MultiLevelParkingLot(int height, int width, int levels) {
         super(height, width);
+        this.levels = levels;
+        this.setSpaceAvailable(height * width * levels * 2);
+    }
+
+    @Override
+    public int getSize() {
+        return getHeight() * getWidth() * levels;
     }
 
     @Override
     public void processQueue() {
+        System.out.println(getSpaceAvailable());
+        List<Car> temp = new ArrayList<>(getQueueCars());
+        for (Car car : temp)
+            if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
+
+        depark();
 
     }
+
 
     /**
      * Here you have to override getTable() method.
@@ -53,5 +73,10 @@ public class MultiLevelParkingLot extends ParkingLot {
     @Override
     public String getTable() {
         return super.getTable();
+    }
+
+    @Override
+    public boolean accepts() {
+        return this.getQueueCars().size() < 10;
     }
 }

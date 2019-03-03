@@ -1,5 +1,8 @@
 package ee.taltech.iti0202.parking.car;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents a car with priority and size.
  * The size can be one of 1, 2, 4 (the code doesn't have to validate it).
@@ -16,19 +19,41 @@ public class Car implements Comparable<Car> {
         HIGHEST, PRIORITY, COMMON
     }
 
+    private final Map<String, Integer> priority = new HashMap<>() {{
+        put("H", 1);
+        put("P", 2);
+        put("C", 3);
+    }};
     private PriorityStatus status;
     private int size;
     private boolean parked;
+    private boolean wantsToBe;
 
     @Override
     public int compareTo(Car o) {
-        return 0;
+        final Integer car_priority = priority.get(o.toString().substring(0, 1).toUpperCase());
+        final Integer this_priority = priority.get(this.toString().substring(0, 1).toUpperCase());
+        if (this_priority > car_priority)
+            return 1;
+        else if (this_priority < car_priority)
+            return -1;
+        else {
+            final int car_size = Integer.parseInt(o.toString().substring(1));
+            final int this_size = Integer.parseInt(this.toString().substring(1));
+            if (this_size > car_size)
+                return 1;
+            else if (this_size < car_size)
+                return -1;
+            return 0;
+        }
     }
 
+
     public Car(PriorityStatus status, int size) {
-        this.parked = true;
+        this.parked = false;
         this.size = size;
         this.status = status;
+        this.wantsToBe = true;
     }
 
     /**
@@ -61,8 +86,30 @@ public class Car implements Comparable<Car> {
     public boolean unpark() {
         if (this.parked) {
             this.parked = false;
+            this.wantsToBe = false;
+
+            // TODO: FUCK THE SYSTEM!
+            //priorityParkingLot.processQueue();
+            //priorityParkingLot.processQueue();
+
             return true;
         }
         return false;
+    }
+
+    public boolean isWantsToBe() {
+        return wantsToBe;
+    }
+
+    public void setParked(boolean state) {
+        this.parked = state;
+    }
+
+    public boolean isParked() {
+        return parked;
+    }
+
+    public String toString() {
+        return this.status.toString().substring(0, 1) + this.size;
     }
 }
