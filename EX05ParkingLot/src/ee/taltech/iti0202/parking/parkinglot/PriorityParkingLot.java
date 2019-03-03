@@ -27,29 +27,31 @@ public class PriorityParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-        for (int i = 0; i < 2; i++) {
-            List<Car> temp = new ArrayList<>(getQueueCars());
-            boolean possible;
-            for (Car car : temp) {
-                possible = true;
-                if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
-                    bufferQueue(car);
-                    if (this.getSpaceAvailable() < car.getSize()) {
-                        while (this.getSpaceAvailable() <= car.getSize()) {
-                            Car remove = getParkedCars().stream()
-                                    .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
-                                    .sorted(Comparator.comparing(Car::getSize).reversed())
-                                    .collect(Collectors.toList()).get(0);
-                            if (remove == null) possible = false;
-                            if (possible) lotToQueue(remove, 1);
+        List<Car> temp = new ArrayList<>(getQueueCars());
+        boolean possible;
+        for (Car car : temp) {
+            possible = true;
+            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
+                bufferQueue(car);
+                if (this.getSpaceAvailable() < car.getSize()) {
+                    while (this.getSpaceAvailable() <= car.getSize()) {
+                        Car remove = getParkedCars().stream()
+                                .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
+                                .sorted(Comparator.comparing(Car::getSize).reversed())
+                                .collect(Collectors.toList()).get(0);
+                        if (remove == null) possible = false;
+                        if (possible) {
+                            if (remove.getSize() == 1) lotToQueue(remove, 2);
+                            else lotToQueue(remove, 1);
                         }
                     }
-                    if (possible) queueToLot(car, 1);
-                } else if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
+                }
+                if (possible) queueToLot(car, 1);
+            } else if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
 
-            }
-            depark();
         }
+        depark();
+
     }
 
     @Override
