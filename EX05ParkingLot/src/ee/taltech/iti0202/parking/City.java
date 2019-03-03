@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.parking;
-
 import ee.taltech.iti0202.parking.car.Car;
 import ee.taltech.iti0202.parking.parkinglot.MultiLevelParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;

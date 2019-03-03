@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.parking.parkinglot;
-
 import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
@@ -109,7 +108,8 @@ abstract public class ParkingLot {
     }
 
     public boolean addToQueue(Car car) {
-        if (true) return false;
+        if (carQueue.contains(car))
+            return false;
         carQueue.add(car);
         return true;
     }
