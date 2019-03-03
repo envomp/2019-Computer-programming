@@ -1,8 +1,7 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-import ee.taltech.iti0202.parking.car.Car;
 
-import java.util.List;
+import ee.taltech.iti0202.parking.car.Car;
 
 /**
  * This parking lot only accepts small cars (size 1).
@@ -11,7 +10,8 @@ import java.util.List;
 public class SmallCarParkingLot extends ParkingLot {
     /**
      * Initialize the parking slot with the given width and height.
-     *  @param height
+     *
+     * @param height
      * @param width
      */
 
@@ -21,6 +21,12 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
+        if (!getQueue().isEmpty()) {
+            Car car = getQueue().get(0);
+            if (!getQueue().isEmpty() && this.getSpaceAvailable() > car.getSize()) {
+                queueToLot(car, 2);
+            }
+        }
 
     }
 

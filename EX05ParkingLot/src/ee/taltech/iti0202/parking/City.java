@@ -22,31 +22,25 @@ public class City {
         Car ch1 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
-        Car cp1 = new Car(Car.PriorityStatus.PRIORITY, 1);
-        Car cp2 = new Car(Car.PriorityStatus.PRIORITY, 2);
 
-
-        PriorityQueue<Car> priorityQueue = new PriorityQueue<>();
-        priorityQueue.add(cp1);
-        priorityQueue.add(ch2);
-        priorityQueue.add(cp2);
-        priorityQueue.add(ch1);
-        priorityQueue.add(ch4);
-        while (!priorityQueue.isEmpty()) {
-            System.out.println(priorityQueue.poll());
-        }
-        /*
-        H1
-        H2
-        H4
-        P1
-        P2
-        */
+        europark.processQueue();
 
         System.out.println(tartu.parkCar(ch1));  // Optional.empty
+
+        europark.processQueue();
+
         System.out.println(tallinn.parkCar(ch2));  // Optional.empty
+
+        europark.processQueue();
+
         System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
+
+        europark.processQueue();
+
         System.out.println(tallinn.parkCar(ch1));  // Optional.empty
+
+        europark.processQueue();
+
         System.out.println(europark.getParkedCars()); //[H1]
 
         PriorityParkingLot priorityParkingLot = new PriorityParkingLot(1, 3);

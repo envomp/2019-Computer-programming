@@ -96,4 +96,9 @@ public class Car implements Comparable<Car> {
         return parked;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(this.getSize());
+    }
+
 }

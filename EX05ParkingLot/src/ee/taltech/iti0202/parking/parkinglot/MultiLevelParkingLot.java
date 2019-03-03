@@ -18,8 +18,13 @@ public class MultiLevelParkingLot extends ParkingLot {
      * @param width  Length of horizontal side.
      * @param levels Number of levels.
      */
+    private Integer levels;
+    private Integer spaceAvailable;
+
     public MultiLevelParkingLot(int height, int width, int levels) {
         super(height, width);
+        this.levels = levels;
+        this.spaceAvailable = height * width * levels * 2;
     }
 
     @Override

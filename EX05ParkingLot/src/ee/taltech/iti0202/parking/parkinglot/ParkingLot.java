@@ -27,10 +27,9 @@ abstract public class ParkingLot {
 
     private final int width;
     private final int height;
+    protected int spaceAvailable;
     private List<Car> parkedCars;
     private PriorityQueue<Car> carQueue;
-
-    private Integer spaceAvailable;
 
     /**
      * Initialize the parking slot with the given width and height.
@@ -41,6 +40,7 @@ abstract public class ParkingLot {
     public ParkingLot(int height, int width) {
         this.width = width;
         this.height = height;
+        this.spaceAvailable = width * height * 2;
         this.parkedCars = new ArrayList<>();
         this.carQueue = new PriorityQueue<>();
     }
@@ -159,4 +159,9 @@ abstract public class ParkingLot {
 
 
     public abstract boolean accepts();
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.getSize());
+    }
 }
