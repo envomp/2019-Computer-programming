@@ -1,10 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-import ee.taltech.iti0202.parking.car.Car;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Modern parking lot located under ground.
  * The parking lot has several levels.
@@ -15,9 +10,7 @@ import java.util.List;
  * So, if there queue already has 10 cars, this parking lot should not
  * be available for new cars.
  */
-
 public class MultiLevelParkingLot extends ParkingLot {
-
     /**
      * Initialize the parking slot with the given width and height.
      *
@@ -25,38 +18,22 @@ public class MultiLevelParkingLot extends ParkingLot {
      * @param width  Length of horizontal side.
      * @param levels Number of levels.
      */
-    private Integer levels;
-
     public MultiLevelParkingLot(int height, int width, int levels) {
         super(height, width);
-        this.levels = levels;
-        this.setSpaceAvailable(height * width * levels * 2);
-    }
-
-    @Override
-    public int getSize() {
-        return getHeight() * getWidth() * levels;
     }
 
     @Override
     public void processQueue() {
 
-        List<Car> temp = new ArrayList<>(getQueueCars());
-        for (Car car : temp)
-            if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
-
-        depark();
-
     }
-
 
     /**
      * Here you have to override getTable() method.
      * The method gets a string for each level
      * separated by "---":
      * <p>
-     * P3P3..
-     * P3P3..
+     * P4P4..
+     * P4P4..
      * ......
      * ......
      * ---
@@ -69,7 +46,6 @@ public class MultiLevelParkingLot extends ParkingLot {
      *
      * @return String representation of multilevel parking lot
      */
-
     @Override
     public String getTable() {
         return super.getTable();
@@ -77,6 +53,6 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 10;
+        return this.getQueue().size() < 10;
     }
 }

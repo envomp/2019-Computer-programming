@@ -13,26 +13,26 @@ import java.util.stream.Collectors;
  * Otherwise small cars (size 1) can share a slot if they have the same priority.
  * If there are cars with highest priority in the queue, then cars with common priority (if parked)
  * will be sent to the queue to make room for highest priority cars (life is unfair).
+ *
  */
 public class PriorityParkingLot extends ParkingLot {
     /**
      * Initialize the parking slot with the given width and height.
-     *
-     * @param height Length of vertical side.
+     *  @param height Length of vertical side.
      * @param width  Length of horizontal side.
      */
+
     public PriorityParkingLot(int height, int width) {
         super(height, width);
     }
 
     @Override
     public void processQueue() {
-        List<Car> temp = new ArrayList<>(getQueueCars());
+        List<Car> temp = new ArrayList<>(getQueue());
         boolean possible;
         for (Car car : temp) {
             possible = true;
             if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
-                bufferQueue(car);
                 if (this.getSpaceAvailable() < car.getSize()) {
                     while (this.getSpaceAvailable() <= car.getSize()) {
                         Car remove = getParkedCars().stream()
@@ -50,12 +50,11 @@ public class PriorityParkingLot extends ParkingLot {
             } else if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
 
         }
-        depark();
 
     }
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 5;
+        return this.getQueue().size() < 5;
     }
 }

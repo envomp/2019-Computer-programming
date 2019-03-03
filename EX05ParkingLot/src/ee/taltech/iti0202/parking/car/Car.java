@@ -27,7 +27,6 @@ public class Car implements Comparable<Car> {
     private PriorityStatus status;
     private int size;
     private boolean parked;
-    private boolean wantsToBe;
 
     @Override
     public int compareTo(Car o) {
@@ -50,7 +49,6 @@ public class Car implements Comparable<Car> {
         this.parked = false;
         this.size = size;
         this.status = status;
-        this.wantsToBe = true;
     }
 
     /**
@@ -83,20 +81,12 @@ public class Car implements Comparable<Car> {
     public boolean unpark() {
         if (this.parked) {
             this.parked = false;
-            this.wantsToBe = false;
-
-            // TODO: FUCK THE SYSTEM!
-            //priorityParkingLot.processQueue();
-            //priorityParkingLot.processQueue();
 
             return true;
         }
         return false;
     }
 
-    public boolean isWantsToBe() {
-        return wantsToBe;
-    }
 
     public void setParked(boolean state) {
         this.parked = state;
