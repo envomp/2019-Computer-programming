@@ -99,6 +99,18 @@ public class City {
         SmallCarParkingLot europark = new SmallCarParkingLot(4, 2);
         tallinn.addParkingLot(europark);
 
+
+        System.out.println(europark.addToQueue(ch2));
+        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
+        System.out.println(getParkedCarCountBySizeAndPriority());
+        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(ch1.unpark());
+        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
+        System.out.println(getParkedCarCountBySizeAndPriority());
+
+
     }
 
     /**
