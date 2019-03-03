@@ -40,7 +40,7 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-        System.out.println(getSpaceAvailable());
+
         List<Car> temp = new ArrayList<>(getQueueCars());
         for (Car car : temp)
             if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);

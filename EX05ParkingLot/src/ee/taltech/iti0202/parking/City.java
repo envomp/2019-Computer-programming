@@ -131,7 +131,6 @@ public class City {
      * @return Count of parked cars.
      */
     public static int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
-        getParkingLots().forEach(ParkingLot::processQueue);
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
             amount += lot.getParkedCars().stream()

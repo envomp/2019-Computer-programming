@@ -18,7 +18,7 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-        if (getParkedCars().isEmpty() && !getQueueCars().isEmpty()) queueToLot(getQueueCars().get(0), 1);
+        if (!getQueueCars().isEmpty()) queueToLot(getQueueCars().get(0), 2);
         depark();
     }
 
