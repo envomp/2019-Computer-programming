@@ -18,7 +18,7 @@ public class City {
 
     String name;
     Map<String, Integer> carsInLot;
-    Map<ParkingLot, List> parkingLots;
+    static Map<ParkingLot, List> parkingLots;
 
     public City(String name) {
         this.name = name;
@@ -79,7 +79,7 @@ public class City {
      *
      * @return List of parking lots.
      */
-    public List<ParkingLot> getParkingLots() {
+    public static List<ParkingLot> getParkingLots() {
         return new ArrayList<>(parkingLots.keySet());
     }
 
@@ -103,9 +103,10 @@ public class City {
      * @param size           (1, 2, 4)
      * @return Count of cars in queue.
      */
-    public int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
+    public static int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
+            System.out.println(lot.getQueueCars());
             amount += lot.getQueueCars().stream()
                     .filter(c -> c.getSize() == size).filter(c -> c.getPriorityStatus() == priorityStatus).count();
         }
@@ -119,7 +120,7 @@ public class City {
      * @param size           (1, 2, 4)
      * @return Count of parked cars.
      */
-    public int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
+    public static int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
             amount += lot.getParkedCars().stream()
@@ -139,8 +140,9 @@ public class City {
         tallinn.addParkingLot(europark);
 
 
-        // System.out.println(europark.addToQueue(ch1));
-        System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
+        System.out.println(europark.addToQueue(ch1));
+        //System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
+        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
 
     }
 
