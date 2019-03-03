@@ -140,53 +140,20 @@ public class City {
         Car cp1 = new Car(Car.PriorityStatus.PRIORITY, 1);
         Car cp2 = new Car(Car.PriorityStatus.PRIORITY, 2);
 
-
+        SmallCarParkingLot small = new SmallCarParkingLot(1, 1);
         MultiLevelParkingLot multi = new MultiLevelParkingLot(1, 3, 2);
 
         tallinn.addParkingLot(multi);
+        tallinn.addParkingLot(small);
 
-        multi.addToQueue(ch1);
-        multi.addToQueue(ch2);
-        System.out.println(multi.getSpaceAvailable());
-        multi.processQueue();
-        System.out.println(multi.getSpaceAvailable());
+        small.addToQueue(ch1);
+
+        small.processQueue();
+        System.out.println(small.getQueueCars());
 
 
-//      System.out.println(priorityParkingLot.getTable());
-//      /*
-//      H4H4..
-//      H4H4..
-//
-//      */
-//
-//      // let's send one car home
-//      System.out.println(ch4.unpark()); // true
-//
-//      priorityParkingLot.processQueue();
-//      priorityParkingLot.processQueue();
-//
-//      // now another H4 parks
-//      System.out.println(priorityParkingLot.getTable());
-//      /*
-//      H4H4..
-//      H4H4..
-//
-//      */
-//
-//      System.out.println(ch4.unpark());  // false, there's no such car parked
-//
-//      System.out.println(ch42.unpark());  // true
-//
-//      priorityParkingLot.processQueue();
-//      priorityParkingLot.processQueue();
-//
-//
-//      System.out.println(priorityParkingLot.getTable());
-//      /*
-//      P4P4..
-//      P4P4..
-//
-//      */
+
+
     }
 
     private static void test(PriorityParkingLot priorityParkingLot) {

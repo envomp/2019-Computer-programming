@@ -133,6 +133,7 @@ abstract public class ParkingLot {
     }
 
     public List<Car> getQueueCars() {
+        processQueue();
         return new ArrayList<>(carQueue);
     }
 
