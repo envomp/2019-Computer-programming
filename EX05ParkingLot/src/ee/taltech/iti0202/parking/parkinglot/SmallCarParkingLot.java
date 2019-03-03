@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-
 import ee.taltech.iti0202.parking.car.Car;
 
 /**
@@ -14,24 +13,23 @@ public class SmallCarParkingLot extends ParkingLot {
      * @param height
      * @param width
      */
-
     public SmallCarParkingLot(int height, int width) {
         super(height, width);
     }
 
     @Override
     public void processQueue() {
-        if (!getQueue().isEmpty()) {
-            Car car = getQueue().get(0);
-            if (!getQueue().isEmpty() && this.getSpaceAvailable() > car.getSize()) {
-                queueToLot(car, 2);
-            }
+        if (!getQueueCars().isEmpty() && this.getSpaceAvailable() > getQueueCars().get(0).getSize()) {
+            queueToLot(getQueueCars().get(0), 2);
         }
 
+        depark();
     }
 
     @Override
     public boolean accepts() {
-        return getParkedCars().size() + getQueue().size() < getSize();
+        if (getCarBuffer() == null)
+            return false;
+        return getCarBuffer().getSize() == 1 && getParkedCars().size() + getQueueCars().size() < getSize();
     }
 }

@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.parking.parkinglot;
-
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.ArrayList;
@@ -13,51 +12,49 @@ import java.util.stream.Collectors;
  * Otherwise small cars (size 1) can share a slot if they have the same priority.
  * If there are cars with highest priority in the queue, then cars with common priority (if parked)
  * will be sent to the queue to make room for highest priority cars (life is unfair).
- *
  */
 public class PriorityParkingLot extends ParkingLot {
     /**
      * Initialize the parking slot with the given width and height.
-     *  @param height Length of vertical side.
+     *
+     * @param height Length of vertical side.
      * @param width  Length of horizontal side.
      */
-
     public PriorityParkingLot(int height, int width) {
         super(height, width);
     }
 
     @Override
     public void processQueue() {
-        if (!getQueue().isEmpty()) {
-            List<Car> temp = new ArrayList<>(getQueue());
-            boolean possible;
-            for (Car car : temp) {
-                possible = true;
-                if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
-                    if (this.getSpaceAvailable() < car.getSize()) {
-                        while (this.getSpaceAvailable() <= car.getSize()) {
-                            Car remove = getParkedCars().stream()
-                                    .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
-                                    .sorted(Comparator.comparing(Car::getSize).reversed())
-                                    .collect(Collectors.toList()).get(0);
-                            if (remove == null) possible = false;
-                            if (possible) {
-                                if (remove.getSize() == 1) lotToQueue(remove, 2);
-                                else lotToQueue(remove, 1);
-                            }
+        List<Car> temp = new ArrayList<>(getQueueCars());
+        boolean possible;
+        for (Car car : temp) {
+            possible = true;
+            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
+                bufferQueue(car);
+                if (this.getSpaceAvailable() < car.getSize()) {
+                    while (this.getSpaceAvailable() <= car.getSize()) {
+                        Car remove = getParkedCars().stream()
+                                .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
+                                .sorted(Comparator.comparing(Car::getSize).reversed())
+                                .collect(Collectors.toList()).get(0);
+                        if (remove == null) possible = false;
+                        if (possible) {
+                            if (remove.getSize() == 1) lotToQueue(remove, 2);
+                            else lotToQueue(remove, 1);
                         }
                     }
-                    if (possible) queueToLot(car, 1);
-                } else if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
+                }
+                if (possible) queueToLot(car, 1);
+            } else if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
 
-            }
         }
-
+        depark();
 
     }
 
     @Override
     public boolean accepts() {
-        return this.getQueue().size() < 5;
+        return this.getQueueCars().size() < 5;
     }
 }
