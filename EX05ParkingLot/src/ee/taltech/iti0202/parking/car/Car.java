@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.parking.car;
+
 import java.util.HashMap;
 import java.util.Map;
 

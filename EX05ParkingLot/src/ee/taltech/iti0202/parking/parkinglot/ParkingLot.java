@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
+
 import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
@@ -34,7 +35,6 @@ abstract public class ParkingLot {
     private List<Car> carList;
     private PriorityQueue<Car> carQueue;
 
-    private Car carBuffer;
     private Integer spaceAvailable;
 
     /**
@@ -71,9 +71,6 @@ abstract public class ParkingLot {
         this.spaceAvailable = integer;
     }
 
-    public void bufferQueue(Car car) {
-        this.carBuffer = car;
-    }
 
     public void queueToLot(Car car, int important) {
         this.spaceAvailable -= car.getSize() * important;
@@ -88,11 +85,6 @@ abstract public class ParkingLot {
         this.carQueue.add(car);
         this.carList.remove(car);
     }
-
-    public Car getCarBuffer() {
-        return carBuffer;
-    }
-
 
     public void depark() {
         List<Car> temp = new ArrayList<>(getParkedCars());
@@ -173,7 +165,23 @@ abstract public class ParkingLot {
      */
 
     public String getTable() {
-        return "";
+        String[][] canvas = new String[height * 2][width * 2];
+        for (int y = 0; y < height * 2; y++) {
+            for (int x = 0; x < width * 2; x++) {
+                canvas[y][x] = ".";
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String[] s : canvas) {
+            for (String c : s) {
+                sb.append(c);
+
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 
 

@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.parking;
+
 import ee.taltech.iti0202.parking.car.Car;
 import ee.taltech.iti0202.parking.parkinglot.MultiLevelParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
@@ -98,18 +99,6 @@ public class City {
         SmallCarParkingLot europark = new SmallCarParkingLot(4, 2);
         tallinn.addParkingLot(europark);
 
-
-        System.out.println(europark.addToQueue(ch2));
-        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(tallinn.parkCar(ch1));  // Optional[europark]
-        System.out.println(getParkedCarCountBySizeAndPriority());
-        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(ch1.unpark());
-        System.out.println(getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(getParkedCarCount(Car.PriorityStatus.HIGHEST, 1));
-        System.out.println(getParkedCarCountBySizeAndPriority());
-
-
     }
 
     /**
@@ -148,7 +137,6 @@ public class City {
     public Optional<ParkingLot> parkCar(Car car) {
         if (!getParkingLots().isEmpty() && getParkingLots().stream()
                 .filter(x -> x.getQueueCars().contains(car)).noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
-            getParkingLots().get(0).bufferQueue(car);
             List<ParkingLot> temp = getParkingLots().stream().filter(ParkingLot::accepts).collect(Collectors.toList());
             if (temp.isEmpty())
                 return Optional.empty();

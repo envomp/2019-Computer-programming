@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
+
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ public class PriorityParkingLot extends ParkingLot {
         for (Car car : temp) {
             possible = true;
             if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
-                bufferQueue(car);
                 if (this.getSpaceAvailable() < car.getSize()) {
                     while (this.getSpaceAvailable() <= car.getSize()) {
                         Car remove = getParkedCars().stream()
@@ -50,7 +50,6 @@ public class PriorityParkingLot extends ParkingLot {
 
         }
         depark();
-
     }
 
     @Override
