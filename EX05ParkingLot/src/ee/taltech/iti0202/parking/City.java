@@ -145,10 +145,16 @@ public class City {
             List<ParkingLot> temp = getParkingLots().stream().filter(ParkingLot::accepts).collect(Collectors.toList());
             if (temp.isEmpty())
                 return Optional.empty();
-            Optional<ParkingLot> lotOptional = Optional.of(temp.stream()
-                    .sorted(Comparator.comparing(ParkingLot::getQueueLen)).collect(Collectors.toList()).get(0));
+            ParkingLot best = null;
+            for (ParkingLot lot : temp) {
+                if (best == null) best = lot;
+                else if (best.getSpaceAvailable() - car.getSize() < 0 && lot.getSpaceAvailable() - car.getSize() > 0)
+                    best = lot;
+                else if (best.getQueueCars().size() > lot.getQueueCars().size()) best = lot;
+            }
+            Optional<ParkingLot> lotOptional = Optional.of(best);
             boolean success = lotOptional.get().addToQueue(car);
-            System.out.println(lotOptional.get());
+            best.processQueue();
             carsInLot.put(car.getPriorityStatus().toString(), carsInLot.get(car.getPriorityStatus().toString()) + 1);
             if (success) return lotOptional;
         }

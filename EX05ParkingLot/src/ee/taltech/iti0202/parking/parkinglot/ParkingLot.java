@@ -35,7 +35,7 @@ abstract public class ParkingLot {
     private List<Car> carList;
     private PriorityQueue<Car> carQueue;
 
-    private Integer spaceAvailable;
+    private int spaceAvailable;
 
     /**
      * Initialize the parking slot with the given width and height.
@@ -67,7 +67,7 @@ abstract public class ParkingLot {
         return height;
     }
 
-    public Integer getSpaceAvailable() {
+    public int getSpaceAvailable() {
         return this.spaceAvailable;
     }
 
