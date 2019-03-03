@@ -31,7 +31,7 @@ public class PriorityParkingLot extends ParkingLot {
         boolean possible;
         for (Car car : temp) {
             possible = true;
-            if (car.toString().substring(0, 1).equals("H")) {
+            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
                 bufferQueue(car);
                 if (this.getSpaceAvailable() < car.getSize()) {
                     while (this.getSpaceAvailable() <= car.getSize()) {
