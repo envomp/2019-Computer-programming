@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.stream.Collectors;
 
 
 /**
@@ -110,13 +109,9 @@ abstract public class ParkingLot {
     }
 
     public boolean addToQueue(Car car) {
-        if (carQueue.contains(car) || !City.getParkingLots().isEmpty() || City.getParkingLots().stream()
-                .filter(x -> x.getQueueCars().contains(car))
+        if (City.getParkingLots().stream().filter(x -> x.getQueueCars().contains(car))
                 .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) return false;
-        City.getParkingLots().get(0).bufferQueue(car);
-        List<ParkingLot> temp = City.getParkingLots().stream().filter(ParkingLot::accepts).collect(Collectors.toList());
-        if (temp.isEmpty()) return false;
-        temp.stream().sorted((l, i) -> l.getQueueCars().size()).collect(Collectors.toList()).get(0).addToQueue(car);
+        carQueue.add(car);
         return true;
     }
 
