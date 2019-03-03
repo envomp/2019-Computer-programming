@@ -183,9 +183,4 @@ abstract public class ParkingLot {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(this.height * this.width);
-    }
-
 }

@@ -20,9 +20,9 @@ public class Car implements Comparable<Car> {
     }
 
     private final Map<String, Integer> priority = new HashMap<>() {{
-        put("H", 1);
-        put("P", 2);
-        put("C", 3);
+        put("HIGHEST", 1);
+        put("PRIORITY", 2);
+        put("COMMON", 3);
     }};
     private PriorityStatus status;
     private int size;
@@ -31,15 +31,15 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car o) {
-        final Integer car_priority = priority.get(o.toString().substring(0, 1).toUpperCase());
-        final Integer this_priority = priority.get(this.toString().substring(0, 1).toUpperCase());
+        final Integer car_priority = priority.get(o.getPriorityStatus().toString());
+        final Integer this_priority = priority.get(this.getPriorityStatus().toString());
         if (this_priority > car_priority)
             return 1;
         else if (this_priority < car_priority)
             return -1;
         else {
-            final int car_size = Integer.parseInt(o.toString().substring(1));
-            final int this_size = Integer.parseInt(this.toString().substring(1));
+            final int car_size = o.getSize();
+            final int this_size = this.getSize();
             if (this_size > car_size)
                 return 1;
             else if (this_size < car_size)
@@ -109,7 +109,4 @@ public class Car implements Comparable<Car> {
         return parked;
     }
 
-    public String toString() {
-        return this.status.toString().substring(0, 1) + this.size;
-    }
 }
