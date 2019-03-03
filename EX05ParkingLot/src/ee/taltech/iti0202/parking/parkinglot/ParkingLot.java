@@ -176,6 +176,46 @@ abstract public class ParkingLot {
             }
         }
 
+        for (Car car : getParkedCars()) {
+            boolean go = true;
+            for (int y = 0; y < height * 2; y++) {
+                for (int x = 0; x < width * 2; x++) {
+                    if (go) {
+                        if (car.getSize() == 1) {
+                            if (canvas[y][x].equals(".")) {
+                                canvas[y][x] = car.toString();
+                                go = false;
+                            }
+                        } else if (car.getSize() == 2) {
+                            if (x + 1 < canvas[y].length && canvas[y][x].equals(".") && canvas[y][x + 1].equals(".")) {
+                                canvas[y][x] = car.toString();
+                                canvas[y][x + 1] = car.toString();
+                                go = false;
+                            } else if (y + 1 < canvas.length && canvas[y][x].equals(".") && canvas[y + 1][x].equals(".")) {
+                                canvas[y][x] = car.toString();
+                                canvas[y + 1][x] = car.toString();
+                                go = false;
+                            }
+                        } else if (car.getSize() == 4) {
+                            if (x + 1 < canvas[y].length && canvas[y][x].equals(".") && canvas[y][x + 1].equals(".") &&
+                                    y + 1 < canvas.length && canvas[y][x].equals(".") &&
+                                    canvas[y + 1][x].equals(".") && canvas[y + 1][x + 1].equals(".")) {
+                                canvas[y][x] = car.toString();
+                                canvas[y][x + 1] = car.toString();
+                                canvas[y + 1][x + 1] = car.toString();
+                                canvas[y + 1][x] = car.toString();
+                                go = false;
+                            }
+                        }
+
+
+                    }
+                }
+
+
+            }
+        }
+
         StringBuilder sb = new StringBuilder();
         for (String[] s : canvas) {
             for (String c : s) {
@@ -188,10 +228,10 @@ abstract public class ParkingLot {
         return sb.toString();
     }
 
-
     public boolean accepts() {
         return true;
     }
 
 
 }
+
