@@ -32,8 +32,9 @@ public class PriorityParkingLot extends ParkingLot {
         for (Car car : temp) {
             possible = true;
             if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
-                if (this.getSpaceAvailable() < car.getSize()) {
-                    while (this.getSpaceAvailable() <= car.getSize()) {
+                if (car.getSize() == 1) car.setSize(2);
+                if (this.getSpaceAvailable() <= car.getSize()) {
+                    while (this.getSpaceAvailable() < car.getSize()) {
                         Car remove = getParkedCars().stream()
                                 .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
                                 .sorted(Comparator.comparing(Car::getSize).reversed())

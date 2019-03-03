@@ -71,6 +71,10 @@ public class Car implements Comparable<Car> {
         return size;
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     /**
      * Finish parking. This car has finished parking.
      * The car should be removed from parking lot

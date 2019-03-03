@@ -90,18 +90,20 @@ public class City {
         City tartu = new City("Tartu");
 
         Car ch1 = new Car(Car.PriorityStatus.HIGHEST, 1);
-        Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
+        Car ch2 = new Car(Car.PriorityStatus.COMMON, 1);
 
         SmallCarParkingLot europark = new SmallCarParkingLot(1, 1);
-        PriorityParkingLot park = new PriorityParkingLot(4, 4);
-        tallinn.addParkingLot(europark);
+        PriorityParkingLot park = new PriorityParkingLot(1, 1);
+
         tallinn.addParkingLot(park);
 
-        tallinn.parkCar(ch1);
+
         tallinn.parkCar(ch2);
-        System.out.println(europark.getParkedCars());
-        System.out.println(europark.getQueueCars());
+        tallinn.parkCar(ch1);
+
         System.out.println(park.getParkedCars());
+        System.out.println(park.getQueueCars());
+
 
 
     }
