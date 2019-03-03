@@ -109,8 +109,7 @@ abstract public class ParkingLot {
     }
 
     public boolean addToQueue(Car car) {
-        if (City.getParkingLots().stream().filter(x -> x.getQueueCars().contains(car))
-                .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) return false;
+        if (true) return false;
         carQueue.add(car);
         return true;
     }
