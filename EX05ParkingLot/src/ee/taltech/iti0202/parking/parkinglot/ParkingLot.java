@@ -101,10 +101,11 @@ abstract public class ParkingLot {
         List<Car> temp = new ArrayList<>(getParkedCars());
         for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1, 1);
         temp = new ArrayList<>(getQueueCars());
-        for (Car car1 : temp) if (!car1.isWantsToBe()) {
-            this.carQueue.remove(car1);
-            City.decreasePark(car1);
-        }
+        for (Car car1 : temp)
+            if (!car1.isWantsToBe()) {
+                this.carQueue.remove(car1);
+                City.decreasePark(car1);
+            }
     }
 
     public boolean addToQueue(Car car) {
