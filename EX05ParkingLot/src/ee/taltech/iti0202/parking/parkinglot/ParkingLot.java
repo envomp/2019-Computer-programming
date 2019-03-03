@@ -4,6 +4,7 @@ import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -175,7 +176,25 @@ abstract public class ParkingLot {
      */
 
     public String getTable() {
-        return "";
+        String[][] canvas = new String[getHeight() * 2][getWidth() * 2];
+        for (int y = 0; y < getHeight() * 2; y++) {
+            for (int x = 0; x < getWidth() * 2; x++) {
+                canvas[y][x] = ".";
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String[] s : canvas)
+        {
+            for (String c : s)
+            {
+                sb.append(c);
+
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 
 
