@@ -20,6 +20,7 @@ public class SmallCarParkingLot extends ParkingLot {
     public void processQueue() {
         if (!getQueueCars().isEmpty() && this.getSpaceAvailable() > getQueueCars().get(0).getSize()) {
             queueToLot(getQueueCars().get(0), 2);
+            queueToLot(getQueueCars().get(0), 2);
         }
 
         depark();
