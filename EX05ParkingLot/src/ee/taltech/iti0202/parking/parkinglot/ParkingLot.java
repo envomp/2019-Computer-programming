@@ -34,7 +34,7 @@ abstract public class ParkingLot {
 
     private List<Car> carList;
     private PriorityQueue<Car> carQueue;
-
+    public Car buffer;
     private int spaceAvailable;
 
     /**
@@ -57,6 +57,10 @@ abstract public class ParkingLot {
 
     public int getQueueLen() {
         return this.getQueueCars().size();
+    }
+
+    public void setBuffer(Car car) {
+        this.buffer = car;
     }
 
     public int getWidth() {
@@ -172,12 +176,14 @@ abstract public class ParkingLot {
 
         processQueue();
 
-        String[][] canvas = new String[height * 2][width * 2];
-        for (int y = 0; y < height * 2; y++) {
+
+        String[][] canvas = new String[height][width * 2];
+        for (int y = 0; y < height; y++) {
             for (int x = 0; x < width * 2; x++) {
                 canvas[y][x] = ".";
             }
         }
+
 
         for (Car car : getParkedCars()) {
             boolean go = true;

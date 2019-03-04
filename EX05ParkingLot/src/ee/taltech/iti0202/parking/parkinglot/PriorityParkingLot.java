@@ -32,17 +32,22 @@ public class PriorityParkingLot extends ParkingLot {
 
         List<Car> temp = new ArrayList<>(getQueueCars());
         boolean possible;
+        Car remove = null;
         for (Car car : temp) {
             possible = true;
-            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
+            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST && getParkedCars().stream().noneMatch(c -> c.getPriorityStatus() == Car.PriorityStatus.HIGHEST) && !(this.getParkedCars().isEmpty() && this.getSpaceAvailable() < car.getSize())) {
                 if (car.getSize() == 1) car.setSize(2);
                 if (this.getSpaceAvailable() <= car.getSize()) {
                     while (this.getSpaceAvailable() < car.getSize()) {
-                        Car remove = getParkedCars().stream()
+                        List<Car> all = getParkedCars().stream()
                                 .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
                                 .sorted(Comparator.comparing(Car::getSize).reversed())
-                                .collect(Collectors.toList()).get(0);
-                        if (remove == null) possible = false;
+                                .collect(Collectors.toList());
+                        if (!all.isEmpty()) remove = all.get(0);
+                        if (remove == null) {
+                            possible = false;
+                            break;
+                        }
                         if (possible) {
                             if (remove.getSize() == 1) lotToQueue(remove, 2);
                             else lotToQueue(remove, 1);
@@ -57,6 +62,6 @@ public class PriorityParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 5;
+        return this.getQueueCars().size() < 5 && !(this.getParkedCars().isEmpty() && this.getSpaceAvailable() < buffer.getSize());
     }
 }
