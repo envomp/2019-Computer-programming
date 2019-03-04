@@ -23,6 +23,9 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
+
+        depark();
+
         List<Car> temp = new ArrayList<>(getQueueCars());
 
         for (Car car : temp) {
@@ -30,8 +33,6 @@ public class SmallCarParkingLot extends ParkingLot {
                 queueToLot(car, 2);
             }
         }
-
-        depark();
     }
 
     @Override

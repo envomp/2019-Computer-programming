@@ -27,6 +27,9 @@ public class PriorityParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
+
+        depark();
+
         List<Car> temp = new ArrayList<>(getQueueCars());
         boolean possible;
         for (Car car : temp) {
@@ -50,7 +53,6 @@ public class PriorityParkingLot extends ParkingLot {
             } else if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
 
         }
-        depark();
     }
 
     @Override

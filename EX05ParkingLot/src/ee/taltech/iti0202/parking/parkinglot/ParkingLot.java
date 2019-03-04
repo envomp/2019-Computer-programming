@@ -169,6 +169,9 @@ abstract public class ParkingLot {
      */
 
     public String getTable() {
+
+        depark();
+
         String[][] canvas = new String[height * 2][width * 2];
         for (int y = 0; y < height * 2; y++) {
             for (int x = 0; x < width * 2; x++) {
