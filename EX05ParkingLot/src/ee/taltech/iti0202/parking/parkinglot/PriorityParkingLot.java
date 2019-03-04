@@ -49,7 +49,7 @@ public class PriorityParkingLot extends ParkingLot {
                             break;
                         }
                         if (possible) {
-                            if (remove.getSize() == 1) lotToQueue(remove, 2);
+                            if (remove.getSize() == 1) lotToQueue(remove, 1);
                             else lotToQueue(remove, 1);
                         }
                     }

@@ -187,7 +187,7 @@ abstract public class ParkingLot {
 
         for (Car car : getParkedCars()) {
             boolean go = true;
-            for (int y = 0; y < height * 2; y++) {
+            for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width * 2; x++) {
                     if (go) {
                         if (car.getSize() == 1) {

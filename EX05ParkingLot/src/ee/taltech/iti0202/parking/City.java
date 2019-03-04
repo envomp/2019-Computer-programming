@@ -87,25 +87,23 @@ public class City {
 
     public static void main(String[] args) {
         City tallinn = new City("Tallinn");
-        Car ch1 = new Car(Car.PriorityStatus.PRIORITY, 1);
-        Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 2);
+        Car ch1 = new Car(Car.PriorityStatus.COMMON, 1);
+        Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
 
         PriorityParkingLot priorityParkingLot = new PriorityParkingLot(1, 1);
         tallinn.addParkingLot(priorityParkingLot);
 
         System.out.println(tallinn.parkCar(ch4));
-
-        System.out.println(tallinn.parkCar(ch2));
+        priorityParkingLot.processQueue();
         System.out.println(tallinn.parkCar(ch1));
+        priorityParkingLot.processQueue();
+        System.out.println(tallinn.parkCar(ch2));
         priorityParkingLot.processQueue();
 
         System.out.println(priorityParkingLot.getTable());
         System.out.println(priorityParkingLot.getParkedCars());
         System.out.println(priorityParkingLot.getQueueCars());
-
-
-
 
     }
 
