@@ -33,6 +33,7 @@ public class SmallCarParkingLot extends ParkingLot {
                 queueToLot(car, 2);
             }
         }
+
     }
 
     @Override

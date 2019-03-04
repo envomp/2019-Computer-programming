@@ -92,10 +92,10 @@ abstract public class ParkingLot {
 
     public void depark() {
         List<Car> temp = new ArrayList<>(getParkedCars());
-        for (Car car1 : temp) if (car1.isWantsToBe()) lotToQueue(car1, 1);
+        for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1, 1);
         temp = new ArrayList<>(getQueueCars());
         for (Car car1 : temp)
-            if (car1.isWantsToBe()) {
+            if (!car1.isWantsToBe()) {
                 this.carQueue.remove(car1);
                 City.decreasePark(car1);
             }
@@ -170,7 +170,7 @@ abstract public class ParkingLot {
 
     public String getTable() {
 
-        depark();
+        processQueue();
 
         String[][] canvas = new String[height * 2][width * 2];
         for (int y = 0; y < height * 2; y++) {
