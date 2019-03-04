@@ -3,7 +3,7 @@ package ee.taltech.iti0202.parking.parkinglot;
 
 /**
  * This parking lot only accepts small cars (size 1).
- * Each parking slot only accepts one car.
+ * Each parking slot only accepts one cr.
  */
 public class SmallCarParkingLot extends ParkingLot {
     /**
