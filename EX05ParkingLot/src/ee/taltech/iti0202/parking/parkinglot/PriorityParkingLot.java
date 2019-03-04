@@ -50,7 +50,7 @@ public class PriorityParkingLot extends ParkingLot {
                     }
                 }
                 if (possible) queueToLot(car, 1);
-            } else if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
+            } else if (this.getSpaceAvailable() >= car.getSize() * 2) queueToLot(car, 1);
 
         }
     }
