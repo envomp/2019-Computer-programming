@@ -2,12 +2,11 @@ package ee.taltech.iti0202.parking.parkinglot;
 
 
 import ee.taltech.iti0202.parking.car.Car;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This parking lot only accepts small cars (size 1).
+ * This parking lot only accepts smal cars (size 1).
  * Each parking slot only accepts one cr.
  */
 public class SmallCarParkingLot extends ParkingLot {
@@ -28,11 +27,9 @@ public class SmallCarParkingLot extends ParkingLot {
 
         List<Car> temp = new ArrayList<>(getQueueCars());
 
-        for (Car car : temp) {
-            if (!getQueueCars().isEmpty() && this.getSpaceAvailable() > getQueueCars().get(0).getSize()) {
+        for (Car car : temp)
+            if (!getQueueCars().isEmpty() && this.getSpaceAvailable() > getQueueCars().get(0).getSize())
                 queueToLot(car, 2);
-            }
-        }
 
     }
 

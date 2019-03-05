@@ -81,6 +81,7 @@ abstract public class ParkingLot {
 
 
     public void queueToLot(Car car, int important) {
+
         this.spaceAvailable -= car.getSize() * important;
         car.setParked(true);
         this.carQueue.remove(car);
