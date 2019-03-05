@@ -10,11 +10,18 @@ public class Main {
         TestAnimalProvider testAnimalProvider = new TestAnimalProvider();
         AnimalShelter shelter = new AnimalShelter(testAnimalProvider);
         Animal wo = new Wombat("blue");
-        testAnimalProvider.addAnimal(wo);
-        testAnimalProvider.addAnimal(wo);
-        testAnimalProvider.addAnimal(wo);
+        Animal w1 = new Wombat("blue");
+        Animal w2 = new Wombat("blue");
+        Animal w3 = new Wombat("blue");
+        Animal w4 = new Wombat("blue");
 
-        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 10));
+        testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(w1);
+        testAnimalProvider.addAnimal(w2);
+        testAnimalProvider.addAnimal(w3);
+        testAnimalProvider.addAnimal(w4);
+
+        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 4));
 
     }
 }
