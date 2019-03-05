@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class AnimalShelter {
     AnimalProvider ap;
-    List<Animal> allRequests = new ArrayList<>();
     List<Animal> animals = new ArrayList<>();
 
     public AnimalShelter(AnimalProvider animalProvider) {
@@ -39,24 +38,18 @@ public class AnimalShelter {
             animals = ap.provide(animalType);
 
             if (animals.isEmpty()) {
-                return allRequests;
+                return animals;
             }
 
             animals = animals.stream().filter(x -> x.getType() == animalType)
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
 
-            for (Animal animal : animals) {
-                if (!allRequests.contains(animal)) {
-                    allRequests.add(animal);
-                }
-            }
-
-            allRequests = new ArrayList<>(new HashSet<>(allRequests));
+            animals = new ArrayList<>(new HashSet<>(animals));
 
 
-            if (allRequests.size() >= count) {
-                return allRequests.subList(0, count);
+            if (animals.size() >= count) {
+                return animals.subList(0, count);
             }
         }
     }
