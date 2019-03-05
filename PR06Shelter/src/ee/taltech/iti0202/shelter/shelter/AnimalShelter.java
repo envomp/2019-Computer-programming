@@ -34,13 +34,14 @@ public class AnimalShelter {
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
 
         while (true) {
-            animals = ap.provide(animalType).stream().filter(x -> x.getType() == animalType).filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
+            animals = ap.provide(animalType);
 
-            if (allRequests.size() >= count) {
-                return allRequests.subList(0, count);
-            } else if (animals.isEmpty() || allRequests.containsAll(animals)) {
+            if (animals.isEmpty() || allRequests.containsAll(animals)) {
                 return allRequests;
             }
+
+            animals = animals.stream().filter(x -> x.getType() == animalType)
+                    .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
             for (Animal animal : animals) {
                 if (!allRequests.contains(animal)) {
@@ -48,6 +49,9 @@ public class AnimalShelter {
                 }
             }
 
+            if (allRequests.size() >= count) {
+                return allRequests.subList(0, count);
+            }
         }
     }
 }
