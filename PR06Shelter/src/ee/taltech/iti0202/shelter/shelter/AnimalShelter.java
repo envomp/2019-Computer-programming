@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.shelter.shelter;
-
 import ee.taltech.iti0202.shelter.animal.Animal;
 import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 
@@ -10,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class AnimalShelter {
     AnimalProvider ap;
+    List<Animal> allRequests = new ArrayList<>();
     List<Animal> animals = new ArrayList<>();
-    List<Animal> last = new ArrayList<>();
 
     public AnimalShelter(AnimalProvider animalProvider) {
         this.ap = animalProvider;
@@ -39,16 +38,25 @@ public class AnimalShelter {
             animals = ap.provide(animalType);
 
             if (animals.isEmpty()) {
-                animals = last.stream().filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
-                animals = new ArrayList<>(new HashSet<>(animals));
-                return animals.subList(0, Math.min(count, animals.size()));
-            } else if (animals.size() >= count) {
-
-                animals = animals.stream().filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
-                animals = new ArrayList<>(new HashSet<>(animals));
-                return animals.subList(0, Math.min(count, animals.size()));
+                return allRequests;
             }
-            last = animals;
+
+            animals = animals.stream().filter(x -> x.getType() == animalType)
+                    .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
+
+
+            for (Animal animal : animals) {
+                if (!allRequests.contains(animal)) {
+                    allRequests.add(animal);
+                }
+            }
+
+            allRequests = new ArrayList<>(new HashSet<>(allRequests));
+
+
+            if (allRequests.size() >= count) {
+                return allRequests.subList(0, count);
+            }
         }
     }
 }
