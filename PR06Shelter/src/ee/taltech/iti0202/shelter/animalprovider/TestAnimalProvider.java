@@ -4,7 +4,6 @@ import ee.taltech.iti0202.shelter.animal.Animal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TestAnimalProvider implements AnimalProvider {
 
@@ -20,12 +19,15 @@ public class TestAnimalProvider implements AnimalProvider {
 
     @Override
     public List<Animal> provide(Animal.Type type) {
+
+        System.out.println("Called");
+
         int i = 0;
         animalBuffer = new ArrayList<>();
 
         for (Animal animal : animals) {
 
-            if (animal.getType() == type && !sentAnimals.contains(animal)) {
+            if (animal.Type == type && !sentAnimals.contains(animal)) {
                 i++;
                 if (i == 4) {
                     break;
