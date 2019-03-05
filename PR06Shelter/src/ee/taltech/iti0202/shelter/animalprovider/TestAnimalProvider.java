@@ -12,7 +12,6 @@ public class TestAnimalProvider implements AnimalProvider {
 
     public void addAnimal(Animal animal) {
         animals.add(animal);
-        System.out.println(animals);
     }
 
     @Override

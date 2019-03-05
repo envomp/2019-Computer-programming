@@ -8,7 +8,7 @@ import ee.taltech.iti0202.shelter.shelter.AnimalShelter;
 public class Main {
     public static void main(String[] args) {
         TestAnimalProvider testAnimalProvider = new TestAnimalProvider();
-        AnimalShelter shelter = new AnimalShelter(new TestAnimalProvider());
+        AnimalShelter shelter = new AnimalShelter(testAnimalProvider);
         Animal wo = new Wombat("blue");
         testAnimalProvider.addAnimal(wo);
         testAnimalProvider.addAnimal(wo);
