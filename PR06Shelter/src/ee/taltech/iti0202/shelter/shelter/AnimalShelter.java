@@ -31,6 +31,7 @@ public class AnimalShelter {
      * @param count      Maximum number of result to return.
      * @return Maximum {@code count} number of animals with the given type and color.
      */
+
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
 
         while (true) {
@@ -58,4 +59,6 @@ public class AnimalShelter {
 
         }
     }
+
+
 }
