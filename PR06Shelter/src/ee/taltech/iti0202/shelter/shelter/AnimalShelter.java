@@ -32,21 +32,22 @@ public class AnimalShelter {
      * @return Maximum {@code count} number of animals with the given type and color.
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
-        animals = ap.provide(animalType).stream().filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
-        if (allRequests.size() >= count) {
-            return allRequests.subList(0, count);
-        } else if (animals.isEmpty() || allRequests.containsAll(animals)) {
-            return allRequests;
-        }
+        while (true) {
+            animals = ap.provide(animalType).stream().filter(x -> x.getType() == animalType).filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
-        for (Animal animal : animals) {
-            if (!allRequests.contains(animal)) {
-                allRequests.add(animal);
+            if (allRequests.size() >= count) {
+                return allRequests.subList(0, count);
+            } else if (animals.isEmpty() || allRequests.containsAll(animals)) {
+                return allRequests;
             }
+
+            for (Animal animal : animals) {
+                if (!allRequests.contains(animal)) {
+                    allRequests.add(animal);
+                }
+            }
+
         }
-
-        return getAnimals(animalType, color, count);
-
     }
 }
