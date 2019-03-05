@@ -177,9 +177,9 @@ abstract public class ParkingLot {
 
         processQueue();
 
-        String[][] canvas = new String[height * 2][width];
-        for (int y = 0; y < height * 2; y++) {
-            for (int x = 0; x < width; x++) {
+        String[][] canvas = new String[height][width * 2];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width * 2; x++) {
                 canvas[y][x] = ".";
             }
         }
@@ -187,8 +187,8 @@ abstract public class ParkingLot {
 
         for (Car car : getParkedCars()) {
             boolean go = true;
-            for (int y = 0; y < height * 2; y++) {
-                for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width * 2; x++) {
                     if (go) {
                         if (car.getSize() == 1) {
                             if (canvas[y][x].equals(".")) {
@@ -227,6 +227,11 @@ abstract public class ParkingLot {
 
         StringBuilder sb = new StringBuilder();
         for (String[] s : canvas) {
+            for (String c : s) {
+                sb.append(c);
+
+            }
+            sb.append("\n");
             for (String c : s) {
                 sb.append(c);
 
