@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.shelter;
 
-import ee.taltech.iti0202.shelter.animal.Animal;
+import ee.taltech.iti0202.shelter.animal.Animal; //Hi
 import ee.taltech.iti0202.shelter.animal.Hirola;
 import ee.taltech.iti0202.shelter.animal.Wombat;
 import ee.taltech.iti0202.shelter.animalprovider.TestAnimalProvider;
