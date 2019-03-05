@@ -41,12 +41,9 @@ public class AnimalShelter {
                 return animals;
             }
 
-            animals = animals.stream().filter(x -> x.getType() == animalType)
-                    .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
-
+            animals = animals.stream().filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
             animals = new ArrayList<>(new HashSet<>(animals));
-
 
             if (animals.size() >= count) {
                 return animals.subList(0, count);
