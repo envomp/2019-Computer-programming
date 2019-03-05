@@ -4,6 +4,7 @@ import ee.taltech.iti0202.shelter.animal.Animal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestAnimalProvider implements AnimalProvider {
 
@@ -16,6 +17,7 @@ public class TestAnimalProvider implements AnimalProvider {
     @Override
     public List<Animal> provide(Animal.Type type) {
 
-        return animals;
+        return animals.stream().filter(x -> x.getType() == type).collect(Collectors.toList());
+
     }
 }
