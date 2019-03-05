@@ -38,8 +38,9 @@ public class AnimalShelter {
             animals = ap.provide(animalType);
 
             if (animals.isEmpty()) {
-                return last.stream().filter(x -> x.getType() == animalType)
+                animals = last.stream().filter(x -> x.getType() == animalType)
                         .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
+                return new ArrayList<>(new HashSet<>(animals));
             }
 
             animals = animals.stream().filter(x -> x.getType() == animalType)
