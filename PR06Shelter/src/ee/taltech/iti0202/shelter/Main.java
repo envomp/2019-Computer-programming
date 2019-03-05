@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) {
         TestAnimalProvider testAnimalProvider = new TestAnimalProvider();
         AnimalShelter shelter = new AnimalShelter(testAnimalProvider);
-        Animal w0 = new Wombat("blue");
-        Animal w1 = new Wombat("red");
+        Animal w0 = new Wombat("red");
+        Animal w1 = new Wombat("blue");
         Animal w2 = new Wombat("blue");
         Animal w3 = new Wombat("blue");
         Animal w4 = new Wombat("blue");
