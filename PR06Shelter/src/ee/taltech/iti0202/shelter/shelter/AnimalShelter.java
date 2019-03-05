@@ -39,14 +39,11 @@ public class AnimalShelter {
 
             if (animals.isEmpty()) {
                 return animals;
-            }
+            } else if (animals.size() >= count) {
 
-            animals = animals.stream().filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
+                animals = animals.stream().filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
+                return new ArrayList<>(new HashSet<>(animals)).subList(0, Math.min(count, animals.size()));
 
-            animals = new ArrayList<>(new HashSet<>(animals));
-
-            if (animals.size() >= count) {
-                return animals.subList(0, count);
             }
         }
     }
