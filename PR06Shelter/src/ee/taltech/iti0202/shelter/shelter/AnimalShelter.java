@@ -4,7 +4,6 @@ import ee.taltech.iti0202.shelter.animal.Animal;
 import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +36,6 @@ public class AnimalShelter {
         while (true) {
 
             animals = ap.provide(animalType);
-
             System.out.println(animals);
 
             if (animals.isEmpty()) {
@@ -48,11 +46,12 @@ public class AnimalShelter {
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
             for (Animal animal : animals) {
-                if (!allRequests.contains(animal) && animal.getType() == animalType
-                        && animal.getColor().equals(color)) {
+                if (!allRequests.contains(animal)) {
+                    System.out.println("added");
                     allRequests.add(animal);
                 }
             }
+
 
             if (allRequests.size() >= count) {
                 return allRequests;

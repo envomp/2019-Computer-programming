@@ -20,13 +20,11 @@ public class Main {
         testAnimalProvider.addAnimal(wo);
         testAnimalProvider.addAnimal(wo);
         testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(wo);
         testAnimalProvider.addAnimal(w1);
-        testAnimalProvider.addAnimal(wo);
-        testAnimalProvider.addAnimal(w2);
-        testAnimalProvider.addAnimal(wo);
 
 
-        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 3));
+        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 1));
 
     }
 }
