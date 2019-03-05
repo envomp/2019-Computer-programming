@@ -9,13 +9,22 @@ import java.util.stream.Collectors;
 public class TestAnimalProvider implements AnimalProvider {
 
     List<Animal> animals = new ArrayList<>();
+    boolean swap = false;
 
     public void addAnimal(Animal animal) {
-        animals.add(animal);
+        if (!animals.contains(animal)) {
+            animals.add(animal);
+        }
     }
 
     @Override
     public List<Animal> provide(Animal.Type type) {
-        return animals.stream().filter(x -> x.getType() == type).collect(Collectors.toList());
+        if (swap) {
+            swap = false;
+            return animals.stream().filter(x -> x.getType() == type).collect(Collectors.toList()).subList(0, animals.size() / 2);
+        } else {
+            swap = true;
+            return animals.stream().filter(x -> x.getType() == type).collect(Collectors.toList()).subList(animals.size() / 2 - 1, animals.size());
+        }
     }
 }
