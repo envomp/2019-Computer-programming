@@ -17,7 +17,7 @@ public class TestAnimalProvider implements AnimalProvider {
     @Override
     public List<Animal> provide(Animal.Type type) {
 
-        return animals.stream().filter(x -> x.getType() == type).collect(Collectors.toList());
+        return animals.parallelStream().filter(x -> x.getType() == type).collect(Collectors.toList());
 
     }
 }

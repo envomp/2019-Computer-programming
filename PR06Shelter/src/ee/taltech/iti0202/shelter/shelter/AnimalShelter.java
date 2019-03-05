@@ -40,7 +40,7 @@ public class AnimalShelter {
                 return last;
             }
 
-            animals = animals.stream().filter(x -> x.getType() == animalType)
+            animals = animals.parallelStream().filter(x -> x.getType() == animalType)
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
             for (Animal ago : animals) {
