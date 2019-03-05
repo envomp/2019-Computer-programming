@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 
 public class AnimalShelter {
     AnimalProvider ap;
-    List<Animal> last = new ArrayList<>();
-    List<Animal> animals = new ArrayList<>();
 
     public AnimalShelter(AnimalProvider animalProvider) {
         this.ap = animalProvider;
@@ -33,6 +31,9 @@ public class AnimalShelter {
      */
 
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
+
+        List<Animal> last = new ArrayList<>();
+        List<Animal> animals;
 
         while (true) {
             animals = ap.provide(animalType);
