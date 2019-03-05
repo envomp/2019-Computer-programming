@@ -16,11 +16,11 @@ public class TestAnimalProvider implements AnimalProvider {
     @Override
     public List<Animal> provide(Animal.Type type) {
 
-        int size = animals.size();
+        int size = Math.min(2, (animals.size() + 1) / 2);
 
         // construct new list from the returned view by list.subList() method
-        List<Animal> first = new ArrayList<>(animals.subList(0, (size + 1) / 2));
-        animals = new ArrayList<>(animals.subList((size + 1) / 2, size));
+        List<Animal> first = new ArrayList<>(animals.subList(0, size));
+        animals = new ArrayList<>(animals.subList(size, animals.size()));
 
         return first;
     }

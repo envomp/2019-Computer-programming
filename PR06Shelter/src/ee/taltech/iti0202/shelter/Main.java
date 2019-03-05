@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.shelter;
 
-import ee.taltech.iti0202.shelter.animal.Animal; //Hi
+import ee.taltech.iti0202.shelter.animal.Animal;
 import ee.taltech.iti0202.shelter.animal.Wombat;
 import ee.taltech.iti0202.shelter.animalprovider.TestAnimalProvider;
 import ee.taltech.iti0202.shelter.shelter.AnimalShelter;
@@ -17,12 +17,24 @@ public class Main {
 
         testAnimalProvider.addAnimal(w0);
         testAnimalProvider.addAnimal(w1);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w1);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w1);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w0);
+        testAnimalProvider.addAnimal(w0);
         testAnimalProvider.addAnimal(w2);
         testAnimalProvider.addAnimal(w3);
         testAnimalProvider.addAnimal(w4);
 
 
-        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 3));
+        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 6));
 
     }
 }

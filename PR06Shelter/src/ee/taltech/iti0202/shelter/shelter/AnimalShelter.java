@@ -36,7 +36,6 @@ public class AnimalShelter {
         while (true) {
 
             animals = ap.provide(animalType);
-            System.out.println(animals);
 
             if (animals.isEmpty()) {
                 return allRequests;
@@ -48,14 +47,13 @@ public class AnimalShelter {
 
             for (Animal animal : animals) {
                 if (!allRequests.contains(animal)) {
-                    System.out.println("added");
                     allRequests.add(animal);
                 }
             }
 
 
             if (allRequests.size() >= count) {
-                return allRequests;
+                return allRequests.subList(0, count);
             }
         }
     }
