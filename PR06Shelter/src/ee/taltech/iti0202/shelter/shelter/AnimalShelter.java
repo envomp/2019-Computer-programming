@@ -3,7 +3,7 @@ import ee.taltech.iti0202.shelter.animal.Animal;
 import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,30 +35,20 @@ public class AnimalShelter {
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
 
         while (true) {
-
             animals = ap.provide(animalType);
-
             if (animals.isEmpty()) {
                 animals = last.stream().filter(x -> x.getType() == animalType)
                         .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
-                return new ArrayList<>(new HashSet<>(animals));
+                return new ArrayList<>(new LinkedHashSet<>(animals));
             }
-
             animals = animals.stream().filter(x -> x.getType() == animalType)
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
-
-
-            animals = new ArrayList<>(new HashSet<>(animals));
-
-
+            animals = new ArrayList<>(new LinkedHashSet<>(animals));
             if (animals.size() >= count) {
                 return animals.subList(0, count);
             }
-
             last = animals;
 
         }
     }
-
-
 }

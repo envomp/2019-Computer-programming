@@ -34,7 +34,7 @@ public class Main {
         testAnimalProvider.addAnimal(w4);
 
 
-        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 5));
+        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 4));
 
     }
 }
