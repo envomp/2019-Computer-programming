@@ -45,9 +45,9 @@ public class AnimalShelter {
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
             for (Animal animal : animals) {
-                //if (!allRequests.contains(animal)) {
+                if (!allRequests.contains(animal)) {
                     allRequests.add(animal);
-                //}
+                }
             }
 
             if (allRequests.size() >= count) {
