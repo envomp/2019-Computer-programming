@@ -27,7 +27,7 @@ public class TestAnimalProvider implements AnimalProvider {
 
         for (Animal animal : animals) {
 
-            if (animal.Type == type && !sentAnimals.contains(animal)) {
+            if (animal.getType() == type && !sentAnimals.contains(animal)) {
                 i++;
                 if (i == 4) {
                     break;
