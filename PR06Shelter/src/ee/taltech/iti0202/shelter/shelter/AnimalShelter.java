@@ -35,17 +35,18 @@ public class AnimalShelter {
         animals = ap.provide(animalType).stream().filter(x -> x.getType() == animalType)
                 .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
+        if (allRequests.size() >= count) {
+            return allRequests.subList(0, count);
+        } else if (animals.isEmpty() || allRequests.containsAll(animals)) {
+            return allRequests;
+        }
+
         for (Animal animal : animals) {
             if (!allRequests.contains(animal)) {
                 allRequests.add(animal);
             }
         }
 
-        if (animals.size() >= count) {
-            return animals.subList(0, count);
-        } else if (animals.isEmpty() || allRequests.containsAll(animals)) {
-            return allRequests;
-        }
         return getAnimals(animalType, color, count);
 
     }

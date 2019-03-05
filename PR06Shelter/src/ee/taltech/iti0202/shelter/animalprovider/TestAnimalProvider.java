@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 public class TestAnimalProvider implements AnimalProvider {
 
     List<Animal> animals = new ArrayList<>();
-    boolean swap = false;
+    List<Animal> sentAnimals = new ArrayList<>();
+    List<Animal> animalBuffer = new ArrayList<>();
 
     public void addAnimal(Animal animal) {
         if (!animals.contains(animal)) {
@@ -19,12 +20,21 @@ public class TestAnimalProvider implements AnimalProvider {
 
     @Override
     public List<Animal> provide(Animal.Type type) {
-        if (swap) {
-            swap = false;
-            return animals.stream().filter(x -> x.getType() == type).collect(Collectors.toList()).subList(0, animals.size() / 2);
-        } else {
-            swap = true;
-            return animals.stream().filter(x -> x.getType() == type).collect(Collectors.toList()).subList(animals.size() / 2 - 1, animals.size());
+        int i = 0;
+        animalBuffer = new ArrayList<>();
+
+        for (Animal animal : animals) {
+
+            if (animal.getType() == type && !sentAnimals.contains(animal)) {
+                i++;
+                if (i == 4) {
+                    break;
+                }
+                sentAnimals.add(animal);
+                animalBuffer.add(animal);
+            }
+
         }
+        return animalBuffer;
     }
 }
