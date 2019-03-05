@@ -81,7 +81,6 @@ abstract public class ParkingLot {
 
 
     public void queueToLot(Car car, int important) {
-        this.processQueue();
         this.spaceAvailable -= car.getSize() * important;
         car.setParked(true);
         this.carQueue.remove(car);
@@ -89,7 +88,6 @@ abstract public class ParkingLot {
     }
 
     public void lotToQueue(Car car, int important) {
-        this.processQueue();
         this.spaceAvailable += car.getSize() * important;
         car.setParked(false);
         this.carQueue.add(car);
