@@ -17,12 +17,16 @@ public class Main {
         Animal w4 = new Wombat("blue");
 
         testAnimalProvider.addAnimal(wo);
-        testAnimalProvider.addAnimal(w1);
-        testAnimalProvider.addAnimal(w2);
-        testAnimalProvider.addAnimal(w3);
-        testAnimalProvider.addAnimal(w4);
+        testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(wo);
+        testAnimalProvider.addAnimal(wo);
 
-        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 5));
+
+        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 1));
 
     }
 }

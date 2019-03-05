@@ -27,14 +27,14 @@ public class TestAnimalProvider implements AnimalProvider {
 
         for (Animal animal : animals) {
 
-            if (animal.getType() == type && !sentAnimals.contains(animal)) {
-                i++;
+
+            i++;
                 if (i == 4) {
                     break;
                 }
                 sentAnimals.add(animal);
                 animalBuffer.add(animal);
-            }
+
 
         }
         return animalBuffer;
