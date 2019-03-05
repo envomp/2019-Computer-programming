@@ -48,6 +48,9 @@ public class AnimalShelter {
             for (Animal animal : animals) {
                 if (!allRequests.contains(animal)) {
                     allRequests.add(animal);
+                } else {
+                    allRequests.remove(animal);
+                    allRequests.add(animal);
                 }
             }
 
