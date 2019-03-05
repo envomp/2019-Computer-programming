@@ -36,7 +36,7 @@ public class AnimalShelter {
         while (true) {
             animals = ap.provide(animalType);
 
-            if (animals.isEmpty() || allRequests.containsAll(animals)) {
+            if (animals.isEmpty()) {
                 return allRequests;
             }
 
