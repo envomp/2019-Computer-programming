@@ -43,11 +43,16 @@ public class AnimalShelter {
 
             animals = animals.stream().filter(x -> x.getType() == animalType)
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
-            allRequests.addAll(animals);
-            allRequests = new ArrayList<>(new HashSet<>(allRequests));
+
+            for (Animal animal : animals) {
+                if (!allRequests.contains(animal) && animal.getType() == animalType &&
+                        animal.getColor().equals(color)) {
+                    allRequests.add(animal);
+                }
+            }
 
             if (allRequests.size() >= count) {
-                return allRequests.subList(0, count);
+                return new ArrayList<>(new HashSet<>(allRequests)).subList(0, count);
             }
         }
     }
