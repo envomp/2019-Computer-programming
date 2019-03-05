@@ -35,7 +35,10 @@ public class AnimalShelter {
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
 
         while (true) {
+
             animals = ap.provide(animalType);
+
+            System.out.println(animals);
 
             if (animals.isEmpty()) {
                 return allRequests;
@@ -45,14 +48,14 @@ public class AnimalShelter {
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
             for (Animal animal : animals) {
-                if (!allRequests.contains(animal) && animal.getType() == animalType &&
-                        animal.getColor().equals(color)) {
+                if (!allRequests.contains(animal) && animal.getType() == animalType
+                        && animal.getColor().equals(color)) {
                     allRequests.add(animal);
                 }
             }
 
             if (allRequests.size() >= count) {
-                return new ArrayList<>(new HashSet<>(allRequests)).subList(0, count);
+                return allRequests;
             }
         }
     }
