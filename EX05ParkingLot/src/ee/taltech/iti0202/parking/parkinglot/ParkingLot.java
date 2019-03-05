@@ -46,7 +46,7 @@ abstract public class ParkingLot {
     public ParkingLot(int height, int width) {
         this.width = width;
         this.height = height;
-        this.spaceAvailable = height * width * 2;
+        this.spaceAvailable = height * width * 4;
         this.carList = new ArrayList<>();
         this.carQueue = new PriorityQueue<>();
     }
