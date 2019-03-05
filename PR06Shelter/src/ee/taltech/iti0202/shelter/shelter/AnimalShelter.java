@@ -45,6 +45,7 @@ public class AnimalShelter {
             animals = animals.stream().filter(x -> x.getType() == animalType)
                     .filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
 
+
             for (Animal animal : animals) {
                 if (!allRequests.contains(animal)) {
                     System.out.println("added");
