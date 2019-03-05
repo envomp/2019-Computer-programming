@@ -16,7 +16,7 @@ public class TestAnimalProvider implements AnimalProvider {
     @Override
     public List<Animal> provide(Animal.Type type) {
 
-        int size = Math.min(2, (animals.size() + 1) / 5);
+        int size = Math.min(2000000000, (animals.size() + 1) / 2);
 
         // construct new list from the returned view by list.subList() method
         List<Animal> first = new ArrayList<>(animals.subList(0, size));

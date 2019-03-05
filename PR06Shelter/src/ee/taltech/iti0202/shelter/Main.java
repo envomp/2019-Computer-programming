@@ -10,7 +10,7 @@ public class Main {
         TestAnimalProvider testAnimalProvider = new TestAnimalProvider();
         AnimalShelter shelter = new AnimalShelter(testAnimalProvider);
         Animal w0 = new Wombat("blue");
-        Animal w1 = new Wombat("blue");
+        Animal w1 = new Wombat("red");
         Animal w2 = new Wombat("blue");
         Animal w3 = new Wombat("blue");
         Animal w4 = new Wombat("blue");
@@ -34,7 +34,7 @@ public class Main {
         testAnimalProvider.addAnimal(w4);
 
 
-        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 6));
+        System.out.println(shelter.getAnimals(Animal.Type.WOMBAT, "blue", 5));
 
     }
 }
