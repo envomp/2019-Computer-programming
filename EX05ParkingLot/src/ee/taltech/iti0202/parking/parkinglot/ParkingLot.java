@@ -81,6 +81,7 @@ abstract public class ParkingLot {
 
 
     public void queueToLot(Car car, int important) {
+        this.processQueue();
         this.spaceAvailable -= car.getSize() * important;
         car.setParked(true);
         this.carQueue.remove(car);
@@ -88,6 +89,7 @@ abstract public class ParkingLot {
     }
 
     public void lotToQueue(Car car, int important) {
+        this.processQueue();
         this.spaceAvailable += car.getSize() * important;
         car.setParked(false);
         this.carQueue.add(car);
@@ -175,7 +177,6 @@ abstract public class ParkingLot {
     public String getTable() {
 
         processQueue();
-
 
         String[][] canvas = new String[height][width * 2];
         for (int y = 0; y < height; y++) {
