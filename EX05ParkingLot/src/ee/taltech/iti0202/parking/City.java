@@ -28,7 +28,7 @@ public class City {
 
     /**
      * Gets all parking lots in a city.
-     *
+     * new
      * @return List of parking lots.
      */
     public static List<ParkingLot> getParkingLots() {
