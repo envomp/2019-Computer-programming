@@ -39,7 +39,7 @@ public class AnimalShelter {
             if (!allRequests.contains(animal)) {
                 allRequests.add(animal);
             }
-        
+
         if (animals.size() >= count) {
             return animals.subList(0, count);
         } else if (animals.isEmpty() || allRequests.containsAll(animals)) return allRequests;
