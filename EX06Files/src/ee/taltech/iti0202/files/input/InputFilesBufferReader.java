@@ -22,7 +22,7 @@ public class InputFilesBufferReader implements InputFilesReader {
             return fileContent;
 
         } catch (IOException e) {
-            throw new FileReaderException("No such file!", e);
+            throw new FileReaderException(" No such file ", e);
         }
     }
 }
