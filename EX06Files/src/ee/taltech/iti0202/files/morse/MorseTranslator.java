@@ -1,139 +1,25 @@
 package ee.taltech.iti0202.files.morse;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Map.entry;
-
 public class MorseTranslator {
 
-    private Map<String, String> fromMorse = Map.ofEntries(
-            entry(".-", "a"),
-            entry("-...", "b"),
-            entry("-.-.", "c"),
-            entry("-..", "d"),
-            entry(".", "e"),
-            entry("..-.", "f"),
-            entry("--.", "g"),
-            entry("....", "h"),
-            entry("..", "i"),
-            entry(".---", "j"),
-            entry("-.-", "k"),
-            entry(".-..", "l"),
-            entry("--", "m"),
-            entry("-.", "n"),
-            entry("---", "o"),
-            entry(".--.", "p"),
-            entry("--.-", "q"),
-            entry(".-.", "r"),
-            entry("...", "s"),
-            entry("-", "t"),
-            entry("..-", "u"),
-            entry("...-", "v"),
-            entry(".--", "w"),
-            entry(".-.-", "ä"),
-            entry("---.", "ö"),
-            entry("..--", "ü"),
-            entry("-..-", "x"),
-            entry("-.--", "y"),
-            entry("--..", "z"),
-            entry("-----", "0"),
-            entry(".----", "1"),
-            entry("..---", "2"),
-            entry("...--", "3"),
-            entry("....-", "4"),
-            entry(".....", "5"),
-            entry("-....", "6"),
-            entry("--...", "7"),
-            entry("---..", "8"),
-            entry("----.", "9"),
-            entry(".-...", "&"),
-            entry(".----.", "'"),
-            entry(".--.-.", "@"),
-            entry("-.--.-", ")"),
-            entry("-.--.", "("),
-            entry("---...", ":"),
-            entry("--..--", ","),
-            entry("-...-", "="),
-            entry("-.-.--", "!"),
-            entry(".-.-.-", "."),
-            entry("-....-", "-"),
-            entry(".-.-.", "+"),
-            entry(".-..-.", "\""),
-            entry("..--..", "?"),
-            entry("-..-.", "/")
-    );
-
-    private Map<String, String> toMorse = Map.ofEntries(
-            entry("a", ".-"),
-            entry("b", "-..."),
-            entry("c", "-.-."),
-            entry("d", "-.."),
-            entry("e", "."),
-            entry("f", "..-."),
-            entry("g", "--."),
-            entry("h", "...."),
-            entry("i", ".."),
-            entry("j", ".---"),
-            entry("k", "-.-"),
-            entry("l", ".-.."),
-            entry("m", "--"),
-            entry("n", "-."),
-            entry("o", "---"),
-            entry("p", ".--."),
-            entry("q", "--.-"),
-            entry("r", ".-."),
-            entry("s", "..."),
-            entry("t", "-"),
-            entry("u", "..-"),
-            entry("v", "...-"),
-            entry("w", ".--"),
-            entry("ä", ".-.-"),
-            entry("ö", "---."),
-            entry("ü", "..--"),
-            entry("x", "-..-"),
-            entry("y", "-.--"),
-            entry("z", "--.."),
-            entry("0", "-----"),
-            entry("1", ".----"),
-            entry("2", "..---"),
-            entry("3", "...--"),
-            entry("4", "....-"),
-            entry("5", "....."),
-            entry("6", "-...."),
-            entry("7", "--..."),
-            entry("8", "---.."),
-            entry("9", "----."),
-            entry("&", ".-..."),
-            entry("'", ".----."),
-            entry("@", ".--.-."),
-            entry(")", "-.--.-"),
-            entry("(", "-.--."),
-            entry(":", "---..."),
-            entry(",", "--..--"),
-            entry("=", "-...-"),
-            entry("!", "-.-.--"),
-            entry(".", ".-.-.-"),
-            entry("-", "-....-"),
-            entry("+", ".-.-."),
-            entry("\"", ".-..-."),
-            entry("?", "..--.."),
-            entry("/", "-..-.")
-    );
+    private Map<String, String> toMorse;
+    private Map<String, String> fromMorse;
 
     public Map<String, String> addMorseCodes(List<String> lines) {
         if (lines == null) {
-            return new HashMap<>();
+            return toMorse;
         }
 
-        Map<String, String> map = new HashMap<>();
         for (String line : lines) {
             String[] parts = line.split(" ");
-            map.put(parts[0].toLowerCase(), parts[1].toLowerCase());
+            toMorse.put(parts[0].toLowerCase(), parts[1].toLowerCase());
+            fromMorse.put(parts[1].toLowerCase(), parts[0].toLowerCase());
         }
-        return map;
+        return toMorse;
     }
 
     public List<String> translateLinesToMorse(List<String> lines) {
