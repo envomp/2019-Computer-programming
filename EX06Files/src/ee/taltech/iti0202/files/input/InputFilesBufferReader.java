@@ -21,7 +21,7 @@ public class InputFilesBufferReader implements InputFilesReader {
             return fileContent;
 
         } catch (Exception e) {
-            throw new FileReaderException("No file was found!", e);
+            throw new FileReaderException(e);
         }
     }
 }
