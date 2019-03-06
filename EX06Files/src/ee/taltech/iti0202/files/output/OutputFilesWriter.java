@@ -18,7 +18,7 @@ public class OutputFilesWriter {
             }
 
         } catch (IOException e) {
-            System.out.println("IOException:" + e.getMessage());
+            System.out.println(e.getMessage());
             e.printStackTrace();
             return false;
         }
