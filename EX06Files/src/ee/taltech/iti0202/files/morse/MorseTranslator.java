@@ -1,7 +1,5 @@
 package ee.taltech.iti0202.files.morse;
 
-import ee.taltech.iti0202.files.exception.FileReaderException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +13,8 @@ public class MorseTranslator {
 
     public Map<String, String> addMorseCodes(List<String> lines) {
         if (lines == null) {
-            throw new FileReaderException(new RuntimeException());
+            map.put(null, null);
+            return map;
         }
 
         for (String line : lines) {
