@@ -8,6 +8,8 @@ import static java.util.Map.entry;
 
 public class MorseTranslator {
 
+    private Map<String, String> map = new HashMap<>();
+
     private Map<String, String> fromMorse = Map.ofEntries(
             entry(".-", "a"),
             entry("-...", "b"),
@@ -127,7 +129,6 @@ public class MorseTranslator {
             return toMorse;
         }
 
-        Map<String, String> map = new HashMap<>();
         for (String line : lines) {
             String[] parts = line.split(" ");
             map.put(parts[0].toLowerCase(), parts[1].toLowerCase());
