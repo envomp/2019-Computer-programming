@@ -4,6 +4,7 @@ import ee.taltech.iti0202.files.exception.FileReaderException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class InputFilesBufferReader implements InputFilesReader {
             }
             return fileContent;
 
-        } catch (Exception e) {
+        } catch (IOException e) {
+            System.out.println("Error reading file:" + e.getMessage());
+            e.printStackTrace();
             throw new FileReaderException(e);
         }
     }

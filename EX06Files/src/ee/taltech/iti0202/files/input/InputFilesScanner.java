@@ -3,6 +3,7 @@ package ee.taltech.iti0202.files.input;
 import ee.taltech.iti0202.files.exception.FileReaderException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,9 @@ public class InputFilesScanner implements InputFilesReader {
             while (scanner.hasNextLine()) {
                 fileContent.add(scanner.nextLine());
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
+            System.out.println("Error reading file:" + e.getMessage());
+            e.printStackTrace();
             throw new FileReaderException(e);
         }
         return fileContent;
