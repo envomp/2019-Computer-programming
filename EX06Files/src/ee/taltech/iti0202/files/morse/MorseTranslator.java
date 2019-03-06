@@ -13,7 +13,6 @@ public class MorseTranslator {
 
     public Map<String, String> addMorseCodes(List<String> lines) {
         if (lines == null) {
-            map.put(null, null);
             return map;
         }
 

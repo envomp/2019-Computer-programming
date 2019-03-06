@@ -19,7 +19,7 @@ public class InputFilesScanner implements InputFilesReader {
                 fileContent.add(scanner.nextLine());
             }
         } catch (Exception e) {
-            throw new FileReaderException(new RuntimeException());
+            throw new FileReaderException("No such file", e);
         }
         return fileContent;
     }
