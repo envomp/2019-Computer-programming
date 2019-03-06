@@ -124,6 +124,10 @@ public class MorseTranslator {
     );
 
     public Map<String, String> addMorseCodes(List<String> lines) {
+        if (lines == null) {
+            return new HashMap<>();
+        }
+
         Map<String, String> map = new HashMap<>();
         for (String line : lines) {
             String[] parts = line.split(" ");
