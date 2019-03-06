@@ -94,21 +94,24 @@ public class City {
         tallinn.addParkingLot(priorityParkingLot);
 
         System.out.println(tallinn.parkCar(ch4));
-        System.out.println(tallinn.parkCar(c1));
         System.out.println(tallinn.parkCar(ch3));
+
+        System.out.println(tallinn.parkCar(c1));
         System.out.println(tallinn.parkCar(ch2));
 
-        System.out.println(priorityParkingLot.getTable());
-        System.out.println(priorityParkingLot.getParkedCars());
-        System.out.println(priorityParkingLot.getQueueCars());
-
-        System.out.println(priorityParkingLot.getSpaceAvailable());
+        test(priorityParkingLot);
 
         System.out.println(ch2.unpark());
 
+        test(priorityParkingLot);
+    }
+
+    private static void test(PriorityParkingLot priorityParkingLot) {
+        System.out.println();
         System.out.println(priorityParkingLot.getTable());
         System.out.println(priorityParkingLot.getParkedCars());
         System.out.println(priorityParkingLot.getQueueCars());
+        System.out.println(priorityParkingLot.getSpaceAvailable());
     }
 
     /**

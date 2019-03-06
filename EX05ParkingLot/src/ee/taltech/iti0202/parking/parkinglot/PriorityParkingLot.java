@@ -42,8 +42,8 @@ public class PriorityParkingLot extends ParkingLot {
 
             if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST && getParkedCars("")
                     .stream().anyMatch(c -> c.getPriorityStatus() != Car.PriorityStatus.HIGHEST)
-                    && !(this.getParkedCars("").isEmpty() && this.getSpaceAvailable() < car.getRelativeSize())) {
-                if (this.getSpaceAvailable() <= car.getRelativeSize()) {
+                    && this.getSpaceAvailable() < car.getRelativeSize()) {
+                if (this.getSpaceAvailable() < car.getRelativeSize()) {
                     while (this.getSpaceAvailable() < car.getRelativeSize()) {
                         List<Car> all = getParkedCars("").stream()
                                 .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
@@ -56,11 +56,11 @@ public class PriorityParkingLot extends ParkingLot {
                             possible = false;
                             break;
                         }
-                        lotToQueue(remove, car.getValue());
+                        lotToQueue(remove);
                     }
                 }
-                if (possible) queueToLot(car, car.getValue());
-            } else if (this.getSpaceAvailable() >= car.getRelativeSize()) queueToLot(car, car.getValue());
+                if (possible) queueToLot(car);
+            } else if (this.getSpaceAvailable() >= car.getRelativeSize()) queueToLot(car);
 
         }
     }

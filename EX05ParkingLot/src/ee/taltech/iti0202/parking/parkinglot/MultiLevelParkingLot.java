@@ -45,7 +45,7 @@ public class MultiLevelParkingLot extends ParkingLot {
 
         List<Car> temp = new ArrayList<>(getQueueCars());
         for (Car car : temp)
-            if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car, 1);
+            if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car);
 
         depark();
 

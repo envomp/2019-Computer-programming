@@ -2,6 +2,7 @@ package ee.taltech.iti0202.parking.parkinglot;
 
 
 import ee.taltech.iti0202.parking.car.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class SmallCarParkingLot extends ParkingLot {
 
         for (Car car : temp)
             if (!getQueueCars().isEmpty() && this.getSpaceAvailable() > getQueueCars().get(0).getSize())
-                queueToLot(car, 2);
+                queueToLot(car);
 
     }
 

@@ -80,16 +80,16 @@ abstract public class ParkingLot {
     }
 
 
-    public void queueToLot(Car car, int important) {
+    public void queueToLot(Car car) {
 
-        this.spaceAvailable -= car.getSize() * important;
+        this.spaceAvailable -= car.getRelativeSize();
         car.setParked(true);
         this.carQueue.remove(car);
         this.carList.add(car);
     }
 
-    public void lotToQueue(Car car, int important) {
-        this.spaceAvailable += car.getSize() * important;
+    public void lotToQueue(Car car) {
+        this.spaceAvailable += car.getRelativeSize();
         car.setParked(false);
         this.carQueue.add(car);
         this.carList.remove(car);
@@ -97,7 +97,7 @@ abstract public class ParkingLot {
 
     public void depark() {
         List<Car> temp = new ArrayList<>(getParkedCars("Hi mom!"));
-        for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1, 1);
+        for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1);
         temp = new ArrayList<>(getQueueCars("Hi dad!"));
         for (Car car1 : temp)
             if (!car1.isWantsToBe()) {
@@ -200,12 +200,12 @@ abstract public class ParkingLot {
             for (int y = 0; y < height * 2; y++) {
                 for (int x = 0; x < width; x++) {
                     if (go) {
-                        if (car.getSize() == 1) {
+                        if (car.getRelativeSize() == 1) {
                             if (canvas[y][x].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 go = false;
                             }
-                        } else if (car.getSize() == 2) {
+                        } else if (car.getRelativeSize() == 2) {
                             if (x + 1 < canvas[y].length && canvas[y][x].equals("..") && canvas[y][x + 1].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y][x + 1] = car.toString();
@@ -215,7 +215,7 @@ abstract public class ParkingLot {
                                 canvas[y + 1][x] = car.toString();
                                 go = false;
                             }
-                        } else if (car.getSize() == 4) {
+                        } else if (car.getRelativeSize() == 4) {
                             if (x + 1 < canvas[y].length && canvas[y][x].equals("..") && canvas[y][x + 1].equals("..") &&
                                     y + 1 < canvas.length && canvas[y][x].equals("..") &&
                                     canvas[y + 1][x].equals("..") && canvas[y + 1][x + 1].equals("..")) {
