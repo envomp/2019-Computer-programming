@@ -126,7 +126,7 @@ public class MorseTranslator {
 
     public Map<String, String> addMorseCodes(List<String> lines) {
         if (lines == null) {
-            return toMorse;
+            return map;
         }
 
         for (String line : lines) {
