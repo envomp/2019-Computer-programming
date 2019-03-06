@@ -18,13 +18,14 @@ public class MorseFilesController {
         MorseTranslator translator = new MorseTranslator();
         Map<String, String> codes = translator.addMorseCodes(lines2);
 
+        System.out.println(codes);
+
         List<String> sentence = new ArrayList<>();
         sentence.add(".-.. --- .-. . --\t.. .--. ... ..- --\t-.. --- .-.. --- .-.\t... .. -\t\t\t. .-.. .. - ..--..");
         sentence.add("-..-.\t-..-.");
         sentence.add("");
         sentence.add("-..-.\t");
         List<String> normalLines = translator.translateLinesFromMorse(sentence);
-        normalLines.forEach(System.out::println); //your input lines in regular text
 
         OutputFilesWriter writer = new OutputFilesWriter();
         System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
