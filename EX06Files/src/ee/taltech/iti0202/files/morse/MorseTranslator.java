@@ -47,15 +47,19 @@ public class MorseTranslator {
     private String translateLineToMorse(String line) {
         StringBuilder answer = new StringBuilder();
         int i = 0;
+        int j;
         String[] sentence = line.split(" ");
         for (String lines : sentence) {
-            for (String s : lines.split("")) {
+            j = 0;
+            String[] words = lines.split("");
+            for (String s : words) {
                 answer.append(map.get(s.toLowerCase()));
-                if (!lines.endsWith(s)) {
+                if (j < words.length - 1) {
                     answer.append(" ");
                 }
+                j++;
             }
-            if (i < sentence.length) {
+            if (i < sentence.length - 1) {
                 answer.append("\t");
             }
             i++;
