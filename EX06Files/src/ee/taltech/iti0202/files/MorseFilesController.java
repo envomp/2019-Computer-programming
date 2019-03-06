@@ -1,40 +1,9 @@
 package ee.taltech.iti0202.files;
-import ee.taltech.iti0202.files.input.InputFilesBufferReader;
-import ee.taltech.iti0202.files.input.InputFilesScanner;
-import ee.taltech.iti0202.files.morse.MorseTranslator;
-import ee.taltech.iti0202.files.output.OutputFilesWriter;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class MorseFilesController {
 
     public static void main(String[] args) {
-        InputFilesScanner scanner = new InputFilesScanner();
-        List<String> lines = scanner.readTextFromFile("morse.txt");
-        InputFilesBufferReader bufferReader = new InputFilesBufferReader();
-        List<String> lines2 = bufferReader.readTextFromFile("morse.txt");
-        MorseTranslator translator = new MorseTranslator();
-        Map<String, String> codes = translator.addMorseCodes(lines2);
 
-        System.out.println(codes);
-
-        List<String> sentence = new ArrayList<>();
-        sentence.add(".-.. --- .-. . --\t.. .--. ... ..- --\t-.. --- .-.. --- .-.\t... .. -\t\t\t. .-.. .. - ..--..");
-        sentence.add("-..-.\t-..-.");
-        sentence.add(".-.. --- .-. . --\t.- -.. .. .--. .. ... -.-. .. -. --.\t. .-.. .. - --..--");
-        sentence.add("-..-.\t");
-        List<String> normalLines = translator.translateLinesFromMorse(sentence);
-        normalLines.forEach(System.out::println); //your input lines in regular text
-        normalLines = new ArrayList<>();
-        normalLines.add("ve as as sa sa f a afd aw f as f asd  f a fe a sf a as ");
-        normalLines = translator.translateLinesToMorse(normalLines);
-        normalLines = translator.translateLinesFromMorse(normalLines);
-        normalLines.forEach(System.out::println); //your input lines in regular text
-
-        OutputFilesWriter writer = new OutputFilesWriter();
-        System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
-        //This should also create a new file/ write in an existing file
+        System.out.println("Hello world!");
     }
 }
