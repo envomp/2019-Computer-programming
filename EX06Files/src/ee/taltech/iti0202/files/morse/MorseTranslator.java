@@ -156,21 +156,27 @@ public class MorseTranslator {
         for (String lines : line.split(" ")) {
             for (String s : lines.split("")) {
                 answer.append(toMorse.get(s.toLowerCase()));
-                answer.append(" ");
+                if (!lines.endsWith(s)) {
+                    answer.append(" ");
+                }
             }
-            answer.append("\t");
+            if (!line.endsWith(lines)) {
+                answer.append("\t");
+            }
         }
         return answer.toString();
     }
 
     private String translateLineFromMorse(String line) {
         StringBuilder answer = new StringBuilder();
-        line = line.replace("\\t", "~");
+        line = line.replace("\t", "~");
         for (String lines : line.split("~")) {
             for (String s : lines.split(" ")) {
                 answer.append(fromMorse.get(s));
             }
-            answer.append(" ");
+            if (!line.endsWith(lines)) {
+                answer.append(" ");
+            }
         }
 
         return answer.toString();

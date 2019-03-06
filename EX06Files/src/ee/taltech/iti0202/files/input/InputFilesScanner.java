@@ -22,11 +22,7 @@ public class InputFilesScanner implements InputFilesReader {
         } catch (IOException e) {
             System.out.println("Error reading file:" + e.getMessage());
             e.printStackTrace();
-            try {
-                throw new FileReaderException(e);
-            } catch (FileReaderException ex) {
-                return new ArrayList<>();
-            }
+            throw new FileReaderException(e);
         }
         return fileContent;
     }
