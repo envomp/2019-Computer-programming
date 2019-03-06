@@ -24,7 +24,11 @@ public class InputFilesBufferReader implements InputFilesReader {
         } catch (IOException e) {
             System.out.println("Error reading file:" + e.getMessage());
             e.printStackTrace();
-            throw new FileReaderException(e);
+            try {
+                throw new FileReaderException(e);
+            } catch (FileReaderException ex) {
+                return new ArrayList<>();
+            }
         }
     }
 }
