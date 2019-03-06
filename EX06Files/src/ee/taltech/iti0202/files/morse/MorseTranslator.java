@@ -55,7 +55,7 @@ public class MorseTranslator {
                     answer.append(" ");
                 }
             }
-            if (i < sentence.length - 1) {
+            if (i < sentence.length) {
                 answer.append("\t");
             }
             i++;

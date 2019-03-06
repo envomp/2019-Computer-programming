@@ -14,7 +14,7 @@ public class MorseFilesController {
         InputFilesScanner scanner = new InputFilesScanner();
         List<String> lines = scanner.readTextFromFile("morse.txt");
         InputFilesBufferReader bufferReader = new InputFilesBufferReader();
-        List<String> lines2 = bufferReader.readTextFromFile("mordse.txt");
+        List<String> lines2 = bufferReader.readTextFromFile("morse.txt");
         MorseTranslator translator = new MorseTranslator();
         Map<String, String> codes = translator.addMorseCodes(lines2);
 
@@ -27,7 +27,10 @@ public class MorseFilesController {
         sentence.add("-..-.\t");
         List<String> normalLines = translator.translateLinesFromMorse(sentence);
         normalLines.forEach(System.out::println); //your input lines in regular text
+        normalLines = new ArrayList<>();
+        normalLines.add("ve as as sa sa f a afd aw f as f asd  f a fe a sf a as ");
         normalLines = translator.translateLinesToMorse(normalLines);
+        normalLines = translator.translateLinesFromMorse(normalLines);
         normalLines.forEach(System.out::println); //your input lines in regular text
 
         OutputFilesWriter writer = new OutputFilesWriter();
