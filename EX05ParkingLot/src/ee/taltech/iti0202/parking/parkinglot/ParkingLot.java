@@ -132,10 +132,12 @@ abstract public class ParkingLot {
      * @return A list of parked cars.
      */
     public List<Car> getParkedCars() {
+        processQueue();
         return carList;
     }
 
     public List<Car> getQueueCars() {
+        processQueue();
         return new ArrayList<>(carQueue);
     }
 
