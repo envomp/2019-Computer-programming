@@ -12,11 +12,11 @@ public class InputFilesBufferReader implements InputFilesReader {
     @Override
     public List<String> readTextFromFile(String filename) throws FileReaderException {
         try {
-            FileReader in = new FileReader(filename);
-            BufferedReader br = new BufferedReader(in);
+            BufferedReader br = new BufferedReader(new FileReader(filename));
             ArrayList<String> fileContent = new ArrayList<>();
-            while (br.readLine() != null) {
-                fileContent.add(br.readLine());
+            String line;
+            while ((line = br.readLine()) != null) {
+                fileContent.add(line);
             }
             return fileContent;
 

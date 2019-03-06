@@ -11,26 +11,15 @@ import java.util.Map;
 public class MorseFilesController {
 
     public static void main(String[] args) {
-        InputFilesScanner scanner = new InputFilesScanner();
-        List<String> lines = scanner.readTextFromFile("C:\\Users\\Enrico\\IdeaProjects\\iti0202-2019\\EX06Files\\src\\morse.txt");
-        lines.forEach(System.out::println); //lines in morse.txt which contains Morse codes
-
-        InputFilesBufferReader bufferReader = new InputFilesBufferReader();
-        List<String> lines2 = bufferReader.readTextFromFile("C:\\Users\\Enrico\\IdeaProjects\\iti0202-2019\\EX06Files\\src\\morse.txt");
-        lines2.forEach(System.out::println); //lines in morse.txt which contains Morse codes
+        List<String> lines = new InputFilesScanner().readTextFromFile("EX06Files\\src\\morse.txt");
+        List<String> lines2 = new InputFilesBufferReader().readTextFromFile("EX06Files\\src\\morse.txt");
 
         MorseTranslator translator = new MorseTranslator();
-        Map<String, String> codes = translator.addMorseCodes(lines);
-        codes.forEach((key, value) -> System.out.println(key + " " + value)); //key and value
+        Map<String, String> codes = translator.addMorseCodes(lines2);
 
-        List<String> input = scanner.readTextFromFile("input.txt");
-        input.forEach(System.out::println); //your input lines
-
-        List<String> morseLines = translator.translateLinesToMorse(input);
-        morseLines.forEach(System.out::println); //your input lines in Morse
+        List<String> morseLines = translator.translateLinesToMorse(lines2);
 
         List<String> normalLines = translator.translateLinesFromMorse(morseLines);
-        normalLines.forEach(System.out::println); //your input lines in regular text
 
         OutputFilesWriter writer = new OutputFilesWriter();
         System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true

@@ -12,18 +12,15 @@ public class InputFilesScanner implements InputFilesReader {
     @Override
     public List<String> readTextFromFile(String filename) throws FileReaderException {
 
-        try {
-            ArrayList<String> fileContent = new ArrayList<>();
-            File file = new File(filename);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()) {
-                System.out.println(scanner.next());
-            }
-            scanner.close();
-            return fileContent;
+        ArrayList<String> fileContent = new ArrayList<>();
 
+        try (Scanner scanner = new Scanner(new File(filename))) {
+            while (scanner.hasNextLine()) {
+                fileContent.add(scanner.nextLine());
+            }
         } catch (Exception e) {
             throw new FileReaderException("No file was found!", e);
         }
+        return fileContent;
     }
 }
