@@ -55,7 +55,7 @@ public class MorseTranslator {
                     answer.append(" ");
                 }
             }
-            if (i < sentence.length - 1 && !answer.toString().endsWith("\t")) {
+            if (i < sentence.length - 1) {
                 answer.append("\t");
             }
             i++;
@@ -66,9 +66,9 @@ public class MorseTranslator {
     private String translateLineFromMorse(String line) {
         StringBuilder answer = new StringBuilder();
         line = line.replace("\t", "~");
-        if (line.endsWith("~")) {
-            line = line.substring(0, line.length() - 1);
-        }
+        //if (line.endsWith("~")) {
+        //    line = line.substring(0, line.length() - 1);
+        //}
         int i = 0;
         String[] sentence = line.split("~");
         for (String lines : sentence) {
