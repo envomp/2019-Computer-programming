@@ -180,7 +180,7 @@ abstract public class ParkingLot {
         String[][] canvas = new String[height * 2][width];
         for (int y = 0; y < height * 2; y++) {
             for (int x = 0; x < width; x++) {
-                canvas[y][x] = ".";
+                canvas[y][x] = "..";
             }
         }
 
@@ -191,24 +191,24 @@ abstract public class ParkingLot {
                 for (int x = 0; x < width; x++) {
                     if (go) {
                         if (car.getSize() == 1) {
-                            if (canvas[y][x].equals(".")) {
+                            if (canvas[y][x].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 go = false;
                             }
                         } else if (car.getSize() == 2) {
-                            if (x + 1 < canvas[y].length && canvas[y][x].equals(".") && canvas[y][x + 1].equals(".")) {
+                            if (x + 1 < canvas[y].length && canvas[y][x].equals("..") && canvas[y][x + 1].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y][x + 1] = car.toString();
                                 go = false;
-                            } else if (y + 1 < canvas.length && canvas[y][x].equals(".") && canvas[y + 1][x].equals(".")) {
+                            } else if (y + 1 < canvas.length && canvas[y][x].equals("..") && canvas[y + 1][x].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y + 1][x] = car.toString();
                                 go = false;
                             }
                         } else if (car.getSize() == 4) {
-                            if (x + 1 < canvas[y].length && canvas[y][x].equals(".") && canvas[y][x + 1].equals(".") &&
-                                    y + 1 < canvas.length && canvas[y][x].equals(".") &&
-                                    canvas[y + 1][x].equals(".") && canvas[y + 1][x + 1].equals(".")) {
+                            if (x + 1 < canvas[y].length && canvas[y][x].equals("..") && canvas[y][x + 1].equals("..") &&
+                                    y + 1 < canvas.length && canvas[y][x].equals("..") &&
+                                    canvas[y + 1][x].equals("..") && canvas[y + 1][x + 1].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y][x + 1] = car.toString();
                                 canvas[y + 1][x + 1] = car.toString();

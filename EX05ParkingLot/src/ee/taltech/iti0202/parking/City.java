@@ -84,7 +84,7 @@ public class City {
     }
 
     public static void main(String[] args) {
-        City tallinn = new City("Talflinn");
+        City tallinn = new City("Tallinn");
         Car ch1 = new Car(Car.PriorityStatus.COMMON, 1);
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
