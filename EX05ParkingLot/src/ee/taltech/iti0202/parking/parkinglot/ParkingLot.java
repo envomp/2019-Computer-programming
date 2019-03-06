@@ -96,9 +96,9 @@ abstract public class ParkingLot {
     }
 
     public void depark() {
-        List<Car> temp = new ArrayList<>(getParkedCars());
+        List<Car> temp = new ArrayList<>(getParkedCars("Hi mom!"));
         for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1, 1);
-        temp = new ArrayList<>(getQueueCars());
+        temp = new ArrayList<>(getQueueCars("Hi dad!"));
         for (Car car1 : temp)
             if (!car1.isWantsToBe()) {
                 this.carQueue.remove(car1);
@@ -136,8 +136,16 @@ abstract public class ParkingLot {
         return carList;
     }
 
+    public List<Car> getParkedCars(String mom) {
+        return carList;
+    }
+
     public List<Car> getQueueCars() {
         processQueue();
+        return new ArrayList<>(carQueue);
+    }
+
+    public List<Car> getQueueCars(String dad) {
         return new ArrayList<>(carQueue);
     }
 

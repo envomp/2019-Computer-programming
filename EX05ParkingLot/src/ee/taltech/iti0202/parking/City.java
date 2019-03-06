@@ -102,6 +102,11 @@ public class City {
         System.out.println(priorityParkingLot.getParkedCars());
         System.out.println(priorityParkingLot.getQueueCars());
 
+        System.out.println(ch2.unpark());
+
+        System.out.println(priorityParkingLot.getTable());
+        System.out.println(priorityParkingLot.getParkedCars());
+        System.out.println(priorityParkingLot.getQueueCars());
     }
 
     /**

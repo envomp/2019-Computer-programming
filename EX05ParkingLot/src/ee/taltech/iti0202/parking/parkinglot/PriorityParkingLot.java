@@ -30,16 +30,18 @@ public class PriorityParkingLot extends ParkingLot {
 
         depark();
 
-        List<Car> temp = new ArrayList<>(getQueueCars());
+        List<Car> temp = new ArrayList<>(getQueueCars("Hi dad!"));
         boolean possible;
         Car remove = null;
         for (Car car : temp) {
             possible = true;
-            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST && getParkedCars().stream().noneMatch(c -> c.getPriorityStatus() == Car.PriorityStatus.HIGHEST) && !(this.getParkedCars().isEmpty() && this.getSpaceAvailable() < car.getSize())) {
+            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST && getParkedCars("")
+                    .stream().noneMatch(c -> c.getPriorityStatus() == Car.PriorityStatus.HIGHEST)
+                    && !(this.getParkedCars("").isEmpty() && this.getSpaceAvailable() < car.getSize())) {
                 if (car.getSize() == 1) car.setSize(2);
                 if (this.getSpaceAvailable() <= car.getSize()) {
                     while (this.getSpaceAvailable() < car.getSize()) {
-                        List<Car> all = getParkedCars().stream()
+                        List<Car> all = getParkedCars("").stream()
                                 .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
                                 .sorted(Comparator.comparing(Car::getSize).reversed())
                                 .collect(Collectors.toList());
