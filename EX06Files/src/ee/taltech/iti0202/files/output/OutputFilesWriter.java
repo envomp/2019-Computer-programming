@@ -15,6 +15,9 @@ public class OutputFilesWriter {
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for (String line : lines) {
                 printWriter.print(line);
+                if (lines.get(lines.size() - 1).equals(line)) {
+                    printWriter.print("\n");
+                }
             }
             printWriter.close();
 
