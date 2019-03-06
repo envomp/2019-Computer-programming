@@ -40,19 +40,15 @@ public class AnimalShelter {
             if (animals.isEmpty()) {
                 return last;
             }
-
             animals = animals.parallelStream().filter(y -> y.getColor().equals(color)).collect(Collectors.toList());
-
             for (Animal ago : animals) {
                 if (!last.contains(ago)) {
                     last.add(ago);
                 }
             }
-
             if (last.size() >= count) {
                 return last.subList(0, count);
             }
-
         }
     }
 }
