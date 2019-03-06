@@ -14,7 +14,7 @@ public class MorseFilesController {
         InputFilesScanner scanner = new InputFilesScanner();
         List<String> lines = scanner.readTextFromFile("morse.txt");
         InputFilesBufferReader bufferReader = new InputFilesBufferReader();
-        List<String> lines2 = bufferReader.readTextFromFile("morse.txt");
+        List<String> lines2 = bufferReader.readTextFromFile("mordse.txt");
         MorseTranslator translator = new MorseTranslator();
         Map<String, String> codes = translator.addMorseCodes(lines2);
 
