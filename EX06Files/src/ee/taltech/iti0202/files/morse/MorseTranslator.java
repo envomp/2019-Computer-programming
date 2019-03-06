@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.files.morse;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -131,7 +130,7 @@ public class MorseTranslator {
         Map<String, String> map = new HashMap<>();
         for (String line : lines) {
             String[] parts = line.split(" ");
-            map.put(parts[0], parts[1]);
+            map.put(parts[0].toLowerCase(), parts[1].toLowerCase());
         }
         return map;
     }
