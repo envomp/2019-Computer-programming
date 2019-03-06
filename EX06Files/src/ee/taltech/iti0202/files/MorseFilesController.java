@@ -20,6 +20,9 @@ public class MorseFilesController {
 
         List<String> sentence = new ArrayList<>();
         sentence.add(".-.. --- .-. . --\t.. .--. ... ..- --\t-.. --- .-.. --- .-.\t... .. -\t.- -- . - --..--\t-.-. --- -. ... . -.-. - . - ..- .-.\t.- -.. .. .--. .. ... -.-. .. -. --.\t. .-.. .. - ..--..");
+        sentence.add("-..-.\t-..-.");
+        sentence.add("");
+        sentence.add("-..-.\t");
         List<String> normalLines = translator.translateLinesFromMorse(sentence);
         normalLines.forEach(System.out::println); //your input lines in regular text
 

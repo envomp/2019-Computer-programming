@@ -146,7 +146,13 @@ public class MorseTranslator {
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> fromMorse = new ArrayList<>();
         for (String line : lines) {
-            fromMorse.add(translateLineFromMorse(line));
+            System.out.println(line);
+            if (line.isEmpty()) {
+                fromMorse.add("");
+            } else {
+                fromMorse.add(translateLineFromMorse(line));
+            }
+
         }
         return fromMorse;
     }
@@ -170,6 +176,9 @@ public class MorseTranslator {
     private String translateLineFromMorse(String line) {
         StringBuilder answer = new StringBuilder();
         line = line.replace("\t", "~");
+        if (line.endsWith("~")) {
+            line = line.substring(0, line.length() - 1);
+        }
         for (String lines : line.split("~")) {
             for (String s : lines.split(" ")) {
                 answer.append(fromMorse.get(s));
