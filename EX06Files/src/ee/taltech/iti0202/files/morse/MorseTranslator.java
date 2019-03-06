@@ -27,9 +27,7 @@ public class MorseTranslator {
     public List<String> translateLinesToMorse(List<String> lines) {
         List<String> toMorse = new ArrayList<>();
         for (String line : lines) {
-            if (line.isEmpty()) {
-                toMorse.add("");
-            } else {
+            if (!line.isEmpty()) {
                 toMorse.add(translateLineToMorse(line));
             }
         }
@@ -39,9 +37,7 @@ public class MorseTranslator {
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> fromMorse = new ArrayList<>();
         for (String line : lines) {
-            if (line.isEmpty()) {
-                fromMorse.add("");
-            } else {
+            if (!line.isEmpty()) {
                 fromMorse.add(translateLineFromMorse(line));
             }
         }
