@@ -27,7 +27,11 @@ public class MorseTranslator {
     public List<String> translateLinesToMorse(List<String> lines) {
         List<String> toMorse = new ArrayList<>();
         for (String line : lines) {
-            toMorse.add(translateLineToMorse(line));
+            if (line.isEmpty()) {
+                toMorse.add("");
+            } else {
+                toMorse.add(translateLineToMorse(line));
+            }
         }
         return toMorse;
     }
@@ -40,23 +44,25 @@ public class MorseTranslator {
             } else {
                 fromMorse.add(translateLineFromMorse(line));
             }
-
         }
         return fromMorse;
     }
 
     private String translateLineToMorse(String line) {
         StringBuilder answer = new StringBuilder();
-        for (String lines : line.split(" ")) {
+        int i = 0;
+        String[] sentence = line.split(" ");
+        for (String lines : sentence) {
             for (String s : lines.split("")) {
                 answer.append(map.get(s.toLowerCase()));
                 if (!lines.endsWith(s)) {
                     answer.append(" ");
                 }
             }
-            if (!line.endsWith(lines)) {
+            if (i < sentence.length - 1 && !answer.toString().endsWith("\t")) {
                 answer.append("\t");
             }
+            i++;
         }
         return answer.toString();
     }
@@ -67,15 +73,18 @@ public class MorseTranslator {
         if (line.endsWith("~")) {
             line = line.substring(0, line.length() - 1);
         }
-        for (String lines : line.split("~")) {
+        int i = 0;
+        String[] sentence = line.split("~");
+        for (String lines : sentence) {
             for (String s : lines.split(" ")) {
                 if (!s.isEmpty()) {
                     answer.append(reverseMap.get(s));
                 }
             }
-            if (!line.endsWith(lines)) {
+            if (i < sentence.length - 1 && !answer.toString().endsWith(" ")) {
                 answer.append(" ");
             }
+            i++;
         }
 
         return answer.toString();

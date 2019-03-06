@@ -26,6 +26,9 @@ public class MorseFilesController {
         sentence.add("");
         sentence.add("-..-.\t");
         List<String> normalLines = translator.translateLinesFromMorse(sentence);
+        normalLines.forEach(System.out::println); //your input lines in regular text
+        normalLines = translator.translateLinesToMorse(normalLines);
+        normalLines.forEach(System.out::println); //your input lines in regular text
 
         OutputFilesWriter writer = new OutputFilesWriter();
         System.out.println(writer.writeLinesToFile(normalLines, "output.txt")); //true
