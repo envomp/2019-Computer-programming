@@ -85,7 +85,7 @@ public class City {
 
     public static void main(String[] args) {
         City tallinn = new City("Tallinn");
-        Car ch1 = new Car(Car.PriorityStatus.COMMON, 1);
+        Car c1 = new Car(Car.PriorityStatus.COMMON, 1);
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
@@ -94,13 +94,15 @@ public class City {
         tallinn.addParkingLot(priorityParkingLot);
 
         System.out.println(tallinn.parkCar(ch4));
-        System.out.println(tallinn.parkCar(ch1));
+        System.out.println(tallinn.parkCar(c1));
         System.out.println(tallinn.parkCar(ch3));
         System.out.println(tallinn.parkCar(ch2));
 
         System.out.println(priorityParkingLot.getTable());
         System.out.println(priorityParkingLot.getParkedCars());
         System.out.println(priorityParkingLot.getQueueCars());
+
+        System.out.println(priorityParkingLot.getSpaceAvailable());
 
         System.out.println(ch2.unpark());
 

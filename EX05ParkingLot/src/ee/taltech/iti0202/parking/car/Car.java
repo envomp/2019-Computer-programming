@@ -1,7 +1,5 @@
 package ee.taltech.iti0202.parking.car;
 
-import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +14,24 @@ import java.util.Map;
  * So highest-1 (priority status-size) comes before highest-2 which comes before priority-1.
  */
 public class Car implements Comparable<Car> {
+
+    private int value = 1;
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int i) {
+        this.value = i;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getRelativeSize() {
+        return value * size;
+    }
 
     public enum PriorityStatus {
         HIGHEST, PRIORITY, COMMON
@@ -69,9 +85,6 @@ public class Car implements Comparable<Car> {
      *
      * @return Size.
      */
-    public int getSize() {
-        return size;
-    }
 
     public void setSize(int size) {
         this.size = size;
