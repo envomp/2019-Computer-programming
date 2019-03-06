@@ -20,7 +20,6 @@ public class InputFilesScanner implements InputFilesReader {
                 fileContent.add(scanner.nextLine());
             }
         } catch (IOException e) {
-            System.out.println("Error reading file:" + e.getMessage());
             e.printStackTrace();
             throw new FileReaderException(e);
         }
