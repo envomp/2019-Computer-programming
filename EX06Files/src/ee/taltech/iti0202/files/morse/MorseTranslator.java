@@ -161,7 +161,7 @@ public class MorseTranslator {
         StringBuilder answer = new StringBuilder();
         for (String lines : line.split(" ")) {
             for (String s : lines.split("")) {
-                answer.append(toMorse.get(s.toLowerCase()));
+                answer.append(map.get(s.toLowerCase()));
                 if (!lines.endsWith(s)) {
                     answer.append(" ");
                 }
