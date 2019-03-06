@@ -1,10 +1,8 @@
 package ee.taltech.iti0202.parking;
 
 import ee.taltech.iti0202.parking.car.Car;
-import ee.taltech.iti0202.parking.parkinglot.MultiLevelParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
-import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -86,7 +84,7 @@ public class City {
     }
 
     public static void main(String[] args) {
-        City tallinn = new City("Tallinn");
+        City tallinn = new City("Talflinn");
         Car ch1 = new Car(Car.PriorityStatus.COMMON, 1);
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
