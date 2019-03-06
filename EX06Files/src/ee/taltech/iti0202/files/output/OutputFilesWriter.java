@@ -1,27 +1,25 @@
 package ee.taltech.iti0202.files.output;
 
-import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class OutputFilesWriter {
 
     public boolean writeLinesToFile(List<String> lines, String filename) {
 
-        try {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(filename))) {
 
-            FileWriter fileWriter = new FileWriter(filename);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
             for (String line : lines) {
-                printWriter.print(line);
-                if (lines.get(lines.size() - 1).equals(line) && !line.endsWith("\n")) {
-                    printWriter.print("\n");
-                }
+                writer.write(line);
+                writer.newLine();
             }
-            printWriter.close();
 
         } catch (IOException e) {
+            System.out.println("IOException:" + e.getMessage());
+            e.printStackTrace();
             return false;
         }
         return true;

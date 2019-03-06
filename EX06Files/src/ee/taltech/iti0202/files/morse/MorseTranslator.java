@@ -146,7 +146,6 @@ public class MorseTranslator {
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> fromMorse = new ArrayList<>();
         for (String line : lines) {
-            System.out.println(line);
             if (line.isEmpty()) {
                 fromMorse.add("");
             } else {
@@ -181,7 +180,9 @@ public class MorseTranslator {
         }
         for (String lines : line.split("~")) {
             for (String s : lines.split(" ")) {
-                answer.append(fromMorse.get(s));
+                if (!s.isEmpty()) {
+                    answer.append(fromMorse.get(s));
+                }
             }
             if (!line.endsWith(lines)) {
                 answer.append(" ");

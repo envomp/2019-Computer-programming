@@ -19,7 +19,7 @@ public class MorseFilesController {
         Map<String, String> codes = translator.addMorseCodes(lines2);
 
         List<String> sentence = new ArrayList<>();
-        sentence.add(".-.. --- .-. . --\t.. .--. ... ..- --\t-.. --- .-.. --- .-.\t... .. -\t.- -- . - --..--\t-.-. --- -. ... . -.-. - . - ..- .-.\t.- -.. .. .--. .. ... -.-. .. -. --.\t. .-.. .. - ..--..");
+        sentence.add(".-.. --- .-. . --\t.. .--. ... ..- --\t-.. --- .-.. --- .-.\t... .. -\t\t\t. .-.. .. - ..--..");
         sentence.add("-..-.\t-..-.");
         sentence.add("");
         sentence.add("-..-.\t");
