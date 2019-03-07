@@ -1,4 +1,6 @@
 package ee.taltech.iti0202.parking.car;
+
+import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 
 import java.util.HashMap;
@@ -119,6 +121,7 @@ public class Car implements Comparable<Car> {
         if (getParkingLot() != null && getParkingLot().getParkedCars().contains(this) && isParked()) {
             this.parked = false;
             this.wantsToBe = false;
+            City.decreasePark(this);
             parkingLot.processQueue();
             this.setParkingLot(null);
             return true;
