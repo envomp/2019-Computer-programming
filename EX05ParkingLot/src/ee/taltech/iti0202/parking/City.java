@@ -100,6 +100,8 @@ public class City {
 
         test(priorityParkingLot);
 
+        ch4.unpark();
+
     }
 
     private static void test(PriorityParkingLot priorityParkingLot) {
@@ -108,6 +110,7 @@ public class City {
         System.out.println(priorityParkingLot.getParkedCars());
         System.out.println(priorityParkingLot.getQueueCars());
         System.out.println(priorityParkingLot.getSpaceAvailable());
+        System.out.println();
     }
 
     /**
@@ -148,20 +151,26 @@ public class City {
                 .filter(x -> x.getQueueCars().contains(car)).noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
             getParkingLots().forEach(x -> x.buffer = car);
             List<ParkingLot> temp = getParkingLots().stream().filter(ParkingLot::accepts).collect(Collectors.toList());
-            if (temp.isEmpty())
+            if (temp.isEmpty()) {
                 return Optional.empty();
+            }
             ParkingLot best = null;
             for (ParkingLot lot : temp) {
                 if (best == null) best = lot;
-                else if (best.getSpaceAvailable() - car.getSize() < 0 && lot.getSpaceAvailable() - car.getSize() > 0)
+                else if (best.getSpaceAvailable() - car.getSize() < 0 && lot.getSpaceAvailable() - car.getSize() > 0) {
                     best = lot;
-                else if (best.getQueueCars().size() > lot.getQueueCars().size()) best = lot;
+                } else if (best.getQueueCars().size() > lot.getQueueCars().size()) {
+                    best = lot;
+                }
             }
             Optional<ParkingLot> lotOptional = Optional.of(best);
             boolean success = lotOptional.get().addToQueue(car);
             best.processQueue();
             carsInLot.put(car.getPriorityStatus().toString(), carsInLot.get(car.getPriorityStatus().toString()) + 1);
-            if (success) return lotOptional;
+            if (success) {
+                car.setParkingLot(best);
+                return lotOptional;
+            }
         }
         return Optional.empty();
     }

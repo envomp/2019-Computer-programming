@@ -97,18 +97,24 @@ abstract public class ParkingLot {
 
     public void depark() {
         List<Car> temp = new ArrayList<>(getParkedCars("Hi mom!"));
-        for (Car car1 : temp) if (!car1.isWantsToBe()) lotToQueue(car1);
+        for (Car car1 : temp) {
+            if (!car1.isWantsToBe()) {
+                lotToQueue(car1);
+            }
+        }
         temp = new ArrayList<>(getQueueCars("Hi dad!"));
-        for (Car car1 : temp)
+        for (Car car1 : temp) {
             if (!car1.isWantsToBe()) {
                 this.carQueue.remove(car1);
                 City.decreasePark(car1);
             }
+        }
     }
 
     public boolean addToQueue(Car car) {
-        if (carQueue.contains(car) || car.isParked())
+        if (carQueue.contains(car) || car.isParked()) {
             return false;
+        }
         carQueue.add(car);
         return true;
     }

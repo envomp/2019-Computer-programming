@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.parking.car;
 
+import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,12 @@ import java.util.Map;
 public class Car implements Comparable<Car> {
 
     private int value = 1;
+
+    private ParkingLot parkingLot;
+
+    public void setParkingLot(ParkingLot lot) {
+        this.parkingLot = lot;
+    }
 
     public int getValue() {
         return value;
@@ -101,10 +109,11 @@ public class Car implements Comparable<Car> {
      */
 
     public boolean unpark() {
-        if (this.parked) {
+        if (this.parked && parkingLot != null) {
             this.parked = false;
             this.wantsToBe = false;
-
+            parkingLot.processQueue();
+            this.setParkingLot(null);
             return true;
         }
         return false;
