@@ -5,7 +5,11 @@ import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Optional;
+import java.util.List;
+import java.util.Map;
 
 import java.util.stream.Collectors;
 
