@@ -206,24 +206,45 @@ abstract public class ParkingLot {
                                 go = false;
                             }
                         } else if (car.getRelativeSize() == 2) {
-                            if (x + 1 < canvas[y].length && canvas[y][x].equals("..") && canvas[y][x + 1].equals("..")) {
+                            if (x + 1 < canvas[y].length
+                                    && canvas[y][x].equals("..")
+                                    && canvas[y][x + 1].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y][x + 1] = car.toString();
                                 go = false;
-                            } else if (y + 1 < canvas.length && canvas[y][x].equals("..") && canvas[y + 1][x].equals("..")) {
+                            } else if (y + 1 < canvas.length
+                                    && canvas[y][x].equals("..")
+                                    && canvas[y + 1][x].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y + 1][x] = car.toString();
                                 go = false;
                             }
+
                         } else if (car.getRelativeSize() == 4) {
-                            if (x + 1 < canvas[y].length && canvas[y][x].equals("..") && canvas[y][x + 1].equals("..") &&
-                                    y + 1 < canvas.length && canvas[y][x].equals("..") &&
-                                    canvas[y + 1][x].equals("..") && canvas[y + 1][x + 1].equals("..")) {
+                            if (x + 1 < canvas[y].length
+                                    && canvas[y][x].equals("..")
+                                    && canvas[y][x + 1].equals("..")
+                                    && y + 1 < canvas.length && canvas[y][x].equals("..")
+                                    && canvas[y + 1][x].equals("..")
+                                    && canvas[y + 1][x + 1].equals("..")) {
+
                                 canvas[y][x] = car.toString();
                                 canvas[y][x + 1] = car.toString();
                                 canvas[y + 1][x + 1] = car.toString();
                                 canvas[y + 1][x] = car.toString();
                                 go = false;
+                            } else if (canvas[y][x].equals("..")
+                                    && y + 3 < canvas.length
+                                    && canvas[y + 1][x].equals("..")
+                                    && canvas[y + 2][x].equals("..")
+                                    && canvas[y + 3][x].equals("..")) {
+
+                                canvas[y][x] = car.toString();
+                                canvas[y + 1][x] = car.toString();
+                                canvas[y + 2][x] = car.toString();
+                                canvas[y + 3][x] = car.toString();
+                                go = false;
+
                             }
                         }
                     }

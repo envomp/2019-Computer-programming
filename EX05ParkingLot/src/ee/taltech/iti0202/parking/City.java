@@ -90,20 +90,16 @@ public class City {
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
 
-        PriorityParkingLot priorityParkingLot = new PriorityParkingLot(2, 2);
+        PriorityParkingLot priorityParkingLot = new PriorityParkingLot(2, 1);
         tallinn.addParkingLot(priorityParkingLot);
 
         System.out.println(tallinn.parkCar(ch4));
-        System.out.println(tallinn.parkCar(ch3));
-
-        System.out.println(tallinn.parkCar(c1));
-        System.out.println(tallinn.parkCar(ch2));
-
-        test(priorityParkingLot);
-
-        System.out.println(ch2.unpark());
+        //System.out.println(tallinn.parkCar(ch3));
+        //System.out.println(tallinn.parkCar(c1));
+        //System.out.println(tallinn.parkCar(ch2));
 
         test(priorityParkingLot);
+
     }
 
     private static void test(PriorityParkingLot priorityParkingLot) {
