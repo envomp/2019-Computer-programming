@@ -102,6 +102,9 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 10 && !buffer.isParked();
+        if (buffer != null) {
+            return this.getQueueCars().size() < 10 && !buffer.isParked();
+        }
+        return this.getQueueCars().size() < 10;
     }
 }

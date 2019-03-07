@@ -10,6 +10,7 @@ import java.util.List;
  * This parking lot only accepts smal cars (size 1).
  * Each parking slot only accepts one cr.
  */
+
 public class SmallCarParkingLot extends ParkingLot {
     /**
      * Initialize the parking slot with the given width and height.
@@ -40,6 +41,9 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 2 && buffer.getSize() == 1 && !buffer.isParked();
+        if (buffer != null) {
+            return this.getQueueCars().size() < 1 && buffer.getSize() == 1 && !buffer.isParked();
+        }
+        return this.getQueueCars().size() < 2;
     }
 }

@@ -98,13 +98,78 @@ public class City {
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
+        Car c2 = new Car(Car.PriorityStatus.COMMON, 1);
+        Car ch6 = new Car(Car.PriorityStatus.PRIORITY, 1);
+        Car c3 = new Car(Car.PriorityStatus.COMMON, 1);
+        Car ch7 = new Car(Car.PriorityStatus.PRIORITY, 1);
 
         PriorityParkingLot medium = new PriorityParkingLot(2, 3);
-        SmallCarParkingLot small = new SmallCarParkingLot(1, 1);
+        SmallCarParkingLot small = new SmallCarParkingLot(2, 1);
+        SmallCarParkingLot small2 = new SmallCarParkingLot(1, 1);
         MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
 
-        //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
+        multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
 
+        basicPriorityParking(tallinn, c1, ch2, ch3, ch4, medium);
+
+        basicSmall(tallinn, c1, ch2, ch3, ch4, c2, ch6, ch7, small, small2);
+
+    }
+
+    private static void basicSmall(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, Car c2, Car ch6, Car ch7, SmallCarParkingLot small, SmallCarParkingLot small2) {
+        tallinn.addParkingLot(small);
+
+        parkAll(tallinn, c1, ch2, ch3, ch4);
+
+        small(small);
+
+        /*
+        accepted output :
+
+            C1
+            C1
+            H1
+            H1
+
+         */
+
+        ////// no difference //////////////////
+        parkAll(tallinn, c1, ch2, ch3, ch4); //
+        //
+        small(small);                        //
+        ///////////////////////////////////////
+
+
+        tallinn.addParkingLot(small2);
+        tallinn.parkCar(c2);
+        small(small2); // new car C1
+
+        tallinn.parkCar(ch6);
+        tallinn.parkCar(ch7);
+
+        small(small2); //both has a car in it
+        out.println("Small from here on out: ____");
+
+        small(small);
+
+        small.getParkedCars().get(0).unpark();
+
+        small(small); // now queue is empty and parked cars updated
+    }
+
+    private static void parkAll(City tallinn, Car c1, Car ch2, Car ch3, Car ch4) {
+
+        out.print(tallinn.parkCar(c1));
+        out.print("\t");
+        out.print(tallinn.parkCar(ch2));
+        out.print("\t");
+        out.print(tallinn.parkCar(ch3));
+        out.print("\t");
+        out.print(tallinn.parkCar(ch4));
+        out.print("\n");
+    }
+
+    private static void basicPriorityParking(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, PriorityParkingLot medium) {
         tallinn.addParkingLot(medium);
 
         medium(medium);
@@ -146,18 +211,13 @@ public class City {
         out.println(ch2.unpark());
         out.println(ch4.unpark());
         // add and remove
-        out.println(tallinn.parkCar(ch4));
-        out.println(tallinn.parkCar(c1));
-        out.println(tallinn.parkCar(ch3));
-        out.println(tallinn.parkCar(ch2));
+        parkAll(tallinn, c1, ch2, ch3, ch4);
         out.println(c1.unpark());
         out.println(ch3.unpark());
         out.println(ch2.unpark());
         out.println(ch4.unpark());
 
         medium(medium); //empty
-
-
     }
 
     private static void multiParkingLotAddThenRemoveAndAddAgain(City tallinn, Car c1, Car ch2,
@@ -169,10 +229,7 @@ public class City {
         out.println(c1.isParked());
         out.println(c1.isWantsToBe());
 
-        out.println(tallinn.parkCar(ch4));
-        out.println(tallinn.parkCar(c1));
-        out.println(tallinn.parkCar(ch3));
-        out.println(tallinn.parkCar(ch2));
+        parkAll(tallinn, c1, ch2, ch3, ch4);
 
         multi(multi);
 
@@ -182,10 +239,7 @@ public class City {
 
         multi(multi);
 
-        out.println(tallinn.parkCar(ch4));
-        out.println(tallinn.parkCar(c1));
-        out.println(tallinn.parkCar(ch3));
-        out.println(tallinn.parkCar(ch2));
+        parkAll(tallinn, c1, ch2, ch3, ch4);
 
 
         out.println(c1.getRelativeSize());
@@ -198,10 +252,12 @@ public class City {
 
     private static void multi(MultiLevelParkingLot multiLevelParkingLot) {
         out.println();
+        out.println("Table: ");
         out.println(multiLevelParkingLot.getTable());
+        out.print("Parked cars:   ");
         out.println(multiLevelParkingLot.getParkedCars());
+        out.print("Queue cars:\t");
         out.println(multiLevelParkingLot.getQueueCars());
-        out.println(multiLevelParkingLot.getSpaceAvailable());
         out.println();
     }
 
@@ -209,18 +265,24 @@ public class City {
 
     private static void small(SmallCarParkingLot smallCarParkingLot) {
         out.println();
+        out.println("Table: ");
         out.println(smallCarParkingLot.getTable());
+        out.print("Parked cars:    ");
         out.println(smallCarParkingLot.getParkedCars());
+        out.print("Queue cars:    ");
         out.println(smallCarParkingLot.getQueueCars());
-        out.println(smallCarParkingLot.getSpaceAvailable());
         out.println();
     }
 
     private static void medium(PriorityParkingLot priorityParkingLot) {
         out.println();
+        out.println("Table: ");
         out.println(priorityParkingLot.getTable());
+        out.print("Parked cars:\t");
         out.println(priorityParkingLot.getParkedCars());
+        out.print("Parked cars:\t");
         out.println(priorityParkingLot.getQueueCars());
+        out.print("Queue cars:\t");
         out.println(priorityParkingLot.getSpaceAvailable());
         out.println();
     }
