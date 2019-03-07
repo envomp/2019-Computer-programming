@@ -111,9 +111,10 @@ public abstract class ParkingLot {
         this.spaceAvailable -= car.getRelativeSize();
         car.setParked(true);
         this.carQueue.remove(car);
-        List<Car> newList = new LinkedList<>(List.copyOf(carList));
-        newList.add(car);
-        setParkedCars(newList);
+        //List<Car> newList = new LinkedList<>(List.copyOf(carList));
+        //newList.add(car);
+        //setParkedCars(newList);
+        carList.add(car);
     }
 
     public void lotToQueue(Car car) {
