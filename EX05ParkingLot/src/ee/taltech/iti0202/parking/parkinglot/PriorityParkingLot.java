@@ -2,9 +2,9 @@ package ee.taltech.iti0202.parking.parkinglot;
 
 import ee.taltech.iti0202.parking.car.Car;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 /**
@@ -30,10 +30,10 @@ public class PriorityParkingLot extends ParkingLot {
 
         //depark();
 
-        List<Car> temp = new ArrayList<>(getQueueCars("Hi dad!"));
+        PriorityQueue<Car> priorityQueue = new PriorityQueue<>(getQueueCars("Hi dad!"));
         boolean possible;
         Car remove = null;
-        for (Car car : temp) {
+        for (Car car : priorityQueue) {
             possible = true;
 
             if (car.getRelativeSize() == 1 && car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
