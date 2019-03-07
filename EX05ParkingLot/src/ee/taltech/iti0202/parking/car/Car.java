@@ -65,9 +65,9 @@ public class Car implements Comparable<Car> {
         if (priority.get(this.getPriorityStatus().toString()) > priority.get(o.getPriorityStatus().toString())) {
             return 1;
         } else {
-            if (priority.get(this.getPriorityStatus().toString()) < priority.get(o.getPriorityStatus().toString()))
+            if (priority.get(this.getPriorityStatus().toString()) < priority.get(o.getPriorityStatus().toString())) {
                 return -1;
-            else {
+            } else {
                 if (this.getSize() > o.getSize()) {
                     return 1;
                 } else if (this.getSize() < o.getSize()) {

@@ -27,7 +27,7 @@ import java.util.PriorityQueue;
  * See the class description for more information.
  */
 
-abstract public class ParkingLot {
+public abstract class ParkingLot {
 
     private final int width;
     private final int height;
@@ -149,7 +149,7 @@ abstract public class ParkingLot {
      * In reality you should call this method from other methods
      * which could initialize the process.
      */
-    abstract public void processQueue();
+    public abstract void processQueue();
 
 
     /**
