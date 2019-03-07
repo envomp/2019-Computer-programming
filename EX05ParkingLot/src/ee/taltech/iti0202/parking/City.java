@@ -107,9 +107,25 @@ public class City {
         SmallCarParkingLot small2 = new SmallCarParkingLot(1, 1);
         MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
 
-        //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
+        multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
+        tallinn.addParkingLot(medium);
 
-        basicPriorityParking(tallinn, c1, c2, ch6, c3, medium);
+        // out.println(tallinn.parkCar(c2));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch6));
+        // medium(medium);
+        // out.println(tallinn.parkCar(c3));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch7));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch4));
+        // medium(medium);
+        // out.println(tallinn.parkCar(c1));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch3));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch2));
+        // medium(medium);
     }
 
     private static void parkAll(City tallinn, Car c1, Car ch2, Car ch3, Car ch4) {
@@ -122,51 +138,6 @@ public class City {
         out.print("\t");
         out.print(tallinn.parkCar(ch4));
         out.print("\n");
-    }
-
-    private static void basicPriorityParking(City tallinn, Car c1, Car ch2,
-                                             Car ch3, Car ch4, PriorityParkingLot medium) {
-        tallinn.addParkingLot(medium);
-
-        out.println(tallinn.parkCar(ch4));
-        out.println(tallinn.parkCar(c1));
-        out.println(tallinn.parkCar(ch3));
-        out.println(tallinn.parkCar(ch2));
-
-        medium(medium);
-
-
-        out.println(medium.accepts());
-        /*
-
-            accepted output:
-
-            H4H4C1
-            H4H4..
-            H2H1..
-            H2H1..
-
-
-         */
-
-
-        out.println(c1.unpark());
-        out.println(ch3.unpark());
-        out.println(ch2.unpark());
-        out.println(ch4.unpark());
-        /// try to remove already removed
-        out.println(c1.unpark());
-        out.println(ch3.unpark());
-        out.println(ch2.unpark());
-        out.println(ch4.unpark());
-        // add and remove
-        parkAll(tallinn, c1, ch2, ch3, ch4);
-        out.println(c1.unpark());
-        out.println(ch3.unpark());
-        out.println(ch2.unpark());
-        out.println(ch4.unpark());
-
-        medium(medium); //empty
     }
 
     private static void multiParkingLotAddThenRemoveAndAddAgain(City tallinn, Car c1, Car ch2,
