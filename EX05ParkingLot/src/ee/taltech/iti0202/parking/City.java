@@ -114,7 +114,9 @@ public class City {
 
         multi(multi);
         small(small);
-        medium(medium);
+        c1.unpark();
+        small(small);
+
 
     }
 
