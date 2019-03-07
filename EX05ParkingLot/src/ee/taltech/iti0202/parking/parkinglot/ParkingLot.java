@@ -318,7 +318,9 @@ public abstract class ParkingLot {
     }
 
     public boolean accepts() {
-        return true;
+        return !buffer.isParked() && City.getParkingLots().stream()
+                .noneMatch(x -> x.getParkedCars("").contains(buffer))
+                && City.getParkingLots().stream().noneMatch(x -> x.getQueueCars("").contains(buffer));
     }
 
 

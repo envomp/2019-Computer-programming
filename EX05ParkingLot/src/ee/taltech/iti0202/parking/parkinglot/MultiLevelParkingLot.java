@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
+import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.ArrayList;
@@ -102,9 +103,6 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        if (buffer != null) {
-            return this.getQueueCars().size() < 10 && !buffer.isParked();
-        }
-        return this.getQueueCars().size() < 10;
+        return this.getQueueCars().size() < 10 && super.accepts();
     }
 }
