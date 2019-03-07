@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.ArrayList;
@@ -73,5 +72,13 @@ public class PriorityParkingLot extends ParkingLot {
     @Override
     public boolean accepts() {
         return this.getQueueCars().size() < 5 && super.accepts();
+    }
+
+    @Override
+    public String getTable() {
+        setGetParkedBoy(true);
+        String answer = super.getTable();
+        setGetParkedBoy(false);
+        return answer.replace("__", "..");
     }
 }

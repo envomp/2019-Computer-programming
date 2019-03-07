@@ -94,7 +94,7 @@ public class City {
 
     public static void main(String[] args) {
         City tallinn = new City("Tallinn");
-        Car c1 = new Car(Car.PriorityStatus.COMMON, 1);
+        Car c1 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
@@ -103,16 +103,16 @@ public class City {
         Car c3 = new Car(Car.PriorityStatus.COMMON, 1);
         Car ch7 = new Car(Car.PriorityStatus.PRIORITY, 1);
 
-        PriorityParkingLot medium = new PriorityParkingLot(2, 3);
+        PriorityParkingLot medium = new PriorityParkingLot(4, 1);
         SmallCarParkingLot small = new SmallCarParkingLot(2, 2);
         SmallCarParkingLot small2 = new SmallCarParkingLot(1, 1);
         MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
 
         //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
 
-        //basicPriorityParking(tallinn, c1, ch2, ch3, ch4, medium);
+        basicPriorityParking(tallinn, c1, c2, ch6, c3, medium);
 
-        basicSmall(tallinn, c1, ch2, ch3, ch4, c2, ch6, ch7, small, small2);
+        //basicSmall(tallinn, c1, ch2, ch3, ch4, c2, ch6, ch7, small, small2);
     }
 
     private static void basicSmall(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, Car c2, Car ch6, Car ch7,
@@ -177,16 +177,9 @@ public class City {
                                              Car ch3, Car ch4, PriorityParkingLot medium) {
         tallinn.addParkingLot(medium);
 
-        medium(medium);
         out.println(tallinn.parkCar(ch4));
-
-        medium(medium);
         out.println(tallinn.parkCar(c1));
-
-        medium(medium);
         out.println(tallinn.parkCar(ch3));
-
-        medium(medium);
         out.println(tallinn.parkCar(ch2));
 
         medium(medium);
@@ -285,10 +278,8 @@ public class City {
         out.println(priorityParkingLot.getTable());
         out.print("Parked cars:\t");
         out.println(priorityParkingLot.getParkedCars());
-        out.print("Parked cars:\t");
-        out.println(priorityParkingLot.getQueueCars());
         out.print("Queue cars:\t");
-        out.println(priorityParkingLot.getSpaceAvailable());
+        out.println(priorityParkingLot.getQueueCars());
         out.println();
     }
 

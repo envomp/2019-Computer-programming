@@ -39,6 +39,7 @@ public abstract class ParkingLot {
     private List<Car> temp;
     private boolean needUpdate = true;
     private boolean newWorldOrder = false;
+    private boolean getParkedBoy = false;
 
     /**
      * Initialize the parking slot with the given width and height.
@@ -57,6 +58,10 @@ public abstract class ParkingLot {
 
     public void setNewWorldOrder(boolean bool) {
         this.newWorldOrder = bool;
+    }
+
+    public void setGetParkedBoy(boolean bool) {
+        this.getParkedBoy = bool;
     }
 
     public int getSize() {
@@ -252,8 +257,14 @@ public abstract class ParkingLot {
                             if (y + 1 < canvas.length
                                     && canvas[y][x].equals("..")
                                     && canvas[y + 1][x].equals("..")) {
-                                canvas[y][x] = car.toString();
-                                canvas[y + 1][x] = car.toString();
+                                if (getParkedBoy) {
+                                    canvas[y][x] = car.toString();
+                                    canvas[y + 1][x] = "__";
+                                } else {
+                                    canvas[y][x] = car.toString();
+                                    canvas[y + 1][x] = car.toString();
+                                }
+
                                 temp.add(car);
                                 go = false;
                             }

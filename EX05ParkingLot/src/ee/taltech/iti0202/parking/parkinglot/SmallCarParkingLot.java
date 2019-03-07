@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
 
-import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.LinkedList;
