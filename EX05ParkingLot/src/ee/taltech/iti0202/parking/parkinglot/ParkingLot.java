@@ -55,6 +55,10 @@ public abstract class ParkingLot {
         clearTemp();
     }
 
+    public void serQueue(PriorityQueue<Car> new_queue) {
+        this.carQueue = new_queue;
+    }
+
     public void setNewWorldOrder(boolean bool) {
         this.newWorldOrder = bool;
     }

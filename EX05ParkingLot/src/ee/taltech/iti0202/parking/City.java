@@ -111,24 +111,28 @@ public class City {
         //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
         tallinn.addParkingLot(medium);
 
-        out.println(tallinn.parkCar(c2));
+        medium.addToQueue(c3);
         medium(medium);
-        out.println(tallinn.parkCar(ch6));
-        medium(medium);
-        out.println(tallinn.parkCar(c3));
-        medium(medium);
-        out.println(tallinn.parkCar(ch7));
-        medium(medium);
-        out.println(tallinn.parkCar(ch5));
-        medium(medium);
-        out.println(tallinn.parkCar(ch4));
-        medium(medium);
-        out.println(tallinn.parkCar(c1));
-        medium(medium);
-        out.println(tallinn.parkCar(ch3));
-        medium(medium);
-        out.println(tallinn.parkCar(ch2));
-        medium(medium);
+        out.println(c3.unpark());
+
+        // out.println(tallinn.parkCar(c2));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch6));
+        // medium(medium);
+        // out.println(tallinn.parkCar(c3));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch7));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch5));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch4));
+        // medium(medium);
+        // out.println(tallinn.parkCar(c1));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch3));
+        // medium(medium);
+        // out.println(tallinn.parkCar(ch2));
+        // medium(medium);
     }
 
     private static void parkAll(City tallinn, Car c1, Car ch2, Car ch3, Car ch4) {
