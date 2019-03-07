@@ -112,7 +112,7 @@ abstract public class ParkingLot {
     }
 
     public boolean addToQueue(Car car) {
-        if (carQueue.contains(car) || car.isParked()) {
+        if (carQueue.contains(car) || car.isParked() || car.getParkingLot() != null) {
             return false;
         }
         carQueue.add(car);

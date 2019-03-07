@@ -26,16 +26,18 @@ public class SmallCarParkingLot extends ParkingLot {
 
         depark();
 
-        List<Car> temp = new ArrayList<>(getQueueCars());
+        List<Car> temp = new ArrayList<>(getQueueCars(""));
 
-        for (Car car : temp)
-            if (!getQueueCars().isEmpty() && this.getSpaceAvailable() > getQueueCars().get(0).getSize())
+        for (Car car : temp) {
+            if (!getQueueCars("").isEmpty() && this.getSpaceAvailable() > getQueueCars("").get(0).getSize()) {
+                car.setValue(2);
                 queueToLot(car);
-
+            }
+        }
     }
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 1;
+        return this.getQueueCars().size() < 1 && buffer.getSize() == 1;
     }
 }

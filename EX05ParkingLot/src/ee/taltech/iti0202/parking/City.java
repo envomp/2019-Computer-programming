@@ -3,9 +3,12 @@ package ee.taltech.iti0202.parking;
 import ee.taltech.iti0202.parking.car.Car;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
+import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.lang.System.out;
 
 
 public class City {
@@ -60,7 +63,7 @@ public class City {
     public static int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
-            System.out.println(lot.getQueueCars());
+            out.println(lot.getQueueCars());
             amount += lot.getQueueCars().stream()
                     .filter(c -> c.getSize() == size).filter(c -> c.getPriorityStatus() == priorityStatus).count();
         }
@@ -90,27 +93,42 @@ public class City {
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
 
-        PriorityParkingLot priorityParkingLot = new PriorityParkingLot(2, 1);
-        tallinn.addParkingLot(priorityParkingLot);
+        PriorityParkingLot medium = new PriorityParkingLot(2, 1);
+        SmallCarParkingLot small = new SmallCarParkingLot(2, 2);
 
-        System.out.println(tallinn.parkCar(ch4));
-        //System.out.println(tallinn.parkCar(ch3));
+        tallinn.addParkingLot(medium);
+        tallinn.addParkingLot(small);
+
+        out.println(tallinn.parkCar(ch4));
+        out.println(tallinn.parkCar(c1));
+        out.println(tallinn.parkCar(ch3));
         //System.out.println(tallinn.parkCar(c1));
         //System.out.println(tallinn.parkCar(ch2));
 
-        test(priorityParkingLot);
+        test(medium);
+
+        small(small);
 
         ch4.unpark();
 
     }
 
+    private static void small(SmallCarParkingLot smallCarParkingLot) {
+        out.println();
+        out.println(smallCarParkingLot.getTable());
+        out.println(smallCarParkingLot.getParkedCars());
+        out.println(smallCarParkingLot.getQueueCars());
+        out.println(smallCarParkingLot.getSpaceAvailable());
+        out.println();
+    }
+
     private static void test(PriorityParkingLot priorityParkingLot) {
-        System.out.println();
-        System.out.println(priorityParkingLot.getTable());
-        System.out.println(priorityParkingLot.getParkedCars());
-        System.out.println(priorityParkingLot.getQueueCars());
-        System.out.println(priorityParkingLot.getSpaceAvailable());
-        System.out.println();
+        out.println();
+        out.println(priorityParkingLot.getTable());
+        out.println(priorityParkingLot.getParkedCars());
+        out.println(priorityParkingLot.getQueueCars());
+        out.println(priorityParkingLot.getSpaceAvailable());
+        out.println();
     }
 
     /**

@@ -25,6 +25,10 @@ public class Car implements Comparable<Car> {
         this.parkingLot = lot;
     }
 
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
     public int getValue() {
         return value;
     }
