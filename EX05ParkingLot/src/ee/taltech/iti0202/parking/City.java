@@ -101,11 +101,12 @@ public class City {
         Car c6 = new Car(Car.PriorityStatus.COMMON, 1);
         Car c7 = new Car(Car.PriorityStatus.COMMON, 4);
 
-        PriorityParkingLot medium = new PriorityParkingLot(1, 1);
+        PriorityParkingLot medium = new PriorityParkingLot(1, 2);
         tallinn.addParkingLot(medium);
 
-        tallinn.parkCar(c6);
         tallinn.parkCar(c1);
+        tallinn.parkCar(c6);
+        tallinn.parkCar(c2);
         medium(medium);
         //List<Car> allCars = new ArrayList<>(List.of(c1, c2, c3, c4, c5, c6, c7));
         //long startTime = System.nanoTime();

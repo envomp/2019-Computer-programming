@@ -249,9 +249,18 @@ public abstract class ParkingLot {
                     if (go) {
                         if (car.getRelativeSize() == 1 && !(newWorldOrder && y % 2 == 1)) {
                             if (canvas[y][x].equals("..")) {
-                                canvas[y][x] = car.toString();
-                                temp.add(car);
-                                go = false;
+                                if (getParkedBoy && y % 2 == 1) {
+                                    if (canvas[y - 1][x].equals(car.toString())) {
+                                        canvas[y][x] = car.toString();
+                                        temp.add(car);
+                                        go = false;
+                                    }
+                                } else {
+                                    canvas[y][x] = car.toString();
+                                    temp.add(car);
+                                    go = false;
+                                }
+
                             }
                         } else if (car.getRelativeSize() == 2 && y % 2 == 0) {
                             if (y + 1 < canvas.length
