@@ -32,7 +32,8 @@ public class SmallCarParkingLot extends ParkingLot {
 
         for (Car car : temp) {
             if (car != null) {
-                if (!getQueueCars("").isEmpty() && this.getSpaceAvailable() >= getQueueCars("").get(0).getSize()) {
+                if (!getQueueCars("").isEmpty()
+                        && this.getSpaceAvailable() >= getQueueCars("").get(0).getSize()) {
                     queueToLot(car);
                 }
             }
@@ -45,9 +46,9 @@ public class SmallCarParkingLot extends ParkingLot {
     @Override
     public boolean accepts() {
         if (buffer != null) {
-            return this.getQueueCars().size() < 100 && buffer.getSize() == 1 && !buffer.isParked();
+            return buffer.getSize() == 1 && !buffer.isParked();
         }
-        return this.getQueueCars().size() < 100;
+        return false;
     }
 
     @Override
