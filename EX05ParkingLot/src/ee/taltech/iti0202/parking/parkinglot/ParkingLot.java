@@ -243,8 +243,8 @@ public abstract class ParkingLot {
 
         for (Car car : getParkedCars("")) {
             boolean go = true;
-            for (int y = 0; y < height * 2; y++) {
-                for (int x = 0; x < width; x++) {
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height * 2; y++) {
                     if (go) {
                         if (car.getRelativeSize() == 1 && !(newWorldOrder && y % 2 == 1)) {
                             if (canvas[y][x].equals("..")) {
