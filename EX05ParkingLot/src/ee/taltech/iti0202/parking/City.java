@@ -96,7 +96,7 @@ public class City {
 
         PriorityParkingLot medium = new PriorityParkingLot(2, 1);
         SmallCarParkingLot small = new SmallCarParkingLot(1, 1);
-        MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 1, 1);
+        MultiLevelParkingLot multi = new MultiLevelParkingLot(1, 2, 1);
 
         //tallinn.addParkingLot(medium);
         tallinn.addParkingLot(small);
