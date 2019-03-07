@@ -38,6 +38,7 @@ public abstract class ParkingLot {
     private int spaceAvailable;
     private List<Car> temp;
     private boolean needUpdate = true;
+    private boolean newWorldOrder = false;
 
     /**
      * Initialize the parking slot with the given width and height.
@@ -52,6 +53,10 @@ public abstract class ParkingLot {
         this.carList = new LinkedList<>();
         this.carQueue = new PriorityQueue<>();
         clearTemp();
+    }
+
+    public void setNewWorldOrder(boolean bool) {
+        this.newWorldOrder = bool;
     }
 
     public int getSize() {
@@ -232,7 +237,7 @@ public abstract class ParkingLot {
             for (int y = 0; y < height * 2; y++) {
                 for (int x = 0; x < width; x++) {
                     if (go) {
-                        if (car.getRelativeSize() == 1) {
+                        if (car.getRelativeSize() == 1 && !(newWorldOrder && y % 2 == 1)) {
                             if (canvas[y][x].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 temp.add(car);

@@ -20,6 +20,7 @@ public class SmallCarParkingLot extends ParkingLot {
      */
     public SmallCarParkingLot(int height, int width) {
         super(height, width);
+        setSpaceAvailable(getSpaceAvailable() / 2);
     }
 
     @Override
@@ -30,8 +31,7 @@ public class SmallCarParkingLot extends ParkingLot {
         List<Car> temp = new LinkedList<>(getQueueCars(""));
 
         for (Car car : temp) {
-            if (!getQueueCars("").isEmpty() && this.getSpaceAvailable() > getQueueCars("").get(0).getSize()) {
-                car.setValue(2);
+            if (!getQueueCars("").isEmpty() && this.getSpaceAvailable() >= getQueueCars("").get(0).getSize()) {
                 queueToLot(car);
             }
         }
@@ -45,5 +45,14 @@ public class SmallCarParkingLot extends ParkingLot {
             return this.getQueueCars().size() < 1 && buffer.getSize() == 1 && !buffer.isParked();
         }
         return this.getQueueCars().size() < 2;
+    }
+
+    @Override
+    public String getTable() {
+        setNewWorldOrder(true);
+        String table = super.getTable();
+        setNewWorldOrder(false);
+        return table;
+
     }
 }

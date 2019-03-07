@@ -104,19 +104,20 @@ public class City {
         Car ch7 = new Car(Car.PriorityStatus.PRIORITY, 1);
 
         PriorityParkingLot medium = new PriorityParkingLot(2, 3);
-        SmallCarParkingLot small = new SmallCarParkingLot(2, 1);
+        SmallCarParkingLot small = new SmallCarParkingLot(2, 2);
         SmallCarParkingLot small2 = new SmallCarParkingLot(1, 1);
         MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
 
-        multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
+        //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
 
-        basicPriorityParking(tallinn, c1, ch2, ch3, ch4, medium);
+        //basicPriorityParking(tallinn, c1, ch2, ch3, ch4, medium);
 
         basicSmall(tallinn, c1, ch2, ch3, ch4, c2, ch6, ch7, small, small2);
 
     }
 
-    private static void basicSmall(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, Car c2, Car ch6, Car ch7, SmallCarParkingLot small, SmallCarParkingLot small2) {
+    private static void basicSmall(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, Car c2, Car ch6, Car ch7,
+                                   SmallCarParkingLot small, SmallCarParkingLot small2) {
         tallinn.addParkingLot(small);
 
         parkAll(tallinn, c1, ch2, ch3, ch4);
@@ -140,15 +141,11 @@ public class City {
         ///////////////////////////////////////
 
 
-        tallinn.addParkingLot(small2);
+        //tallinn.addParkingLot(small2);
         tallinn.parkCar(c2);
-        small(small2); // new car C1
-
         tallinn.parkCar(ch6);
         tallinn.parkCar(ch7);
 
-        small(small2); //both has a car in it
-        out.println("Small from here on out: ____");
 
         small(small);
 
@@ -169,7 +166,8 @@ public class City {
         out.print("\n");
     }
 
-    private static void basicPriorityParking(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, PriorityParkingLot medium) {
+    private static void basicPriorityParking(City tallinn, Car c1, Car ch2,
+                                             Car ch3, Car ch4, PriorityParkingLot medium) {
         tallinn.addParkingLot(medium);
 
         medium(medium);
