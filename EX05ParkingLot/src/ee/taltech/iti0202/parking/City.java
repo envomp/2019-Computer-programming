@@ -97,6 +97,7 @@ public class City {
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 2);
+        Car ch5 = new Car(Car.PriorityStatus.COMMON, 4);
         Car c2 = new Car(Car.PriorityStatus.COMMON, 1);
         Car ch6 = new Car(Car.PriorityStatus.COMMON, 1);
         Car c3 = new Car(Car.PriorityStatus.COMMON, 1);
@@ -117,6 +118,8 @@ public class City {
         out.println(tallinn.parkCar(c3));
         medium(medium);
         out.println(tallinn.parkCar(ch7));
+        medium(medium);
+        out.println(tallinn.parkCar(ch5));
         medium(medium);
         out.println(tallinn.parkCar(ch4));
         medium(medium);

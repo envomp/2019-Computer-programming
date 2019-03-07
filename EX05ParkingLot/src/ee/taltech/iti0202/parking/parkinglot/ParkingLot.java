@@ -148,7 +148,10 @@ public abstract class ParkingLot {
                 || !accepts() || car.isParked()) {
             return false;
         }
+        City.getParkedCarCountBySizeAndPriority().put(car.getPriorityStatus().toString(),
+                City.getParkedCarCountBySizeAndPriority().get(car.getPriorityStatus().toString()) + 1);
         carQueue.add(car);
+        car.setParkingLot(this);
         processQueue();
         return true;
     }
