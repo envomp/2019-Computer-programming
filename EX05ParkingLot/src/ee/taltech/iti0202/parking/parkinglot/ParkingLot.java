@@ -256,7 +256,7 @@ public abstract class ParkingLot {
                             if (y + 1 < canvas.length
                                     && canvas[y][x].equals("..")
                                     && canvas[y + 1][x].equals("..")) {
-                                if (getParkedBoy) {
+                                if (getParkedBoy && car.getSize() == 1) {
                                     canvas[y][x] = car.toString();
                                     canvas[y + 1][x] = "__";
                                 } else {

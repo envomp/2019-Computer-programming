@@ -96,36 +96,36 @@ public class City {
         Car c1 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
-        Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
+        Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car c2 = new Car(Car.PriorityStatus.COMMON, 1);
-        Car ch6 = new Car(Car.PriorityStatus.PRIORITY, 1);
+        Car ch6 = new Car(Car.PriorityStatus.COMMON, 1);
         Car c3 = new Car(Car.PriorityStatus.COMMON, 1);
-        Car ch7 = new Car(Car.PriorityStatus.PRIORITY, 1);
+        Car ch7 = new Car(Car.PriorityStatus.COMMON, 1);
 
-        PriorityParkingLot medium = new PriorityParkingLot(4, 1);
+        PriorityParkingLot medium = new PriorityParkingLot(2, 2);
         SmallCarParkingLot small = new SmallCarParkingLot(2, 2);
         SmallCarParkingLot small2 = new SmallCarParkingLot(1, 1);
         MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
 
-        multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
+        //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
         tallinn.addParkingLot(medium);
 
-        // out.println(tallinn.parkCar(c2));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch6));
-        // medium(medium);
-        // out.println(tallinn.parkCar(c3));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch7));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch4));
-        // medium(medium);
-        // out.println(tallinn.parkCar(c1));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch3));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch2));
-        // medium(medium);
+        out.println(tallinn.parkCar(c2));
+        medium(medium);
+        out.println(tallinn.parkCar(ch6));
+        medium(medium);
+        out.println(tallinn.parkCar(c3));
+        medium(medium);
+        out.println(tallinn.parkCar(ch7));
+        medium(medium);
+        out.println(tallinn.parkCar(ch4));
+        medium(medium);
+        out.println(tallinn.parkCar(c1));
+        medium(medium);
+        out.println(tallinn.parkCar(ch3));
+        medium(medium);
+        out.println(tallinn.parkCar(ch2));
+        medium(medium);
     }
 
     private static void parkAll(City tallinn, Car c1, Car ch2, Car ch3, Car ch4) {
