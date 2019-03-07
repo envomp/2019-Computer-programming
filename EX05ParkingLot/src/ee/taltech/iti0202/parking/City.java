@@ -112,20 +112,7 @@ public class City {
 
         //basicPriorityParking(tallinn, c1, ch2, ch3, ch4, medium);
 
-        //basicSmall(tallinn, c1, ch2, ch3, ch4, c2, ch6, ch7, small, small2);
-
-
-        MultiLevelParkingLot multiLevelParkingLot = new MultiLevelParkingLot(2, 2, 2);
-        multiLevelParkingLot.addToQueue(new Car(Car.PriorityStatus.COMMON, 2));
-        multiLevelParkingLot.addToQueue(new Car(Car.PriorityStatus.COMMON, 1));
-        System.out.println(multiLevelParkingLot.getTable());
-        multiLevelParkingLot.addToQueue(new Car(Car.PriorityStatus.HIGHEST, 2));
-        multiLevelParkingLot.addToQueue(new Car(Car.PriorityStatus.HIGHEST, 1));
-        multiLevelParkingLot.addToQueue(new Car(Car.PriorityStatus.COMMON, 2));
-        multiLevelParkingLot.addToQueue(new Car(Car.PriorityStatus.HIGHEST, 2));
-        multiLevelParkingLot.addToQueue(new Car(Car.PriorityStatus.HIGHEST, 4));
-        System.out.println(multiLevelParkingLot.getTable());
-
+        basicSmall(tallinn, c1, ch2, ch3, ch4, c2, ch6, ch7, small, small2);
     }
 
     private static void basicSmall(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, Car c2, Car ch6, Car ch7,
