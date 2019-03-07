@@ -199,7 +199,7 @@ public abstract class ParkingLot {
      * Returns string presentation of the parking lot.
      * <p>
      * Each slot takes 2x2 chars.
-     * Size 1 is represented by 1x2 (height, width) area
+     * Size 1 is represented by 1x2 (height, width) areas
      * Empty slot is represented by dots (.):
      * <p>
      * Empty table with width 3, height 2:
