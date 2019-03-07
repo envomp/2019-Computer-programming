@@ -31,7 +31,7 @@ public class SmallCarParkingLot extends ParkingLot {
         List<Car> temp = new LinkedList<>(getQueueCars(""));
 
         for (Car car : temp) {
-            if (!getQueueCars("").isEmpty() && this.getSpaceAvailable() >= getQueueCars("").get(0).getSize()) {
+            if (this.getSpaceAvailable() >= getQueueCars("").get(0).getSize()) {
                 queueToLot(car);
             }
         }
