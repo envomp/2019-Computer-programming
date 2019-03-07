@@ -41,7 +41,7 @@ public abstract class ParkingLot {
     private boolean getParkedBoy = false;
 
     /**
-     * Initialize the parking slot with the given width and height.
+     * Initialize the parking slot/s with the given width and height.
      *
      * @param height Length of vertical side.
      * @param width  Length of horizontal side.
