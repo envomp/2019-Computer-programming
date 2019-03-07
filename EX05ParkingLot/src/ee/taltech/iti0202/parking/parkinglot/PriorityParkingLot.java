@@ -46,7 +46,7 @@ public class PriorityParkingLot extends ParkingLot {
                     while (this.getSpaceAvailable() < car.getRelativeSize()) {
                         List<Car> all = getParkedCars("").stream()
                                 .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
-                                .sorted(Comparator.comparing(Car::getSize))
+                                .sorted(Comparator.comparing(Car::getSize).reversed())
                                 .collect(Collectors.toList());
                         if (!all.isEmpty()) {
                             remove = all.get(0);
@@ -60,7 +60,9 @@ public class PriorityParkingLot extends ParkingLot {
                 }
                 if (possible) queueToLot(car);
             } else {
-                if (this.getSpaceAvailable() >= car.getRelativeSize()) queueToLot(car);
+                if (this.getSpaceAvailable() >= car.getRelativeSize()) {
+                    queueToLot(car);
+                }
             }
 
         }
