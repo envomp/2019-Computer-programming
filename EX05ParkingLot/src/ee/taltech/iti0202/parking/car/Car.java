@@ -119,7 +119,7 @@ public class Car implements Comparable<Car> {
         if (getParkingLot() != null && getParkingLot().getParkedCars().contains(this) && isParked()) {
             this.parked = false;
             this.wantsToBe = false;
-            parkingLot.depark();
+            parkingLot.processQueue();
             this.setParkingLot(null);
             return true;
         }
