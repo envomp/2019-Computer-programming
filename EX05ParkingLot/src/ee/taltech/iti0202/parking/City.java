@@ -9,6 +9,7 @@ import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.lang.System.exit;
 import static java.lang.System.out;
 
 
@@ -117,6 +118,41 @@ public class City {
         medium(medium);
 
 
+        out.println(medium.accepts());
+        /*
+
+            accepted output:
+
+            H4H4C1
+            H4H4..
+            H2H1..
+            H2H1..
+
+
+         */
+        exit(1);
+        out.println(c1.unpark());
+        out.println(ch3.unpark());
+        out.println(ch2.unpark());
+        out.println(ch4.unpark());
+        /// try to remove already removed
+        out.println(c1.unpark());
+        out.println(ch3.unpark());
+        out.println(ch2.unpark());
+        out.println(ch4.unpark());
+        // add and remove
+        out.println(tallinn.parkCar(ch4));
+        out.println(tallinn.parkCar(c1));
+        out.println(tallinn.parkCar(ch3));
+        out.println(tallinn.parkCar(ch2));
+        out.println(c1.unpark());
+        out.println(ch3.unpark());
+        out.println(ch2.unpark());
+        out.println(ch4.unpark());
+
+        medium(medium); //empty
+
+
     }
 
     private static void multiParkingLotAddThenRemoveAndAddAgain(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, MultiLevelParkingLot multi) {
@@ -131,8 +167,6 @@ public class City {
         out.println(tallinn.parkCar(c1));
         out.println(tallinn.parkCar(ch3));
         out.println(tallinn.parkCar(ch2));
-
-        //tallinn.addParkingLot(medium);
 
         multi(multi);
 

@@ -238,7 +238,7 @@ abstract public class ParkingLot {
                                 temp.add(car);
                                 go = false;
                             }
-                        } else if (car.getRelativeSize() == 2) {
+                        } else if (car.getRelativeSize() == 2 && y % 2 == 0) {
                             if (y + 1 < canvas.length
                                     && canvas[y][x].equals("..")
                                     && canvas[y + 1][x].equals("..")) {
@@ -246,16 +246,9 @@ abstract public class ParkingLot {
                                 canvas[y + 1][x] = car.toString();
                                 temp.add(car);
                                 go = false;
-                            } else if (x + 1 < canvas[y].length
-                                    && canvas[y][x].equals("..")
-                                    && canvas[y][x + 1].equals("..")) {
-                                canvas[y][x] = car.toString();
-                                canvas[y][x + 1] = car.toString();
-                                temp.add(car);
-                                go = false;
                             }
 
-                        } else if (car.getRelativeSize() == 4) {
+                        } else if (car.getRelativeSize() == 4 && y % 2 == 0) {
                             if (x + 1 < canvas[y].length
                                     && canvas[y][x].equals("..")
                                     && canvas[y][x + 1].equals("..")
