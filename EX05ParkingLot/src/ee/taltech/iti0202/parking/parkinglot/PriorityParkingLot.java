@@ -60,7 +60,9 @@ public class PriorityParkingLot extends ParkingLot {
                     }
                 }
                 if (possible) queueToLot(car);
-            } else if (this.getSpaceAvailable() >= car.getRelativeSize()) queueToLot(car);
+            } else {
+                if (this.getSpaceAvailable() >= car.getRelativeSize()) queueToLot(car);
+            }
 
         }
 
@@ -69,6 +71,6 @@ public class PriorityParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 5;
+        return this.getQueueCars().size() < 5 && !buffer.isParked();
     }
 }

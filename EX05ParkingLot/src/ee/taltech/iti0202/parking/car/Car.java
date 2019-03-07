@@ -62,16 +62,19 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car o) {
 
-        if (priority.get(this.getPriorityStatus().toString()) > priority.get(o.getPriorityStatus().toString()))
+        if (priority.get(this.getPriorityStatus().toString()) > priority.get(o.getPriorityStatus().toString())) {
             return 1;
-        else if (priority.get(this.getPriorityStatus().toString()) < priority.get(o.getPriorityStatus().toString()))
-            return -1;
-        else {
-            if (this.getSize() > o.getSize())
-                return 1;
-            else if (this.getSize() < o.getSize())
+        } else {
+            if (priority.get(this.getPriorityStatus().toString()) < priority.get(o.getPriorityStatus().toString()))
                 return -1;
-            return 0;
+            else {
+                if (this.getSize() > o.getSize()) {
+                    return 1;
+                } else if (this.getSize() < o.getSize()) {
+                    return -1;
+                }
+                return 0;
+            }
         }
     }
 

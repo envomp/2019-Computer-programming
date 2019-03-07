@@ -9,7 +9,6 @@ import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.lang.System.exit;
 import static java.lang.System.out;
 
 
@@ -130,7 +129,8 @@ public class City {
 
 
          */
-        exit(1);
+
+
         out.println(c1.unpark());
         out.println(ch3.unpark());
         out.println(ch2.unpark());
@@ -155,7 +155,8 @@ public class City {
 
     }
 
-    private static void multiParkingLotAddThenRemoveAndAddAgain(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, MultiLevelParkingLot multi) {
+    private static void multiParkingLotAddThenRemoveAndAddAgain(City tallinn, Car c1, Car ch2,
+                                                                Car ch3, Car ch4, MultiLevelParkingLot multi) {
         tallinn.addParkingLot(multi);
 
         out.println(c1.getRelativeSize());
@@ -255,7 +256,8 @@ public class City {
     public Optional<ParkingLot> parkCar(Car car) {
         car.setWantsToBe(true);
         if (!getParkingLots().isEmpty() && getParkingLots().stream()
-                .filter(x -> x.getQueueCars().contains(car)).noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
+                .filter(x -> x.getQueueCars().contains(car))
+                .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
             getParkingLots().forEach(x -> x.buffer = car);
             List<ParkingLot> temp = getParkingLots().stream().filter(ParkingLot::accepts).collect(Collectors.toList());
             if (temp.isEmpty()) {
