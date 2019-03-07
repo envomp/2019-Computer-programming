@@ -40,6 +40,6 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 1 && buffer.getSize() == 1;
+        return this.getQueueCars().size() < 2 && buffer.getSize() == 1;
     }
 }

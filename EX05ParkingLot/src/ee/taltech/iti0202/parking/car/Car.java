@@ -114,12 +114,17 @@ public class Car implements Comparable<Car> {
 
     public boolean unpark() {
         if (parkingLot.getParkedCars("").contains(this)) {
-            parkingLot.lotToQueue(this);
-            parkingLot.queueToLot(this);
-            this.parked = false;
-            this.wantsToBe = false;
-            parkingLot.processQueue();
-            this.setParkingLot(null);
+            try {
+                parkingLot.lotToQueue(this);
+                parkingLot.queueToLot(this);
+                this.parked = false;
+                this.wantsToBe = false;
+                parkingLot.processQueue();
+                this.setParkingLot(null);
+
+            } catch (NullPointerException e) {
+                return true;
+            }
             return true;
         }
         return false;
