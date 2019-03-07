@@ -101,6 +101,11 @@ public class City {
         //tallinn.addParkingLot(medium);
         tallinn.addParkingLot(multi);
 
+        out.println(c1.getRelativeSize());
+        out.println(c1.getParkingLot());
+        out.println(c1.isParked());
+        out.println(c1.isWantsToBe());
+
         out.println(tallinn.parkCar(ch4));
         out.println(tallinn.parkCar(c1));
         out.println(tallinn.parkCar(ch3));
@@ -111,10 +116,8 @@ public class City {
         multi(multi);
 
         out.println(c1.unpark());
-        out.println(c1.unpark());
         out.println(ch3.unpark());
         out.println(ch2.unpark());
-        out.println(ch4.unpark());
 
         multi(multi);
 
@@ -122,6 +125,12 @@ public class City {
         out.println(tallinn.parkCar(c1));
         out.println(tallinn.parkCar(ch3));
         out.println(tallinn.parkCar(ch2));
+
+
+        out.println(c1.getRelativeSize());
+        out.println(c1.getParkingLot());
+        out.println(c1.isParked());
+        out.println(c1.isWantsToBe());
 
         multi(multi);
 
@@ -190,6 +199,7 @@ public class City {
      * empty() in case no parking lot is suitable.
      */
     public Optional<ParkingLot> parkCar(Car car) {
+        car.setWantsToBe(true);
         if (!getParkingLots().isEmpty() && getParkingLots().stream()
                 .filter(x -> x.getQueueCars().contains(car)).noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
             getParkingLots().forEach(x -> x.buffer = car);

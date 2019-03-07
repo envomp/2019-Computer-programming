@@ -133,6 +133,10 @@ public class Car implements Comparable<Car> {
         return wantsToBe;
     }
 
+    public void setWantsToBe(boolean bool) {
+        this.wantsToBe = bool;
+    }
+
     public void setParked(boolean state) {
         this.parked = state;
     }
