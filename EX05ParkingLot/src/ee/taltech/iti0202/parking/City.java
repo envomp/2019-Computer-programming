@@ -148,51 +148,6 @@ public class City {
 
     }
 
-    private static void basicSmall(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, Car c2, Car ch6, Car ch7,
-                                   SmallCarParkingLot small, SmallCarParkingLot small2) {
-        tallinn.addParkingLot(small);
-
-        parkAll(tallinn, c1, ch2, ch3, ch4);
-
-        out.print(tallinn.parkCar(c2));
-        out.print("\t");
-        out.print(tallinn.parkCar(ch6));
-        out.print("\t");
-        out.print(tallinn.parkCar(ch7));
-        out.print("\n");
-
-
-        small(small);
-
-        /*
-        accepted output :
-
-            C1
-            C1
-            H1
-            H1
-
-         */
-
-        ////// no difference //////////////////
-        parkAll(tallinn, c1, ch2, ch3, ch4); //
-        //
-        small(small);                        //
-        ///////////////////////////////////////
-
-
-        //tallinn.addParkingLot(small2);
-        tallinn.parkCar(c2);
-        tallinn.parkCar(ch6);
-        tallinn.parkCar(ch7);
-
-
-        small(small);
-
-        small.getParkedCars().get(0).unpark();
-
-        small(small); // now queue is empty and parked cars updated
-    }
 
     private static void parkAll(City tallinn, Car c1, Car ch2, Car ch3, Car ch4) {
 
@@ -247,7 +202,6 @@ public class City {
         out.println(multiLevelParkingLot.getQueueCars());
         out.println();
     }
-
 
 
     private static void small(SmallCarParkingLot smallCarParkingLot) {
