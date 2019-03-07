@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.parking.parkinglot;
-
 import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
@@ -111,7 +110,7 @@ public abstract class ParkingLot {
         this.spaceAvailable -= car.getRelativeSize();
         car.setParked(true);
         this.carQueue.remove(car);
-        List<Car> newList = new LinkedList<>(List.copyOf(carList)); //keep pushing until it doesn't fail.. possible!
+        List<Car> newList = new LinkedList<>(List.copyOf(carList));
         newList.add(car);
         setParkedCars(newList);
     }
