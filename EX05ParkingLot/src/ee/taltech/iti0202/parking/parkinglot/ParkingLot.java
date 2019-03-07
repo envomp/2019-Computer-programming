@@ -239,18 +239,18 @@ abstract public class ParkingLot {
                                 go = false;
                             }
                         } else if (car.getRelativeSize() == 2) {
-                            if (x + 1 < canvas[y].length
-                                    && canvas[y][x].equals("..")
-                                    && canvas[y][x + 1].equals("..")) {
-                                canvas[y][x] = car.toString();
-                                canvas[y][x + 1] = car.toString();
-                                temp.add(car);
-                                go = false;
-                            } else if (y + 1 < canvas.length
+                            if (y + 1 < canvas.length
                                     && canvas[y][x].equals("..")
                                     && canvas[y + 1][x].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y + 1][x] = car.toString();
+                                temp.add(car);
+                                go = false;
+                            } else if (x + 1 < canvas[y].length
+                                    && canvas[y][x].equals("..")
+                                    && canvas[y][x + 1].equals("..")) {
+                                canvas[y][x] = car.toString();
+                                canvas[y][x + 1] = car.toString();
                                 temp.add(car);
                                 go = false;
                             }

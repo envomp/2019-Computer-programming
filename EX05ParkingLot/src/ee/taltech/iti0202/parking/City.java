@@ -94,11 +94,32 @@ public class City {
         Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
 
-        PriorityParkingLot medium = new PriorityParkingLot(2, 1);
+        PriorityParkingLot medium = new PriorityParkingLot(2, 3);
         SmallCarParkingLot small = new SmallCarParkingLot(1, 1);
         MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
 
-        //tallinn.addParkingLot(medium);
+        //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
+
+        tallinn.addParkingLot(medium);
+
+        medium(medium);
+        out.println(tallinn.parkCar(ch4));
+
+        medium(medium);
+        out.println(tallinn.parkCar(c1));
+
+        medium(medium);
+        out.println(tallinn.parkCar(ch3));
+
+        medium(medium);
+        out.println(tallinn.parkCar(ch2));
+
+        medium(medium);
+
+
+    }
+
+    private static void multiParkingLotAddThenRemoveAndAddAgain(City tallinn, Car c1, Car ch2, Car ch3, Car ch4, MultiLevelParkingLot multi) {
         tallinn.addParkingLot(multi);
 
         out.println(c1.getRelativeSize());
@@ -133,7 +154,6 @@ public class City {
         out.println(c1.isWantsToBe());
 
         multi(multi);
-
     }
 
     private static void multi(MultiLevelParkingLot multiLevelParkingLot) {
