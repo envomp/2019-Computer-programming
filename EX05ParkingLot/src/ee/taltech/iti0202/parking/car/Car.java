@@ -122,7 +122,7 @@ public class Car implements Comparable<Car> {
             this.parked = false;
             this.wantsToBe = false;
             City.decreasePark(this);
-            parkingLot.processQueue();
+            parkingLot.depark();
             this.setParkingLot(null);
             return true;
         }

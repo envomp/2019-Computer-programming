@@ -114,6 +114,7 @@ public class City {
         medium.addToQueue(c3);
         medium(medium);
         out.println(c3.unpark());
+        medium(medium);
 
         // out.println(tallinn.parkCar(c2));
         // medium(medium);
