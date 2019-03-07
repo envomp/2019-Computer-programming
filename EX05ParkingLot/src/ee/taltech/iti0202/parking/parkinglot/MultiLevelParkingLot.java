@@ -40,7 +40,6 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-//        depark();
 
         List<Car> temp = new LinkedList<>(getQueueCars(""));
         for (Car car : temp) {
@@ -51,7 +50,6 @@ public class MultiLevelParkingLot extends ParkingLot {
             }
         }
 
-//        depark();
     }
 
 

@@ -5,11 +5,7 @@ import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Optional;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import java.util.stream.Collectors;
 
@@ -93,47 +89,39 @@ public class City {
 
     public static void main(String[] args) {
         City tallinn = new City("Tallinn");
-        Car c1 = new Car(Car.PriorityStatus.HIGHEST, 1);
-        Car ch2 = new Car(Car.PriorityStatus.HIGHEST, 1);
-        Car ch3 = new Car(Car.PriorityStatus.HIGHEST, 2);
-        Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 2);
-        Car ch5 = new Car(Car.PriorityStatus.COMMON, 4);
-        Car c2 = new Car(Car.PriorityStatus.COMMON, 1);
-        Car ch6 = new Car(Car.PriorityStatus.COMMON, 1);
-        Car c3 = new Car(Car.PriorityStatus.COMMON, 1);
-        Car ch7 = new Car(Car.PriorityStatus.COMMON, 1);
+        Car c1 = new Car(Car.PriorityStatus.PRIORITY, 1);
+        Car c2 = new Car(Car.PriorityStatus.PRIORITY, 1);
+        Car c3 = new Car(Car.PriorityStatus.HIGHEST, 1);
+        Car c4 = new Car(Car.PriorityStatus.HIGHEST, 2);
+        Car c5 = new Car(Car.PriorityStatus.HIGHEST, 4);
+        Car c6 = new Car(Car.PriorityStatus.COMMON, 1);
+        Car c7 = new Car(Car.PriorityStatus.COMMON, 4);
 
-        PriorityParkingLot medium = new PriorityParkingLot(2, 2);
-        SmallCarParkingLot small = new SmallCarParkingLot(2, 2);
-        SmallCarParkingLot small2 = new SmallCarParkingLot(1, 1);
-        MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
-
-        //multiParkingLotAddThenRemoveAndAddAgain(tallinn, c1, ch2, ch3, ch4, multi);
+        PriorityParkingLot medium = new PriorityParkingLot(1, 1);
         tallinn.addParkingLot(medium);
 
-        medium.addToQueue(c3);
+        tallinn.parkCar(c6);
+        tallinn.parkCar(c1);
         medium(medium);
-        out.println(c3.unpark());
-        medium(medium);
-
-        // out.println(tallinn.parkCar(c2));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch6));
-        // medium(medium);
-        // out.println(tallinn.parkCar(c3));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch7));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch5));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch4));
-        // medium(medium);
-        // out.println(tallinn.parkCar(c1));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch3));
-        // medium(medium);
-        // out.println(tallinn.parkCar(ch2));
-        // medium(medium);
+        //List<Car> allCars = new ArrayList<>(List.of(c1, c2, c3, c4, c5, c6, c7));
+        //long startTime = System.nanoTime();
+        //int tot = 0;
+        //for (int i = 0; i < 10; i++) {
+        //    Collections.shuffle(allCars);
+        //    for (Car car: allCars) {
+        //        tallinn.parkCar(car);
+        //    }
+        //    medium(medium);
+        //    medium.processQueue();
+        //    tot += medium.getQueueLen();
+        //    for (Car car: allCars) {
+        //        car.unpark();
+        //    }
+        //}
+        //long endTime   = System.nanoTime();
+        //long totalTime = endTime - startTime;
+        //if (tot != 0) throw new RuntimeException("no");
+        //else out.println("you did good, million tests in(sec): " + totalTime / 1000000000);
     }
 
     private static void parkAll(City tallinn, Car c1, Car ch2, Car ch3, Car ch4) {
