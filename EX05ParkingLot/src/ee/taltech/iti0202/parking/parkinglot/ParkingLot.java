@@ -3,7 +3,7 @@ package ee.taltech.iti0202.parking.parkinglot;
 import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -49,7 +49,7 @@ abstract public class ParkingLot {
         this.width = width;
         this.height = height;
         this.spaceAvailable = height * width * 2;
-        this.carList = new ArrayList<>();
+        this.carList = new LinkedList<>();
         this.carQueue = new PriorityQueue<>();
         clearTemp();
     }
@@ -59,7 +59,7 @@ abstract public class ParkingLot {
     }
 
     public void clearTemp() {
-        this.temp = new ArrayList<>();
+        this.temp = new LinkedList<>();
     }
 
     public List<Car> getTemp() {
@@ -108,17 +108,19 @@ abstract public class ParkingLot {
         this.spaceAvailable += car.getRelativeSize();
         car.setParked(false);
         this.carQueue.add(car);
-        this.carList.remove(car);
+        List<Car> newList = new LinkedList<>(List.copyOf(carList));
+        newList.remove(car);
+        setParkedCars(newList);
     }
 
     public void depark() {
-        List<Car> temp = new ArrayList<>(getParkedCars("Hi mom!"));
+        List<Car> temp = new LinkedList<>(getParkedCars("Hi mom!"));
         for (Car car1 : temp) {
             if (!car1.isWantsToBe()) {
                 lotToQueue(car1);
             }
         }
-        temp = new ArrayList<>(getQueueCars("Hi dad!"));
+        temp = new LinkedList<>(getQueueCars("Hi dad!"));
         for (Car car1 : temp) {
             if (!car1.isWantsToBe()) {
                 this.carQueue.remove(car1);
@@ -168,11 +170,11 @@ abstract public class ParkingLot {
 
     public List<Car> getQueueCars() {
         processQueue();
-        return new ArrayList<>(carQueue);
+        return new LinkedList<>(carQueue);
     }
 
     public List<Car> getQueueCars(String dad) {
-        return new ArrayList<>(carQueue);
+        return new LinkedList<>(carQueue);
     }
 
     /**

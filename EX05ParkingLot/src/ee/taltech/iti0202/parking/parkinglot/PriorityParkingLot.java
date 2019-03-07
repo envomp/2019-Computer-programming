@@ -28,7 +28,7 @@ public class PriorityParkingLot extends ParkingLot {
     @Override
     public void processQueue() {
 
-        depark();
+        //depark();
 
         List<Car> temp = new ArrayList<>(getQueueCars("Hi dad!"));
         boolean possible;
@@ -64,7 +64,7 @@ public class PriorityParkingLot extends ParkingLot {
 
         }
 
-        depark();
+        //depark();
     }
 
     @Override

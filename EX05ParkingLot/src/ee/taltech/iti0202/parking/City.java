@@ -96,27 +96,34 @@ public class City {
 
         PriorityParkingLot medium = new PriorityParkingLot(2, 1);
         SmallCarParkingLot small = new SmallCarParkingLot(1, 1);
-        MultiLevelParkingLot multi = new MultiLevelParkingLot(1, 2, 1);
+        MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 2, 2);
 
         //tallinn.addParkingLot(medium);
-        tallinn.addParkingLot(small);
         tallinn.addParkingLot(multi);
 
         out.println(tallinn.parkCar(ch4));
         out.println(tallinn.parkCar(c1));
         out.println(tallinn.parkCar(ch3));
-        out.println(tallinn.parkCar(c1));
         out.println(tallinn.parkCar(ch2));
 
-        tallinn.addParkingLot(medium);
-
-        out.println(tallinn.parkCar(ch3));
+        //tallinn.addParkingLot(medium);
 
         multi(multi);
-        small(small);
-        c1.unpark();
-        small(small);
 
+        out.println(c1.unpark());
+        out.println(c1.unpark());
+        out.println(ch3.unpark());
+        out.println(ch2.unpark());
+        out.println(ch4.unpark());
+
+        multi(multi);
+
+        out.println(tallinn.parkCar(ch4));
+        out.println(tallinn.parkCar(c1));
+        out.println(tallinn.parkCar(ch3));
+        out.println(tallinn.parkCar(ch2));
+
+        multi(multi);
 
     }
 
