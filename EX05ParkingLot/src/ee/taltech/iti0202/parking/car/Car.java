@@ -113,7 +113,7 @@ public class Car implements Comparable<Car> {
      */
 
     public boolean unpark() {
-        if (this.parked && parkingLot != null && parkingLot.getParkedCars("").contains(this)) {
+        if (parkingLot.getParkedCars("").contains(this)) {
             parkingLot.lotToQueue(this);
             parkingLot.queueToLot(this);
             this.parked = false;
@@ -122,7 +122,7 @@ public class Car implements Comparable<Car> {
             this.setParkingLot(null);
             return true;
         }
-        return true;
+        return false;
     }
 
     public boolean isWantsToBe() {
