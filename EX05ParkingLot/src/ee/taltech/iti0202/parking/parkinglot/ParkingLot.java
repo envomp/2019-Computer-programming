@@ -36,6 +36,8 @@ abstract public class ParkingLot {
     private PriorityQueue<Car> carQueue;
     public Car buffer;
     private int spaceAvailable;
+    private List<Car> temp;
+    private boolean needUpdate = true;
 
     /**
      * Initialize the parking slot with the given width and height.
@@ -49,10 +51,24 @@ abstract public class ParkingLot {
         this.spaceAvailable = height * width * 2;
         this.carList = new ArrayList<>();
         this.carQueue = new PriorityQueue<>();
+        clearTemp();
     }
 
     public int getSize() {
         return height * width;
+    }
+
+    public void clearTemp() {
+        this.temp = new ArrayList<>();
+    }
+
+    public List<Car> getTemp() {
+        return temp;
+
+    }
+
+    public void setNeedUpdate(boolean state) {
+        this.needUpdate = state;
     }
 
     public int getQueueLen() {
@@ -146,6 +162,10 @@ abstract public class ParkingLot {
         return carList;
     }
 
+    public void setParkedCars(List<Car> cars) {
+        this.carList = cars;
+    }
+
     public List<Car> getQueueCars() {
         processQueue();
         return new ArrayList<>(carQueue);
@@ -191,7 +211,9 @@ abstract public class ParkingLot {
 
     public String getTable() {
 
-        processQueue();
+        if (needUpdate) {
+            processQueue();
+        }
 
         String[][] canvas = new String[height * 2][width];
         for (int y = 0; y < height * 2; y++) {
@@ -201,7 +223,7 @@ abstract public class ParkingLot {
         }
 
 
-        for (Car car : getParkedCars()) {
+        for (Car car : getParkedCars("")) {
             boolean go = true;
             for (int y = 0; y < height * 2; y++) {
                 for (int x = 0; x < width; x++) {
@@ -209,6 +231,7 @@ abstract public class ParkingLot {
                         if (car.getRelativeSize() == 1) {
                             if (canvas[y][x].equals("..")) {
                                 canvas[y][x] = car.toString();
+                                temp.add(car);
                                 go = false;
                             }
                         } else if (car.getRelativeSize() == 2) {
@@ -217,12 +240,14 @@ abstract public class ParkingLot {
                                     && canvas[y][x + 1].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y][x + 1] = car.toString();
+                                temp.add(car);
                                 go = false;
                             } else if (y + 1 < canvas.length
                                     && canvas[y][x].equals("..")
                                     && canvas[y + 1][x].equals("..")) {
                                 canvas[y][x] = car.toString();
                                 canvas[y + 1][x] = car.toString();
+                                temp.add(car);
                                 go = false;
                             }
 
@@ -238,6 +263,7 @@ abstract public class ParkingLot {
                                 canvas[y][x + 1] = car.toString();
                                 canvas[y + 1][x + 1] = car.toString();
                                 canvas[y + 1][x] = car.toString();
+                                temp.add(car);
                                 go = false;
                             } else if (canvas[y][x].equals("..")
                                     && y + 3 < canvas.length
@@ -249,6 +275,7 @@ abstract public class ParkingLot {
                                 canvas[y + 1][x] = car.toString();
                                 canvas[y + 2][x] = car.toString();
                                 canvas[y + 3][x] = car.toString();
+                                temp.add(car);
                                 go = false;
 
                             }

@@ -63,6 +63,8 @@ public class PriorityParkingLot extends ParkingLot {
             } else if (this.getSpaceAvailable() >= car.getRelativeSize()) queueToLot(car);
 
         }
+
+        depark();
     }
 
     @Override

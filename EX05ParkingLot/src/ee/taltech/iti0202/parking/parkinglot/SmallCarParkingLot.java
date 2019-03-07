@@ -34,6 +34,8 @@ public class SmallCarParkingLot extends ParkingLot {
                 queueToLot(car);
             }
         }
+
+        depark();
     }
 
     @Override

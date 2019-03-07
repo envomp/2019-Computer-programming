@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.parking;
 
 import ee.taltech.iti0202.parking.car.Car;
+import ee.taltech.iti0202.parking.parkinglot.MultiLevelParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
@@ -94,24 +95,39 @@ public class City {
         Car ch4 = new Car(Car.PriorityStatus.HIGHEST, 4);
 
         PriorityParkingLot medium = new PriorityParkingLot(2, 1);
-        SmallCarParkingLot small = new SmallCarParkingLot(2, 2);
+        SmallCarParkingLot small = new SmallCarParkingLot(1, 1);
+        MultiLevelParkingLot multi = new MultiLevelParkingLot(2, 1, 1);
 
-        tallinn.addParkingLot(medium);
+        //tallinn.addParkingLot(medium);
         tallinn.addParkingLot(small);
+        tallinn.addParkingLot(multi);
 
         out.println(tallinn.parkCar(ch4));
         out.println(tallinn.parkCar(c1));
         out.println(tallinn.parkCar(ch3));
-        //System.out.println(tallinn.parkCar(c1));
-        //System.out.println(tallinn.parkCar(ch2));
+        out.println(tallinn.parkCar(c1));
+        out.println(tallinn.parkCar(ch2));
 
-        test(medium);
+        tallinn.addParkingLot(medium);
 
+        out.println(tallinn.parkCar(ch3));
+
+        multi(multi);
         small(small);
-
-        ch4.unpark();
+        medium(medium);
 
     }
+
+    private static void multi(MultiLevelParkingLot multiLevelParkingLot) {
+        out.println();
+        out.println(multiLevelParkingLot.getTable());
+        out.println(multiLevelParkingLot.getParkedCars());
+        out.println(multiLevelParkingLot.getQueueCars());
+        out.println(multiLevelParkingLot.getSpaceAvailable());
+        out.println();
+    }
+
+
 
     private static void small(SmallCarParkingLot smallCarParkingLot) {
         out.println();
@@ -122,7 +138,7 @@ public class City {
         out.println();
     }
 
-    private static void test(PriorityParkingLot priorityParkingLot) {
+    private static void medium(PriorityParkingLot priorityParkingLot) {
         out.println();
         out.println(priorityParkingLot.getTable());
         out.println(priorityParkingLot.getParkedCars());

@@ -40,10 +40,9 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-
         depark();
 
-        List<Car> temp = new ArrayList<>(getQueueCars());
+        List<Car> temp = new ArrayList<>(getQueueCars(""));
         for (Car car : temp)
             if (this.getSpaceAvailable() >= car.getSize()) queueToLot(car);
 
@@ -74,7 +73,27 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public String getTable() {
-        return super.getTable();
+        processQueue();
+        this.setNeedUpdate(false);
+        StringBuilder layers = new StringBuilder();
+        List<Car> original = List.copyOf(getParkedCars(""));
+        List<Car> temp;
+        clearTemp();
+
+        for (int i = 0; i < levels; i++) {
+            layers.append(super.getTable());
+            if (i + 1 < levels) {
+                layers.append("---\n");
+            }
+            temp = getParkedCars("");
+            temp.removeAll(getTemp());
+            setParkedCars(temp);
+        }
+
+        setParkedCars(original);
+        this.setNeedUpdate(true);
+        return layers.toString();
+
     }
 
     @Override
