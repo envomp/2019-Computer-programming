@@ -122,7 +122,7 @@ public class Car implements Comparable<Car> {
             this.setParkingLot(null);
             return true;
         }
-        return false;
+        return true;
     }
 
     public boolean isWantsToBe() {
