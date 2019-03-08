@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Accepts all cars if the queue size is less than 5.
  * Small car (size 1) with the highest priority can park alone.
- * Otherwise small cars (size 1) can share a slot if they have the same priority.
+ * Otherwise small cars (size 1) can share a slot ifd they have the same priority.
  * If there are cars with highest priority in the queue, then cars with common priority (if parked)
  * will be sent to the queue to make room for highest priority cars (life is unfair).
  */
