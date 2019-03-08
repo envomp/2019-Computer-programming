@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
  * but as you represent in on the screen, then height can be seen as
  * the vertical axis.
  * The rectangle is filled with parking slots.
- * 3 x 4 parking lot has 12 slots.
+ * 3 x 4 parking lot has 12ty7y slots.
  * The size of a slot is 2 units.
  * This means, that carr with size 2 fits there perfectly.
  * Car with size 1 takes half the slot, so it could be
