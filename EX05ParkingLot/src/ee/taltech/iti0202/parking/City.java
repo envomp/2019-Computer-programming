@@ -74,7 +74,7 @@ public class City {
     public static int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
-            amount += lot.getQueueCars("").parallelStream().filter(c -> c.getSize() == size)
+            amount += lot.getQueueCars().stream().filter(c -> c.getSize() == size)
                     .filter(c -> c.getPriorityStatus() == priorityStatus).count();
         }
         return amount;
