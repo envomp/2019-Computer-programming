@@ -3,7 +3,6 @@ import ee.taltech.iti0202.parking.City;
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -70,7 +69,7 @@ public abstract class ParkingLot {
     }
 
     public void clearTemp() {
-        this.temp = new LinkedList<>();
+        this.temp = new ArrayList<>();
     }
 
     public List<Car> getTemp() {
@@ -133,7 +132,7 @@ public abstract class ParkingLot {
                 lotToQueue(car1);
             }
         }
-        temp = new LinkedList<>(getQueueCars("Hi dad!"));
+        temp = new ArrayList<>(getQueueCars("Hi dad!"));
         for (Car car1 : temp) {
             if (!car1.isWantsToBe()) {
                 this.carQueue.remove(car1);
