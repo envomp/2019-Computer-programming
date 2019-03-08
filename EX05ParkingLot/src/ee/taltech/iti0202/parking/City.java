@@ -258,10 +258,12 @@ public class City {
             for (ParkingLot lot : temp) {
                 if (best == null) {
                     best = lot;
-                } else if (best.getSpaceAvailable() - car.getRelativeSize() < 0
+                }
+                if (best.getSpaceAvailable() - car.getRelativeSize() < 0
                         && lot.getSpaceAvailable() - car.getRelativeSize() >= 0) {
                     best = lot;
-                } else if (best.getQueueCars().size() < lot.getQueueCars().size()) {
+                }
+                if (best.getQueueLen() < lot.getQueueLen()) {
                     best = lot;
                 }
             }

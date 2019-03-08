@@ -80,7 +80,7 @@ public abstract class ParkingLot {
     }
 
     public int getQueueLen() {
-        return this.getQueueCars().size();
+        return this.getQueueCars("").size();
     }
 
     public void setBuffer(Car car) {
