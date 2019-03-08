@@ -266,7 +266,7 @@ public class City {
             Optional<ParkingLot> lotOptional = Optional.of(best);
             boolean success = lotOptional.get().addToQueue(car);
             best.processQueue();
-            carsInLot.put(car.toString(), carsInLot.get(car.toString()) + 1);
+            //carsInLot.put(car.toString(), carsInLot.get(car.toString()) + 1);
             if (success) {
                 car.setParkingLot(best);
                 return lotOptional;
