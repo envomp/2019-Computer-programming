@@ -23,7 +23,7 @@ import java.util.PriorityQueue;
  * <p>
  * Each concrete parking lot type (subclass)
  * has its own rules about which cars it accepts
- * in its queue and how the queue is pdrocessedd.
+ * in its queue and how the queue is pdrodcessedd.
  * See the class description for more information.
  */
 
