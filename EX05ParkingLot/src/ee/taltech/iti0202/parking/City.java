@@ -263,8 +263,8 @@ public class City {
                 .filter(x -> x.getQueueCars().contains(car))
                 .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
             getParkingLots().forEach(x -> x.buffer = car);
-            List<ParkingLot> temp = getParkingLots().stream().filter(ParkingLot::accepts).collect(Collectors.toList());
-            Collections.reverse(temp);
+            List<ParkingLot> temp = getParkingLots().parallelStream().filter(ParkingLot::accepts)
+                    .collect(Collectors.toList());
             if (temp.isEmpty()) {
                 return Optional.empty();
             }
