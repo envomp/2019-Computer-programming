@@ -74,8 +74,9 @@ public class City {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
             out.println(lot.getQueueCars());
-            amount += lot.getQueueCars().stream()
-                    .filter(c -> c.getSize() == size).filter(c -> c.getPriorityStatus() == priorityStatus).count();
+            amount += lot.getQueueCars().parallelStream()
+                    .filter(c -> c.getSize() == size)
+                    .filter(c -> c.getPriorityStatus() == priorityStatus).count();
         }
         return amount;
     }
@@ -90,7 +91,7 @@ public class City {
     public static int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
-            amount += lot.getParkedCars().stream()
+            amount += lot.getParkedCars().parallelStream()
                     .filter(c -> c.getSize() == size).filter(c -> c.getPriorityStatus() == priorityStatus).count();
         }
         return amount;
@@ -277,7 +278,7 @@ public class City {
      */
     public Optional<ParkingLot> parkCar(Car car) {
         car.setWantsToBe(true);
-        if (!getParkingLots().isEmpty() && getParkingLots().stream()
+        if (!getParkingLots().isEmpty() && getParkingLots().parallelStream()
                 .filter(x -> x.getQueueCars().contains(car))
                 .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
             getParkingLots().forEach(x -> x.buffer = car);
