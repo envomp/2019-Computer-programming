@@ -13,7 +13,7 @@ import java.util.Map;
 
 import java.util.stream.Collectors;
 
-import static java.lang.System.out;
+import static java.lang.System.out; //sout
 
 
 public class City {
