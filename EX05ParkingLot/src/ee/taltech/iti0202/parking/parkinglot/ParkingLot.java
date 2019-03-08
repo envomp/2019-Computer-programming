@@ -32,6 +32,7 @@ public abstract class ParkingLot {
     private final int width;
     private final int height;
 
+    public int times = 0;
     private List<Car> carList;
     private PriorityQueue<Car> carQueue;
     public Car buffer;
@@ -40,6 +41,7 @@ public abstract class ParkingLot {
     private boolean needUpdate = true;
     private boolean newWorldOrder = false;
     private boolean getParkedBoy = false;
+    private boolean processQueue = true;
 
     /**
      * Initialize the parking slot/s with the given width and height.
@@ -54,6 +56,14 @@ public abstract class ParkingLot {
         this.carList = new ArrayList<>();
         this.carQueue = new PriorityQueue<>();
         clearTemp();
+    }
+
+    public boolean isProcessQueue() {
+        return processQueue;
+    }
+
+    public void setProcessQueue(boolean b) {
+        this.processQueue = b;
     }
 
     public void setNewWorldOrder(boolean bool) {

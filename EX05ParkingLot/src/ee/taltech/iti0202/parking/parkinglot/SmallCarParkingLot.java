@@ -24,16 +24,19 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-
         //depark();
+        if (isProcessQueue()) {
+            times += 1;
 
-        List<Car> temp = new ArrayList<>(getQueueCars(""));
+            List<Car> temp = new ArrayList<>(getQueueCars(""));
 
-        for (Car car : temp) {
-            if (this.getSpaceAvailable() >= getQueueCars("").get(0).getSize()) {
-                queueToLot(car);
+            for (Car car : temp) {
+                if (this.getSpaceAvailable() >= getQueueCars("").get(0).getSize()) {
+                    queueToLot(car);
+                }
             }
         }
+
     }
 
     @Override

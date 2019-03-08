@@ -74,6 +74,7 @@ public class City {
         out.print(tallinn.getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
         float estimatedTime = (System.currentTimeMillis() - startTime) / 1000f;
         out.println("\tin sec:\t" + estimatedTime);
+        out.println(small.times);
     }
 
     /**
@@ -235,6 +236,7 @@ public class City {
         if (!getParkingLots().isEmpty() && getParkingLots().parallelStream()
                 .filter(x -> x.getQueueCars().contains(car))
                 .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
+            getParkingLots().forEach(x -> x.setProcessQueue(x.getSpaceAvailable() != 0));
             getParkingLots().forEach(x -> x.buffer = car);
             List<ParkingLot> temp = getParkingLots().parallelStream().filter(ParkingLot::accepts)
                     .collect(Collectors.toList());
