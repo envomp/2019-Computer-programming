@@ -111,21 +111,27 @@ public class City {
         tallinn.addParkingLot(medium);
         tallinn.addParkingLot(medium2);
 
-        tallinn.parkCar(c1);
-        tallinn.parkCar(c2);
-        medium(medium);
-        medium(medium2);
-        tallinn.parkCar(c3);
-        tallinn.parkCar(c4);
-        medium(medium);
-        medium(medium2);
-        tallinn.parkCar(c5);
-        tallinn.parkCar(c6);
-        medium(medium);
-        medium(medium2);
-        tallinn.parkCar(c7);
-        medium(medium);
-        medium(medium2);
+        SmallCarParkingLot smallCarParkingLot = new SmallCarParkingLot(1, 1);
+        PriorityParkingLot priorityParkingLot = new PriorityParkingLot(1, 1);
+        MultiLevelParkingLot multiLevelParkingLot = new MultiLevelParkingLot(1, 1, 1);
+        tallinn.addParkingLot(smallCarParkingLot);
+        tallinn.addParkingLot(priorityParkingLot);
+        tallinn.addParkingLot(multiLevelParkingLot);
+        // small
+        out.println(tallinn.parkCar(h1()));
+        out.println(tallinn.parkCar(h1()));
+        // priority
+        out.println(tallinn.parkCar(h2()));
+        out.println(tallinn.parkCar(h1()));
+        // multi
+        out.println(tallinn.parkCar(h2()));
+        out.println(tallinn.parkCar(h1()));
+
+        small(smallCarParkingLot);
+        medium(priorityParkingLot);
+        multi(multiLevelParkingLot);
+        out.println(City.getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
+
         //List<Car> allCars = new ArrayList<>(List.of(c1, c2, c3, c4, c5, c6, c7));
         //long startTime = System.nanoTime();
         //int tot = 0;
@@ -145,6 +151,14 @@ public class City {
         //long totalTime = endTime - startTime;
         //if (tot != 0) throw new RuntimeException("no");
         //else out.println("you did good, million tests in(sec): " + totalTime / 1000000000);
+    }
+
+    private static Car h1() {
+        return new Car(Car.PriorityStatus.HIGHEST, 1);
+    }
+
+    private static Car h2() {
+        return new Car(Car.PriorityStatus.HIGHEST, 2);
     }
 
     private static void parkAll(City tallinn, Car c1, Car ch2, Car ch3, Car ch4) {
@@ -180,7 +194,6 @@ public class City {
 
         parkAll(tallinn, c1, ch2, ch3, ch4);
 
-
         out.println(c1.getRelativeSize());
         out.println(c1.getParkingLot());
         out.println(c1.isParked());
@@ -190,6 +203,8 @@ public class City {
     }
 
     private static void multi(MultiLevelParkingLot multiLevelParkingLot) {
+        out.println();
+        out.println("Multi:");
         out.println();
         out.println("Table: ");
         out.println(multiLevelParkingLot.getTable());
@@ -203,6 +218,8 @@ public class City {
 
     private static void small(SmallCarParkingLot smallCarParkingLot) {
         out.println();
+        out.println("Small:");
+        out.println();
         out.println("Table: ");
         out.println(smallCarParkingLot.getTable());
         out.print("Parked cars:    ");
@@ -213,6 +230,8 @@ public class City {
     }
 
     private static void medium(PriorityParkingLot priorityParkingLot) {
+        out.println();
+        out.println("Medium:");
         out.println();
         out.println("Table: ");
         out.println(priorityParkingLot.getTable());
@@ -271,9 +290,7 @@ public class City {
             for (ParkingLot lot : temp) {
                 if (best == null) {
                     best = lot;
-                } else if (best.getSpaceAvailable() - car.getRelativeSize() < 0
-                        && lot.getSpaceAvailable() - car.getRelativeSize() >= 0) {
-                    best = lot;
+
                 } else if (best.getQueueLen() > lot.getQueueLen()) {
                     best = lot;
                 }
