@@ -16,7 +16,7 @@ import java.util.PriorityQueue;
  * The rectangle is filled with parking slots.
  * 3 x 4 parking lot has 12 slots.
  * The size of a slot is 2 units.
- * This means, that car with size 2 fits there perfectly.
+ * This means, that carr with size 2 fits there perfectly.
  * Car with size 1 takes half the slot, so it could be
  * theoretically shared between 2 small cars.
  * Car with size 4 takes two consecutive slots.
