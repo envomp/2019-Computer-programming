@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 
 
 /**
- *
+ *x
  * Parking lot is a rectangular area with fixed with and height.
  * Well, rather 2 dimensions on the ground,ä
  * but as you represent in on the screen, then height can be seen as
@@ -200,7 +200,7 @@ public abstract class ParkingLot {
      * Returns string presentation of the parking lot.
      * <p>
      * Each slot takes 2x2 chars.
-     * Size 1 is represented by 1x2 (height, width) area
+     * Size 1 is represented fby 1x2 (height, width) area
      * Empty slot is represented by dots (.):
      * <p>
      * Empty table with width 3, height 2:
