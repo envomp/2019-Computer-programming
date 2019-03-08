@@ -256,10 +256,12 @@ public class City {
             }
             ParkingLot best = null;
             for (ParkingLot lot : temp) {
-                if (best == null) best = lot;
-                else if (best.getSpaceAvailable() - car.getSize() < 0 && lot.getSpaceAvailable() - car.getSize() > 0) {
+                if (best == null) {
                     best = lot;
-                } else if (best.getQueueCars().size() > lot.getQueueCars().size()) {
+                } else if (best.getSpaceAvailable() - car.getRelativeSize() < 0
+                        && lot.getSpaceAvailable() - car.getRelativeSize() >= 0) {
+                    best = lot;
+                } else if (best.getQueueCars().size() < lot.getQueueCars().size()) {
                     best = lot;
                 }
             }
