@@ -18,6 +18,7 @@ public class SmallCarParkingLot extends ParkingLot {
      */
     public SmallCarParkingLot(int height, int width) {
         super(height, width);
+        System.gc();
         setSpaceAvailable(getSpaceAvailable() / 2);
     }
 
