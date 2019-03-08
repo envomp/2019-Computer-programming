@@ -22,6 +22,7 @@ public class City {
     String name;
 
     public City(String name) {
+        System.gc();
         this.name = name;
         parkingLots = new ArrayList<>();
         carsInLot = new HashMap<>() {{
