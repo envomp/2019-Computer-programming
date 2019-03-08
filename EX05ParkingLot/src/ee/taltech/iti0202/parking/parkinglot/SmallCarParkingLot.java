@@ -24,6 +24,7 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
+        System.out.println("called");
 
         //depark();
 
