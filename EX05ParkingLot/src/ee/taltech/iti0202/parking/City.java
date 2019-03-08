@@ -5,11 +5,7 @@ import ee.taltech.iti0202.parking.parkinglot.ParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.lang.System.out; //sout
@@ -281,7 +277,7 @@ public class City {
                 .filter(x -> x.getQueueCars().contains(car))
                 .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
             getParkingLots().forEach(x -> x.buffer = car);
-            List<ParkingLot> temp = getParkingLots().parallelStream().filter(ParkingLot::accepts)
+            List<ParkingLot> temp = getParkingLots().stream().filter(ParkingLot::accepts)
                     .collect(Collectors.toList());
             if (temp.isEmpty()) {
                 return Optional.empty();
