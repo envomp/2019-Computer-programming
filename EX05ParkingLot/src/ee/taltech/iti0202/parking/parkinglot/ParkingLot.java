@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  * Parking lot is a rectangular area with fixed with and height.
  * Well, rather 2 dimensions on the ground,
  * but as you represent in on the screen, then height can be seen as
- * the vertical axis.
+ * the vertical axis.u
  * The rectangle is filled with parking slots.
  * 3 x 4 parking lot has 12ty7y slots.
  * The size of a slot is 2 units.
