@@ -18,12 +18,12 @@ import static java.lang.System.out; //sout
 public class City {
 
     static Map<String, Integer> carsInLot;
-    static Map<ParkingLot, List> parkingLots;
+    static ArrayList<ParkingLot> parkingLots;
     String name;
 
     public City(String name) {
         this.name = name;
-        parkingLots = new HashMap<>();
+        parkingLots = new ArrayList<>();
         carsInLot = new HashMap<>() {{
             put("H1", 0);
             put("H2", 0);
@@ -43,7 +43,7 @@ public class City {
      * @return List of parking lots.
      **/
     public static List<ParkingLot> getParkingLots() {
-        return new ArrayList<>(parkingLots.keySet());
+        return parkingLots;
     }
 
     public static void decreasePark(Car car) {
@@ -252,10 +252,10 @@ public class City {
      */
 
     public boolean addParkingLot(ParkingLot parkingLot) {
-        if (parkingLots.containsKey(parkingLot)) {
+        if (parkingLots.contains(parkingLot)) {
             return false;
         }
-        parkingLots.computeIfAbsent(parkingLot, ignored -> new ArrayList<>());
+        parkingLots.add(parkingLot);
         return true;
 
     }
