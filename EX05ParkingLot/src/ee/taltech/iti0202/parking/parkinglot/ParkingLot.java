@@ -52,7 +52,7 @@ public abstract class ParkingLot {
         this.width = width;
         this.height = height;
         this.spaceAvailable = height * width * 2;
-        this.carList = new LinkedList<>();
+        this.carList = new ArrayList<>();
         this.carQueue = new PriorityQueue<>();
         clearTemp();
     }
@@ -121,13 +121,13 @@ public abstract class ParkingLot {
         this.spaceAvailable += car.getRelativeSize();
         car.setParked(false);
         this.carQueue.add(car);
-        List<Car> newList = new LinkedList<>(List.copyOf(carList));
+        List<Car> newList = new ArrayList<>(List.copyOf(carList));
         newList.remove(car);
         setParkedCars(newList);
     }
 
     public void depark() {
-        List<Car> temp = new LinkedList<>(getParkedCars("Hi mom!"));
+        List<Car> temp = new ArrayList<>(getParkedCars("Hi mom!"));
         for (Car car1 : temp) {
             if (!car1.isWantsToBe()) {
                 lotToQueue(car1);
@@ -190,11 +190,11 @@ public abstract class ParkingLot {
 
     public List<Car> getQueueCars() {
         processQueue();
-        return new LinkedList<>(carQueue);
+        return new ArrayList<>(carQueue);
     }
 
     public List<Car> getQueueCars(String dad) {
-        return new LinkedList<>(carQueue);
+        return new ArrayList<>(carQueue);
     }
 
     /**
