@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.lang.System.out; //sout
 
@@ -64,6 +65,14 @@ public class City {
         return carsInLot;
     }
 
+    public static void main(String[] args) {
+        City tallinn = new City("Tallinn");
+        SmallCarParkingLot small = new SmallCarParkingLot(1, 1);
+        tallinn.addParkingLot(small);
+        IntStream.range(0, 1000).mapToObj(i -> h1()).forEach(tallinn::parkCar);
+        out.println(tallinn.getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
+    }
+
     /**
      * Gets car count in queue by priority status and size.
      *
@@ -71,7 +80,7 @@ public class City {
      * @param size           (1, 2, 4)
      * @return Count of cars in queue.
      */
-    public static int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
+    public int getCarCountInQueue(Car.PriorityStatus priorityStatus, int size) {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
             amount += lot.getQueueCars().stream().filter(c -> c.getSize() == size)
@@ -87,70 +96,13 @@ public class City {
      * @param size           (1, 2, 4)
      * @return Count of parked cars.
      */
-    public static int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
+    public int getParkedCarCount(Car.PriorityStatus priorityStatus, int size) {
         int amount = 0;
         for (ParkingLot lot : getParkingLots()) {
-            amount += lot.getParkedCars().parallelStream()
-                    .filter(c -> c.getSize() == size).filter(c -> c.getPriorityStatus() == priorityStatus).count();
+            amount += lot.getParkedCars().parallelStream().filter(c -> c.getSize() == size)
+                    .filter(c -> c.getPriorityStatus() == priorityStatus).count();
         }
         return amount;
-    }
-
-    public static void main(String[] args) {
-        City tallinn = new City("Tallinn");
-        Car c1 = new Car(Car.PriorityStatus.PRIORITY, 2);
-        Car c2 = new Car(Car.PriorityStatus.PRIORITY, 2);
-        Car c3 = new Car(Car.PriorityStatus.HIGHEST, 2);
-        Car c4 = new Car(Car.PriorityStatus.HIGHEST, 2);
-        Car c5 = new Car(Car.PriorityStatus.HIGHEST, 2);
-        Car c6 = new Car(Car.PriorityStatus.COMMON, 2);
-        Car c7 = new Car(Car.PriorityStatus.COMMON, 2);
-
-        PriorityParkingLot medium = new PriorityParkingLot(1, 0);
-        PriorityParkingLot medium2 = new PriorityParkingLot(1, 0);
-        tallinn.addParkingLot(medium);
-        tallinn.addParkingLot(medium2);
-
-        SmallCarParkingLot smallCarParkingLot = new SmallCarParkingLot(1, 1);
-        PriorityParkingLot priorityParkingLot = new PriorityParkingLot(1, 1);
-        MultiLevelParkingLot multiLevelParkingLot = new MultiLevelParkingLot(1, 1, 1);
-        tallinn.addParkingLot(smallCarParkingLot);
-        tallinn.addParkingLot(priorityParkingLot);
-        tallinn.addParkingLot(multiLevelParkingLot);
-        // small
-        out.println(tallinn.parkCar(h1()));
-        out.println(tallinn.parkCar(h1()));
-        // priority
-        out.println(tallinn.parkCar(h2()));
-        out.println(tallinn.parkCar(h1()));
-        // multi
-        out.println(tallinn.parkCar(h2()));
-        out.println(tallinn.parkCar(h1()));
-
-        small(smallCarParkingLot);
-        medium(priorityParkingLot);
-        multi(multiLevelParkingLot);
-        out.println(City.getCarCountInQueue(Car.PriorityStatus.HIGHEST, 1));
-
-        //List<Car> allCars = new ArrayList<>(List.of(c1, c2, c3, c4, c5, c6, c7));
-        //long startTime = System.nanoTime();
-        //int tot = 0;
-        //for (int i = 0; i < 10; i++) {
-        //    Collections.shuffle(allCars);
-        //    for (Car car: allCars) {
-        //        tallinn.parkCar(car);
-        //    }
-        //    medium(medium);
-        //    medium.processQueue();
-        //    tot += medium.getQueueLen();
-        //    for (Car car: allCars) {
-        //        car.unpark();
-        //    }
-        //}
-        //long endTime   = System.nanoTime();
-        //long totalTime = endTime - startTime;
-        //if (tot != 0) throw new RuntimeException("no");
-        //else out.println("you did good, million tests in(sec): " + totalTime / 1000000000);
     }
 
     private static Car h1() {
