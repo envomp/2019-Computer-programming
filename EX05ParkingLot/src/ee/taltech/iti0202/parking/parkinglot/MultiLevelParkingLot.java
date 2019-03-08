@@ -42,16 +42,14 @@ public class MultiLevelParkingLot extends ParkingLot {
     @Override
     public void processQueue() {
 
-        if (isProcessQueue()) {
-            times += 1;
 
-            List<Car> temp = new LinkedList<>(getQueueCars(""));
-            for (Car car : temp) {
-                if (!car.isWantsToBe()) {
-                    depark();
-                } else if (this.getSpaceAvailable() >= car.getSize()) {
-                    queueToLot(car);
-                }
+        List<Car> temp = new LinkedList<>(getQueueCars(""));
+        for (Car car : temp) {
+            if (!car.isWantsToBe()) {
+                depark();
+            } else if (this.getSpaceAvailable() >= car.getSize()) {
+                queueToLot(car);
+
             }
         }
 
