@@ -33,7 +33,7 @@ public class City {
     }
 
     /**
-     * Gets all parking lots in this city.
+     * Gets all parking lots in this citgy.
      *
      * @return List of parking lots.
      **/
