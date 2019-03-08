@@ -6,7 +6,6 @@ import ee.taltech.iti0202.parking.parkinglot.PriorityParkingLot;
 import ee.taltech.iti0202.parking.parkinglot.SmallCarParkingLot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -282,7 +281,6 @@ public class City {
             Optional<ParkingLot> lotOptional = Optional.of(best);
             boolean success = lotOptional.get().addToQueue(car);
             best.processQueue();
-            //carsInLot.put(car.toString(), carsInLot.get(car.toString()) + 1);
             if (success) {
                 car.setParkingLot(best);
                 return lotOptional;
