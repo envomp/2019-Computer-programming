@@ -145,7 +145,7 @@ public abstract class ParkingLot {
     public boolean addToQueue(Car car) {
         setBuffer(car);
         if (car.getParkingLot() != null
-                || getQueueCars().contains(car)
+                || getQueueCars("").contains(car)
                 || City.getParkingLots().stream().anyMatch(x -> x.getParkedCars().contains(car))
                 || !accepts() || car.isParked()) {
             return false;

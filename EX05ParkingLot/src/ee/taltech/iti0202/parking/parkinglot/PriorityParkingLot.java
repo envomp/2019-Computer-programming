@@ -71,7 +71,7 @@ public class PriorityParkingLot extends ParkingLot {
 
     @Override
     public boolean accepts() {
-        return this.getQueueCars().size() < 5 && super.accepts();
+        return this.getQueueCars("").size() < 5 && super.accepts();
     }
 
     @Override
