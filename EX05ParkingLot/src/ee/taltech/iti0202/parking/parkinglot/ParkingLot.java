@@ -20,7 +20,7 @@ import java.util.PriorityQueue;
  * This means, that carr with size 2 fits there perfectly.
  * Car with size 1 takes half the slot, so it could be
  * theoretically shared between 2 small cars.
- * Car with size 4 takes two consecutive slots.
+ * Car with size 4 takes two consecutive slots.,
  * <p>
  * Each concrete parking lot type (subclass)
  * has its own rules about which cars it accepts
