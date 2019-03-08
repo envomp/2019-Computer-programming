@@ -233,8 +233,8 @@ public class City {
     public Optional<ParkingLot> parkCar(Car car) {
         car.setWantsToBe(true);
         if (!getParkingLots().isEmpty() && getParkingLots().parallelStream()
-                .filter(x -> x.getQueueCars("").contains(car))
-                .noneMatch(x -> x.getParkedCars("").contains(car)) && !car.isParked()) {
+                .filter(x -> x.getQueueCars().contains(car))
+                .noneMatch(x -> x.getParkedCars().contains(car)) && !car.isParked()) {
             getParkingLots().forEach(x -> x.buffer = car);
             List<ParkingLot> temp = getParkingLots().parallelStream().filter(ParkingLot::accepts)
                     .collect(Collectors.toList());
@@ -251,7 +251,7 @@ public class City {
             }
             Optional<ParkingLot> lotOptional = Optional.of(best);
             boolean success = lotOptional.get().addToQueue(car);
-            //best.processQueue();
+            best.processQueue();
             if (success) {
                 car.setParkingLot(best);
                 return lotOptional;
