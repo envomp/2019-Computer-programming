@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.parking.parkinglot;
+
 import ee.taltech.iti0202.parking.car.Car;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,18 +41,20 @@ public class MultiLevelParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-//        depark();
 
-        List<Car> temp = new LinkedList<>(getQueueCars(""));
-        for (Car car : temp) {
-            if (!car.isWantsToBe()) {
-                depark();
-            } else if (this.getSpaceAvailable() >= car.getSize()) {
-                queueToLot(car);
+        if (isProcessQueue()) {
+            times += 1;
+
+            List<Car> temp = new LinkedList<>(getQueueCars(""));
+            for (Car car : temp) {
+                if (!car.isWantsToBe()) {
+                    depark();
+                } else if (this.getSpaceAvailable() >= car.getSize()) {
+                    queueToLot(car);
+                }
             }
         }
 
-//        depark();
     }
 
 

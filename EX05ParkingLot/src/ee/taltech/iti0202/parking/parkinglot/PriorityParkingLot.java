@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.parking.parkinglot;
+
 import ee.taltech.iti0202.parking.car.Car;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -27,47 +29,46 @@ public class PriorityParkingLot extends ParkingLot {
     @Override
     public void processQueue() {
 
-        //depark();
+        if (isProcessQueue()) {
+            times += 1;
 
-        List<Car> temp = new ArrayList<>(getQueueCars("Hi dad!"));
-        boolean possible;
-        Car remove = null;
-        for (Car car : temp) {
-            possible = true;
+            List<Car> temp = new ArrayList<>(getQueueCars("Hi dad!"));
+            boolean possible;
+            Car remove = null;
+            for (Car car : temp) {
+                possible = true;
 
-            if (car.getRelativeSize() == 1 && car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
-                car.setValue(2);
-            }
+                if (car.getRelativeSize() == 1 && car.getPriorityStatus() == Car.PriorityStatus.HIGHEST) {
+                    car.setValue(2);
+                }
 
-            if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST && getParkedCars("")
-                    .stream().anyMatch(c -> c.getPriorityStatus() != Car.PriorityStatus.HIGHEST)
-                    && this.getSpaceAvailable() < car.getRelativeSize()) {
-                if (this.getSpaceAvailable() < car.getRelativeSize()) {
-                    while (this.getSpaceAvailable() < car.getRelativeSize()) {
-                        List<Car> all = getParkedCars("").stream()
-                                .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
-                                .sorted(Comparator.comparing(Car::getSize))
-                                .collect(Collectors.toList());
-                        if (!all.isEmpty()) {
-                            remove = all.get(0);
+                if (car.getPriorityStatus() == Car.PriorityStatus.HIGHEST && getParkedCars("")
+                        .stream().anyMatch(c -> c.getPriorityStatus() != Car.PriorityStatus.HIGHEST)
+                        && this.getSpaceAvailable() < car.getRelativeSize()) {
+                    if (this.getSpaceAvailable() < car.getRelativeSize()) {
+                        while (this.getSpaceAvailable() < car.getRelativeSize()) {
+                            List<Car> all = getParkedCars("").stream()
+                                    .filter(x -> x.getPriorityStatus() == Car.PriorityStatus.COMMON)
+                                    .sorted(Comparator.comparing(Car::getSize))
+                                    .collect(Collectors.toList());
+                            if (!all.isEmpty()) {
+                                remove = all.get(0);
+                            }
+                            if (remove == null) {
+                                possible = false;
+                                break;
+                            }
+                            lotToQueue(remove);
                         }
-                        if (remove == null) {
-                            possible = false;
-                            break;
-                        }
-                        lotToQueue(remove);
+                    }
+                    if (possible) queueToLot(car);
+                } else {
+                    if (this.getSpaceAvailable() >= car.getRelativeSize()) {
+                        queueToLot(car);
                     }
                 }
-                if (possible) queueToLot(car);
-            } else {
-                if (this.getSpaceAvailable() >= car.getRelativeSize()) {
-                    queueToLot(car);
-                }
             }
-
         }
-
-        //depark();
     }
 
     @Override

@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.parking.parkinglot;
+
 import ee.taltech.iti0202.parking.car.Car;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class SmallCarParkingLot extends ParkingLot {
 
     @Override
     public void processQueue() {
-        //depark();
         if (isProcessQueue()) {
             times += 1;
 
