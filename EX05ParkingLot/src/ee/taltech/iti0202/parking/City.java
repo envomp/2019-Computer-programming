@@ -99,21 +99,34 @@ public class City {
 
     public static void main(String[] args) {
         City tallinn = new City("Tallinn");
-        Car c1 = new Car(Car.PriorityStatus.PRIORITY, 1);
-        Car c2 = new Car(Car.PriorityStatus.PRIORITY, 1);
-        Car c3 = new Car(Car.PriorityStatus.HIGHEST, 1);
+        Car c1 = new Car(Car.PriorityStatus.PRIORITY, 2);
+        Car c2 = new Car(Car.PriorityStatus.PRIORITY, 2);
+        Car c3 = new Car(Car.PriorityStatus.HIGHEST, 2);
         Car c4 = new Car(Car.PriorityStatus.HIGHEST, 2);
-        Car c5 = new Car(Car.PriorityStatus.HIGHEST, 4);
-        Car c6 = new Car(Car.PriorityStatus.COMMON, 1);
-        Car c7 = new Car(Car.PriorityStatus.COMMON, 4);
+        Car c5 = new Car(Car.PriorityStatus.HIGHEST, 2);
+        Car c6 = new Car(Car.PriorityStatus.COMMON, 2);
+        Car c7 = new Car(Car.PriorityStatus.COMMON, 2);
 
-        PriorityParkingLot medium = new PriorityParkingLot(1, 2);
+        PriorityParkingLot medium = new PriorityParkingLot(1, 1);
+        PriorityParkingLot medium2 = new PriorityParkingLot(1, 1);
         tallinn.addParkingLot(medium);
+        tallinn.addParkingLot(medium2);
 
         tallinn.parkCar(c1);
-        tallinn.parkCar(c6);
         tallinn.parkCar(c2);
         medium(medium);
+        medium(medium2);
+        tallinn.parkCar(c3);
+        tallinn.parkCar(c4);
+        medium(medium);
+        medium(medium2);
+        tallinn.parkCar(c5);
+        tallinn.parkCar(c6);
+        medium(medium);
+        medium(medium2);
+        tallinn.parkCar(c7);
+        medium(medium);
+        medium(medium2);
         //List<Car> allCars = new ArrayList<>(List.of(c1, c2, c3, c4, c5, c6, c7));
         //long startTime = System.nanoTime();
         //int tot = 0;
@@ -258,12 +271,10 @@ public class City {
             for (ParkingLot lot : temp) {
                 if (best == null) {
                     best = lot;
-                }
-                if (best.getSpaceAvailable() - car.getRelativeSize() < 0
+                } else if (best.getSpaceAvailable() - car.getRelativeSize() < 0
                         && lot.getSpaceAvailable() - car.getRelativeSize() >= 0) {
                     best = lot;
-                }
-                if (best.getQueueLen() < lot.getQueueLen()) {
+                } else if (best.getQueueLen() > lot.getQueueLen()) {
                     best = lot;
                 }
             }
