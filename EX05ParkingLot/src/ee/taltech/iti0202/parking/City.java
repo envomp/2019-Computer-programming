@@ -26,9 +26,15 @@ public class City {
         this.name = name;
         parkingLots = new HashMap<>();
         carsInLot = new HashMap<>() {{
-            put(Car.PriorityStatus.HIGHEST.toString(), 0);
-            put(Car.PriorityStatus.PRIORITY.toString(), 0);
-            put(Car.PriorityStatus.COMMON.toString(), 0);
+            put("H1", 0);
+            put("H2", 0);
+            put("H4", 0);
+            put("P1", 0);
+            put("P2", 0);
+            put("P4", 0);
+            put("C1", 0);
+            put("C2", 0);
+            put("C4", 0);
         }};
     }
 
@@ -42,7 +48,7 @@ public class City {
     }
 
     public static void decreasePark(Car car) {
-        carsInLot.put(car.getPriorityStatus().toString(), carsInLot.get(car.getPriorityStatus().toString()) - 1);
+        carsInLot.put(car.toString(), carsInLot.get(car.toString()) - 1);
     }
 
     /**
@@ -260,7 +266,7 @@ public class City {
             Optional<ParkingLot> lotOptional = Optional.of(best);
             boolean success = lotOptional.get().addToQueue(car);
             best.processQueue();
-            carsInLot.put(car.getPriorityStatus().toString(), carsInLot.get(car.getPriorityStatus().toString()) + 1);
+            carsInLot.put(car.toString(), carsInLot.get(car.toString()) + 1);
             if (success) {
                 car.setParkingLot(best);
                 return lotOptional;
