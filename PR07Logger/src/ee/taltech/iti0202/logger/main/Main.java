@@ -6,7 +6,7 @@ import ee.taltech.iti0202.logger.Logger;
 import ee.taltech.iti0202.logger.filter.LogFilter;
 import ee.taltech.iti0202.logger.formatter.LogFormatter;
 import ee.taltech.iti0202.logger.formatter.SimpleFormatter;
-import ee.taltech.iti0202.logger.formatter.UpercaseFormatter;
+import ee.taltech.iti0202.logger.formatter.UppercaseFormatter;
 import ee.taltech.iti0202.logger.level.Level;
 
 import java.util.Date;
@@ -27,7 +27,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Custom formatter in uppercase");
-        logger = new ConsoleLogger("CAPS LOCK!", Level.DEBUG, new UpercaseFormatter());
+        logger = new ConsoleLogger("CAPS LOCK!", Level.DEBUG, new UppercaseFormatter());
         testLogger(logger);
         System.out.println();
 
