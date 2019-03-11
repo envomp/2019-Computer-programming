@@ -65,7 +65,6 @@ public abstract class Logger {
         this.tag = tag;
         this.filter = filter;
         this.formatter = formatter;
-        this.filter = new LevelFilter(() -> Level.ALL);
     }
 
 
