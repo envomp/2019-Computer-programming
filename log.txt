@@ -13,3 +13,6 @@ WARNING	ee.taltech.iti0202.logger.main.Main	Warning message
 SEVERE	ee.taltech.iti0202.logger.main.Main	Severe message
 ERROR	ee.taltech.iti0202.logger.main.Main	Error message
 WARNING	ee.taltech.iti0202.logger.main.Main	Warning message
+SEVERE	ee.taltech.iti0202.logger.main.Main	Severe message
+ERROR	ee.taltech.iti0202.logger.main.Main	Error message
+WARNING	ee.taltech.iti0202.logger.main.Main	Warning message
