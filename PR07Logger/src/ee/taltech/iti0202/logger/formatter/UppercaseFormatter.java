@@ -6,6 +6,7 @@ public class UppercaseFormatter extends SimpleFormatter {
 
     @Override
     public String format(Log log) {
-        return String.format("%s\t%s\t%s", log.getLevel().getName(), log.getTag().toUpperCase(), log.getMessage().toUpperCase());
+        return String.format("%s\t%s\t%s", log.getLevel().getName(),
+                log.getTag().toUpperCase(), log.getMessage().toUpperCase());
     }
 }
