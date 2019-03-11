@@ -102,10 +102,10 @@ public abstract class Logger {
 
         this.message = message;
         this.level = Level.SEVERE;
-        LoggerWriter(message);
+        logWriter(message);
     }
 
-    private void LoggerWriter(String message) {
+    private void logWriter(String message) {
         Log log = new Log(message, tag, level);
         if (filter.isLoggable(log)) {
             writeLog(formatter.format(log));
@@ -118,7 +118,7 @@ public abstract class Logger {
     public final void error(String message) {
         this.message = message;
         this.level = Level.ERROR;
-        LoggerWriter(message);
+        logWriter(message);
     }
 
     /**
@@ -127,7 +127,7 @@ public abstract class Logger {
     public final void warning(String message) {
         this.message = message;
         this.level = Level.WARNING;
-        LoggerWriter(message);
+        logWriter(message);
     }
 
     /**
@@ -136,7 +136,7 @@ public abstract class Logger {
     public final void info(String message) {
         this.message = message;
         this.level = Level.INFO;
-        LoggerWriter(message);
+        logWriter(message);
     }
 
     /**
@@ -145,6 +145,6 @@ public abstract class Logger {
     public final void debug(String message) {
         this.message = message;
         this.level = Level.DEBUG;
-        LoggerWriter(message);
+        logWriter(message);
     }
 }
