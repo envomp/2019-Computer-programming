@@ -27,6 +27,7 @@ public abstract class Logger {
      * @see ee.taltech.iti0202.logger.level.Level
      */
     public Logger(String tag, Level level) {
+
     }
 
     /**
@@ -66,6 +67,7 @@ public abstract class Logger {
      * Creates log with Level.SEVERE
      */
     public final void severe(String message) {
+
     }
 
     /**
