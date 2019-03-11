@@ -5,7 +5,6 @@ import ee.taltech.iti0202.logger.filter.LogFilter;
 import ee.taltech.iti0202.logger.formatter.LogFormatter;
 import ee.taltech.iti0202.logger.formatter.SimpleFormatter;
 import ee.taltech.iti0202.logger.level.Level;
-import ee.taltech.iti0202.logger.level.LevelProvider;
 import ee.taltech.iti0202.logger.log.Log;
 
 public abstract class Logger {
@@ -36,7 +35,7 @@ public abstract class Logger {
     public Logger(String tag, Level level) {
         this.tag = tag;
         this.level = level;
-        this.filter = makeFilter(level);
+        this.filter = new LevelFilter(() -> level);
         this.formatter = new SimpleFormatter();
     }
 
@@ -52,7 +51,7 @@ public abstract class Logger {
         this.tag = tag;
         this.level = level;
         this.formatter = formatter;
-        this.filter = makeFilter(level);
+        this.filter = new LevelFilter(() -> level);
     }
 
     /**
@@ -66,17 +65,9 @@ public abstract class Logger {
         this.tag = tag;
         this.filter = filter;
         this.formatter = formatter;
-        this.filter = makeFilter(Level.ALL);
+        this.filter = new LevelFilter(() -> Level.ALL);
     }
 
-    private LevelFilter makeFilter(Level level) {
-        return new LevelFilter(new LevelProvider() {
-            @Override
-            public Level getLevel() {
-                return level;
-            }
-        });
-    }
 
     /**
      * Logs the message.
@@ -84,7 +75,7 @@ public abstract class Logger {
     public final void log(Level level, String message) {
         this.level = level;
         this.message = message;
-        this.filter = makeFilter(level);
+        this.filter = new LevelFilter(() -> level);
         this.formatter = new SimpleFormatter();
         writeLog(message);
     }
