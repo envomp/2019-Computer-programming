@@ -45,8 +45,9 @@ public class Main {
         LogFilter randomFilter = log -> random.nextBoolean();
         logger = new ConsoleLogger("", randomFilter, dateFormatter);
         testLogger(logger);
+        System.out.println();
 
-        logger = new FileLogger(className, "log.tsv");
+        logger = new FileLogger(className, "log.txt");
         testLogger(logger);
     }
 

@@ -4,19 +4,25 @@ import ee.taltech.iti0202.logger.level.Level;
 
 public class Log {
 
+    String message;
+    String tag;
+    Level level;
+
     public Log(String message, String tag, Level level) {
-        // TODO
+        this.message = message;
+        this.tag = tag;
+        this.level = level;
     }
 
     public String getMessage() {
-        return null;
+        return this.message;
     }
 
     public String getTag() {
-        return null;
+        return this.tag;
     }
 
     public Level getLevel() {
-        return null;
+        return this.level;
     }
 }
