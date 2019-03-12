@@ -67,7 +67,7 @@ public class TypeGame extends Application implements EventHandler<KeyEvent> {
         HBox hbox = new HBox();
         initKey();
 
-        Label t = new Label(String.format("Your score: %d", points));
+        Label t = new Label(String.format("Your score: %d\nGame over in %d", points, 20 - keys.size()));
         t.setFont(Font.font("Comic Sans", 20));
 
         hbox.setSpacing(10);
@@ -94,7 +94,7 @@ public class TypeGame extends Application implements EventHandler<KeyEvent> {
 
                 if (keys.size() < 20) {
                     // UPDATE
-                    if (speed == 26) {
+                    if (speed == 25) {
                         speed = high_score / 3;
                         initKey();
                     } else {
@@ -147,7 +147,7 @@ public class TypeGame extends Application implements EventHandler<KeyEvent> {
     }
 
     public void renderKeys(Label t) {
-        t.setText(String.format("Your score: %d", points));
+        t.setText(String.format("Your score: %d\nGame over in %d", points, 20 - keys.size()));
         t.setTextFill(Color.web(GlobalVars.COLORS[rand.nextInt(GlobalVars.COLORS.length)]));
         List<KeyAnimation> toRemove = keys.stream().filter(x -> x.remove).collect(Collectors.toList());
         if (!toRemove.isEmpty()) {
