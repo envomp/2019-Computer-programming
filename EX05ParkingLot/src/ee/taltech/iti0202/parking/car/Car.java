@@ -21,30 +21,6 @@ public class Car implements Comparable<Car> {
 
     private ParkingLot parkingLot;
 
-    public void setParkingLot(ParkingLot lot) {
-        this.parkingLot = lot;
-    }
-
-    public ParkingLot getParkingLot() {
-        return parkingLot;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int i) {
-        this.value = i;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public int getRelativeSize() {
-        return value * size;
-    }
-
     public enum PriorityStatus {
         HIGHEST, PRIORITY, COMMON
     }
@@ -143,6 +119,30 @@ public class Car implements Comparable<Car> {
 
     public boolean isParked() {
         return parked;
+    }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setParkingLot(ParkingLot lot) {
+        this.parkingLot = lot;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int i) {
+        this.value = i;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getRelativeSize() {
+        return value * size;
     }
 
     @Override

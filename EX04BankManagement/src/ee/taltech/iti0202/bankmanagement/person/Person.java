@@ -4,6 +4,8 @@ import ee.taltech.iti0202.bankmanagement.exceptions.PersonException;
 
 import java.util.Optional;
 
+import static java.util.Optional.ofNullable;
+
 public class Person {
 
     private String personFirstName;
@@ -59,10 +61,7 @@ public class Person {
      * @return Optional of BankCard
      */
     public Optional<BankCard> getBankCard() {
-        if (card.isPresent()) {
-            return card;
-        }
-        return Optional.empty();
+        return Optional.ofNullable(card.get());
     }
 
     public void setBankCard(BankCard bankCard) {
