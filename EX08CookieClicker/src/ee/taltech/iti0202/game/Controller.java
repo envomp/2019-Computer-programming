@@ -3,15 +3,13 @@ package ee.taltech.iti0202.game;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 
-public class Button {
+public class Controller {
 
     public int isHovering;
     private float button_x;
@@ -21,13 +19,18 @@ public class Button {
     private Label t;
     private String name;
     private HBox hbox;
+    private int value;
+    private Player player;
+    private Clicker clicker;
 
-    Button(float x, float y, String text, Group root, String name) {
+    Controller(float x, float y, String text, Group root, String name, int value, Player player) {
         this.button_x = x;
         this.button_y = y;
         this.text = text;
         this.root = root;
         this.name = name;
+        this.value = value;
+        this.player = player;
         isHovering = 0;
 
         init_button(x, y, text);
@@ -42,10 +45,17 @@ public class Button {
             t.setTextFill(Color.web("#F70027"));
             t.setStyle("-fx-border-color: red;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;");
         } else {
-            t.setTextFill(Color.web("#FFFFFF"));
+            if (clicker == null || name.equals("clicker") && player.getCookies() < value || name.equals("cursor") && player.getCookies() < value) {
+                t.setTextFill(Color.web("#444444"));
+            } else {
+                t.setTextFill(Color.web("#FFFFFF"));
+            }
             t.setStyle("-fx-border-color: white;" + "-fx-border-style: solid inside;" + "-fx-border-width: 2;");
         }
-        t.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        if (name.equals("cookie")) {
+            t.setBackground(new Background(new BackgroundImage(new Image("file:///C:/Users/Enrico/IdeaProjects/iti0202-2019/EX08CookieClicker/smallCookie.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        } else
+            t.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().remove(hbox);
         this.t = t;
         hbox.setSpacing(10);
@@ -57,31 +67,24 @@ public class Button {
         );
     }
 
+    public void register(Clicker clicker) {
+        this.clicker = clicker;
 
-    public void update() { // fine
+        t.setOnMouseDragEntered(event -> isHovering = 2);
 
-        t.setOnMouseDragEntered(event -> {
-            isHovering = 2;
-            init_button(button_x, button_y, text);
-        });
-
-        t.setOnMouseClicked(event -> {
-            isHovering = 2;
-            init_button(button_x, button_y, text);
-        });
-
-        t.setOnMouseDragged(event -> {
-            isHovering = 2;
-            init_button(button_x, button_y, text);
-        });
+        t.setOnMouseExited(event -> isHovering = 2);
 
         if (isHovering > 0) {
             isHovering--;
         } else if (isHovering == 0) {
-            init_button(button_x, button_y, text);
             isHovering--;
         }
+        if (name.equals("clicker") && value < clicker.getClickerPrice()) value = clicker.getClickerPrice();
+        if (name.equals("cursor") && value < clicker.getCursorPrice()) value = clicker.getCursorPrice();
+        init_button(button_x, button_y, text);
+
     }
+
 
     @Override
     public String toString() {

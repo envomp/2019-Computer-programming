@@ -6,9 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -29,10 +28,10 @@ public class CookieClicker extends Application { //git test
     final int WIDTH = 1024;
     final int HEIGHT = 768;
     private boolean isDown;
+    private boolean wasDown;
     private boolean infoTag = false;
-    private HashSet<Button> buttons;
+    private HashSet<Controller> controllers;
     private HashSet<HBox> drawedNumbers;
-    private Image small;
     private HBox[] hBoxes;
     private HBox infoT;
     private long startTime;
@@ -50,7 +49,7 @@ public class CookieClicker extends Application { //git test
         Group root = new Group();
         Player player = new Player();
         Clicker clicker = new Clicker(player);
-        this.buttons = new HashSet<>();
+        this.controllers = new HashSet<>();
         this.hBoxes = new HBox[3];
         this.infoT = new HBox();
         this.drawedNumbers = new HashSet<>();
@@ -66,20 +65,17 @@ public class CookieClicker extends Application { //git test
         rect.setFill(Color.web("#303030"));
         root.getChildren().add(rect);
 
-        // dem buttons
-        Button cross = new Button(WIDTH - 75, 5, "     X     ", root, "exit");
-        Button cursor = new Button(WIDTH / 1.83f, HEIGHT / 1.9f, "                    Buy Cursor                    ", root, "cursor");
-        Button clickr = new Button(WIDTH / 1.83f, HEIGHT / 1.7f, "                    Buy Clicker                    ", root, "clicker");
-        Button cookie = new Button(WIDTH / 8f - 10, HEIGHT / 2.5f - 10, "\n                                                                     ".repeat(10), root, "cookie");
-        Button info = new Button(15, 15, "     Info     ", root, "info");
-        buttons.add(cross);
-        buttons.add(cursor);
-        buttons.add(clickr);
-        buttons.add(cookie);
-        buttons.add(info);
-
-        // cookie
-        small = new Image("file:///C:/Users/Enrico/IdeaProjects/iti0202-2019/EX08CookieClicker/smallCookie.png");
+        // dem controllers
+        Controller cross = new Controller(WIDTH - 75, 5, "     X     ", root, "exit", -1, player);
+        Controller cursor = new Controller(WIDTH / 1.83f, HEIGHT / 1.9f, "                    Buy Cursor                    ", root, "cursor", clicker.getCursorPrice(), player);
+        Controller clickr = new Controller(WIDTH / 1.83f, HEIGHT / 1.7f, "                    Buy Clicker                    ", root, "clicker", clicker.getClickerPrice(), player);
+        Controller cookie = new Controller(WIDTH / 8f - 10, HEIGHT / 2.5f - 10, "\n                                                            ".repeat(10), root, "cookie", -1, player);
+        Controller info = new Controller(15, 15, "     Info     ", root, "info", -1, player);
+        controllers.add(cross);
+        controllers.add(cursor);
+        controllers.add(clickr);
+        controllers.add(cookie);
+        controllers.add(info);
 
         // lööp
         primaryStage.setScene(scene);
@@ -96,13 +92,18 @@ public class CookieClicker extends Application { //git test
                     appendNumbers(clicker);
                 }
 
+                handleCases();
+                displayInformation();
+                handleLabels();
+
+                wasDown = isDown;
+            }
+
+            private void handleCases() {
                 scene.setOnMousePressed(event -> isDown = event.getButton() == MouseButton.PRIMARY);
-                scene.setOnMouseDragOver(event -> isDown = event.getButton() == MouseButton.PRIMARY);
-                scene.setOnMouseClicked(event -> isDown = event.getButton() == MouseButton.PRIMARY);
-                scene.setOnMouseReleased(event -> isDown = false);
-                scene.setOnMouseDragReleased(event -> isDown = false);
-                for (Button button : buttons) {
-                    button.update();
+                isDown = (!isDown && wasDown || isDown && !wasDown);
+                for (Controller button : controllers) {
+                    button.register(clicker);
                     if (isDown && button.isHovering > 0) {
                         switch (button.toString()) {
                             case "exit":
@@ -127,9 +128,9 @@ public class CookieClicker extends Application { //git test
                         }
                     }
                 }
-                // drop tables
-                displayInformation();
+            }
 
+            private void handleLabels() {
                 //draw bubblenumbers
                 drawedNumbers.forEach(root.getChildren()::remove);
 
@@ -150,19 +151,6 @@ public class CookieClicker extends Application { //git test
                 //lables
                 for (HBox box : hBoxes) root.getChildren().remove(box);
 
-                ImageView iv1 = new ImageView();
-                iv1.setImage(small);
-
-                hBoxes[0] = new HBox();
-                Label h = new Label(String.valueOf(player.getCookies()));
-                h.setFont(Font.font("Comic Sans", 20));
-                h.setTextFill(Color.web("#FFFFFF"));
-                hBoxes[0].getChildren().add(h);
-                hBoxes[0].setSpacing(10);
-                hBoxes[0].setLayoutX(WIDTH / 8f);
-                hBoxes[0].setLayoutY(HEIGHT / 2.6f);
-                hBoxes[0].getChildren().add(iv1);
-
                 hBoxes[1] = new HBox();
                 Label z = new Label(String.format("Price:\n%d\n%d", clicker.getCursorPrice(), clicker.getClickerPrice()));
                 z.setFont(Font.font("Comic Sans", 40));
@@ -180,6 +168,15 @@ public class CookieClicker extends Application { //git test
                 hBoxes[2].setLayoutX(WIDTH / 1.9f);
                 hBoxes[2].setLayoutY(HEIGHT / 4f);
                 hBoxes[2].getChildren().add(t);
+
+                hBoxes[0] = new HBox();
+                Label k = new Label(String.format("Current points: %d\nTotal points: %d", player.getCookies(), player.getCookiesEverProduced()));
+                k.setFont(Font.font("Comic Sans", 40));
+                k.setTextFill(Color.web("#FFFFFF"));
+                hBoxes[0].setSpacing(10);
+                hBoxes[0].setLayoutX(WIDTH / 1.9f);
+                hBoxes[0].setLayoutY(HEIGHT / 1.5f);
+                hBoxes[0].getChildren().add(k);
 
                 root.getChildren().addAll(
                         hBoxes[2],
