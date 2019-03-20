@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -38,8 +39,8 @@ public class CookieClicker extends Application {
     private HBox infoT;
     private long startTime;
     private HashSet<Bubblenumber> numbers;
-    private MediaPlayer pop;
-    private MediaPlayer crunch;
+    private AudioClip pop;
+    private AudioClip crunch;
 
     public static void main(String[] args) {
         launch(args);
@@ -59,8 +60,8 @@ public class CookieClicker extends Application {
         Scene scene = new Scene(root, WIDTH, HEIGHT, Color.BLACK);
 
         // dat fancy music
-        pop = new MediaPlayer(new Media(new File("pop.mp3").toURI().toString()));
-        crunch = new MediaPlayer(new Media(new File("crunch.mp3").toURI().toString()));
+        pop = new AudioClip(new File("pop.mp3").toURI().toString());
+        crunch = new AudioClip(new File("crunch.mp3").toURI().toString());
 
         // dat gray rectangle
         Rectangle rect = new Rectangle(WIDTH / 2f, HEIGHT / 9f, WIDTH / 2.5f, HEIGHT / 1.25f);

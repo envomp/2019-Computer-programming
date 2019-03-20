@@ -74,6 +74,7 @@ public class Button {
             isHovering = 2;
             init_button(button_x, button_y, text);
         });
+
         if (isHovering > 0) {
             isHovering--;
         } else if (isHovering == 0) {
