@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.geometry;
 
+//test
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
