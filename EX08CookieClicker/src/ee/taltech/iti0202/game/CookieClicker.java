@@ -24,7 +24,7 @@ import java.util.HashSet;
 import static javafx.application.Platform.exit;
 
 
-public class CookieClicker extends Application {
+public class CookieClicker extends Application { //git test
 
     final int WIDTH = 1024;
     final int HEIGHT = 768;
