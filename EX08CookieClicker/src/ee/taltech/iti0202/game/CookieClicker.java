@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
@@ -85,6 +84,7 @@ public class CookieClicker extends Application { //git test
 
             @Override
             public void handle(long arg0) {
+                System.out.println(root.getChildren().size());
                 startTime++;
                 if (Math.max(300 - clicker.getClicker() * 6, 60) / startTime == 0) {
                     startTime = 0;
@@ -187,6 +187,15 @@ public class CookieClicker extends Application { //git test
 
             private void appendNumbers(Clicker clicker) {
                 numbers.add(new Bubblenumber(clicker.getCursors()));
+                HashSet<Bubblenumber> temp = new HashSet<>();
+                if (numbers.size() > 50) {
+                    int i = 0;
+                    for (Bubblenumber bubblenumber : numbers) {
+                        if (i > 10) temp.add(bubblenumber);
+                        i++;
+                    }
+                    numbers = temp;
+                }
             }
 
             private void displayInformation() {
