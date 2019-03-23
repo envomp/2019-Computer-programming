@@ -14,9 +14,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.File;
-
 import java.lang.*;
-
 import java.util.HashSet;
 
 import static javafx.application.Platform.exit;
@@ -76,10 +74,9 @@ public class CookieClicker extends Application { //git test
         controllers.add(cookie);
         controllers.add(info);
 
-        // lööp
+        // lööpsf
         primaryStage.setScene(scene);
         primaryStage.show();
-
         AnimationTimer animator = new AnimationTimer() {
 
             @Override
