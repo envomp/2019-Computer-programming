@@ -26,6 +26,4 @@ public class ClientBuilder {
         this.clientAge = clientAge;
         return this;
     }
-
-
 }
