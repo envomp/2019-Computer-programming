@@ -50,16 +50,19 @@ public class Port {
 
     public int emptyCargoStorage() {
         int i = 0;
+        List<Cargo> temp = new ArrayList<>(cargos);
         for (Cargo cargo : cargos) {
             List<Ship> sortedShips = ships;
             sortedShips.sort(Comparator.comparing(a -> a.getCargoList().size()));
             for (Ship ship : sortedShips) {
                 if (ship.addCargo(cargo)) {
+                    temp.remove(cargo);
                     i++;
                     break;
                 }
             }
         }
+        cargos = temp;
         return i;
     }
 }
