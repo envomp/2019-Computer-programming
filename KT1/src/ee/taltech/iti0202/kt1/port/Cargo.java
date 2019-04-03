@@ -14,7 +14,8 @@ public class Cargo {
     public int getTotalWeight() {
         if (weight < 10 || size < 10) {
             return 10;
-        } return weight * size * size;
+        }
+        return weight * size * size;
     }
 
     public int getWeight() {
