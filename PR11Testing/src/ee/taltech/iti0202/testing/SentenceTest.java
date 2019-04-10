@@ -84,9 +84,5 @@ public class SentenceTest {
 
     @Test
     public void main() {
-
-        Sentence s7 = new Sentence(" hello     world    yes?");
-        System.out.println(s7);  // Hello world yes?
-        System.out.println(s7.addWord("CANNOT"));  // false
     }
 }
