@@ -5,13 +5,26 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SentenceTest {
 
     @Test
+    public void testToString_EmptySentence_IsEmptyString() {
+        Sentence sentence = new Sentence(); // Arrange
+
+        String actual = sentence.toString(); // Act
+
+        assertEquals("", actual); // Assert
+    }
+
+
+    @Test
     @After
-    public void addWord_thenRemoveWord_allBasicCases() {
+    public void testAddWord_thenRemoveWord_allBasicCases() {
         Sentence s1 = new Sentence();
         assertTrue(s1.addWord("hello"));
         assertEquals("Hello...", s1.toString());
@@ -44,7 +57,7 @@ public class SentenceTest {
 
     @Test
     @Before
-    public void addPunctuation_manipulatePunctuation_basicPunctuation() {
+    public void testAddPunctuation_manipulatePunctuation_basicPunctuation() {
         Sentence s1 = new Sentence("hello world");
         assertEquals("Hello world...", s1.toString());
 
