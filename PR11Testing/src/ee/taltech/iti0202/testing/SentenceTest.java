@@ -3,14 +3,12 @@ package ee.taltech.iti0202.testing;
 import ee.taltech.iti0202.sentence.Sentence;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class SentenceTest {
-    
     @Test
     public void removeWord() {
+        fail();
     }
 
     @Test
