@@ -1,41 +1,40 @@
 package ee.taltech.iti0202.testing;
 
 import ee.taltech.iti0202.sentence.Sentence;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class SentenceTest {
-    @Test
-    public void removeWord() {
-        fail();
-    }
 
     @Test
+    @After
     public void addWord_thenRemoveWord_allBasicCases() {
         Sentence s1 = new Sentence();
-        s1.addWord("hello");
+        assertTrue(s1.addWord("hello"));
         assertEquals("Hello...", s1.toString());
 
-        s1.addWord("world");
+        assertTrue(s1.addWord("world"));
         assertEquals("Hello world...", s1.toString());
 
-        s1.addPunctuation("??");
+        assertTrue(s1.addPunctuation("??"));
         assertEquals("Hello world??", s1.toString());
         assertFalse(s1.addWord("NO"));
         assertFalse(s1.addPunctuation("."));
 
-        s1.removePunctuation();
-        s1.removeWord("hello");
+        assertTrue(s1.removePunctuation());
+        assertTrue(s1.removeWord("hello"));
         assertEquals("World...", s1.toString());
 
-        s1.removeWord("world");
+        assertTrue(s1.removeWord("world"));
         assertEquals("", s1.toString());
 
         assertFalse(s1.addPunctuation("wat?"));
 
-        s1.addWord("??");
-        s1.addPunctuation("hello");
+        assertTrue(s1.addWord("??"));
+        assertTrue(s1.addPunctuation("hello"));
         assertEquals("??hello", s1.toString());
 
         Sentence s7 = new Sentence(" hello     world    yes?");
@@ -44,6 +43,7 @@ public class SentenceTest {
     }
 
     @Test
+    @Before
     public void addPunctuation_manipulatePunctuation_basicPunctuation() {
         Sentence s1 = new Sentence("hello world");
         assertEquals("Hello world...", s1.toString());
@@ -63,13 +63,5 @@ public class SentenceTest {
 
         Sentence s2 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
         assertEquals("So.me po.in.ts he,re but only end counts.", s2.toString());
-    }
-
-    @Test
-    public void equals() {
-    }
-
-    @Test
-    public void main() {
     }
 }
