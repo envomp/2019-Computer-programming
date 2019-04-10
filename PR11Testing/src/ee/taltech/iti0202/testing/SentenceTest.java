@@ -23,7 +23,6 @@ public class SentenceTest {
 
 
     @Test
-    @After
     public void testAddWord_thenRemoveWord_allBasicCases() {
         Sentence s1 = new Sentence();
         assertTrue(s1.addWord("hello"));
@@ -76,5 +75,10 @@ public class SentenceTest {
 
         Sentence s2 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
         assertEquals("So.me po.in.ts he,re but only end counts.", s2.toString());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return true;
     }
 }
