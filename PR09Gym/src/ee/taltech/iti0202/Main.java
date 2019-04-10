@@ -4,7 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        var x = new ClientBuilder().setClientAge(40).setClientName("Ago").setClientPhoneNumber(112).createClient();
+        var x = new ClientBuilder().setClientAge(40)
+                .setClientName("Ago")
+                .setClientPhoneNumber(112)
+                .createClient();
         var y = new ClientBuilder().setClientName("Enrico").setClientAge(19).createClient();
         var z = new ClientBuilder().setClientAge(100).setClientName("Ago2").setClientPhoneNumber(56644052).createClient();
         var g = new ClientBuilder().setClientName("Tudeng").setClientPhoneNumber(911).createClient();

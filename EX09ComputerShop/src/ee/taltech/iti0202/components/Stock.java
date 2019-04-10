@@ -145,8 +145,6 @@ public class Stock {
         return processors;
     }
 
-    // getters
-
     public HashMap<String, List<PSU>> getPsus() {
         return psus;
     }

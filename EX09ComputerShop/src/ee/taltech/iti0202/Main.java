@@ -32,9 +32,17 @@ public class Main {
         System.out.println();
         System.out.println();
 
-        Computer computer = new ComputerBuilder().createComputer(2222, ComputerBuilder.purpose.gaming, stock);
-
+        Computer computer = new ComputerBuilder().createComputer(2000, ComputerBuilder.purpose.gaming, stock);
         System.out.println(computer);
+
+        Computer computer2 = new ComputerBuilder().createComputer(ComputerBuilder.purpose.gaming, stock);
+        System.out.println(computer2);
+
+        Computer computer3 = new ComputerBuilder().createComputer(2000, stock);
+        System.out.println(computer3);
+
+        Computer computer4 = new ComputerBuilder().createComputer(stock);
+        System.out.println(computer4);
 
     }
 
