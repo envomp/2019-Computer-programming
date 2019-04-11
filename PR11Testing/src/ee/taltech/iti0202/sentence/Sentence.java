@@ -1,30 +1,16 @@
+
 package ee.taltech.iti0202.sentence;
 
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Sentence class represent words and punctuation.
  */
 public class Sentence {
-    private String sentence;
-    private boolean hasCloser;
-
-    public Sentence(String tet) {
-        for (int i = 0; i < tet.length() - 1; i++) {
-            if ((tet.charAt(i) == '!' || tet.charAt(i) == '?' || tet.charAt(i) == '.') && tet.charAt(i + 1) == ' ') {
-                tet = tet.substring(0, i + 1);
-                break;
-            }
-        }
-        helper(tet);
-        if (sentence.endsWith("!") || sentence.endsWith("?") || sentence.endsWith(".")) {
-            hasCloser = true;
-        }
-    }
-
-    public Sentence() {
-        sentence = "";
-    }
+    private List<String> words = new ArrayList<>();
+    private String ending = "";
 
     /**
      * Given string is treated as possible sentence.
@@ -35,34 +21,61 @@ public class Sentence {
      *
      * @param text Sentence as string
      */
-
-    private void helper(String text) {
-        boolean lastWasSpace = false;
-        boolean startOfString = true;
-        StringBuilder noDupes = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-
-            if (c == ' ') {
-                if (startOfString) {
-                    lastWasSpace = true;
-                } else if (!lastWasSpace) {
-                    lastWasSpace = true;
-                    noDupes.append(c);
-                }
-            } else {
-                lastWasSpace = false;
-                startOfString = false;
-                noDupes.append(c);
+    public Sentence(String text) {
+        for (String word : text.split(" ")) {
+            if (word.length() > 0 && !word.matches(".*[.!?]$")) {
+                words.add(word);
+            } else if (word.length() > 0) {
+                words.add(word.substring(0, word.length() - 1));
+                ending = word.substring(word.length() - 1);
+                break;
             }
         }
-        sentence = noDupes.toString();
-        if (!sentence.isEmpty()) {
-            sentence = sentence.substring(0, 1).toUpperCase() + sentence.substring(1);
-        }
-        while (sentence.endsWith(" ")) {
-            sentence = sentence.substring(0, sentence.length() - 1);
-        }
+    }
+
+    public Sentence() {
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Sentence("Th.is i!s a tes?t but it en.ds here. yes?"));
+        Sentence s1 = new Sentence("hello world");
+        System.out.println(s1);  // Hello world...
+        Sentence s2 = new Sentence("Hello world");
+        System.out.println(s2); // Hello world...
+        System.out.println(s1.equals(s2)); // true
+
+        Sentence s3 = new Sentence("Hello world!");
+        System.out.println(s3); // Hello world!
+        System.out.println(s1.equals(s3)); // false
+
+
+        Sentence s4 = new Sentence("Hi! Ignore those.");
+        System.out.println(s4); // Hi!
+        Sentence s5 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
+        System.out.println(s5); // So.me po.in.ts he,re but only end counts.
+
+        Sentence s6 = new Sentence();
+        s6.addWord("hello");
+        System.out.println(s6);  // Hello...
+        s6.addWord("world");
+        System.out.println(s6);  // Hello world...
+        s6.addPunctuation("??");
+        System.out.println(s6);  // Hello world??
+        System.out.println(s6.addWord("NO"));  // false
+        System.out.println(s6.addPunctuation("."));  // false
+        s6.removePunctuation();
+        s6.removeWord("hello");
+        System.out.println(s6); // World...
+        s6.removeWord("world");
+        System.out.println(s6);
+        System.out.println(s6.addPunctuation("wat?"));  // false
+        s6.addWord("??");
+        s6.addPunctuation("hello");
+        System.out.println(s6);  // ??hello
+
+        Sentence s7 = new Sentence(" hello     world    yes?");
+        System.out.println(s7);  // Hello world yes?
+        System.out.println(s7.addWord("CANNOT"));  // false
     }
 
     /**
@@ -75,14 +88,9 @@ public class Sentence {
      * @return Whether word was in the sentence and removed.
      */
     public boolean removeWord(String word) {
-        try {
-            if (!hasCloser) {
-                sentence = (Character.toLowerCase(sentence.charAt(0))
-                        + sentence.substring(1)).replaceFirst(Pattern.quote(word), "");
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println("Error");
+        if (words.contains(word) && ending.equals("")) {
+            words.remove(word.toLowerCase());
+            return true;
         }
         return false;
     }
@@ -97,15 +105,11 @@ public class Sentence {
      * @return Whether word was added to sentence (false if sentence has punctuation).
      */
     public boolean addWord(String word) {
-        if (hasCloser) {
-            return false;
-        } else if (sentence.isEmpty()) {
-            sentence += word;
-        } else {
-            sentence += " " + word;
+        if (word.length() > 0 && !word.contains(" ") && ending.equals("")) {
+            words.add(word);
+            return true;
         }
-
-        return true;
+        return false;
     }
 
     /**
@@ -119,12 +123,11 @@ public class Sentence {
      * @return Whether punctuation was added (false if sentence already had punctuation).
      */
     public boolean addPunctuation(String punctuation) {
-        if (hasCloser || sentence.length() == 0) {
-            return false;
+        if (words.size() > 0 && ending.equals("")) {
+            ending = punctuation;
+            return true;
         }
-        hasCloser = true;
-        sentence += punctuation;
-        return true;
+        return false;
     }
 
     /**
@@ -137,11 +140,8 @@ public class Sentence {
      * @return Whether punctuation was removed (false if there was no punctuation).
      */
     public boolean removePunctuation() {
-        if (sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?")) {
-            while (sentence.endsWith(".") || sentence.endsWith("!") || sentence.endsWith("?")) {
-                sentence = sentence.substring(0, sentence.length() - 1);
-            }
-            hasCloser = false;
+        if (!ending.equals("")) {
+            ending = "";
             return true;
         }
         return false;
@@ -149,32 +149,23 @@ public class Sentence {
 
     @Override
     public String toString() {
-        helper(sentence);
-        if (hasCloser || sentence.isEmpty()) {
-            return sentence;
-        }
-        return sentence + "...";
+        String sentence = String.join(" ", words) + ending;
+        if (sentence.equals("")) return "";
+        if (ending.equals("")) sentence = sentence + "...";
+        return sentence.substring(0, 1).toUpperCase() + sentence.substring(1);
     }
-
 
     @Override
     public boolean equals(Object o) {
-
-        // null check
-        if (o == null) {
-            return false;
-        }
-
-        // this instance check
-        return this.toString().equals(o.toString());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sentence sentence = (Sentence) o;
+        return toString().equals(sentence.toString());
     }
 
     @Override
     public int hashCode() {
-        return 1;
-    }
-
-
-    public static void main(String[] args) {
+        return Objects.hash(words, ending);
     }
 }
+

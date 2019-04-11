@@ -19,7 +19,6 @@ public class SentenceTest {
         Sentence s2 = new Sentence();
         assertEquals("", s1.toString());
         assertEquals(s1, s2);
-        assertEquals(s1.hashCode(), 1);
     }
 
 
@@ -99,7 +98,7 @@ public class SentenceTest {
     @Test
     public void testRemoveWord_NoWord() {
         Sentence sentence = new Sentence("Aaa");
-        assertTrue(sentence.removeWord("zz"));
+        assertFalse(sentence.removeWord("zz"));
         assertEquals("Aaa...", sentence.toString());
     }
 
