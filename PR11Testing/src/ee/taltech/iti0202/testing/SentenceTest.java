@@ -155,7 +155,7 @@ public class SentenceTest {
 
         Sentence s3 = new Sentence("a");
         assertTrue(s3.addWord(s2.toString()));
-        assertEquals("a  ..", s3.toString());
+        assertEquals("a  .....", s3.toString());
     }
 
     @Test
