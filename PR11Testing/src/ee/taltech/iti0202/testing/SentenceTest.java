@@ -115,11 +115,13 @@ public class SentenceTest {
     public void equals_punctuation() {
         Sentence s1 = new Sentence();
         Sentence s2 = new Sentence();
-        assertTrue(s1.addWord(".."));
-        assertTrue(s1.addPunctuation(".."));
+        assertTrue(s1.addWord("."));
+        assertTrue(s1.addPunctuation("..."));
         assertTrue(s2.addWord("."));
         assertEquals(s1, s2);
         assertTrue(s2.addPunctuation("..."));
+        assertEquals(s1, s2);
+        assertTrue(s1.removePunctuation());
         assertEquals(s1, s2);
     }
 
