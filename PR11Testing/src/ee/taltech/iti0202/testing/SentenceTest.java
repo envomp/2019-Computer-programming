@@ -158,7 +158,7 @@ public class SentenceTest {
         assertTrue(sentence.addPunctuation(".!?"));
         Sentence sentence2 = new Sentence("test");
         sentence2.addWord(sentence.toString());
-        assertEquals("Test test.!?", sentence2.toString());
+        assertEquals("Test Test.!?...", sentence2.toString());
     }
     @Test
     public void testRemoveWord_NoWord() {
