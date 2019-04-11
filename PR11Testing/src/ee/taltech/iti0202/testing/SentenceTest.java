@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.testing;
 
-import ee.taltech.iti0202.sentence.Sentence;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

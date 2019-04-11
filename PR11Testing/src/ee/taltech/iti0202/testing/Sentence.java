@@ -1,5 +1,5 @@
 
-package ee.taltech.iti0202.sentence;
+package ee.taltech.iti0202.testing;
 
 import java.util.ArrayList;
 import java.util.List;
