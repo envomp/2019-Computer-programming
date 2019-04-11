@@ -120,8 +120,12 @@ public class SentenceTest {
         assertTrue(s2.addWord("."));
         assertEquals(s1, s2);
         assertTrue(s2.addPunctuation("..."));
+        assertEquals(s1, s1);
+        assertEquals(s2, s2);
         assertEquals(s1, s2);
+        assertEquals(s2, s1);
         assertEquals(s1.hashCode(), s2.hashCode());
+        assertEquals(s2.hashCode(), s1.hashCode());
     }
 
     @Test
