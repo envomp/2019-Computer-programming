@@ -140,8 +140,8 @@ public class SentenceTest {
     public void equals_punctuation3() {
         Sentence s1 = new Sentence("... a");
         Sentence s2 = new Sentence("...a");
-        assertFalse(s1.removeWord("a"));
-
+        assertTrue(s1.removePunctuation());
+        assertEquals(".....", s1.toString());
     }
 
     @Test
