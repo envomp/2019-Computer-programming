@@ -91,7 +91,7 @@ public class SentenceTest {
 
     @Test
     public void testRemoveWord_RemovesWord() {
-        Sentence sentence = new Sentence("Aaa bbb");
+        Sentence sentence = new Sentence("AAA bbb");
         assertTrue(sentence.removeWord("bbb"));
         assertEquals("Aaa...", sentence.toString());
     }
@@ -99,8 +99,9 @@ public class SentenceTest {
     @Test
     public void testRemoveWord_NoWord() {
         Sentence sentence = new Sentence(".");
-        //assertFalse(sentence.removeWord("zz"));
-        //assertEquals(".", sentence.toString());
+        assertFalse(sentence.removeWord("zz"));
+        assertFalse(sentence.addWord(" "));
+        assertEquals(".", sentence.toString());
     }
 
     @Test
