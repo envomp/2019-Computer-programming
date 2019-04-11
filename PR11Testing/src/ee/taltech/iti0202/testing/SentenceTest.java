@@ -108,8 +108,10 @@ public class SentenceTest {
     public void testToString_noWord() {
         Sentence sentence = new Sentence(".");
         assertEquals("", sentence.toString());
-        //sentence.addPunctuation("HI");
-        //assertEquals(".", sentence.toString());
+        assertTrue(sentence.addPunctuation("HI"));
+        assertEquals("HI", sentence.toString());
+        assertFalse(sentence.addPunctuation("HI"));
+        assertFalse(sentence.addWord("BYE"));
     }
 
     @Test
