@@ -139,9 +139,10 @@ public class SentenceTest {
     @Test
     public void equals_punctuation3() {
         Sentence s1 = new Sentence("... a");
-        Sentence s2 = new Sentence("...a");
+        Sentence s2 = new Sentence("...");
         assertTrue(s1.removePunctuation());
-        assertEquals(".....", s1.toString());
+        assertTrue(s2.removePunctuation());
+        assertEquals(s1.toString(), s2.toString());
     }
 
     @Test
