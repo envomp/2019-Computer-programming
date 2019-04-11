@@ -157,7 +157,7 @@ public class SentenceTest {
         assertEquals(s1.toString(), s2.toString());
 
     }
-    
+
     @Test
     public void equals_punctuation4() {
         Sentence s1 = new Sentence("test1");
