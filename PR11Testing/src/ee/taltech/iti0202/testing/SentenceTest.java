@@ -99,7 +99,6 @@ public class SentenceTest {
     @Test
     public void testRemoveWord_NoWord() {
         Sentence sentence = new Sentence("Aaa");
-        System.out.println(sentence);
         assertTrue(sentence.removeWord("zz"));
         assertEquals("Aaa...", sentence.toString());
     }
