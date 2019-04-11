@@ -134,7 +134,6 @@ public class SentenceTest {
         assertEquals(s1.hashCode(), s2.hashCode());
         assertTrue(s2.removePunctuation());
         assertEquals(new Sentence(), s2);
-        assertEquals(new Sentence().hashCode(), s2.hashCode());
     }
 
     @Test
@@ -149,6 +148,14 @@ public class SentenceTest {
 
         assertTrue(s2.removePunctuation());
         assertEquals("", s2.toString());
+
+        assertTrue(s2.addWord("."));
+        assertTrue(s2.addPunctuation("."));
+        assertEquals(" ..", s2.toString());
+
+        Sentence s3 = new Sentence(".");
+        assertTrue(s3.addWord(s2.toString()));
+        //assertEquals("", s3.toString());
     }
 
     @Test
