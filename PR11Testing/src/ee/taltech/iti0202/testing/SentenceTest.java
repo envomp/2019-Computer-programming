@@ -59,7 +59,7 @@ public class SentenceTest {
     }
 
     @Test
-    public void testtoString_removeSpaces_noSpacesAfter() {
+    public void testToString_removeSpaces_noSpacesAfter() {
         Sentence s7 = new Sentence(" hello     world    yes?");
         String actual = s7.toString();
         assertEquals("Hello world yes?", actual);
@@ -99,7 +99,8 @@ public class SentenceTest {
     @Test
     public void testRemoveWord_NoWord() {
         Sentence sentence = new Sentence("Aaa");
-        assertFalse(sentence.removeWord("bbb"));
+        System.out.println(sentence);
+        assertTrue(sentence.removeWord("zz"));
         assertEquals("Aaa...", sentence.toString());
     }
 
