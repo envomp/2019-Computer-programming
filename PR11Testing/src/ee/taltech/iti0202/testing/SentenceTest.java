@@ -88,4 +88,33 @@ public class SentenceTest {
         Sentence s2 = new Sentence("so!me po.in?ts he,re but only end counts. yes?");
         assertEquals("So!me po.in?ts he,re but only end counts.", s2.toString());
     }
+
+    @Test
+    public void testRemoveWord_RemovesWord() {
+        Sentence sentence = new Sentence("Aaa bbb");
+        assertTrue(sentence.removeWord("bbb"));
+        assertEquals("Aaa...", sentence.toString());
+    }
+
+    @Test
+    public void testRemoveWord_NoWord() {
+        Sentence sentence = new Sentence("Aaa");
+        assertFalse(sentence.removeWord("bbb"));
+        assertEquals("Aaa...", sentence.toString());
+    }
+
+    @Test
+    public void testRemoveWord_SentenceHasEnding() {
+        Sentence sentence = new Sentence("Aaa bbb.");
+        assertFalse(sentence.removeWord("bbb"));
+        assertEquals("Aaa bbb.", sentence.toString());
+
+        sentence = new Sentence("Aaa bbb!");
+        assertFalse(sentence.removeWord("bbb"));
+        assertEquals("Aaa bbb!", sentence.toString());
+
+        sentence = new Sentence("Aaa bbb?");
+        assertFalse(sentence.removeWord("bbb"));
+        assertEquals("Aaa bbb?", sentence.toString());
+    }
 }
