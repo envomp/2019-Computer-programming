@@ -13,16 +13,17 @@ import static org.junit.Assert.assertTrue;
 public class SentenceTest {
 
     @Test
+    @Before
     public void testToString_EmptySentence_IsEmptyString() {
-        Sentence sentence = new Sentence(); // Arrange
-
-        String actual = sentence.toString(); // Act
-
-        assertEquals("", actual); // Assert
+        Sentence s1 = new Sentence();
+        Sentence s2 = new Sentence();
+        assertEquals("", s1.toString());
+        assertEquals(s1, s2);
     }
 
 
     @Test
+    @After
     public void testAddWord_thenRemoveWord_allBasicCases() {
         Sentence s1 = new Sentence();
         assertTrue(s1.addWord("hello"));
@@ -75,10 +76,5 @@ public class SentenceTest {
 
         Sentence s2 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
         assertEquals("So.me po.in.ts he,re but only end counts.", s2.toString());
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return true;
     }
 }
