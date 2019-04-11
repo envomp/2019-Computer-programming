@@ -112,6 +112,16 @@ public class SentenceTest {
     }
 
     @Test
+    public void equals_punctuation() {
+        Sentence s1 = new Sentence();
+        Sentence s2 = new Sentence();
+        assertTrue(s1.addWord(".."));
+        assertTrue(s1.addPunctuation(".."));
+        assertTrue(s2.addWord("."));
+        assertEquals(s1, s2);
+    }
+
+    @Test
     public void testRemoveWord_NoWord() {
         Sentence sentence = new Sentence("");
         assertFalse(sentence.removeWord("zz"));
