@@ -28,31 +28,41 @@ public class SentenceTest {
     public void testAddWordAndPunctuation_thenRemoveWordAndPunctuation_allBasicCases() {
         Sentence s1 = new Sentence();
         assertTrue(s1.addWord("hello"));
-        assertEquals("Hello...", s1.toString());
+        String actual = s1.toString();
+        assertEquals("Hello...", actual);
 
         assertTrue(s1.addWord("world"));
-        assertEquals("Hello world...", s1.toString());
+        actual = s1.toString();
+        assertEquals("Hello world...", actual);
 
         assertTrue(s1.addPunctuation("??"));
-        assertEquals("Hello world??", s1.toString());
+        actual = s1.toString();
+        assertEquals("Hello world??", actual);
         assertFalse(s1.addWord("NO"));
         assertFalse(s1.addPunctuation("."));
 
         assertTrue(s1.removePunctuation());
         assertTrue(s1.removeWord("hello"));
-        assertEquals("World...", s1.toString());
+        actual = s1.toString();
+        assertEquals("World...", actual);
 
         assertTrue(s1.removeWord("world"));
-        assertEquals("", s1.toString());
+        actual = s1.toString();
+        assertEquals("", actual);
 
         assertFalse(s1.addPunctuation("wat?"));
 
         assertTrue(s1.addWord("??"));
         assertTrue(s1.addPunctuation("hello"));
-        assertEquals("??hello", s1.toString());
+        actual = s1.toString();
+        assertEquals("??hello", actual);
+    }
 
+    @Test
+    public void testtoString_removeSpaces_noSpacesAfter() {
         Sentence s7 = new Sentence(" hello     world    yes?");
-        assertEquals("Hello world yes?", s7.toString());
+        String actual = s7.toString();
+        assertEquals("Hello world yes?", actual);
         assertFalse(s7.addWord("CANNOT"));
     }
 
