@@ -157,6 +157,16 @@ public class SentenceTest {
         assertEquals(s1.toString(), s2.toString());
 
     }
+    
+    @Test
+    public void equals_punctuation4() {
+        Sentence s1 = new Sentence("test1");
+        Sentence s2 = new Sentence("test1.");
+        assertFalse(s1.equals(s2));
+        assertFalse(s2.equals(s1));
+        assertNotEquals(s1.hashCode(), s2.hashCode());
+        assertNotEquals(s2.hashCode(), s1.hashCode());
+    }
 
     @Test
     public void forceLowercase() {
