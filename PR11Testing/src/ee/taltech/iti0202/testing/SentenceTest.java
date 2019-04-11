@@ -134,7 +134,7 @@ public class SentenceTest {
         assertEquals(s1.hashCode(), s2.hashCode());
         assertTrue(s2.removePunctuation());
         assertEquals(new Sentence(), s2);
-        assertNotEquals(new Sentence().hashCode(), s2.hashCode());
+        assertEquals(new Sentence().hashCode(), s2.hashCode());
 
     }
 
