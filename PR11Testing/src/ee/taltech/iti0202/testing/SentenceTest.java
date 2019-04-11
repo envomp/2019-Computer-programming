@@ -15,6 +15,10 @@ public class SentenceTest {
     @Test
     @Before
     public void testToString_EmptySentence_IsEmptyString() {
+        
+        assertTrue("X".equals("X"));
+        assertFalse("X".equals("Y"));
+
         Sentence s1 = new Sentence();
         Sentence s2 = new Sentence();
         assertEquals("", s1.toString());
@@ -74,7 +78,7 @@ public class SentenceTest {
         Sentence s1 = new Sentence("Hi! Ignore those.");
         assertEquals("Hi!", s1.toString());
 
-        Sentence s2 = new Sentence("so.me po.in.ts he,re but only end counts. yes?");
-        assertEquals("So.me po.in.ts he,re but only end counts.", s2.toString());
+        Sentence s2 = new Sentence("so!me po.in?ts he,re but only end counts. yes?");
+        assertEquals("So!me po.in?ts he,re but only end counts.", s2.toString());
     }
 }
