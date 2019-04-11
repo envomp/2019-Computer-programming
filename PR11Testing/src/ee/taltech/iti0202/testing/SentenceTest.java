@@ -155,7 +155,7 @@ public class SentenceTest {
     public void forceLowercase() {
         Sentence sentence = new Sentence("test");
         assertEquals("Test...", sentence.toString());
-        assertTrue(sentence.addPunctuation("."));
+        assertTrue(sentence.addPunctuation(".?!??"));
         Sentence sentence2 = new Sentence(sentence.toString().toLowerCase());
         assertEquals(sentence, sentence2);
     }
