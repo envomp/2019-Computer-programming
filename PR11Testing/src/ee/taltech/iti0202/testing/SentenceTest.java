@@ -102,9 +102,9 @@ public class SentenceTest {
         assertTrue(sentence.addWord("b"));
         assertTrue(sentence.addPunctuation("!"));
         assertEquals("A b!", sentence.toString());
-        // assertTrue(sentence.removePunctuation());
-        // assertTrue(sentence.removeWord("b"));
-        // assertEquals("", sentence.toString());
+        assertTrue(sentence.removePunctuation());
+        assertTrue(sentence.removeWord("b"));
+        assertEquals("", sentence.toString());
     }
 
     @Test
