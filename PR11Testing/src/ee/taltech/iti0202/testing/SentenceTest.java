@@ -133,7 +133,8 @@ public class SentenceTest {
         assertEquals(s1, s2);
         assertEquals(s1.hashCode(), s2.hashCode());
         assertTrue(s2.removePunctuation());
-        assertEquals("", s2.toString());
+        assertEquals(new Sentence(), s2);
+        assertNotEquals(new Sentence().hashCode(), s2.hashCode());
 
     }
 
