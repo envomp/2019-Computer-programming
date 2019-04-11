@@ -143,6 +143,9 @@ public class SentenceTest {
         assertTrue(s1.removePunctuation());
         assertTrue(s2.removePunctuation());
         assertEquals(s1.toString(), s2.toString());
+        s1.addPunctuation("...");
+        assertEquals(s1.toString(), s2.toString());
+
     }
 
     @Test
