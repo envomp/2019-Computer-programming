@@ -135,7 +135,12 @@ public class SentenceTest {
         assertTrue(s2.removePunctuation());
         assertEquals(new Sentence(), s2);
         assertEquals(new Sentence().hashCode(), s2.hashCode());
+    }
 
+    @Test
+    public void equals_punctuation3() {
+        Sentence s1 = new Sentence("\n");
+        assertEquals(s1.toString(), "");
     }
 
     @Test
