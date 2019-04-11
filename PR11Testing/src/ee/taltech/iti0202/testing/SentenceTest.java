@@ -153,8 +153,11 @@ public class SentenceTest {
 
     @Test
     public void forceLowercase() {
-        Sentence sentence = new Sentence("Test Test");
-        assertEquals("Test test...", sentence.toString());
+        Sentence sentence = new Sentence("test");
+        assertEquals("Test...", sentence.toString());
+        assertTrue(sentence.addPunctuation("."));
+        Sentence sentence2 = new Sentence(sentence.toString().toLowerCase());
+        assertEquals(sentence, sentence2);
     }
     @Test
     public void testRemoveWord_NoWord() {
