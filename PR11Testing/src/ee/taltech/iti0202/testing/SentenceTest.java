@@ -122,7 +122,15 @@ public class SentenceTest {
         assertTrue(s2.addPunctuation("..."));
         assertEquals(s1, s2);
         assertEquals(s1.hashCode(), s2.hashCode());
-        assertTrue(s1.removePunctuation());
+    }
+
+    @Test
+    public void equals_punctuation2() {
+        Sentence s1 = new Sentence("....");
+        Sentence s2 = new Sentence();
+        s2.addWord(".");
+        assertEquals(s1, s2);
+        assertNotEquals(s1.hashCode(), s2.hashCode());
 
     }
 
