@@ -139,10 +139,10 @@ public class SentenceTest {
 
     @Test
     public void equals_punctuation3() {
-        Sentence s1 = new Sentence("! ?.");
-        Sentence s2 = new Sentence("! ?");
+        Sentence s1 = new Sentence("! .?");
+        Sentence s2 = new Sentence("! .");
         assertFalse(s2.removeWord("."));
-        s2.addWord(".");
+        s2.addWord("?");
         assertEquals(s1, s2);
         assertEquals(s1.hashCode(), s2.hashCode());
     }
