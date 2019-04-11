@@ -109,9 +109,9 @@ public class SentenceTest {
         Sentence sentence = new Sentence(".");
         assertEquals("", sentence.toString());
         assertFalse(sentence.addPunctuation("HI"));
-        //assertEquals("HI", sentence.toString());
-        //assertFalse(sentence.addPunctuation("HI"));
-        //assertFalse(sentence.addWord("BYE"));
+        assertEquals("", sentence.toString());
+        assertFalse(sentence.addWord("BYE"));
+        assertFalse(sentence.addPunctuation("HI"));
     }
 
     @Test
