@@ -18,6 +18,7 @@ public class SentenceTest {
         Sentence s2 = new Sentence();
         assertEquals("", s1.toString());
         assertEquals(s1, s2);
+        assertFalse(s1.addWord(""));
     }
 
 
@@ -51,6 +52,7 @@ public class SentenceTest {
         assertFalse(s1.addPunctuation("wat?"));
 
         assertTrue(s1.addWord("??"));
+        assertFalse(s1.removePunctuation());
         assertTrue(s1.addPunctuation("hello"));
         actual = s1.toString();
         assertEquals("??hello", actual);
@@ -96,9 +98,9 @@ public class SentenceTest {
 
     @Test
     public void testRemoveWord_NoWord() {
-        Sentence sentence = new Sentence("Aaa");
+        Sentence sentence = new Sentence(".");
         assertFalse(sentence.removeWord("zz"));
-        assertEquals("Aaa...", sentence.toString());
+        assertEquals(".", sentence.toString());
     }
 
     @Test
