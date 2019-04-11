@@ -13,18 +13,19 @@ import static org.junit.Assert.assertTrue;
 public class SentenceTest {
 
     @Test
-    //@Before
+    @Before
     public void testToString_EmptySentence_IsEmptyString() {
         Sentence s1 = new Sentence();
         Sentence s2 = new Sentence();
         assertEquals("", s1.toString());
         assertEquals(s1, s2);
+        assertEquals(s1.hashCode(), 1);
     }
 
 
     @Test
-    //@After
-    public void testAddWord_thenRemoveWord_allBasicCases() {
+    @After
+    public void testAddWordAndPunctuation_thenRemoveWordAndPunctuation_allBasicCases() {
         Sentence s1 = new Sentence();
         assertTrue(s1.addWord("hello"));
         assertEquals("Hello...", s1.toString());
@@ -56,7 +57,7 @@ public class SentenceTest {
     }
 
     @Test
-    //@Before
+    @Before
     public void testAddPunctuation_manipulatePunctuation_basicPunctuation() {
         Sentence s1 = new Sentence("hello world");
         assertEquals("Hello world...", s1.toString());
