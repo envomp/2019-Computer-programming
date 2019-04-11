@@ -31,11 +31,6 @@ public class Sentence {
                 break;
             }
         }
-        if (text.length() < 2) {
-            words = new ArrayList<>();
-            ending = "";
-        }
-
     }
 
     public Sentence() {
