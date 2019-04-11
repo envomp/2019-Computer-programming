@@ -152,7 +152,7 @@ public class Sentence {
         String sentence = String.join(" ", words) + ending;
         if (sentence.equals("")) return "";
         if (ending.equals("")) sentence = sentence + "...";
-        return sentence.substring(0, 1).toUpperCase() + sentence.substring(1).toLowerCase();
+        return sentence.substring(0, 1).toUpperCase() + sentence.substring(1);
     }
 
     @Override

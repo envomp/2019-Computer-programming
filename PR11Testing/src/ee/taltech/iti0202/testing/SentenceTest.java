@@ -98,10 +98,10 @@ public class SentenceTest {
 
     @Test
     public void testRemoveWord_NoWord() {
-        Sentence sentence = new Sentence(".");
+        Sentence sentence = new Sentence("");
         assertFalse(sentence.removeWord("zz"));
         assertFalse(sentence.addWord(" "));
-        //assertEquals(".", sentence.toString());
+        assertEquals("...", sentence.toString());
     }
 
     @Test
