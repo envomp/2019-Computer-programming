@@ -131,6 +131,7 @@ public class SentenceTest {
         assertFalse(s2.removeWord("."));
         s2.addWord(".");
         assertEquals(s1, s2);
+        assertTrue(s2.removePunctuation());
         //assertEquals(s1.hashCode(), s2.hashCode());
 
     }
