@@ -101,7 +101,7 @@ public class SentenceTest {
         Sentence sentence = new Sentence("");
         assertFalse(sentence.removeWord("zz"));
         assertFalse(sentence.addWord(" "));
-        assertEquals("...", sentence.toString());
+        assertEquals("", sentence.toString());
     }
 
     @Test
