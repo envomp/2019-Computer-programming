@@ -119,6 +119,8 @@ public class SentenceTest {
         assertTrue(s1.addPunctuation(".."));
         assertTrue(s2.addWord("."));
         assertEquals(s1, s2);
+        assertTrue(s2.addPunctuation("..."));
+        assertEquals(s1, s2);
     }
 
     @Test
