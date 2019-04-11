@@ -130,7 +130,7 @@ public class SentenceTest {
         Sentence s2 = new Sentence();
         s2.addWord(".");
         assertEquals(s1, s2);
-        assertNotEquals(s1.hashCode(), s2.hashCode());
+        //assertNotEquals(s1.hashCode(), s2.hashCode());
 
     }
 
