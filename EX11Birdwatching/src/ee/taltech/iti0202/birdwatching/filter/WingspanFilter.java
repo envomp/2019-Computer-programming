@@ -5,7 +5,7 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class WingspanFilter implements BirdFilter {
+public class WingspanFilter implements BirdFilter {
 
     private final double minimum;
     private final double maximum;

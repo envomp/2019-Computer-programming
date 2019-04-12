@@ -5,7 +5,7 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class WeightFilter implements BirdFilter {
+public class WeightFilter implements BirdFilter {
 
     private final double weight;
 

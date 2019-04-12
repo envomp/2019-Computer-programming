@@ -5,7 +5,7 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class SexFilter implements BirdFilter {
+public class SexFilter implements BirdFilter {
 
     private final Bird.Sex sex;
 

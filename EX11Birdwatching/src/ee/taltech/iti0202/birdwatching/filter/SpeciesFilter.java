@@ -5,7 +5,7 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class SpeciesFilter implements BirdFilter {
+public class SpeciesFilter implements BirdFilter {
 
     private final String spieces;
 

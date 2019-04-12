@@ -5,7 +5,7 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class AgeFilter implements BirdFilter {
+public class AgeFilter implements BirdFilter {
 
     private final Bird.Age age;
 
