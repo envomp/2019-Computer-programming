@@ -6,6 +6,8 @@ import ee.taltech.iti0202.birdwatching.bird.BirdDataException;
 import ee.taltech.iti0202.birdwatching.filter.BirdFilter;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class StatisticsCalculator {
@@ -39,7 +41,7 @@ public class StatisticsCalculator {
     }
 
     public OptionalDouble findAverageWeight() {
-        return OptionalDouble.of(getBirds().stream().mapToDouble(Bird::getWeight).sum() / countBirds());
+        return getBirds().stream().mapToDouble(Bird::getWeight).average();
     }
 
     public OptionalDouble findMinWeight() {
@@ -51,7 +53,7 @@ public class StatisticsCalculator {
     }
 
     public OptionalDouble findAverageWingspan() {
-        return OptionalDouble.of(getBirds().stream().mapToDouble(Bird::getWingspan).sum() / countBirds());
+        return getBirds().stream().mapToDouble(Bird::getWingspan).average();
     }
 
     public OptionalDouble findMinWingspan() {
@@ -95,9 +97,10 @@ public class StatisticsCalculator {
 
     public Map<String, List<Bird>> mapBirdsToSpecies() {
         Map<String, List<Bird>> map = new HashMap<>();
-        return map.entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
+        for (Bird bird : getBirds()) {
+            map.computeIfAbsent(bird.getSpecies(), k -> new ArrayList<>()).add(bird);
+        }
+        return map;
     }
 
 }
