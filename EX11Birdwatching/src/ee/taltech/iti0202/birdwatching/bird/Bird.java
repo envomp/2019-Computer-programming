@@ -39,7 +39,7 @@ public class Bird {
 
     public enum Age {
         ADULT,
-        YOUNG
+        YOUNGLING
     }
 
     public enum Sex {
