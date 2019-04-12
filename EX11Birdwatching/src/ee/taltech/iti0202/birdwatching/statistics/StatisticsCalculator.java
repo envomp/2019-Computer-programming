@@ -4,11 +4,9 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import ee.taltech.iti0202.birdwatching.bird.BirdDataController;
 import ee.taltech.iti0202.birdwatching.bird.BirdDataException;
 import ee.taltech.iti0202.birdwatching.filter.BirdFilter;
-import ee.taltech.iti0202.birdwatching.filter.SpeciesFilter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
