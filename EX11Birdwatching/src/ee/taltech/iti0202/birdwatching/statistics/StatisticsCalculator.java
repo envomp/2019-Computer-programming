@@ -4,6 +4,7 @@ import ee.taltech.iti0202.birdwatching.bird.Bird;
 import ee.taltech.iti0202.birdwatching.bird.BirdDataController;
 import ee.taltech.iti0202.birdwatching.bird.BirdDataException;
 import ee.taltech.iti0202.birdwatching.filter.BirdFilter;
+import ee.taltech.iti0202.birdwatching.filter.SpeciesFilter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -101,11 +102,13 @@ public class StatisticsCalculator {
     }
 
     public Map<String, List<Bird>> mapBirdsToSpecies() {
-        Map<String, List<Bird>> map = new HashMap<>();
-        for (Bird bird : getBirds()) {
-            map.computeIfAbsent(bird.getSpecies(), k -> new ArrayList<>()).add(bird);
-        }
-        return map;
+        return getAllEncounteredSpecies().stream()
+                .collect(Collectors.toMap(
+                        entry -> entry,
+                        entry -> getBirds().stream()
+                                .filter(x -> x.getSpecies().equals(entry))
+                                .collect(Collectors.toList())
+                ));
     }
 
 }
