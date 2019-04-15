@@ -9,17 +9,18 @@ public class Recursion {
      * @return content between first and last parenthesis
      */
     public static String parentheses(String word) {
-        if (!word.endsWith("~")) {
-            return parentheses(word + "~");
-        }
-        if (word.equals("~")) {
-            return "";
-        }
-        try {
-            return word.substring(word.indexOf('('), word.lastIndexOf(')') + 1);
-        } catch (StringIndexOutOfBoundsException e) {
-            return parentheses("");
-        }
+        return parentheses(word);
+        // if (!word.endsWith("~")) {
+        //     return parentheses(word + "~");
+        // }
+        // if (word.equals("~")) {
+        //     return "";
+        // }
+        // try {
+        //     return word.substring(word.indexOf('('), word.lastIndexOf(')') + 1);
+        // } catch (StringIndexOutOfBoundsException e) {
+        //     return parentheses("");
+        // }
     }
 
     /**
