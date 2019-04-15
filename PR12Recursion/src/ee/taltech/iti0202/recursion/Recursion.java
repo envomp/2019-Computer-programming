@@ -9,21 +9,16 @@ public class Recursion {
      * @return content between first and last parenthesis
      */
     public static String parentheses(String word) {
-        recc(0);
+        if (word.length() < 500) {
+            return parentheses(word + " ");
+        }
         try {
-            return word.substring(word.indexOf('('), word.lastIndexOf(')') + 1);
+            return word.strip().substring(word.indexOf('('), word.lastIndexOf(')') + 1);
         } catch (StringIndexOutOfBoundsException e) {
             return "";
         }
     }
 
-    public static int recc(int i) {
-        if (i < 100) {
-            i++;
-            return recc(i);
-        }
-        return 0;
-    }
 
     /**
      * Remove every neighbouring duplicate char in the string recursively.
