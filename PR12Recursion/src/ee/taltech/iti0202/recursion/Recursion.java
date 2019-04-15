@@ -9,7 +9,12 @@ public class Recursion {
      * @return content between first and last parenthesis
      */
     public static String parentheses(String word) {
-        if (word.equals("")) return "";
+        if (!word.endsWith("~")) {
+            return parentheses(word + "~");
+        }
+        if (word.equals("~")) {
+            return "";
+        }
         try {
             return word.substring(word.indexOf('('), word.lastIndexOf(')') + 1);
         } catch (StringIndexOutOfBoundsException e) {
@@ -24,9 +29,12 @@ public class Recursion {
      * @return a word without any duplicates
      */
     public static String removeDuplicates(String word) {
-        if (word.length() < 2) return word;
-        if (word.charAt(0) == word.charAt(1))
+        if (word.length() < 2) {
+            return word;
+        }
+        if (word.charAt(0) == word.charAt(1)) {
             return String.format("%s%s", word.charAt(0), removeDuplicates(word.substring(2)));
+        }
         return word.charAt(0) + removeDuplicates(word.substring(1));
     }
 
@@ -37,9 +45,12 @@ public class Recursion {
      * @return a word where only Hawaiian pidgin chars exist
      */
     public static String pidginfy(String word) {
-        if (word.length() == 0) return "";
-        if (!word.substring(0, 1).toLowerCase().matches("[ aeiouhklmnpwr'\"āōū.,!?]"))
+        if (word.length() == 0) {
+            return "";
+        }
+        if (!word.substring(0, 1).toLowerCase().matches("[ aeiouhklmnpwr'\"āōū.,!?]")) {
             return pidginfy(word.substring(1));
+        }
         return word.charAt(0) + pidginfy(word.substring(1));
     }
 }
