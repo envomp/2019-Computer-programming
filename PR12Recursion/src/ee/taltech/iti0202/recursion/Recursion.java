@@ -9,10 +9,10 @@ public class Recursion {
      * @return content between first and last parenthesis
      */
     public static String parentheses(String word) {
-        if (word.charAt(0) == '(' && word.charAt(word.length() - 1) == ')') {
-            return word;
-        } else if (word.length() < 2) {
+        if (word.length() < 2) {
             return "";
+        } else if (word.charAt(0) == '(' && word.charAt(word.length() - 1) == ')') {
+            return word;
         } else if (word.charAt(0) != '(') {
             return parentheses(word.substring(1));
         } else {
@@ -32,7 +32,7 @@ public class Recursion {
             return word;
         }
         if (word.charAt(0) == word.charAt(1)) {
-            return String.format("%s%s", word.charAt(0), removeDuplicates(word.substring(2)));
+            return removeDuplicates(word.substring(1));
         }
         return word.charAt(0) + removeDuplicates(word.substring(1));
     }
@@ -55,7 +55,7 @@ public class Recursion {
 
     public static void main(String[] args) {
 
-        System.out.println(parentheses("I am useless text(Find me), yet again useless")); // "(Find me)"
+        System.out.println(parentheses("I am useless text(Find me, yet again useless")); // "(Find me)"
         System.out.println(parentheses("This doesn't have any parentheses.")); // ""
         System.out.println(parentheses("What do you do if (sentence has (many parentheses) and where it ends)")); // "(sentencce has (many parentheses) and where it ends)"
         System.out.println();
