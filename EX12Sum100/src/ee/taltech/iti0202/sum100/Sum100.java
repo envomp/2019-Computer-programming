@@ -1,17 +1,19 @@
 package ee.taltech.iti0202.sum100;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Sum100 {
 
     public static final int NUMBERS_IN_LIST = 9;
 
     public static List<String> calcSums() {
-        return possibilities(new char[]{' ', '+', '-'}, NUMBERS_IN_LIST, "", new ArrayList<>());
+        return possibilities(new char[]{' ', '+', '-'}, NUMBERS_IN_LIST, "", new HashSet<>());
     }
 
-    public static List<String> possibilities(char[] c, int n, String start, List<String> answers) {
+    public static List<String> possibilities(char[] c, int n, String start, Set<String> answers) {
         if (start.length() >= n) {
             int i = 1;
             List<Integer> curIteration = new ArrayList<>();
@@ -37,22 +39,23 @@ public class Sum100 {
             }
             if (curIteration.stream().mapToInt(Integer::intValue).sum() == 100) {
                 if (curIteration.get(0).equals(0)) curIteration.remove(0);
-                StringBuilder sb = new StringBuilder();
-                for (int elem : curIteration) {
-                    if (elem > 0 && !String.valueOf(elem).startsWith("1")) sb.append("+");
-                    sb.append(elem);
-                }
-
-                if (!answers.contains(sb.toString())) {
-                    answers.add(sb.toString());
-                }
+                answers.add(answerBuilder(curIteration));
             }
         } else {
             for (char x : c) {
                 possibilities(c, n, start + x, answers);
             }
         }
-        return answers;
+        return new ArrayList<>(answers);
+    }
+
+    private static String answerBuilder(List<Integer> curIteration) {
+        if (curIteration.size() == 0) {
+            return "";
+        } else {
+            Integer elem = curIteration.remove(0);
+            return (elem > 0 && !String.valueOf(elem).startsWith("1") ? "+" : "") + elem + answerBuilder(curIteration);
+        }
     }
 
     public static void main(String[] args) {
