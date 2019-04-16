@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.sum100;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Sum100 {
 
@@ -15,39 +12,46 @@ public class Sum100 {
 
     public static List<String> possibilities(char[] c, int n, String start, Set<String> answers) {
         if (start.length() >= n) {
-            int i = 1;
-            List<Integer> curIteration = new ArrayList<>();
-            curIteration.add(0);
-            int multiplier = 1;
-            for (char operator : start.toCharArray()) {
-                switch (operator) {
-                    case ' ':
-                        curIteration.add((i * multiplier + curIteration.remove(curIteration.size() - 1) * 10));
-                        break;
-                    case '+':
-                        multiplier = 1;
-                        curIteration.add(i);
-                        break;
-                    case '-':
-                        multiplier = -1;
-                        curIteration.add(i * -1);
-                        break;
-                    default:
-                        break;
-                }
-                i++;
-            }
+            List<Integer> curIteration = curIteratorBuilder(start.toCharArray(), 1, new ArrayList<>(List.of(0)), 1);
             if (curIteration.stream().mapToInt(Integer::intValue).sum() == 100) {
                 if (curIteration.get(0).equals(0)) curIteration.remove(0);
                 answers.add(answerBuilder(curIteration));
             }
         } else {
-            for (char x : c) {
-                possibilities(c, n, start + x, answers);
-            }
+            summonThreads(c, n, start, answers, 0);
         }
         return new ArrayList<>(answers);
     }
+
+    private static void summonThreads(char[] c, int n, String start, Set<String> answers, int i) {
+        if (i != c.length) {
+            possibilities(c, n, start + c[i], answers);
+            summonThreads(c, n, start, answers, i + 1);
+        }
+    }
+
+    private static List<Integer> curIteratorBuilder(char[] start, int i, List<Integer> curIteration, int multiplier) {
+        if (i == 10) {
+            return curIteration;
+        }
+        switch (start[i - 1]) {
+            case ' ':
+                curIteration.add((i * multiplier + curIteration.remove(curIteration.size() - 1) * 10));
+                break;
+            case '+':
+                multiplier = 1;
+                curIteration.add(i);
+                break;
+            case '-':
+                multiplier = -1;
+                curIteration.add(i * -1);
+                break;
+            default:
+                break;
+        }
+        return curIteratorBuilder(start, i + 1, curIteration, multiplier);
+    }
+
 
     private static String answerBuilder(List<Integer> curIteration) {
         if (curIteration.size() == 0) {
