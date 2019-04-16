@@ -1,18 +1,20 @@
 package ee.taltech.iti0202.sum100;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Sum100 {
 
-    public static final int numbersInList = 9;
+    public static final int NUMBERS_IN_LIST = 9;
 
     public static List<String> calcSums() {
-        return possibilities(new char[]{' ', '-', '+'}, numbersInList, "", new ArrayList<>());
+        return possibilities(new char[]{' ', '-', '+'}, NUMBERS_IN_LIST, "", new ArrayList<>());
     }
 
     public static List<String> possibilities(char[] c, int n, String start, List<String> answers) {
         if (start.length() >= n) {
-            int i = numbersInList;
+            int i = NUMBERS_IN_LIST;
             List<Integer> curIteration = new ArrayList<>();
             curIteration.add(0);
             for (char operator : start.toCharArray()) {
@@ -45,7 +47,8 @@ public class Sum100 {
                     if (elem > 0 && !String.valueOf(elem).startsWith("1")) sb.append("+");
                     sb.append(elem);
                 }
-                if (!answers.contains(sb.toString())) {
+                if (answers.size() < 12) {
+                    //if (!answers.contains(sb.toString())) {
                     answers.add(sb.toString());
                 }
             }
