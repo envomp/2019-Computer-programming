@@ -1,14 +1,16 @@
 package ee.taltech.iti0202.sum100;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Sum100 {
 
     public static List<String> calcSums() {
-        return possibilities(new char[]{' ', '-', '+'}, 9, "", new ArrayList<>());
+        List<String> possibilities = possibilities(new char[]{' ', '-', '+'}, 9, "", new ArrayList<>());
+        Set<String> set = new HashSet<>(possibilities);
+        possibilities.clear();
+        possibilities.addAll(set);
+        return possibilities;
     }
 
     public static List<String> possibilities(char[] c, int n, String start, List<String> answers) {
