@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.sum100;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Sum100 {
@@ -9,46 +8,42 @@ public class Sum100 {
     public static final int NUMBERS_IN_LIST = 9;
 
     public static List<String> calcSums() {
-        return possibilities(new char[]{' ', '-', '+'}, NUMBERS_IN_LIST, "", new ArrayList<>());
+        return possibilities(new char[]{' ', '+', '-'}, NUMBERS_IN_LIST, "", new ArrayList<>());
     }
 
     public static List<String> possibilities(char[] c, int n, String start, List<String> answers) {
         if (start.length() >= n) {
-            int i = NUMBERS_IN_LIST;
+            int i = 1;
             List<Integer> curIteration = new ArrayList<>();
             curIteration.add(0);
+            int multiplier = 1;
             for (char operator : start.toCharArray()) {
                 switch (operator) {
                     case ' ':
-                        int t = curIteration.remove(curIteration.size() - 1);
-                        if (t == 0) {
-                            curIteration.add(i);
-                        } else {
-                            curIteration.add((int) (t + i * Math.pow(10, String.valueOf(t).length())));
-                        }
+                        curIteration.add((i * multiplier + curIteration.remove(curIteration.size() - 1) * 10));
                         break;
                     case '+':
+                        multiplier = 1;
                         curIteration.add(i);
                         break;
                     case '-':
-                        curIteration.add(curIteration.remove(curIteration.size() - 1) * -1);
-                        curIteration.add(i);
+                        multiplier = -1;
+                        curIteration.add(i * -1);
                         break;
                     default:
                         break;
                 }
-                i--;
+                i++;
             }
             if (curIteration.stream().mapToInt(Integer::intValue).sum() == 100) {
-                if (curIteration.get(0) == 0) curIteration.remove(0);
-                Collections.reverse(curIteration);
+                if (curIteration.get(0).equals(0)) curIteration.remove(0);
                 StringBuilder sb = new StringBuilder();
                 for (int elem : curIteration) {
                     if (elem > 0 && !String.valueOf(elem).startsWith("1")) sb.append("+");
                     sb.append(elem);
                 }
-                if (answers.size() < 12) {
-                    //if (!answers.contains(sb.toString())) {
+
+                if (!answers.contains(sb.toString())) {
                     answers.add(sb.toString());
                 }
             }
