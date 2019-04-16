@@ -10,7 +10,7 @@ public class Sum100 {
     public static final int NUMBERS_IN_LIST = 9;
 
     public static List<String> calcSums() {
-        return possibilities(new char[]{' ', '+', '-'}, NUMBERS_IN_LIST, "", new HashSet<>());
+        return possibilities(new char[]{'+', '-', ' '}, NUMBERS_IN_LIST, "", new HashSet<>());
     }
 
     public static List<String> possibilities(char[] c, int n, String start, Set<String> answers) {
