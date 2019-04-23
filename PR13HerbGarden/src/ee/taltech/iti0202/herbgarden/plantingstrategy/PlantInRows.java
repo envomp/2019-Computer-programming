@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.herbgarden.plantingstrategy;
 
-import java.util.ArrayList;
+
 import java.util.Map;
 
 public class PlantInRows implements PlantingStrategy {
@@ -17,7 +17,9 @@ public class PlantInRows implements PlantingStrategy {
         this.height = height;
         this.width = width;
         this.plantedHerbs = new String[height][width];
-        new ArrayList<>(plants.keySet()).forEach(this::plantHerb);
+        plants.entrySet().stream()
+                .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
+                .forEach(y -> plantHerb(y.getKey()));
         return plantedHerbs;
     }
 

@@ -17,8 +17,11 @@ public class PlantInTurns implements PlantingStrategy {
         this.height = height;
         this.width = width;
         this.plantedHerbs = new String[height][width];
-        while (plants.values().stream().mapToInt(Integer::intValue).sum() != 0)
-            new ArrayList<>(plants.keySet()).forEach(this::plantHerb);
+        while (plants.values().stream().mapToInt(Integer::intValue).sum() != 0) {
+            plants.entrySet().stream()
+                    .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
+                    .forEach(y -> plantHerb(y.getKey()));
+        }
         return plantedHerbs;
     }
 
