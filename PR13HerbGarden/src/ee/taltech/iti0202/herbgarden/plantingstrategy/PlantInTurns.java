@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.herbgarden.plantingstrategy;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class PlantInTurns implements PlantingStrategy {
@@ -28,7 +27,7 @@ public class PlantInTurns implements PlantingStrategy {
     public void plantHerb(String herb) {
         if (plants.get(herb) == 0) return;
         plants.put(herb, plants.get(herb) - 1);
-        plantedHerbs[iteration / width][iteration % (height + 1)] = herb;
+        plantedHerbs[iteration % height][iteration / (height)] = herb;
         iteration++;
     }
 }

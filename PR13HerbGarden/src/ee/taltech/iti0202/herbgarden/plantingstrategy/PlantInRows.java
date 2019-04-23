@@ -26,7 +26,7 @@ public class PlantInRows implements PlantingStrategy {
     public void plantHerb(String herb) {
         if (plants.get(herb) == 0) return;
         plants.put(herb, plants.get(herb) - 1);
-        plantedHerbs[iteration / width][iteration % (height + 1)] = herb;
+        plantedHerbs[iteration % height][iteration / (height)] = herb;
         iteration++;
         plantHerb(herb);
     }
