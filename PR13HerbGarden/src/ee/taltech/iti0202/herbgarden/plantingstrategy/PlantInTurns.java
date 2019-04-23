@@ -28,7 +28,7 @@ public class PlantInTurns implements PlantingStrategy {
     public void plantHerb(String herb) {
         if (plants.get(herb) == 0) return;
         plants.put(herb, plants.get(herb) - 1);
-        plantedHerbs[iteration / width][iteration % (height + 1)] = herb;
+        plantedHerbs[iteration / (height - 1)][iteration % (width)] = herb;
         iteration++;
     }
 }
