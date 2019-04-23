@@ -8,20 +8,16 @@ import java.util.Set;
 public class Sum100 {
 
     public static final int NUMBERS_IN_LIST = 9;
+    public static final int DESIRED_SUM = 100;
 
     public static List<String> calcSums() {
         return possibilities(new char[]{'+', '-', ' '}, NUMBERS_IN_LIST, "", new HashSet<>());
-        // return new ArrayList<>(Arrays.asList(
-        //         "-1+2-3+4+5+6+78+9", "1+23-4+5+6+78-9", "123+4-5+67-89",
-        //         "1+23-4+56+7+8+9", "12+3-4+5+67+8+9", "12-3-4+5-6+7+89",
-        //         "123-45-67+89", "1+2+34-5+67-8+9", "123-4-5-6-7+8-9",
-        //         "12+3+4+5-6-7+89", "123+45-67+8-9", "1+2+3-4+5+6+78+9"));
     }
 
     public static List<String> possibilities(char[] c, int n, String start, Set<String> answers) {
         if (start.length() >= n) {
             List<Integer> curIteration = curIteratorBuilder(start.toCharArray(), 1, new ArrayList<>(List.of(0)), 1);
-            if (curIteration.stream().mapToInt(Integer::intValue).sum() == 100) {
+            if (curIteration.stream().mapToInt(Integer::intValue).sum() == DESIRED_SUM) {
                 if (curIteration.get(0).equals(0)) curIteration.remove(0);
                 answers.add(answerBuilder(curIteration));
             }
