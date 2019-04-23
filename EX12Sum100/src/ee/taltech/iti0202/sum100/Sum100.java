@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.sum100;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Sum100 {
 
@@ -16,7 +13,9 @@ public class Sum100 {
 
     public static List<String> possibilities(char[] c, int n, String start, Set<String> answers) {
         if (start.length() >= n) {
-            List<Integer> curIteration = curIteratorBuilder(start.toCharArray(), 1, new ArrayList<>(List.of(0)), 1);
+            Stack<Integer> integerStack = new Stack<>();
+            integerStack.add(0);
+            List<Integer> curIteration = curIteratorBuilder(start.toCharArray(), 1, integerStack, 1);
             if (curIteration.stream().mapToInt(Integer::intValue).sum() == DESIRED_SUM) {
                 if (curIteration.get(0).equals(0)) curIteration.remove(0);
                 answers.add(answerBuilder(curIteration));
@@ -34,13 +33,13 @@ public class Sum100 {
         }
     }
 
-    private static List<Integer> curIteratorBuilder(char[] start, int i, List<Integer> curIteration, int multiplier) {
+    private static List<Integer> curIteratorBuilder(char[] start, int i, Stack<Integer> curIteration, int multiplier) {
         if (i == 10) {
             return curIteration;
         }
         switch (start[i - 1]) {
             case ' ':
-                curIteration.add((i * multiplier + curIteration.remove(curIteration.size() - 1) * 10));
+                curIteration.add((i * multiplier + curIteration.pop() * 10));
                 break;
             case '+':
                 multiplier = 1;
