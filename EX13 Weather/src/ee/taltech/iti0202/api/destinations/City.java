@@ -7,7 +7,8 @@ public class City {
     private String name;
     private double lon;
     private double lat;
-    private List<Double> temperatures; List<Double> humidity;
+    private List<Double> temperatures;
+    private List<Double> humidity;
     private List<Integer> weatherCodes;
 
     City(String name, double lon, double lat, List<Double> temperatures, List<Double> humidity, List<Integer> weatherCodes) {

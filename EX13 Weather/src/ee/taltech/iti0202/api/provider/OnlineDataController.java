@@ -1,7 +1,7 @@
 package ee.taltech.iti0202.api.provider;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import ee.taltech.iti0202.api.destinations.City;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,18 +12,14 @@ import java.util.Map;
 
 public class OnlineDataController {
 
-    private Map<String, JsonObject> cityMap;
+    private Map<String, City> cityMap;
+    private Map<City, JsonObject> jsonMap;
 
     public OnlineDataController() {
         cityMap = new HashMap<>();
+        jsonMap = new HashMap<>();
     }
 
-    /**
-     * Tries to get forecast data for the cityName. If there is no data or cityName doesn't exist, return an empty string.
-     *
-     * @param cityName Name of the city
-     * @return String in the form of a json-string
-     */
     public String getCity(String cityName) {
         try {
             if (cityMap.containsKey(cityName)) {
@@ -37,12 +33,6 @@ public class OnlineDataController {
         }
     }
 
-    /**
-     * Sends a http request and saves the result to cityMap
-     *
-     * @param cityName Name of the city
-     * @return String in the form of a json-string
-     */
     public String sendHttpRequest(String cityName) throws IOException {
         URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" +    // base url
                 cityName.trim().replace(" ", "+") +                    // city
@@ -51,11 +41,14 @@ public class OnlineDataController {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         url.openConnection().getInputStream()));
-        String inputLine;
 
-        if ((inputLine = in.readLine()) != null) {
-            JsonObject jsonObject = (JsonObject) new JsonParser().parse(inputLine);
-            cityMap.put(cityName, jsonObject);
+        String inputLine = in.readLine();
+        if (inputLine != null) {
+            CityJsonParser cityJsonParser = new CityJsonParser(cityName, inputLine).invoke();
+            JsonObject jsonObject = cityJsonParser.getJsonObject();
+            City city = cityJsonParser.getCity();
+            cityMap.put(cityName, city);
+            jsonMap.put(city, jsonObject);
             in.close();
             return String.valueOf(jsonObject);
         }
@@ -64,7 +57,11 @@ public class OnlineDataController {
         return "";
     }
 
-    public Map<String, JsonObject> getCityMap() {
+    public Map<String, City> getCityMap() {
         return cityMap;
+    }
+
+    public Map<City, JsonObject> getJsonMap() {
+        return jsonMap;
     }
 }
