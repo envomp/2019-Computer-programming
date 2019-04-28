@@ -12,13 +12,8 @@ import java.util.Map;
 
 public class OnlineDataController {
 
-    private Map<String, City> cityMap;
-    private Map<City, JsonObject> jsonMap;
-
-    public OnlineDataController() {
-        cityMap = new HashMap<>();
-        jsonMap = new HashMap<>();
-    }
+    private Map<String, City> cityMap = new HashMap<>();
+    private Map<City, JsonObject> jsonMap = new HashMap<>();
 
     public String getCity(String cityName) {
         try {
