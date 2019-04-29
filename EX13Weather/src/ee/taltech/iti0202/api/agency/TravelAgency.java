@@ -19,7 +19,7 @@ public class TravelAgency {
     }
 
     /**
-     * If the agency doesn't have a destination city yet, adds it to the list.
+     * Ie agency doesn't have a destination city yet, adds it to the list.
      *
      * @param city city name.
      */
