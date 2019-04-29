@@ -45,7 +45,7 @@ public class City {
     }
 
     public double getAverageTemperature() {
-        return this.temperatures.stream().mapToDouble(Double::doubleValue).average().getAsDouble(); //why not optional ...
+        return this.temperatures.stream().mapToDouble(Double::doubleValue).average().getAsDouble();
     }
 
     public double getAverageHumidity() {
