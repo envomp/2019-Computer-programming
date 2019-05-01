@@ -2,10 +2,7 @@ package ee.taltech.iti0202.api.strategies;
 
 import ee.taltech.iti0202.api.destinations.City;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
@@ -27,9 +24,16 @@ public class HatesRainCityFinder implements CityFinderStrategy {
                 realCandidates.add(city);
             }
         }
-        return realCandidates.stream()
+        Optional<City> cityOptional = realCandidates.stream()
                 .filter(x -> x.getHumidity().stream()
-                                .max(Comparator.comparing(Double::valueOf)).get() < 100.0d)
+                        .max(Comparator.comparing(Double::valueOf)).get() < 100.0d)
                 .min(Comparator.comparing(City::getAverageHumidity));
+
+        if (cityOptional.isPresent()) {
+            return cityOptional;
+        }
+        return Optional.ofNullable(candidateCities.get(new Random().nextInt(candidateCities.size())));
+
+
     }
 }

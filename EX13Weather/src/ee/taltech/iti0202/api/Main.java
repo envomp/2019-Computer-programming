@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.api;
 
 import ee.taltech.iti0202.api.agency.ChoosingClient;
-import ee.taltech.iti0202.api.agency.Client;
 import ee.taltech.iti0202.api.agency.TravelAgency;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
 import ee.taltech.iti0202.api.strategies.HatesRainCityFinder;
@@ -46,13 +45,13 @@ public class Main {
         LovesChangeCityFinder lovesChangeCityFinder = new LovesChangeCityFinder();
         StudentMadeCityFinder studentMadeCityFinder = new StudentMadeCityFinder();
 
-        ChoosingClient ago = new ChoosingClient("Ago", "Tallinn", warmWeatherCityFinder/*, new ArrayList<>(Arrays.asList(
+        ChoosingClient ago = new ChoosingClient("Ago", "Tallinn", warmWeatherCityFinder, new ArrayList<>(Arrays.asList(
                 "Hong Kong",
                 "Aoulef",
                 "Africa",
                 "Mexico",
                 "Libya"
-        ))*/);
+        )));
 
         TravelAgency travelAgency = new TravelAgency(cityNames, controller);
         System.out.println(travelAgency.findSuitableCitiesForClient(ago).get().getName());

@@ -52,8 +52,9 @@ public class TravelAgency {
                     cities.stream()
                             .filter(x -> !x.getName().equals(client.getStartingCity()))
                             .collect(Collectors.toList()));
-            if (optionalCity.isEmpty())
+            if (optionalCity.isEmpty()) {
                 throw new Exception("no city was found!");
+            }
             return optionalCity;
         } catch (Exception e) {
             e.printStackTrace();

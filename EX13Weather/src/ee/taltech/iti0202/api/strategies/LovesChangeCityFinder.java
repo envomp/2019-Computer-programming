@@ -2,12 +2,7 @@ package ee.taltech.iti0202.api.strategies;
 
 import ee.taltech.iti0202.api.destinations.City;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class LovesChangeCityFinder implements CityFinderStrategy {
     @Override
@@ -29,7 +24,11 @@ public class LovesChangeCityFinder implements CityFinderStrategy {
             }
             bestCity.put(total, city);
         }
-        return Optional.ofNullable(Collections.max(bestCity.entrySet(),
+        Optional<City> cityOptional = Optional.ofNullable(Collections.max(bestCity.entrySet(),
                 Comparator.comparing(Map.Entry::getKey)).getValue());
+        if (cityOptional.isPresent()) {
+            return cityOptional;
+        }
+        return Optional.ofNullable(candidateCities.get(new Random().nextInt(candidateCities.size())));
     }
 }

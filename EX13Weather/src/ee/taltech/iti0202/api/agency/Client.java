@@ -42,10 +42,6 @@ public class Client {
     }
 
     public Optional<City> chooseBestCity(List<City> possibleCities) {
-        Optional<City> city =  choosingStrategy.findBestCity(possibleCities);
-        if (city.isEmpty())
-            return Optional.ofNullable(possibleCities.get(new Random().nextInt(possibleCities.size())));
-        return city;
+        return choosingStrategy.findBestCity(possibleCities);
     }
 }
-
