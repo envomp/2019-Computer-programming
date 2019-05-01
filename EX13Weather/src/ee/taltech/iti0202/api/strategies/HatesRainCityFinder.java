@@ -14,6 +14,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
 
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
+
         List<City> realCandidates = new ArrayList<>();
         for (City city : candidateCities) {
             int allowed = 1;

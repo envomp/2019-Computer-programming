@@ -48,11 +48,15 @@ public class TravelAgency {
         }
 
         try {
-            return client.chooseBestCity(
+            Optional<City> optionalCity = client.chooseBestCity(
                     cities.stream()
                             .filter(x -> !x.getName().equals(client.getStartingCity()))
                             .collect(Collectors.toList()));
-        } catch (NullPointerException e) {
+            if (optionalCity.isEmpty())
+                throw new Exception("no city was found!");
+            return optionalCity;
+        } catch (Exception e) {
+            e.printStackTrace();
             return Optional.ofNullable(cities.get(new Random().nextInt(cities.size())));
         }
     }

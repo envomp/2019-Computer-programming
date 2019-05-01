@@ -6,6 +6,7 @@ import ee.taltech.iti0202.api.strategies.CityFinderStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class Client {
     private String name;
@@ -41,7 +42,10 @@ public class Client {
     }
 
     public Optional<City> chooseBestCity(List<City> possibleCities) {
-        return choosingStrategy.findBestCity(possibleCities);
+        Optional<City> city =  choosingStrategy.findBestCity(possibleCities);
+        if (city.isEmpty())
+            return Optional.ofNullable(possibleCities.get(new Random().nextInt(possibleCities.size())));
+        return city;
     }
 }
 
