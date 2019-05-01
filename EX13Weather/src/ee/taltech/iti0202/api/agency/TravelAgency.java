@@ -51,4 +51,7 @@ public class TravelAgency {
                         .collect(Collectors.toList()));
     }
 
+    public List<String> getCityList() {
+        return cityNames;
+    }
 }

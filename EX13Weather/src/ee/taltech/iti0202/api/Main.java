@@ -44,13 +44,13 @@ public class Main {
         HatesRainCityFinder hatesRainCityFinder = new HatesRainCityFinder();
         LovesChangeCityFinder lovesChangeCityFinder = new LovesChangeCityFinder();
 
-        Client ago = new Client("Ago", "Tallinn", lovesChangeCityFinder, new ArrayList<>(Arrays.asList(
+        Client ago = new Client("Ago", "Tallinn", lovesChangeCityFinder/*, new ArrayList<>(Arrays.asList(
                 "Hong Kong",
                 "Aoulef",
                 "Africa",
                 "Mexico",
                 "Libya"
-        )));
+        ))*/);
 
         TravelAgency travelAgency = new TravelAgency(cityNames, controller);
         System.out.println(travelAgency.findSuitableCitiesForClient(ago).get().getName());

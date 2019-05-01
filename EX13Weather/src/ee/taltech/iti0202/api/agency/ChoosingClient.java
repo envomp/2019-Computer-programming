@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class WhineyClient extends Client {
-    public WhineyClient(String name, String startingCity, CityFinderStrategy choosingStrategy, List<String> wantsToVisitCities) {
+public class ChoosingClient extends Client {
+    public ChoosingClient(String name, String startingCity, CityFinderStrategy choosingStrategy, List<String> wantsToVisitCities) {
         super(name, startingCity, choosingStrategy);
     }
 
