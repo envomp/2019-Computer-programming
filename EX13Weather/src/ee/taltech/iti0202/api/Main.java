@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.api;
 
+import ee.taltech.iti0202.api.agency.ChoosingClient;
 import ee.taltech.iti0202.api.agency.Client;
 import ee.taltech.iti0202.api.agency.TravelAgency;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
@@ -45,7 +46,7 @@ public class Main {
         LovesChangeCityFinder lovesChangeCityFinder = new LovesChangeCityFinder();
         StudentMadeCityFinder studentMadeCityFinder = new StudentMadeCityFinder();
 
-        Client ago = new Client("Ago", "Tallinn", studentMadeCityFinder, new ArrayList<>(Arrays.asList(
+        ChoosingClient ago = new ChoosingClient("Ago", "Tallinn", studentMadeCityFinder, new ArrayList<>(Arrays.asList(
                 "Hong Kong",
                 "Aoulef",
                 "Africa",

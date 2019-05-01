@@ -45,10 +45,15 @@ public class TravelAgency {
             dataController.getCity(name);
             cities.add(dataController.getCityMap().get(name));
         }
-        return client.chooseBestCity(
-                cities.stream()
-                        .filter(x -> !x.getName().equals(client.getStartingCity()))
-                        .collect(Collectors.toList()));
+
+        try {
+            return client.chooseBestCity(
+                    cities.stream()
+                            .filter(x -> !x.getName().equals(client.getStartingCity()))
+                            .collect(Collectors.toList()));
+        } catch (NullPointerException e) {
+            return Optional.empty();
+        }
     }
 
     public List<String> getCityList() {
