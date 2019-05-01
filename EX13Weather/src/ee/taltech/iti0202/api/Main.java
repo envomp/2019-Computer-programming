@@ -20,15 +20,7 @@ public class Main {
         List<String> cityNames = new ArrayList<>(Arrays.asList(
                 "Tallinn",
                 "Tartu",
-                "Pärnu",
-                "London",
-                "Moscow",
-                "Egipt",
-                "hong Kong",
-                "Aoulef",
-                "Africa",
-                "Mexico",
-                "Libya"
+                "Pärnu"
         ));
 
         try {

@@ -31,7 +31,7 @@ public class OnlineDataController {
     public String sendHttpRequest(String cityName) throws IOException {
         URL url = new URL("http://api.openweathermap.org/data/2.5/forecast?q=" +    // base url
                 cityName.trim().replace(" ", "+") +                    // city
-                "&APPID=3889fefc250cb2a5b4c9b123c2ca3106&units=metric");                 // key and metric
+                "&appid=db3a95ba81f195feb7c46fe6ad8d31e0&units=metric");                 // key and metric
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
