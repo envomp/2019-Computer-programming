@@ -57,7 +57,6 @@ public class TravelAgency {
             }
             return optionalCity;
         } catch (Exception e) {
-            e.printStackTrace();
             return Optional.ofNullable(cities.get(new Random().nextInt(cities.size())));
         }
     }

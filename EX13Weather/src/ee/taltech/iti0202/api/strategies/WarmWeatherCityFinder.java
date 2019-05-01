@@ -5,15 +5,13 @@ import ee.taltech.iti0202.api.destinations.City;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class WarmWeatherCityFinder implements CityFinderStrategy {
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
-        Optional<City> cityOptional = candidateCities.stream().max(Comparator.comparing(City::getAverageTemperature));
-        if (cityOptional.isPresent()) {
-            return cityOptional;
+        if (candidateCities.size() == 0) {
+            return Optional.empty();
         }
-        return Optional.ofNullable(candidateCities.get(new Random().nextInt(candidateCities.size())));
+        return candidateCities.stream().max(Comparator.comparing(City::getAverageTemperature));
     }
 }

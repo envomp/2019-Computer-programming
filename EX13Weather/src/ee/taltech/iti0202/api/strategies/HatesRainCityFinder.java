@@ -6,17 +6,21 @@ import java.util.*;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
-    private final int RAIN_START_CODE = 499;
-    private final int RAINT_END_CODE = 600;
+    private final int RAINSTARTCODE = 499;
+    private final int RAINTENDCODE = 600;
 
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
+
+        if (candidateCities.size() == 0) {
+            return Optional.empty();
+        }
 
         List<City> realCandidates = new ArrayList<>();
         for (City city : candidateCities) {
             int allowed = 1;
             for (int code : city.getWeatherCodes()) {
-                if (code < RAINT_END_CODE && code > RAIN_START_CODE) {
+                if (code < RAINTENDCODE && code > RAINSTARTCODE) {
                     allowed--;
                 }
             }
