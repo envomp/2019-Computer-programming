@@ -33,6 +33,8 @@ public class OnlineDataController {
                 cityName.trim().replace(" ", "+") +                    // city
                 "&appid=db3a95ba81f195feb7c46fe6ad8d31e0&units=metric");                 // key and metric
 
+        System.out.println(url);
+
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         url.openConnection().getInputStream()));

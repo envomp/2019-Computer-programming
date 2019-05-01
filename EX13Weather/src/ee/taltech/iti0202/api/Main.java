@@ -19,8 +19,8 @@ public class Main {
 
         List<String> cityNames = new ArrayList<>(Arrays.asList(
                 "Tallinn",
-                "New Zealand"
-                /*"Pärnu",
+                "New Zealand",
+                "Pärnu",
                 "London",
                 "Moscow",
                 "Egipt",
@@ -28,7 +28,7 @@ public class Main {
                 "Aoulef",
                 "Africa",
                 "Mexico",
-                "Libya"*/
+                "Libya"
         ));
 
         try {
@@ -45,7 +45,7 @@ public class Main {
         LovesChangeCityFinder lovesChangeCityFinder = new LovesChangeCityFinder();
         StudentMadeCityFinder studentMadeCityFinder = new StudentMadeCityFinder();
 
-        ChoosingClient ago = new ChoosingClient("Ago", "Tallinn", warmWeatherCityFinder, new ArrayList<>(Arrays.asList(
+        ChoosingClient ago = new ChoosingClient("Ago", "Tallinn", studentMadeCityFinder, new ArrayList<>(Arrays.asList(
                 "Hong Kong",
                 "Aoulef",
                 "Africa",

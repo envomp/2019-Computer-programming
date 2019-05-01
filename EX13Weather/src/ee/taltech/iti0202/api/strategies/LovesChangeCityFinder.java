@@ -13,11 +13,6 @@ import java.util.Random;
 public class LovesChangeCityFinder implements CityFinderStrategy {
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
-
-        if (candidateCities.size() == 0) {
-            return Optional.empty();
-        }
-
         HashMap<Integer, City> bestCity = new HashMap<>();
         for (City city : candidateCities) {
             String pervious = "000";

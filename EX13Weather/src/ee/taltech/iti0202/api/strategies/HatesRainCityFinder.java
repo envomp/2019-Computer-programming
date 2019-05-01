@@ -15,11 +15,6 @@ public class HatesRainCityFinder implements CityFinderStrategy {
 
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
-
-        if (candidateCities.size() == 0) {
-            return Optional.empty();
-        }
-
         List<City> realCandidates = new ArrayList<>();
         for (City city : candidateCities) {
             int allowed = 1;
