@@ -2,12 +2,16 @@ package ee.taltech.iti0202.api.strategies;
 
 import ee.taltech.iti0202.api.destinations.City;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
-    private final int RAINSTARTCODE = 499;
-    private final int RAINTENDCODE = 600;
+    private final int rainStartCode = 499;
+    private final int rainEndCode = 600;
 
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
@@ -20,7 +24,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
         for (City city : candidateCities) {
             int allowed = 1;
             for (int code : city.getWeatherCodes()) {
-                if (code < RAINTENDCODE && code > RAINSTARTCODE) {
+                if (code < rainEndCode && code > rainStartCode) {
                     allowed--;
                 }
             }

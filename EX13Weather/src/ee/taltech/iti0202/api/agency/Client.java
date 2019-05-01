@@ -6,7 +6,6 @@ import ee.taltech.iti0202.api.strategies.CityFinderStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class Client {
     private String name;
