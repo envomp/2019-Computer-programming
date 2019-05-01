@@ -6,6 +6,7 @@ import ee.taltech.iti0202.api.provider.OnlineDataController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class TravelAgency {
@@ -33,7 +34,7 @@ public class TravelAgency {
      * This method tries to find a suitable city for the client to visit.
      * <p>
      * It uses OnlineDataController, to get data for the cities.
-     * After getting data about a city, SAVE IT for the duration of the cycle. OpenWeather API updates data every 10 minutes.
+     * After getting data about a city, SAVE IT for the duration of the cycle.
      * Create a City object using the CityBuilder here.
      *
      * @param client a client who wants to go somewhere.
@@ -52,7 +53,7 @@ public class TravelAgency {
                             .filter(x -> !x.getName().equals(client.getStartingCity()))
                             .collect(Collectors.toList()));
         } catch (NullPointerException e) {
-            return Optional.empty();
+            return Optional.ofNullable(cities.get(new Random().nextInt(cities.size())));
         }
     }
 

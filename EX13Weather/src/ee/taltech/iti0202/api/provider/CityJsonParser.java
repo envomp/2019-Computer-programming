@@ -14,6 +14,7 @@ public class CityJsonParser {
     private String inputLine;
     private JsonObject jsonObject;
     private City city;
+    private final int NUMBER_OF_RESULTS = 40;
 
     public CityJsonParser(String cityName, String inputLine) {
         this.cityName = cityName;
@@ -34,10 +35,11 @@ public class CityJsonParser {
         List<Double> temperatures = new ArrayList<>();
         List<Double> humidity = new ArrayList<>();
         List<Integer> weatherCodes = new ArrayList<>();
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < NUMBER_OF_RESULTS; i++) {
             temperatures.add(data.get(i).getAsJsonObject().get("main").getAsJsonObject().get("temp").getAsDouble());
             humidity.add(data.get(i).getAsJsonObject().get("main").getAsJsonObject().get("humidity").getAsDouble());
-            weatherCodes.add(data.get(i).getAsJsonObject().get("weather").getAsJsonArray().get(0).getAsJsonObject().get("id").getAsInt());
+            weatherCodes.add(data.get(i).getAsJsonObject().get("weather")
+                    .getAsJsonArray().get(0).getAsJsonObject().get("id").getAsInt());
         }
 
         JsonObject coords = jsonObject.get("city").getAsJsonObject().get("coord").getAsJsonObject();

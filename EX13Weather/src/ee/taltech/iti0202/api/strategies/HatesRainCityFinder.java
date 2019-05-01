@@ -8,13 +8,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
+
+    private final int RAIN_START_CODE = 499;
+    private final int RAINT_END_CODE = 600;
+
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
         List<City> realCandidates = new ArrayList<>();
         for (City city : candidateCities) {
             int allowed = 1;
             for (int code : city.getWeatherCodes()) {
-                if (code < 600 && code > 400) {
+                if (code < RAINT_END_CODE && code > RAIN_START_CODE) {
                     allowed--;
                 }
             }

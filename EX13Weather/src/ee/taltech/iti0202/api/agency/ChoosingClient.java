@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 
 public class ChoosingClient extends Client {
 
-    public ChoosingClient(String name, String startingCity, CityFinderStrategy choosingStrategy, List<String> wantsToVisitCities) {
+    public ChoosingClient(String name, String startingCity,
+                          CityFinderStrategy choosingStrategy, List<String> wantsToVisitCities) {
         super(name, startingCity, choosingStrategy, wantsToVisitCities);
     }
 

@@ -29,6 +29,7 @@ public class LovesChangeCityFinder implements CityFinderStrategy {
             }
             bestCity.put(total, city);
         }
-        return Optional.ofNullable(Collections.max(bestCity.entrySet(), Comparator.comparing(Map.Entry::getKey)).getValue());
+        return Optional.ofNullable(Collections.max(bestCity.entrySet(),
+                Comparator.comparing(Map.Entry::getKey)).getValue());
     }
 }
