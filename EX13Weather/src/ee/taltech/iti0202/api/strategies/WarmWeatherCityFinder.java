@@ -9,6 +9,7 @@ import java.util.Optional;
 public class WarmWeatherCityFinder implements CityFinderStrategy {
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
-        return Optional.of(candidateCities.stream().max(Comparator.comparing(City::getAverageTemperature)).get());
+        if (candidateCities.size() == 0) return Optional.empty();
+        return candidateCities.stream().max(Comparator.comparing(City::getAverageTemperature));
     }
 }

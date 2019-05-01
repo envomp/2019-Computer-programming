@@ -9,6 +9,7 @@ import java.util.Random;
 public class LovesChangeCityFinder implements CityFinderStrategy {
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
+        if (candidateCities.size() == 0) return Optional.empty();
         return Optional.of(candidateCities.get(new Random().nextInt(candidateCities.size())));
     }
 }
