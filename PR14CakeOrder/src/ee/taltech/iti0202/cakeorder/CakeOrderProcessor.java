@@ -1,6 +1,10 @@
 package ee.taltech.iti0202.cakeorder;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +12,13 @@ import java.util.List;
 public class CakeOrderProcessor {
 
     public enum CakeOrderProcessorType {
-        MAKE_DIARY_FREE,
+        MAKE_DAIRY_FREE,
         COUNT_TOTAL_SUM,
         REMOVE_BEST_BEFORE_DAY_OVER
     }
 
     private int order = 0;
+    private static final int year = 2019;
     private CakeOrderProcessorType type;
     private final List<String> dairy = new ArrayList<>() {{
         add("milk");
@@ -39,13 +44,13 @@ public class CakeOrderProcessor {
                 case COUNT_TOTAL_SUM:
                     total += element.getAsJsonObject().get("price").getAsDouble();
                     break;
-                case MAKE_DIARY_FREE:
+                case MAKE_DAIRY_FREE:
                     JsonArray jsonArray = new JsonArray();
                     double multiplier = 1d;
                     for (JsonElement ingredient : ingredients) {
                         if (dairy.contains(ingredient.getAsString())) {
                             jsonArray.add(String.format("plant-%s", ingredient.getAsString()));
-                            multiplier += 0.1d;
+                            multiplier += 1d / 10d;
                         } else {
                             jsonArray.add(ingredient.getAsString());
                         }
@@ -55,9 +60,9 @@ public class CakeOrderProcessor {
                     break;
                 case REMOVE_BEST_BEFORE_DAY_OVER:
                     String[] date = element.getAsJsonObject().get("BBD").getAsString().split("-");
-                    if (Integer.parseInt(date[0]) < 2019) {
+                    if (Integer.parseInt(date[0]) < year) {
                         cakes.remove(element);
-                    } else if (Integer.parseInt(date[0]) == 2019){
+                    } else if (Integer.parseInt(date[0]) == year) {
                         if (Integer.parseInt(date[1]) < 5) {
                             cakes.remove(element);
                         } else if (Integer.parseInt(date[1]) == 5) {
@@ -80,26 +85,5 @@ public class CakeOrderProcessor {
     }
 
     public static void main(String[] args) {
-        CakeOrderProcessor processor = new CakeOrderProcessor(CakeOrderProcessorType.REMOVE_BEST_BEFORE_DAY_OVER);
-        String process = processor.process("{\n" +
-                "  \"cakes\": [\n" +
-                "    {\n" +
-                "      \"name\": \"Sacher\",\n" +
-                "      \"BBD\": \"2019-04-29\",\n" +
-                "      \"price\": 14.00,\n" +
-                "      \"kg\": 2.00,\n" +
-                "      \"ingredients\": [\"flour\", \"chocolate\", \"milk\", \"sugar\", \"eggs\"]\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"name\": \"New York Cheesecake\",\n" +
-                "      \"BBD\": \"2019-04-30\",\n" +
-                "      \"price\": 10.00,\n" +
-                "      \"kg\": 1.50,\n" +
-                "      \"ingredients\": [\"flour\", \"cream-cheese\", \"milk\", \"sugar\", \"eggs\"]\n" +
-                "\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}");
-        System.out.println(process);
     }
 }
