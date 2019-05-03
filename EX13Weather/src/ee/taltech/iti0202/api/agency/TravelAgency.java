@@ -30,6 +30,7 @@ public class TravelAgency {
      */
     public Optional<City> findSuitableCitiesForClient(Client client) {
         List<City> cities = new ArrayList<>();
+
         for (String name : cityNames) {
             dataController.getCity(name);
             cities.add(dataController.getCityMap().get(name));
