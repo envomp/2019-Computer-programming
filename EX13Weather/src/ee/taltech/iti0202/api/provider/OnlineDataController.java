@@ -17,11 +17,11 @@ public class OnlineDataController {
 
     public String getCity(String cityName) {
         try {
-            // if (cityMap.containsKey(cityName)) {
-            //     return String.valueOf(cityMap.get(cityName));
-            // } else {
+            if (cityMap.containsKey(cityName)) {
+                return String.valueOf(cityMap.get(cityName));
+            } else {
                 return sendHttpRequest(cityName);
-            // }
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return "";

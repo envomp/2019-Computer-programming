@@ -37,9 +37,7 @@ public class TravelAgency {
         }
 
         return client.chooseBestCity(
-                cities.stream()
-                        .filter(x -> !x.getName().equals(client.getStartingCity()))
-                        .collect(Collectors.toList()));
+                cities);
     }
 
     /**

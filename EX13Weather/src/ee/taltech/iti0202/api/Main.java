@@ -31,15 +31,16 @@ public class Main {
                 "Libya"
         ));
 
-        try {
-            for (String cityName : cityNames) {
-                controller.sendHttpRequest(cityName);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     for (String cityName : cityNames) {
+        //         controller.sendHttpRequest(cityName);
+        //     }
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
 
-        //controller.getCityMap().forEach((key, value) -> System.out.println(controller.getJsonMap().get(value)));
+        // controller.getCityMap().forEach((key, value) -> System.out.println(controller.getJsonMap().get(value)));
+
         WarmWeatherCityFinder warmWeatherCityFinder = new WarmWeatherCityFinder();
         HatesRainCityFinder hatesRainCityFinder = new HatesRainCityFinder();
         LovesChangeCityFinder lovesChangeCityFinder = new LovesChangeCityFinder();
