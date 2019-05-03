@@ -29,7 +29,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
 
         return realCandidates.stream()
                 .filter(x -> x.getHumidity().stream()
-                        .max(Comparator.comparing(Double::valueOf)).get() < 100.0d)
+                        .max(Comparator.comparing(Double::valueOf)).get() < 80.0d)
                 .min(Comparator.comparing(City::getAverageHumidity));
 
     }
