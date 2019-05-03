@@ -8,7 +8,6 @@ import ee.taltech.iti0202.api.strategies.LovesChangeCityFinder;
 import ee.taltech.iti0202.api.strategies.StudentMadeCityFinder;
 import ee.taltech.iti0202.api.strategies.WarmWeatherCityFinder;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,7 +45,7 @@ public class Main {
         LovesChangeCityFinder lovesChangeCityFinder = new LovesChangeCityFinder();
         StudentMadeCityFinder studentMadeCityFinder = new StudentMadeCityFinder();
 
-        ChoosingClient ago = new ChoosingClient("Ago", "Tallinn", studentMadeCityFinder, new ArrayList<>(Arrays.asList(
+        ChoosingClient client = new ChoosingClient("name", "Tallinn", studentMadeCityFinder, new ArrayList<>(Arrays.asList(
                 "Hong Kong",
                 "Aoulef",
                 "Africa",
@@ -55,7 +54,7 @@ public class Main {
         )));
 
         TravelAgency travelAgency = new TravelAgency(cityNames, controller);
-        System.out.println(travelAgency.findSuitableCitiesForClient(ago).get().getName());
+        System.out.println(travelAgency.findSuitableCitiesForClient(client).get().getName());
 
     }
 }

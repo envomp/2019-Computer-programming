@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.api.agency;
 
-import com.google.gson.JsonObject;
 import ee.taltech.iti0202.api.destinations.City;
 import ee.taltech.iti0202.api.provider.CityJsonParser;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
