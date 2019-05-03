@@ -1,6 +1,8 @@
 package ee.taltech.iti0202.api.agency;
 
+import com.google.gson.JsonObject;
 import ee.taltech.iti0202.api.destinations.City;
+import ee.taltech.iti0202.api.provider.CityJsonParser;
 import ee.taltech.iti0202.api.provider.OnlineDataController;
 
 import java.util.ArrayList;
@@ -32,12 +34,14 @@ public class TravelAgency {
         List<City> cities = new ArrayList<>();
 
         for (String name : cityNames) {
-            dataController.getCity(name);
-            cities.add(dataController.getCityMap().get(name));
-        }
+            //cities.add(dataController.getCityMap().get(name));
+            cities.add(new CityJsonParser(name, dataController.getCity(name)).invoke().getCity());
+    }
 
         return client.chooseBestCity(
-                cities);
+                cities.stream()
+                        .filter(x -> !x.getName().equals(client.getStartingCity()))
+                        .collect(Collectors.toList()));
     }
 
     /**
