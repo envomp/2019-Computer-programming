@@ -9,23 +9,23 @@ import java.util.Optional;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
-    private final int rainStartCode = 499;
+    private final int rainStartCode = 0;
     private final int rainEndCode = 600;
 
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
         List<City> realCandidates = new ArrayList<>();
-        // for (City city : candidateCities) {
-        //     int allowed = 1;
-        //     for (int code : city.getWeatherCodes()) {
-        //         if (code < rainEndCode && code > rainStartCode) {
-        //             allowed--;
-        //         }
-        //     }
-        //     if (allowed >= 0) {
-        //         realCandidates.add(city);
-        //     }
-        // }
+        for (City city : candidateCities) {
+            int allowed = 1;
+            for (int code : city.getWeatherCodes()) {
+                if (code < rainEndCode && code > rainStartCode) {
+                    allowed--;
+                }
+            }
+            if (allowed >= 0) {
+                realCandidates.add(city);
+            }
+        }
 
         return realCandidates.stream()
                 .filter(x -> x.getHumidity().stream()
