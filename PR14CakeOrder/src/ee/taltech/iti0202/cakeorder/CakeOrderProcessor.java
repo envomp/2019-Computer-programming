@@ -18,7 +18,7 @@ public class CakeOrderProcessor {
     }
 
     private int order = 0;
-    private static final int year = 2019;
+    private static final int Year = 2019;
     private CakeOrderProcessorType type;
     private final List<String> dairy = new ArrayList<>() {{
         add("milk");
@@ -36,6 +36,7 @@ public class CakeOrderProcessor {
         double total = 0;
         JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonInput);
         JsonArray cakes = jsonObject.get("cakes").getAsJsonArray();
+        List<JsonElement> toRemove = new ArrayList<>();
 
         for (JsonElement element : cakes) {
             JsonArray ingredients = element.getAsJsonObject().get("ingredients").getAsJsonArray();
@@ -55,24 +56,31 @@ public class CakeOrderProcessor {
                             jsonArray.add(ingredient.getAsString());
                         }
                     }
-                    element.getAsJsonObject().add("price", new JsonPrimitive(String.format("%.2f", element.getAsJsonObject().get("price").getAsDouble() * multiplier)));
+                    element.getAsJsonObject().add("price", new JsonPrimitive(String.format("%.2f",
+                            element.getAsJsonObject().get("price").getAsDouble() * multiplier)));
                     element.getAsJsonObject().add("ingredients", jsonArray);
                     break;
                 case REMOVE_BEST_BEFORE_DAY_OVER:
                     String[] date = element.getAsJsonObject().get("BBD").getAsString().split("-");
-                    if (Integer.parseInt(date[0]) < year) {
-                        cakes.remove(element);
-                    } else if (Integer.parseInt(date[0]) == year) {
+                    if (Integer.parseInt(date[0]) < Year) {
+                        toRemove.add(element);
+                    } else if (Integer.parseInt(date[0]) == Year) {
                         if (Integer.parseInt(date[1]) < 5) {
-                            cakes.remove(element);
+                            toRemove.add(element);
                         } else if (Integer.parseInt(date[1]) == 5) {
                             if (Integer.parseInt(date[2]) < 3) {
-                                cakes.remove(element);
+                                toRemove.add(element);
                             }
                         }
                     }
                     break;
+                default:
+                    break;
             }
+        }
+
+        for (JsonElement rem : toRemove) {
+            cakes.remove(rem);
         }
 
         JsonObject answer = new JsonObject();
@@ -85,5 +93,26 @@ public class CakeOrderProcessor {
     }
 
     public static void main(String[] args) {
+        CakeOrderProcessor processor = new CakeOrderProcessor(CakeOrderProcessorType.REMOVE_BEST_BEFORE_DAY_OVER);
+        String process = processor.process("{\n" +
+                "  \"cakes\": [\n" +
+                "    {\n" +
+                "      \"name\": \"Sacher\",\n" +
+                "      \"BBD\": \"2019-04-29\",\n" +
+                "      \"price\": 14.00,\n" +
+                "      \"kg\": 2.00,\n" +
+                "      \"ingredients\": [\"flour\", \"chocolate\", \"milk\", \"sugar\", \"eggs\"]\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"name\": \"New York Cheesecake\",\n" +
+                "      \"BBD\": \"2019-04-30\",\n" +
+                "      \"price\": 10.00,\n" +
+                "      \"kg\": 1.50,\n" +
+                "      \"ingredients\": [\"flour\", \"cream-cheese\", \"milk\", \"sugar\", \"eggs\"]\n" +
+                "\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}");
+        System.out.println(process);
     }
 }
