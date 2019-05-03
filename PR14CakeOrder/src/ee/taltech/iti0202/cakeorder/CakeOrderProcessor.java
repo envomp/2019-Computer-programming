@@ -65,10 +65,10 @@ public class CakeOrderProcessor {
                     if (Integer.parseInt(date[0]) < Year) {
                         toRemove.add(element);
                     } else if (Integer.parseInt(date[0]) == Year) {
-                        if (Integer.parseInt(date[1]) < 5) {
+                        if (Integer.parseInt(date[1]) < 4) {
                             toRemove.add(element);
-                        } else if (Integer.parseInt(date[1]) == 5) {
-                            if (Integer.parseInt(date[2]) < 3) {
+                        } else if (Integer.parseInt(date[1]) == 4) {
+                            if (Integer.parseInt(date[2]) < 30) {
                                 toRemove.add(element);
                             }
                         }
