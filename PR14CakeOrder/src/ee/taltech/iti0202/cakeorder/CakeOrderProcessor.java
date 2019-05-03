@@ -50,8 +50,8 @@ public class CakeOrderProcessor {
 
             switch (type) {
                 case COUNT_TOTAL_SUM:
-                    total += element.getAsJsonObject().get("price").getAsDouble() *
-                            element.getAsJsonObject().get("kg").getAsDouble();
+                    total += element.getAsJsonObject().get("price").getAsDouble()
+                            * element.getAsJsonObject().get("kg").getAsDouble();
                     break;
                 case MAKE_DAIRY_FREE:
                     JsonArray jsonArray = new JsonArray();
