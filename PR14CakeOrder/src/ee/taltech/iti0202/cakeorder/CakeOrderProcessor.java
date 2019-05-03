@@ -1,4 +1,4 @@
-package ee.ttu.iti0202.cakeorder;
+package ee.taltech.iti0202.cakeorder;
 
 import com.google.gson.*;
 
