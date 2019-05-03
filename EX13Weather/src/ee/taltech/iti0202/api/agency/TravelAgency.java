@@ -6,7 +6,6 @@ import ee.taltech.iti0202.api.provider.OnlineDataController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class TravelAgency {
@@ -17,17 +16,6 @@ public class TravelAgency {
     public TravelAgency(List<String> cityNames, OnlineDataController dataController) {
         this.cityNames = cityNames;
         this.dataController = dataController;
-    }
-
-    /**
-     * Ise agency doesn't have a destination city yet, adds it to the list.
-     *
-     * @param city city name.
-     */
-    public void addCity(String city) {
-        if (!cityNames.contains(city)) {
-            cityNames.add(city);
-        }
     }
 
     /**
@@ -47,17 +35,20 @@ public class TravelAgency {
             cities.add(dataController.getCityMap().get(name));
         }
 
-        try {
-            Optional<City> optionalCity = client.chooseBestCity(
-                    cities.stream()
-                            .filter(x -> !x.getName().equals(client.getStartingCity()))
-                            .collect(Collectors.toList()));
-            if (optionalCity.isEmpty()) {
-                throw new Exception("no city was found!");
-            }
-            return optionalCity;
-        } catch (Exception e) {
-            return Optional.empty();
+        return client.chooseBestCity(
+                cities.stream()
+                        .filter(x -> !x.getName().equals(client.getStartingCity()))
+                        .collect(Collectors.toList()));
+    }
+
+    /**
+     * Ise agency doesn't have a destination city yet, adds it to the list.
+     *
+     * @param city city name.
+     */
+    public void addCity(String city) {
+        if (!cityNames.contains(city)) {
+            cityNames.add(city);
         }
     }
 
