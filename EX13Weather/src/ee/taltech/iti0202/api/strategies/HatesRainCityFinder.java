@@ -9,8 +9,9 @@ import java.util.Optional;
 
 public class HatesRainCityFinder implements CityFinderStrategy {
 
-    private final int rainStartCode = 0;
+    private final int rainStartCode = 499;
     private final int rainEndCode = 600;
+    private final double humidity = 80.0d;
 
     @Override
     public Optional<City> findBestCity(List<City> candidateCities) {
@@ -29,7 +30,7 @@ public class HatesRainCityFinder implements CityFinderStrategy {
 
         return realCandidates.stream()
                 .filter(x -> x.getHumidity().stream()
-                        .max(Comparator.comparing(Double::valueOf)).get() < 80.0d)
+                        .max(Comparator.comparing(Double::valueOf)).get() < humidity)
                 .min(Comparator.comparing(City::getAverageHumidity));
 
     }
