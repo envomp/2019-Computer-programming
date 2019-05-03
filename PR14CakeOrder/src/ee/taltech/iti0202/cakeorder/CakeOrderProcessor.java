@@ -40,10 +40,18 @@ public class CakeOrderProcessor {
 
         for (JsonElement element : cakes) {
             JsonArray ingredients = element.getAsJsonObject().get("ingredients").getAsJsonArray();
+            String name = element.getAsJsonObject().get("name").getAsString();
+            StringBuilder initials = new StringBuilder();
+            for (String s : name.split(" ")) {
+                initials.append(s.charAt(0));
+            }
+            initials.append(initials.length());
+            element.getAsJsonObject().add("cake_id", new JsonPrimitive(initials.toString().toUpperCase()));
 
             switch (type) {
                 case COUNT_TOTAL_SUM:
-                    total += element.getAsJsonObject().get("price").getAsDouble();
+                    total += element.getAsJsonObject().get("price").getAsDouble() *
+                            element.getAsJsonObject().get("kg").getAsDouble();
                     break;
                 case MAKE_DAIRY_FREE:
                     JsonArray jsonArray = new JsonArray();
