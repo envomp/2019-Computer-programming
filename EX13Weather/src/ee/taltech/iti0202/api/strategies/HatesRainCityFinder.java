@@ -27,16 +27,11 @@ public class HatesRainCityFinder implements CityFinderStrategy {
                 realCandidates.add(city);
             }
         }
-        Optional<City> cityOptional = realCandidates.stream()
+
+        return realCandidates.stream()
                 .filter(x -> x.getHumidity().stream()
                         .max(Comparator.comparing(Double::valueOf)).get() < 100.0d)
                 .min(Comparator.comparing(City::getAverageHumidity));
-
-        if (cityOptional.isPresent()) {
-            return cityOptional;
-        }
-        return Optional.ofNullable(candidateCities.get(new Random().nextInt(candidateCities.size())));
-
 
     }
 }

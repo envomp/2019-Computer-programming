@@ -29,11 +29,7 @@ public class LovesChangeCityFinder implements CityFinderStrategy {
             }
             bestCity.put(total, city);
         }
-        Optional<City> cityOptional = Optional.ofNullable(Collections.max(bestCity.entrySet(),
+        return Optional.ofNullable(Collections.max(bestCity.entrySet(),
                 Comparator.comparing(Map.Entry::getKey)).getValue());
-        if (cityOptional.isPresent()) {
-            return cityOptional;
-        }
-        return Optional.ofNullable(candidateCities.get(new Random().nextInt(candidateCities.size())));
     }
 }
