@@ -18,7 +18,7 @@ public class CakeOrderProcessor {
     }
 
     private int order = 0;
-    private static final int Year = 2019;
+    private static final int YEAR = 2019;
     private CakeOrderProcessorType type;
     private final List<String> dairy = new ArrayList<>() {{
         add("milk");
@@ -70,13 +70,13 @@ public class CakeOrderProcessor {
                     break;
                 case REMOVE_BEST_BEFORE_DAY_OVER:
                     String[] date = element.getAsJsonObject().get("BBD").getAsString().split("-");
-                    if (Integer.parseInt(date[0]) < Year) {
+                    if (Integer.parseInt(date[0]) < YEAR) {
                         toRemove.add(element);
-                    } else if (Integer.parseInt(date[0]) == Year) {
-                        if (Integer.parseInt(date[1]) < 4) {
+                    } else if (Integer.parseInt(date[0]) == YEAR) {
+                        if (Integer.parseInt(date[1]) < 5) {
                             toRemove.add(element);
-                        } else if (Integer.parseInt(date[1]) == 4) {
-                            if (Integer.parseInt(date[2]) < 30) {
+                        } else if (Integer.parseInt(date[1]) == 5) {
+                            if (Integer.parseInt(date[2]) < 4) {
                                 toRemove.add(element);
                             }
                         }
@@ -101,26 +101,5 @@ public class CakeOrderProcessor {
     }
 
     public static void main(String[] args) {
-        CakeOrderProcessor processor = new CakeOrderProcessor(CakeOrderProcessorType.REMOVE_BEST_BEFORE_DAY_OVER);
-        String process = processor.process("{\n" +
-                "  \"cakes\": [\n" +
-                "    {\n" +
-                "      \"name\": \"Sacher\",\n" +
-                "      \"BBD\": \"2019-04-29\",\n" +
-                "      \"price\": 14.00,\n" +
-                "      \"kg\": 2.00,\n" +
-                "      \"ingredients\": [\"flour\", \"chocolate\", \"milk\", \"sugar\", \"eggs\"]\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"name\": \"New York Cheesecake\",\n" +
-                "      \"BBD\": \"2019-04-30\",\n" +
-                "      \"price\": 10.00,\n" +
-                "      \"kg\": 1.50,\n" +
-                "      \"ingredients\": [\"flour\", \"cream-cheese\", \"milk\", \"sugar\", \"eggs\"]\n" +
-                "\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}");
-        System.out.println(process);
     }
 }
