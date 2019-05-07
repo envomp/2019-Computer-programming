@@ -3,6 +3,7 @@ import com.google.gson.JsonParser;
 import furniture.Furniture;
 import product.Product;
 import product.ProductBuilder;
+import storage.Loader;
 import storage.Storage;
 import storage.StorageOutOFMaterialExeption;
 

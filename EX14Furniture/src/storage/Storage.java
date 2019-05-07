@@ -8,7 +8,10 @@ import furniture.Furniture;
 import product.Product;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Storage {
     private Set<Product> products = new HashSet<>();
@@ -37,8 +40,12 @@ public class Storage {
         JsonParser parser = new JsonParser();
         JsonObject shop = new JsonObject();
         JsonArray jsonArrayProducts = new JsonArray();
+        int total = products.size();
+        int i = 0;
         primary:
         for (Product product : products) {
+            i++;
+            Loader.progressPercentage(i, total);
             JsonObject property = new JsonObject();
             for (JsonElement jsonElement : jsonArrayProducts) {
                 if (jsonElement.getAsJsonObject()
