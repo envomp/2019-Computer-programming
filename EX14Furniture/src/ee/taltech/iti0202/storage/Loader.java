@@ -1,4 +1,4 @@
-package storage;
+package ee.taltech.iti0202.storage;
 
 public class Loader {
     public static void progressPercentage(int remain, int total) {

@@ -1,6 +1,6 @@
-package product;
+package ee.taltech.iti0202.product;
 
-import furniture.Furniture;
+import ee.taltech.iti0202.furniture.Furniture;
 
 import java.util.ArrayList;
 

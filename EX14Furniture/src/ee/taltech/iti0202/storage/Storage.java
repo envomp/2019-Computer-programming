@@ -1,11 +1,11 @@
-package storage;
+package ee.taltech.iti0202.storage;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import furniture.Furniture;
-import product.Product;
+import ee.taltech.iti0202.furniture.Furniture;
+import ee.taltech.iti0202.product.Product;
 
 import java.math.BigInteger;
 import java.util.HashMap;

@@ -1,11 +1,13 @@
+package ee.taltech.iti0202;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
-import furniture.Furniture;
-import product.Product;
-import product.ProductBuilder;
-import storage.Loader;
-import storage.Storage;
-import storage.StorageOutOFMaterialExeption;
+import ee.taltech.iti0202.furniture.Furniture;
+import ee.taltech.iti0202.product.Product;
+import ee.taltech.iti0202.product.ProductBuilder;
+import ee.taltech.iti0202.storage.Loader;
+import ee.taltech.iti0202.storage.Storage;
+import ee.taltech.iti0202.storage.StorageOutOFMaterialExeption;
 
 import java.util.Arrays;
 import java.util.List;
@@ -102,7 +104,7 @@ public class Main {
     }
 
     private static void runTests(Storage storage) {
-        // get all furniture
+        // get all ee.taltech.iti0202.furniture
         System.out.println("\n/////////////////////////////////// furniture ///////////////////////////////////////"
                 + "///////////////////////////////////////////////////////////////");
         pretty(storage.toString());
@@ -112,22 +114,22 @@ public class Main {
                 + "////////////////////////////////////////////////////////////");
         pretty(storage.getAllMaterial());
 
-        // get model furniture
+        // get model ee.taltech.iti0202.furniture
         System.out.println("/////////////////////////////////// model ////////////////////////////////////"
                 + "//////////////////////////////////////////////////////////////////");
         pretty(storage.getModelFurniture("Grandfathers Chair"));
 
-        // get category furniture
+        // get category ee.taltech.iti0202.furniture
         System.out.println("/////////////////////////////////// category ///////////////////////////////////"
                 + "///////////////////////////////////////////////////////////////////");
         pretty(storage.getCategoryFurniture(Furniture.Category.CHAIR));
 
-        // get material furniture
+        // get material ee.taltech.iti0202.furniture
         System.out.println("/////////////////////////////////// material ////////////////////////////////////"
                 + "//////////////////////////////////////////////////////////////////");
         pretty(storage.getMaterialFurniture(Furniture.Material.WOOD));
 
-        // get special furniture
+        // get special ee.taltech.iti0202.furniture
         System.out.println("/////////////////////////////////// special /////////////////////////////////////////"
                 + "/////////////////////////////////////////////////////////////");
         pretty(storage.getSpecialFurniture("EXTRA LEG"));

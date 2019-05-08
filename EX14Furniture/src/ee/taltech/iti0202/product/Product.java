@@ -1,9 +1,9 @@
-package product;
+package ee.taltech.iti0202.product;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import furniture.Furniture;
+import ee.taltech.iti0202.furniture.Furniture;
 
 import java.util.ArrayList;
 import java.util.List;

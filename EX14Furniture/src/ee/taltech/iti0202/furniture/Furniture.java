@@ -1,4 +1,4 @@
-package furniture;
+package ee.taltech.iti0202.furniture;
 
 import com.google.gson.JsonObject;
 
