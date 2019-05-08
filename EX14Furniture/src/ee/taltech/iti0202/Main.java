@@ -20,7 +20,7 @@ public class Main {
         Storage storage = new Storage();
 
         /// First load material
-        storage.addMaterial(Furniture.Material.WOOD, 5d);
+        storage.addMaterial(Furniture.Material.WOOD, 7d);
 
         /// Then create Furniture
         for (int i = 0; i < 3; i++) {
@@ -42,6 +42,9 @@ public class Main {
                 .setModelName("Grandfathers Chair")
                 .setPriece(20.99d)
                 .createProduct();
+
+        storage.addProducts(chair, 1);
+
         chair.addExtraSpecialVariable("EXTRA LEG", "From defect to the latest fashion model");
         chair.addExtraSpecialVariable("SUPER SCREECHY", "It is definitely not broken!");
 
@@ -107,7 +110,7 @@ public class Main {
         // get all ee.taltech.iti0202.furniture
         System.out.println("\n/////////////////////////////////// furniture ///////////////////////////////////////"
                 + "///////////////////////////////////////////////////////////////");
-        pretty(storage.toString());
+        pretty(storage.getJsonRepresentation());
 
         // get all material
         System.out.println("/////////////////////////////////// material //////////////////////////////////////////"

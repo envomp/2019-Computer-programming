@@ -35,13 +35,12 @@ public class Product implements Furniture {
         typeSpecialVariables.add(new TypeSpecialVariables(a, b));
     }
 
-    @Override
-    public String toString() {
+    public String getJsonRepresentation() {
         JsonObject product = new JsonObject();
         product.addProperty("modelName", modelName);
         product.addProperty("category", category.toString());
         product.addProperty("material", material.toString());
-        JsonObject jsonDimentsions = (JsonObject) new JsonParser().parse(dimentions.toString());
+        JsonObject jsonDimentsions = (JsonObject) new JsonParser().parse(dimentions.getJsonRepresentation());
         product.add("dimensions", jsonDimentsions);
         product.addProperty("price", priece);
         JsonArray jsonArray = new JsonArray();

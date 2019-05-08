@@ -58,7 +58,7 @@ public interface Furniture {
             this.z = z;
         }
 
-        public String toString() {
+        public String getJsonRepresentation() {
             JsonObject product = new JsonObject();
             product.addProperty("x", String.format("%.2f", x));
             product.addProperty("y", String.format("%.2f", y));

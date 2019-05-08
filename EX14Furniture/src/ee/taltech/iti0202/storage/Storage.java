@@ -35,8 +35,7 @@ public class Storage {
         arbitraryUnitsOfMaterial.put(material, arbitraryUnitsOfMaterial.get(material) + d);
     }
 
-    @Override
-    public String toString() {
+    public String getJsonRepresentation() {
         JsonParser parser = new JsonParser();
         JsonObject shop = new JsonObject();
         JsonArray jsonArrayProducts = new JsonArray();
@@ -49,14 +48,14 @@ public class Storage {
             JsonObject property = new JsonObject();
             for (JsonElement jsonElement : jsonArrayProducts) {
                 if (jsonElement.getAsJsonObject()
-                        .get("item").getAsJsonObject().equals(parser.parse(product.toString()))) {
+                        .get("item").getAsJsonObject().equals(parser.parse(product.getJsonRepresentation()))) {
                     jsonElement.getAsJsonObject().addProperty("amount", jsonElement.getAsJsonObject()
                             .get("amount").getAsBigInteger().add(BigInteger.ONE));
                     continue primary;
                 }
             }
             property.addProperty("amount", 1);
-            property.add("item", parser.parse(product.toString()));
+            property.add("item", parser.parse(product.getJsonRepresentation()));
             jsonArrayProducts.add(property);
         }
         shop.add("products", jsonArrayProducts);
@@ -72,7 +71,7 @@ public class Storage {
 
         for (Product product : products) {
             if (product.getModelName().equals(model)) {
-                shop.add(parser.parse(product.toString()));
+                shop.add(parser.parse(product.getJsonRepresentation()));
             }
         }
         return shop.toString();
@@ -84,7 +83,7 @@ public class Storage {
 
         for (Product product : products) {
             if (product.getMaterial().equals(material)) {
-                shop.add(parser.parse(product.toString()));
+                shop.add(parser.parse(product.getJsonRepresentation()));
             }
         }
         return shop.toString();
@@ -96,7 +95,7 @@ public class Storage {
 
         for (Product product : products) {
             if (product.getCategory().equals(category)) {
-                shop.add(parser.parse(product.toString()));
+                shop.add(parser.parse(product.getJsonRepresentation()));
             }
         }
         return shop.toString();
@@ -110,7 +109,7 @@ public class Storage {
         for (Product product : products) {
             for (Furniture.TypeSpecialVariables specialVariables : product.getTypeSpecialVariables()) {
                 if (specialVariables.toStringName().equals(special)) {
-                    shop.add(parser.parse(product.toString()));
+                    shop.add(parser.parse(product.getJsonRepresentation()));
                     continue primary;
                 }
             }
