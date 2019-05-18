@@ -1,4 +1,4 @@
-package ee.ttu.iti0202.casino.game;
+package ee.taltech.iti0202.casino.game;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,17 +12,12 @@ public class CasinoRunner {
 
     public List<Integer> makeStake(int sum, List<Integer> stack) {
         int N = (int) Math.pow(2d, (double) stack.size());
-        for (int i = 1; i < N; i++) {
-            String code = Integer.toBinaryString(N | i).substring(1);
-            List<Integer> temp = IntStream.range(0, stack.size())
-                    .filter(j -> code.charAt(j) == '1')
-                    .mapToObj(stack::get)
-                    .collect(Collectors.toList());
-            if (temp.stream().mapToInt(Integer::intValue).sum() == sum) {
-                return temp;
-            }
-        }
-        return null;
+        return IntStream.range(1, N).mapToObj(i -> Integer.toBinaryString(N | i)
+                .substring(1)).map(code -> IntStream.range(0, stack.size())
+                .filter(j -> code.charAt(j) == '1')
+                .mapToObj(stack::get)
+                .collect(Collectors.toList())).filter(temp -> temp.stream().mapToInt(Integer::intValue)
+                .sum() == sum).findFirst().orElse(null);
     }
 
     public static void main(String[] args) {
