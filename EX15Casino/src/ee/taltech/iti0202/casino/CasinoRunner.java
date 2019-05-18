@@ -1,4 +1,4 @@
-package ee.taltech.iti0202.casino.game;
+package ee.taltech.iti0202.casino;
 
 import java.util.List;
 import java.util.stream.Collectors;
