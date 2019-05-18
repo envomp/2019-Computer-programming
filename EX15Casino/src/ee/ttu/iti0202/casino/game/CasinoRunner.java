@@ -1,14 +1,10 @@
-package ee.taltech.iti0202.casino;
+package ee.ttu.iti0202.casino.game;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CasinoRunner {
-
-    public CasinoRunner() {
-
-    }
 
     public List<Integer> makeStake(int sum, List<Integer> stack) {
         int N = (int) Math.pow(2d, (double) stack.size());
