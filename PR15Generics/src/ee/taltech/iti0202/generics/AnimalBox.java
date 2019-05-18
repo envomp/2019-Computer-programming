@@ -19,7 +19,7 @@ public class AnimalBox<E> {
         // Cat
         AnimalBox<PersianCat> persianCatAnimalBox = new AnimalBox<>();
         PersianCat persianCat = new PersianCat("Elf");
-        persianCatAnimalBox.put(persianCat);
+        //persianCatAnimalBox.put(persianCat);
 
         Optional<PersianCat> catFromBox = persianCatAnimalBox.getAnimal();
         System.out.println(catFromBox.isPresent()); // true
@@ -41,8 +41,10 @@ public class AnimalBox<E> {
     }
 
     public void feed(Food food) {
-        if (animal != null) {
+        try {
             System.out.println(String.format("%s was fed with %s", ((Animal) animal).name, food.toString()));
+        } catch (NullPointerException e) {
+            e.fillInStackTrace();
         }
     }
 
@@ -59,6 +61,11 @@ public class AnimalBox<E> {
     }
 
     public Optional<E> getAnimal() {
-        return Optional.of(animal);
+        try {
+            return Optional.of(animal);
+        } catch (NullPointerException e) {
+            e.fillInStackTrace();
+            return Optional.empty();
+        }
     }
 }
