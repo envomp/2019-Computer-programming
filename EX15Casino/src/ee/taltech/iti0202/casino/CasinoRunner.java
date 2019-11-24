@@ -18,6 +18,7 @@ public class CasinoRunner {
     public final int THIRTY = 30;
     public final int FIFTY = 50;
 
+
     protected int bank = 1000;
     protected List<Integer> tokens = new ArrayList<>();
     protected JsonObject allGames = new JsonObject();

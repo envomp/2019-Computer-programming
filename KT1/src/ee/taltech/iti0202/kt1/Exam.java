@@ -21,7 +21,6 @@ public class Exam {
         return numbers.subList(flags.get(flags.size() - 2) + 1, flags.get(flags.size() - 1));
     }
 
-
     public static String mixString(String a, String b) {
         StringBuilder answer = new StringBuilder();
         for (int i = 0; i < Math.max(a.length(), b.length()); i++) {

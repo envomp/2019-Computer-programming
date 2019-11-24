@@ -18,3 +18,4 @@ public class AgeFilter implements BirdFilter {
         return birds.stream().filter(x -> x.getAge().equals(age)).collect(Collectors.toList());
     }
 }
+

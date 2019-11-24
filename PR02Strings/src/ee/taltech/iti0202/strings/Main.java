@@ -26,7 +26,6 @@ public class Main {
         return dictionary;
     }
 
-
     /**
      * Find the most frequent word in given array of strings.
      * <p>
