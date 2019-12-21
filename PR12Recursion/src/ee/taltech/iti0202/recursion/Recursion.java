@@ -21,6 +21,7 @@ public class Recursion {
     }
 
     /**
+     *
      * Remove every neighbouring duplicate char in the string recursively.
      *
      * @param word a word with duplicates

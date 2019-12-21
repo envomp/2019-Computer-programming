@@ -14,7 +14,6 @@ public class Introduction {
 
     }
 
-
     /**
      * Method gets an array of numbers and another number.
      * The second integer's value must equal to the number of its occurrences in the given array.

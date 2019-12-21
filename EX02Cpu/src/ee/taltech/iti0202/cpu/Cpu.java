@@ -66,3 +66,4 @@ public class Cpu {
         System.out.println(res);
     }
 }
+

@@ -46,6 +46,7 @@ public class Main {
 
     }
 
+
     private static void fillStock(Stock stock) {
         stock.stockAddGraphicsCards("Nvidia GeForce RTX 2080 Ti", 140, 999, 3);
         stock.stockAddGraphicsCards("Nvidia GeForce GTX-1060", 110, 600, 1);

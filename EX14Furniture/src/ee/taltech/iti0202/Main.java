@@ -106,6 +106,7 @@ public class Main {
 
     }
 
+
     private static void runTests(Storage storage) {
         // get all ee.taltech.iti0202.furniture
         System.out.println("\n/////////////////////////////////// furniture ///////////////////////////////////////"

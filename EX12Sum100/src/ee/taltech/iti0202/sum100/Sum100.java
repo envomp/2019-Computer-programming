@@ -72,4 +72,3 @@ public class Sum100 {
         System.out.println(calcSums());
     }
 }
-
